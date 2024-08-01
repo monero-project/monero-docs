@@ -2,7 +2,7 @@
 site_name: Monero Documentation
 site_description: 'Unofficial Monero Documentation'
 site_author: "Piotr 'Qertoip' Włodarek"
-site_url: 'https://monerodocs.org'
+site_url: 'https://docs.getmonero.org'
 site_dir: 'public'
 
 copyright: '© 2021 MoneroDocs under <a href="https://opensource.org/licenses/MIT">MIT</a>'
@@ -58,41 +58,68 @@ nav:
 
 
 theme:
-  name: null
-  custom_dir: mkdocs-material/material
-
-  # 404 page
-  static_templates:
-    - 404.html
-
-  # Necessary for search to work properly
-  include_search_page: false
-  search_index_only: true
-
-  # Default values, taken from mkdocs_theme.yml
-  language: en
-  font:
-    text: Roboto
-    code: Roboto Mono
-  favicon: assets/favicon.png
+  name: material
+  #custom_dir: mkdocs-material/material/overrides
+  features:
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    # - content.code.select
+    # - content.footnote.tooltips
+    # - content.tabs.link
+    - content.tooltips
+    # - header.autohide
+    # - navigation.expand
+    - navigation.footer
+    - navigation.indexes
+    # - navigation.instant
+    # - navigation.instant.prefetch
+    # - navigation.instant.progress
+    # - navigation.prune
+    - navigation.sections
+    - navigation.tabs
+    # - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    # - toc.integrate
   palette:
-    - scheme: default
-      primary: white
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-    - scheme: slate
+    - media: "(prefers-color-scheme)"
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: images/favicon.ico
   icon:
     logo: logo
   logo: 'images/monero.svg'
 
 extra_css: ['overrides.css']
 
-repo_name: 'monerodocs/md'
-repo_url: 'https://github.com/monerodocs/md'
+repo_name: 'monero-project/monero-docs'
+repo_url: 'https://github.com/monero-project/monero-docs'
+edit_uri: blob/test/docs/
 
 markdown_extensions:
   # https://squidfunk.github.io/mkdocs-material/extensions/admonition/
@@ -109,6 +136,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.superfences         # nest code blocks inside codeblocks
   - pymdownx.snippets            # insert content from other files
+  - tables
 
 plugins:
   - search
@@ -117,3 +145,53 @@ plugins:
       minify_js: true
       htmlmin_opts:
         remove_comments: true
+  - privacy
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: fr
+          name: Français
+          build: true
+        - locale: es
+          name: Español
+          build: true
+        - locale: it
+          name: Italiano
+          build: true
+        - locale: pl
+          name: Polski
+          build: true
+        - locale: ar
+          name: العربية
+          build: true
+        - locale: ru
+          name: Русский
+          build: true
+        - locale: de
+          name: Deutsch
+          build: true
+        - locale: nl
+          name: Nederlands
+          build: true
+        - locale: pt
+          name: Português
+          build: true
+        - locale: tr
+          name: Türkçe
+          build: true
+        - locale: zh
+          name: 中文 (简体)
+          build: true
+        - locale: zh-TW
+          name: 中文 (繁體)
+          build: true
+        - locale: nb
+          name: Norsk Bokmål
+          build: true
+
+static_templates:
+  - 404.html
