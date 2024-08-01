@@ -1,0 +1,225 @@
+# Language zh-TW translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: zh-TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: YAML Front Matter: title
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:1
+#, no-wrap
+msgid "monero-wallet-gui - Reference"
+msgstr ""
+
+#. type: Title #
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:4
+#, no-wrap
+msgid "`monero-wallet-gui` - Reference"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:6
+#, no-wrap
+msgid "Overview"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:8
+#, no-wrap
+msgid "Desktop GUI wallet"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:11
+msgid ""
+"The \"official\" desktop wallet for Monero. Available for Linux, macOS and "
+"Windows."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:14
+msgid ""
+"Wallet uses your private keys to understand your total balance, transactions "
+"history, and to facilitate creating transactions."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:16
+msgid ""
+"However, wallet does not store the blockchain and does not directly "
+"participate in the p2p network."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:17
+#, no-wrap
+msgid "Depends on the full node "
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:20
+#, no-wrap
+msgid "Wallet connects to a [full node](/interacting/monerod-reference) to scan the blockchain for your transaction outputs and to send your transactions out to the network.   \n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:22
+msgid "The full node can be either local (same computer) or remote."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:24
+msgid ""
+"Normally, you run the full node on the same computer as wallet (or within "
+"your home network)."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:26
+msgid ""
+"Connection happens over HTTP and uses [this API](https://www.getmonero.org/"
+"resources/developer-guides/wallet-rpc.html)."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:29
+msgid ""
+"Any transaction leaving the wallet is already blinded by all Monero privacy "
+"features.  This means plain text HTTP communication isn't an issue on its "
+"own even if you connect to a remote node."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:31
+msgid ""
+"However, connecting to a remote node has other nuanced trade-offs, which is "
+"a topic for a separate article."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:32
+#, no-wrap
+msgid "User guide PDF"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:35
+msgid ""
+"A nice PDF guide is available in the catalog you unpacked Monero. Make sure "
+"to check it out!"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:38
+#, no-wrap
+msgid ""
+"The online living version is also available:<br />\n"
+"[https://github.com/monero-ecosystem/monero-GUI-guide/blob/master/monero-GUI-guide.md](https://github.com/monero-ecosystem/monero-GUI-guide/blob/master/monero-GUI-guide.md)\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:39
+#, no-wrap
+msgid "Syntax"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:42
+msgid "`./monero-wallet-gui [options]`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:44
+msgid "Example:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:46
+msgid "`./monero-wallet-gui --log-file=/dev/null`"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:47
+#, no-wrap
+msgid "Running"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:50
+msgid "Go to directory where you unpacked Monero."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:52
+msgid ""
+"Run the full node and wait until it syncs up with the network (may take up "
+"to a few days):"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:54
+msgid "`./monerod`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:56
+msgid "In a separate terminal window, run the wallet:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:58
+msgid "`./monero-wallet-gui`"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:59
+#, no-wrap
+msgid "Options"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:62
+msgid "There are very few options because everything is set up via a GUI."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:67
+#, no-wrap
+msgid ""
+"| Option              | Description\n"
+"|---------------------|--------------------------------------------------------------------------------------------------------------------------------------\n"
+"| `--help`            | Enlists available options.\n"
+"| `--log-file`        | Full path to the log file. Example (mind file permissions): <br/>`./monerod --log-file=/var/log/monero/mainnet/monerod.log`\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:68
+#, no-wrap
+msgid "Defaults"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:73
+msgid ""
+"The wallet is created in `$HOME/Monero/wallets/`.  You may want to change it "
+"to `$HOME/.bitmonero/wallets/` to have all Monero related files in one "
+"place.  This is possible on wallet creation wizard in the GUI."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-gui-reference.md:75
+msgid ""
+"The log file is created directly in the home directory `$HOME/monero-wallet-"
+"gui.log`.  You may want to change with `--log-file=$HOME/.bitmonero/monero-"
+"wallet-gui.log` option."
+msgstr ""

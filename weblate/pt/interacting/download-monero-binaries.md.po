@@ -1,0 +1,124 @@
+# Portuguese translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. type: Title #
+#: ../docs/en/interacting/download-monero-binaries.md:1
+#: ../docs/en/interacting/download-monero-binaries.md:4
+#, no-wrap
+msgid "Download Monero"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/download-monero-binaries.md:7
+msgid ""
+"A single archive contains all you need to start using Monero (the full node "
+"and the wallet)."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/download-monero-binaries.md:9
+msgid "We recommend downloading Monero binaries directly from GitHub:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/download-monero-binaries.md:12
+msgid ""
+"GUI + CLI: [https://github.com/monero-project/monero-gui/releases](https://"
+"github.com/monero-project/monero-gui/releases)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/download-monero-binaries.md:12
+msgid ""
+"CLI only: [https://github.com/monero-project/monero/releases](https://github."
+"com/monero-project/monero/releases)"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/download-monero-binaries.md:14
+msgid "GUI is a graphical desktop wallet."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/download-monero-binaries.md:16
+msgid "CLI is a commandline desktop wallet."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/download-monero-binaries.md:18
+msgid ""
+"If you need more guidance check [download Monero](https://getmonero.org/"
+"downloads) section on Monero website."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/download-monero-binaries.md:20
+msgid ""
+"It is critical to [verify the signature](/interacting/verify-monero-"
+"binaries) of downloaded archive."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/download-monero-binaries.md:21
+#, no-wrap
+msgid "Which version to download?"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/download-monero-binaries.md:24
+msgid ""
+"Download the latest version matching your operating system and processor "
+"architecture."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/download-monero-binaries.md:26
+msgid ""
+"The CLI version is released earlier and is suitable for server deployments."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/download-monero-binaries.md:28
+msgid ""
+"The GUI version contains both CLI and GUI. It is preferable for end-users."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/download-monero-binaries.md:30
+msgid "All versions contain a full node and a wallet."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/download-monero-binaries.md:31
+#, no-wrap
+msgid "Why prefer GitHub over getmonero.org?"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/download-monero-binaries.md:34
+msgid "Binaries appear earlier on GitHub."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/download-monero-binaries.md:36
+msgid ""
+"On top of that, if you fail to properly verify the signature, GitHub is "
+"safer, simply because you don't need to trust a separate website to not be "
+"compromised.  Obviously, you should still carefully verify the signature for "
+"each release. Signature verification is always the primary line of defense."
+msgstr ""

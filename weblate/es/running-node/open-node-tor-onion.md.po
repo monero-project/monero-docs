@@ -1,0 +1,691 @@
+# Spanish translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. type: YAML Front Matter: title
+#: ../docs/en/running-node/open-node-tor-onion.md:1
+#, no-wrap
+msgid "Running Monero Open Node with Tor Onion Support"
+msgstr ""
+
+#. type: Title #
+#: ../docs/en/running-node/open-node-tor-onion.md:4
+#, no-wrap
+msgid "Running Monero Open Node + Tor Onion"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:7
+msgid "!!! success \"Powerful setup\""
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:9
+#, no-wrap
+msgid "    This is great contribution to Monero network and also a pretty sophisticated personal setup. If you are a beginner, you don't need this.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:12
+#, no-wrap
+msgid ""
+"!!! info \"The end goal\"\n"
+"    You will publicly offer the following services, where xxx.yyy.zzz.vvv is your server IP address.\n"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/running-node/open-node-tor-onion.md:17
+msgid "xxx.yyy.zzz.vvv:18080 - clearnet P2P service (for other nodes)"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/running-node/open-node-tor-onion.md:17
+msgid "xxx.yyy.zzz.vvv:18081 - clearnet RPC service (for wallets)"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/running-node/open-node-tor-onion.md:17
+msgid ""
+"yourlongv3onionaddress.onion:18083 - onion P2P service (for other onion "
+"nodes)"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/running-node/open-node-tor-onion.md:17
+msgid ""
+"yourlongv3onionaddress.onion:18081 - onion RPC service (for wallets "
+"connecting over Tor)"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:19
+#, no-wrap
+msgid "    Why different P2P ports for clearnet and onion? This is a `monerod` requirement.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:22
+#, no-wrap
+msgid ""
+"!!! warning \"Broadcasting bad transactions from your IP\"\n"
+"    As with any public data broadcast or relay service, \"bad traffic\" or in this case \"bad transactions\" may appear to originate from your server IP address from an outside observer perspective - even though they really originate from a remote wallet user. This is a potential risk you need to keep in mind.\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/running-node/open-node-tor-onion.md:23
+#, no-wrap
+msgid "Why run this specific setup?"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:27
+msgid ""
+"You will be able to connect your desktop and mobile Monero wallets to your "
+"own trusted Monero node, in a secure and private way over Tor. Your node "
+"will be always ready w/o delays (always synced up, contrary to "
+"intermittently running node on a laptop)."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:30
+#, no-wrap
+msgid ""
+"**Serving blocks and transactions** in Monero P2P network helps new users to bootstrap and sync up their nodes.\n"
+"It also strenghtens Monero P2P network against DDoS attacks and network partitioning.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:33
+#, no-wrap
+msgid ""
+"**Open wallet inteface** (the \"RPC\") allows anyone to connect their wallets to Monero network through your node.\n"
+"This is useful for beginner users who don't run their own nodes yet.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:35
+#, no-wrap
+msgid "**Tor onion for wallet interface** is useful for wallet users connecting over Tor because it mitigates Tor exit nodes MiTM risks (which are very real). By connecting wallet to an onion service, no MiTM attack is realistic because within the Tor network connections are end-to-end TLS-ed.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:37
+#, no-wrap
+msgid "**Tor onion for P2P network** is useful for other full node users as it allows them to broadcast transactions over Tor (using `--tx-proxy` option).\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/running-node/open-node-tor-onion.md:38
+#, no-wrap
+msgid "Assumptions"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:41
+msgid ""
+"You understand basic Linux administration. You seek Monero specific guidance."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:43
+msgid ""
+"You have root access to a Linux server with 2GB+ RAM and 120GB+ SSD (or "
+"50GB+ for the pruned node version). This is current for Jan 2021."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:45
+msgid ""
+"Some commands assume Ubuntu but you will easily translate them to your "
+"distribution."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/running-node/open-node-tor-onion.md:46
+#, no-wrap
+msgid "Install Tor"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:49
+msgid ""
+"[Install Tor](https://2019.www.torproject.org/docs/debian.html.en#ubuntu)."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:51
+msgid "Modify `/etc/tor/torrc` as shown below."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:53
+msgid ""
+"Enable tor service with `systemctl enable tor` and restart it via `systemctl "
+"restart tor`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:55
+msgid "Verify the Tor is up `systemctl status tor@default`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:57
+msgid ""
+"A fresh onion address and corresponding key pair got created for you by the "
+"`tor` daemon in `/var/lib/tor/monero/`. You may want to backup these to "
+"secure control over your onion address. This happens on restart whenever you "
+"add new `HiddenServiceDir` to `torrc` config."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:59
+msgid ""
+"Monero daemon itself is not necessary at this point. The onion services (AKA "
+"hidden services) will just wait until localhost `monerod` shows up at "
+"specified ports 18081 and 18083."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/running-node/open-node-tor-onion.md:60
+#, no-wrap
+msgid "/etc/tor/torrc"
+msgstr ""
+
+#. type: Fenced code block (ApacheConf)
+#: ../docs/en/running-node/open-node-tor-onion.md:62
+#, no-wrap
+msgid ""
+"HiddenServiceDir /var/lib/tor/monero\n"
+"HiddenServicePort 18081 127.0.0.1:18081    # interface for wallet (\"RPC\")\n"
+"HiddenServicePort 18083 127.0.0.1:18083    # interface for P2P network\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:69
+msgid "??? info \"How Tor onion services work?\""
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:71
+#, no-wrap
+msgid "    The `tor` daemon will simply pass over the traffic from virtual onion port to actual localhost port, where some service is listening (in our case, this will be `monerod`). A single onion address can offer multiple services at various virtual ports. We will use this to expose both P2P and RPC `monerod` services on a single onion. You could host any number of onion addresses at single server or IP address but we won't need that here.\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/running-node/open-node-tor-onion.md:72
+#, no-wrap
+msgid "Install Monero"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:75
+msgid "Create `monero` user and group `useradd --system monero`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:77
+msgid ""
+"Create monero **binaries** directory (empty for now) `mkdir -p /opt/monero` "
+"and `chown -R monero:monero /opt/monero`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:79
+msgid ""
+"Create monero **data** directory `mkdir -p /srv/monero` and `chown -R monero:"
+"monero /srv/monero`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:81
+msgid ""
+"Create monero **log** directory `mkdir -p /var/log/monero` and `chown -R "
+"monero:monero /var/log/monero`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:83
+msgid ""
+"Feel free to adjust above to your preferred conventions, just remember to "
+"adjust the paths accordingly."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:85
+msgid ""
+"[Download](/interacting/download-monero-binaries/) and [verify](/interacting/"
+"verify-monero-binaries/) the file."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:87
+msgid "Extract `tar -xf monero-linux-x64-v0.17.1.9.tar.bz2` (adjust filename)."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:89
+msgid ""
+"Move binaries to `/opt/monero/` with `mv monero-x86_64-linux-gnu-v0.17.1.9/"
+"* /opt/monero/` then `chown -R monero:monero /opt/monero`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:91
+msgid ""
+"Create `/etc/monero.conf` as shown below and **paste your values in "
+"placeholders**."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:93
+msgid "Create `/etc/systemd/system/monero.service` as shown below."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:95
+msgid ""
+"Enable monero service with `systemctl enable monero` and restart it with "
+"`systemctl restart monero`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:97
+msgid "Verify it is up `systemctl status monero`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:99
+msgid ""
+"Verify it is working as intended `tail -n100 /var/log/monero/monero.log`"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/running-node/open-node-tor-onion.md:100
+#, no-wrap
+msgid "/etc/monero.conf"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:103
+msgid ""
+"This is just an example configuration and it is by no means authoritative. "
+"Feel free to modify, see [monerod reference](/interacting/monerod-reference)."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:105
+msgid "Modify paths if you changed them."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:107
+msgid ""
+"Print your onion address with `cat /var/lib/tor/monero/hostname` and paste "
+"it to `anonymous-inbound` option."
+msgstr ""
+
+#. type: Fenced code block (YAML)
+#: ../docs/en/running-node/open-node-tor-onion.md:108
+#, no-wrap
+msgid ""
+"# /etc/monero.conf\n"
+"#\n"
+"# Configuration file for monerod. For all available options see the MoneroDocs:\n"
+"# https://monerodocs.org/interacting/monerod-reference/\n"
+"\n"
+"# Data directory (blockchain db and indices)\n"
+"data-dir=/srv/monero\n"
+"\n"
+"# Optional prunning\n"
+"# prune-blockchain=1           # Pruning saves 2/3 of disk space w/o degrading functionality but contributes less to the network\n"
+"# sync-pruned-blocks=1         # Allow downloading pruned blocks instead of prunning them yourself\n"
+"\n"
+"check-updates=disabled         # Do not check DNS TXT records for a new version\n"
+"\n"
+"# Log file\n"
+"log-file=/var/log/monero/monero.log\n"
+"log-level=0                    # Minimal logs, WILL NOT log peers or wallets connecting\n"
+"max-log-file-size=2147483648   # Set to 2GB to mitigate log trimming by monerod; configure logrotate instead\n"
+"\n"
+"# P2P full node\n"
+"p2p-bind-ip=0.0.0.0            # Bind to all interfaces (the default)\n"
+"p2p-bind-port=18080            # Bind to default port\n"
+"\n"
+"# RPC open node\n"
+"public-node=1                  # Advertise to other users they can use this node as a remote one for connecting their wallets\n"
+"confirm-external-bind=1        # Open Node (confirm)\n"
+"rpc-bind-ip=0.0.0.0            # Bind to all interfaces (the Open Node)\n"
+"rpc-bind-port=18081            # Bind to default port (the Open Node)\n"
+"restricted-rpc=1               # Obligatory for Open Node interface\n"
+"no-igd=1                       # Disable UPnP port mapping\n"
+"no-zmq=1                       # Disable ZMQ RPC server to decrease attack surface (it's not used)\n"
+"\n"
+"# RPC TLS\n"
+"rpc-ssl=autodetect             # Use TLS if client wallet supports it (the default behavior); the certificate will be generated on the fly on every restart\n"
+"\n"
+"# Mempool size\n"
+"max-txpool-weight=268435456    # Maximum unconfirmed transactions pool size in bytes (here 256MB, default ~618MB)\n"
+"\n"
+"# Slow but reliable db writes\n"
+"db-sync-mode=safe\n"
+"\n"
+"out-peers=64              # This will enable much faster sync and tx awareness; the default 8 is suboptimal nowadays\n"
+"in-peers=64               # The default is unlimited; we prefer to put a cap on this\n"
+"\n"
+"limit-rate-up=1048576     # 1048576 kB/s == 1GB/s; a raise from default 2048 kB/s; contribute more to p2p network\n"
+"limit-rate-down=1048576   # 1048576 kB/s == 1GB/s; a raise from default 8192 kB/s; allow for faster initial sync\n"
+"\n"
+"# Tor: broadcast transactions originating from connected wallets over Tor (does not concern relayed transactions)\n"
+"tx-proxy=tor,127.0.0.1:9050,16\n"
+"\n"
+"# Tor: add P2P seed nodes for the Tor network\n"
+"# For an up-to-date list of working nodes see https://www.ditatompel.com/monero/node-peers\n"
+"add-peer=4egylyolrzsk6rskorqvocipdo4tqqoyzxnplbjorns7issmgpoxvtyd.onion:18083\n"
+"add-peer=fagmobguo6u4z4b2ghyg3jegcdpmd4qj4wxkhemph5d5q6dltllveqyd.onion:18083\n"
+"add-peer=monerokdwzyuml7vfp73fjx5277lzesbrq4nvbl3r3t5ctgodsx34vid.onion:18089\n"
+"add-peer=b75obarnhi42p7js7wgzo7v3wtiwcgf4bknrwv6ihatop77jivrtwpid.onion:15892\n"
+"add-peer=5nvd6jbefgto3u74nzzdkcsbqgxyzrkk7bz5qupsdqg4gbuj5valiaqd.onion:18083\n"
+"add-peer=ozeavjybjbxbvmfcpxzjcn4zklbgohjwwndzenjt44pypvx6jisy74id.onion:18083\n"
+"add-peer=xcccrsxi2zknef6zl3sviasqg4xnlkh5k3xqu7ytwkpfli3huyfvsjid.onion:18083\n"
+"\n"
+"# Make the seed nodes permanent to fix monerod issue of not maintaining enough connections,\n"
+"# based on this reddit comment:\n"
+"# https://www.reddit.com/r/monerosupport/comments/k3m3x2/comment/ge5ehcy/?utm_source=share&utm_medium=web2x&context=3\n"
+"add-priority-node=4egylyolrzsk6rskorqvocipdo4tqqoyzxnplbjorns7issmgpoxvtyd.onion:18083\n"
+"add-priority-node=fagmobguo6u4z4b2ghyg3jegcdpmd4qj4wxkhemph5d5q6dltllveqyd.onion:18083\n"
+"add-priority-node=monerokdwzyuml7vfp73fjx5277lzesbrq4nvbl3r3t5ctgodsx34vid.onion:18089\n"
+"add-priority-node=b75obarnhi42p7js7wgzo7v3wtiwcgf4bknrwv6ihatop77jivrtwpid.onion:15892\n"
+"add-priority-node=5nvd6jbefgto3u74nzzdkcsbqgxyzrkk7bz5qupsdqg4gbuj5valiaqd.onion:18083\n"
+"add-priority-node=ozeavjybjbxbvmfcpxzjcn4zklbgohjwwndzenjt44pypvx6jisy74id.onion:18083\n"
+"add-priority-node=xcccrsxi2zknef6zl3sviasqg4xnlkh5k3xqu7ytwkpfli3huyfvsjid.onion:18083\n"
+"\n"
+"# Tor: tell monerod your onion address so it can be advertised on P2P network\n"
+"anonymous-inbound=PASTE_YOUR_ONION_HOSTNAME:18083,127.0.0.1:18083,64\n"
+"\n"
+"# Tor: be forgiving to connecting wallets; suggested by http://xmrguide42y34onq.onion/remote_nodes\n"
+"disable-rpc-ban=1\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/running-node/open-node-tor-onion.md:187
+#, no-wrap
+msgid "/etc/.../monero.service"
+msgstr ""
+
+#. type: Fenced code block (INI)
+#: ../docs/en/running-node/open-node-tor-onion.md:189
+#, no-wrap
+msgid ""
+"# /etc/systemd/system/monero.service\n"
+"\n"
+"[Unit]\n"
+"Description=Monero Daemon\n"
+"After=network.target\n"
+"Wants=network.target\n"
+"\n"
+"[Service]\n"
+"ExecStart=/opt/monero/monerod --detach --config-file /etc/monero.conf --pidfile /run/monero/monerod.pid\n"
+"ExecStartPost=/bin/sleep 0.1\n"
+"Type=forking\n"
+"PIDFile=/run/monero/monerod.pid\n"
+"\n"
+"Restart=always\n"
+"RestartSec=16\n"
+"\n"
+"User=monero\n"
+"Group=monero\n"
+"RuntimeDirectory=monero\n"
+"\n"
+"StandardOutput=journal\n"
+"StandardError=journal\n"
+"\n"
+"[Install]\n"
+"WantedBy=multi-user.target\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/running-node/open-node-tor-onion.md:217
+#, no-wrap
+msgid "Open firewall ports"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:220
+msgid ""
+"If you use a firewall (and you should), open `18080` and `18081` ports for "
+"incoming TCP connections. These are for the incoming **clearnet** "
+"connections, P2P and RPC respectively."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:222
+msgid ""
+"You **do not** need to open any ports for Tor. The onion services work with "
+"virtual ports. The `tor` daemon does not directly accept incoming "
+"connections and so it needs no open ports."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:224
+msgid "For example, for popular ufw firewall, that would be:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/running-node/open-node-tor-onion.md:225
+#, no-wrap
+msgid ""
+"ufw allow 18080/tcp\n"
+"ufw allow 18081/tcp\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:231
+msgid ""
+"To verify, use `ufw status`. The output should be similar to the following "
+"(the `22` being default SSH port, unrelated to Monero):"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/running-node/open-node-tor-onion.md:232
+#, no-wrap
+msgid ""
+"To                         Action      From\n"
+"--                         ------      ----\n"
+"22/tcp                     LIMIT       Anywhere\n"
+"18080/tcp                  ALLOW       Anywhere\n"
+"18081/tcp                  ALLOW       Anywhere\n"
+"22/tcp (v6)                LIMIT       Anywhere (v6)\n"
+"18080/tcp (v6)             ALLOW       Anywhere (v6)\n"
+"18081/tcp (v6)             ALLOW       Anywhere (v6)\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/running-node/open-node-tor-onion.md:244
+#, no-wrap
+msgid "Testing"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/running-node/open-node-tor-onion.md:246
+#, no-wrap
+msgid "On server"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:249
+msgid ""
+"List all services listening on ports and make sure it is what you expect:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:251
+msgid "`sudo netstat -lntpu`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:253
+msgid ""
+"The output should include these (in any order); obviously the PID values "
+"will differ."
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/running-node/open-node-tor-onion.md:254
+#, no-wrap
+msgid ""
+"Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name\n"
+"...\n"
+"tcp        0      0 0.0.0.0:18080           0.0.0.0:*               LISTEN      259255/monerod\n"
+"tcp        0      0 0.0.0.0:18081           0.0.0.0:*               LISTEN      259255/monerod\n"
+"tcp        0      0 127.0.0.1:18083         0.0.0.0:*               LISTEN      259255/monerod\n"
+"tcp        0      0 127.0.0.1:9050          0.0.0.0:*               LISTEN      258786/tor\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/running-node/open-node-tor-onion.md:263
+#, no-wrap
+msgid "On client machine"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:266
+msgid "Finally, we want to test connections from your client machine."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:268
+msgid ""
+"Install `tor` and `torsocks` on your laptop, you will want them anyway for "
+"Monero wallet."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:270
+msgid "Just for testing, you will also need `nmap` and `proxychains`."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:272
+msgid "Test **clearnet P2P** connection:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:274
+msgid "`nmap -Pn -p 18080 YOUR_IP_ADDRESS_HERE`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:276
+msgid "Test **clearnet RPC** connection:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:278
+msgid ""
+"`curl --digest -X POST http://YOUR_IP_ADDRESS_HERE:18081/json_rpc -d "
+"'{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_info\"}' -H 'Content-"
+"Type: application/json'`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:280
+msgid "Test **onion P2P** connection (skip if you don't have proxychains):"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:282
+msgid "`proxychains nmap -Pn -p 18083 YOUR_ONION_ADDRESS_HERE.onion`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:284
+msgid "Test **onion RPC** connection:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:286
+msgid ""
+"`torsocks curl --digest -X POST http://YOUR_ONION_ADDRESS_HERE.onion:18081/"
+"json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_info\"}' -H "
+"'Content-Type: application/json'`"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/running-node/open-node-tor-onion.md:288
+#, no-wrap
+msgid "Debugging"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:291
+msgid "Tor:"
+msgstr ""
+
+#. type: Bullet: '  * '
+#: ../docs/en/running-node/open-node-tor-onion.md:294
+msgid "Status: `systemctl status tor@default`"
+msgstr ""
+
+#. type: Bullet: '  * '
+#: ../docs/en/running-node/open-node-tor-onion.md:294
+msgid "Logs: `journalctl -xe --unit tor@default`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:296
+msgid "Monero:"
+msgstr ""
+
+#. type: Bullet: '  * '
+#: ../docs/en/running-node/open-node-tor-onion.md:300
+msgid "Status: `systemctl status monero`"
+msgstr ""
+
+#. type: Bullet: '  * '
+#: ../docs/en/running-node/open-node-tor-onion.md:300
+msgid "Logs: `tail -n100 /var/log/monero/monero.log`"
+msgstr ""
+
+#. type: Bullet: '  * '
+#: ../docs/en/running-node/open-node-tor-onion.md:300
+msgid ""
+"Logs more info: change `log-level=0` to `log-level=1` in `monero.conf` "
+"(remember to revert once solved)"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/running-node/open-node-tor-onion.md:302
+#, no-wrap
+msgid "Further improvements"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/running-node/open-node-tor-onion.md:304
+#, no-wrap
+msgid "Periodic restarts"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/running-node/open-node-tor-onion.md:307
+msgid ""
+"It's likely worthwhile to add peridic auto-restarting to both `tor` and "
+"`monerod` every couple hours. Neither daemon is perfect; they can get stuck "
+"or leak memory in edge case situations, like the recent attacks on Tor v3 or "
+"DDoS attacks on the Monero network. One possible way would be to use systemd "
+"timers."
+msgstr ""

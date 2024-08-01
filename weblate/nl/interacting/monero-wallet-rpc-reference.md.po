@@ -1,0 +1,5212 @@
+# Dutch translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. type: YAML Front Matter: title
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1
+#, no-wrap
+msgid "monero-wallet-rpc - Reference"
+msgstr ""
+
+#. type: Title #
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:5
+#, no-wrap
+msgid "`monero-wallet-rpc` - Reference"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:9
+#, no-wrap
+msgid ""
+"!!! note\n"
+"    This is only relevant for programmers. Everyday users won't need `monero-wallet-rpc`.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:12
+#, no-wrap
+msgid ""
+"!!! note\n"
+"    Use [stagenet](/infrastructure/networks) for learning and development on top of `monero-wallet-rpc`.\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:13
+#, no-wrap
+msgid "Overview"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:15
+#, no-wrap
+msgid "Provides wallet API over HTTP"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:18
+msgid ""
+"Programmers can build thin user interfaces (UIs) on top of `monero-wallet-"
+"rpc`."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:20
+msgid ""
+"Programmers can also use `monero-wallet-rpc` to build arbitrary wallet "
+"automation driven by HTTP calls."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:22
+msgid ""
+"Think of `monero-wallet-rpc` as complete wallet logic exposed via JSON-RPC "
+"over HTTP."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:25
+msgid ""
+"Wallet uses your private keys to understand your total balance, transactions "
+"history, and to facilitate creating transactions."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:27
+msgid ""
+"However, wallet does not store the blockchain and does not directly "
+"participate in the p2p network."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:28
+#, no-wrap
+msgid "Depends on the full node"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:31
+msgid ""
+"Wallet connects to a [full node](/interacting/monerod-reference) to scan the "
+"blockchain for your transaction outputs and to send your transactions out to "
+"the network."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:33
+msgid "The full node can be either local (same computer) or remote."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:35
+msgid ""
+"You can play with [CLI wallet](/interacting/monero-wallet-cli-reference) and "
+"[GUI wallet](/interacting/monero-wallet-gui-reference) first to understand "
+"the relationship between the full node, the wallet and the user."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:36
+#, no-wrap
+msgid "Syntax"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:39
+#, no-wrap
+msgid "`./monero-wallet-rpc --rpc-bind-port <port> (--wallet-file <file>|--generate-from-json <file>|--wallet-dir <directory>) [options]`\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:41
+msgid "Or with a config file:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:43
+#, no-wrap
+msgid "`./monero-wallet-rpc --config-file <arg>`\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:44
+#, no-wrap
+msgid "Running"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:47
+msgid ""
+"Make sure you are running a locally synced `monerod` or point to a remote "
+"daemon with `--daemon-address` option."
+msgstr ""
+
+#. type: Title ####
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:48
+#, no-wrap
+msgid "Linux (Production Example)"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:51
+msgid ""
+"`./monero-wallet-rpc --rpc-bind-port 28088 --wallet-file wallets/main/main --"
+"password walletPassword --rpc-login monero:rpcPassword --log-file logs/"
+"monero-wallet-rpc.log --max-log-files 2 --trusted-daemon --non-interactive`"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:54
+msgid ""
+"If the RPC is used to retrieve information not dependent on any spending, "
+"consider using a view-only to prevent abuse."
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:54
+msgid ""
+"`--rpc-login` should be used in production to protect against any network "
+"attacks. An uncommon password protects against the case where the RPC port "
+"is open to the public"
+msgstr ""
+
+#. type: Title ####
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:55
+#, no-wrap
+msgid "Windows (Development Example)"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:58
+msgid ""
+"`monero-wallet-rpc --rpc-bind-port 28088 --wallet-file wallets\\main\\main --"
+"password walletPassword --daemon-address http://node.supportxmr.com:18081 --"
+"untrusted-daemon --disable-rpc-login`"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:61
+msgid ""
+"Specifying `--untrusted-daemon` is not necessary but tells yourself that the "
+"daemon is untrusted and that commands requiring a trusted daemon will be "
+"disabled"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:61
+msgid ""
+"Default installation on Windows is `\"C:\\Program Files\\Monero GUI Wallet\"`"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:62
+#, no-wrap
+msgid "Trouble Shooting"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:65
+msgid ""
+"If the expected RPC URL, say [http://127.0.0.1:28088/json_rpc]"
+"(http://127.0.0.1:28088/json_rpc), is unavailabe, or there is no terminal "
+"output saying that the server has been started, `monero-wallet-rpc` might be "
+"trying to synchronize the wallet. In that case, you should use the GUI or "
+"CLI to sync that wallet file because using the GUI/CLI results in faster and "
+"measurable syncing."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:67
+msgid ""
+"The suggested way is to have two wallet files for the same keys. One that is "
+"used manually (synced often), and one that is used by `monero-wallet-rpc`. "
+"Whenever you decide to use `monero-wallet-rpc` and encounter the "
+"unresponsive issue, simply copy the files of the GUI/CLI wallet and replace "
+"the ones that were being used by `monero-wallet-rpc`. This problem should "
+"only occur on the development system where `monerod` or `monero-wallet-rpc` "
+"might not have been running for weeks. In production, `monerod` and `monero-"
+"wallet-rpc` should have minimal downtimes, ensuring that the wallet is "
+"always synchronized."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:68
+#, no-wrap
+msgid "API conventions"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:71
+msgid ""
+"The API is based on [JSON-RPC standard](https://en.wikipedia.org/wiki/JSON-"
+"RPC) version 2.0."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:73
+msgid "All `monero-wallet-rpc` method calls use the same JSON-RPC interface."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:75
+msgid ""
+"Assuming your `monero-wallet-rpc` is running on 127.0.0.1:18082, you would "
+"call it like this:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:76
+#, no-wrap
+msgid ""
+"IP=127.0.0.1\n"
+"PORT=18082\n"
+"METHOD=\"make_integrated_address\"\n"
+"PARAMS=\"{\\\"payment_id\\\":\\\"1234567890123456789012345678900012345678901234567890123456789000\\\"}\"\n"
+"curl \\\n"
+"    -u username:password --digest \\\n"
+"    -X POST http://$IP:$PORT/json_rpc \\\n"
+"    -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"'$METHOD'\",\"params\":'\"$PARAMS\"'}' \\\n"
+"    -H 'Content-Type: application/json'\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:90
+msgid ""
+"The **atomic unit** used by the API is the smallest fraction of 1 XMR "
+"according to the monerod implementation.  1 XMR = 1e12 atomic units."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:91
+#, no-wrap
+msgid "Options"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:93
+#, no-wrap
+msgid "Help and Version"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:99
+#, no-wrap
+msgid ""
+"| Option       | Description\n"
+"|--------------|------------\n"
+"|  `--help`    | Produce help message\n"
+"|  `--version` | Output version information\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:100
+#, no-wrap
+msgid "Pick Network"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:106
+#, no-wrap
+msgid ""
+"| Option        | Description\n"
+"|---------------|------------\n"
+"|  `--testnet`  | For testnet. Daemon must also be launched with --testnet flag\n"
+"|  `--stagenet` | For stagenet. Daemon must also be launched with --stagenet flag\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:107
+#, no-wrap
+msgid "Logging"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:115
+#, no-wrap
+msgid ""
+"| Option                                 | Description\n"
+"|----------------------------------------|------------\n"
+"|  `--log-file <arg>`                    | Specify log file\n"
+"|  `--log-level <arg>`                   | 0-4 or categories\n"
+"|  `--max-log-file-size <arg=104850000>` | Specify maximum log file size in bytes\n"
+"|  `--max-log-files <arg=50>`            | Specify maximum number of rotated log files to be saved (no limit by setting to 0)\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:116
+#, no-wrap
+msgid "Daemon (Node)"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:136
+#, no-wrap
+msgid ""
+"| Option                                     | Description\n"
+"|--------------------------------------------|-----\n"
+"|  `--daemon-address <arg>`                  | Use daemon instance at \\<host>:\\<port>\n"
+"|  `--daemon-host <arg>`                     | Use daemon instance at host \\<arg> instead of localhost\n"
+"|  `--proxy <arg>`                           | \\[\\<ip>:]\\<port> socks proxy to use for daemon connections\n"
+"|  `--trusted-daemon`                        | Enable commands which rely on a trusted daemon\n"
+"|  `--untrusted-daemon`                      | Disable commands which rely on a trusted daemon\n"
+"|  `--password <arg>`                        | Wallet password (escape/quote as \\| needed)\n"
+"|  `--password-file <arg>`                   | Wallet password file\n"
+"|  `--daemon-port <arg=0>`                   | Use daemon instance at port \\<arg> instead of 18081\n"
+"|  `--daemon-login <arg>`                    | Specify username\\[:password] for daemon RPC client\n"
+"|  `--daemon-ssl <arg=autodetect)`           | Enable SSL on daemon RPC connections: enabled\\|disabled\\|autodetect\n"
+"|  `--daemon-ssl-private-key <arg>`          | Path to a PEM format private key\n"
+"|  `--daemon-ssl-certificate <arg>`          | Path to a PEM format certificate\n"
+"|  `--daemon-ssl-ca-certificates <arg>`      | Path to file containing concatenated PEM format certificate(s) to replace system CA(s).\n"
+"|  `--daemon-ssl-allowed-fingerprints <arg>` | List of valid fingerprints of allowed RPC servers\n"
+"|  `--daemon-ssl-allow-any-cert`             | Allow any SSL certificate from the daemon\n"
+"|  `--daemon-ssl-allow-chained`              | Allow user (via --daemon-ssl-ca-certificates) chain certificates\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:137
+#, no-wrap
+msgid "Other Useful"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:144
+#, no-wrap
+msgid ""
+"| Option                | Description\n"
+"|-----------------------|-----\n"
+"| `--tx-notify <arg>`   | Run a program for each new incoming transaction, '%s' will be replaced by the transaction hash\n"
+"| `--non-interactive`   | Run non-interactive (useful when input is DEVNULL)\n"
+"| `--config-file <arg>` | Config file\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:145
+#, no-wrap
+msgid "RPC"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:169
+#, no-wrap
+msgid ""
+"| Option                                          | Description\n"
+"|-------------------------------------------------|-----\n"
+"|  `--rpc-bind-port <arg>`                        | Sets bind port for server\n"
+"|  `--disable-rpc-login`                          | Disable HTTP authentication for RPC connections served by this process\n"
+"|  `--restricted-rpc`                             | Restricts to view-only commands\n"
+"|  `--rpc-bind-ip <arg=127.0.0.1>`                | Specify IP to bind RPC server\n"
+"|  `--rpc-bind-ipv6-address <arg=::1>`            | Specify IPv6 address to bind RPC server\n"
+"|  `--rpc-restricted-bind-ip <arg=127.0.0.1>`     | Specify IP to bind restricted RPC server\n"
+"|  `--rpc-restricted-bind-ipv6-address <arg=::1>` | Specify IPv6 address to bind restricted RPC server\n"
+"|  `--rpc-use-ipv6`                               | Allow IPv6 for RPC\n"
+"|  `--rpc-ignore-ipv4`                            | Ignore unsuccessful IPv4 bind for RPC\n"
+"|  `--rpc-login <arg>`                            | Specify username\\[:password] required for RPC server\n"
+"|  `--confirm-external-bind`                      | Confirm rpc-bind-ip value is NOT a loopback (local) IP\n"
+"|  `--rpc-access-control-origins <arg>`           | Specify a comma separated list of origins to allow cross origin resource sharing\n"
+"|  `--rpc-ssl <arg=autodetect>`                   | Enable SSL on RPC connections: enabled\\|disabled\\|autodetect\n"
+"|  `--rpc-ssl-private-key <arg>`                  | Path to a PEM format private key\n"
+"|  `--rpc-ssl-certificate <arg>`                  | Path to a PEM format certificate\n"
+"|  `--rpc-ssl-ca-certificates <arg>`              | Path to file containing concatenated PEM format certificate(s) to replace system CA(s).\n"
+"|  `--rpc-ssl-allowed-fingerprints <arg>`         | List of certificate fingerprints to allow\n"
+"|  `--rpc-ssl-allow-chained`                      | Allow user (via --rpc-ssl-certificates) chain certificates\n"
+"|  `--disable-rpc-ban`                            | Do not ban hosts on RPC errors\n"
+"|  `--rpc-client-secret-key <arg>`                | Set RPC client secret key for RPC payments\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:170
+#, no-wrap
+msgid "Open Existing Wallet"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:178
+#, no-wrap
+msgid ""
+"| Option                      | Description\n"
+"|-----------------------------|-----\n"
+"| `--wallet-file <arg>`       | Use wallet \\<arg>\n"
+"| `--wallet-dir <arg>`        | Directory for newly created wallets\n"
+"| `--prompt-for-password`     | Prompts for password when not provided\n"
+"| `--max-concurrency <arg=0>` | Max number of threads to use for a parallel job\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:179
+#, no-wrap
+msgid "Create new Wallet"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:188
+#, no-wrap
+msgid ""
+"| Option                         | Description\n"
+"|--------------------------------|-----\n"
+"| `--kdf-rounds <arg=1>`         | Number of rounds for the key derivation function\n"
+"| `--hw-device <arg>`            | HW device to use\n"
+"| `--hw-device-deriv-path <arg>` | HW device wallet derivation path (e.g., SLIP-10)\n"
+"| `--extra-entropy <arg>`        | File containing extra entropy to initialize the PRNG (any data, aim for 256 bits of entropy to be useful, which typically means more than 256 its of data)\n"
+"| `--generate-from-json <arg>`   | Generate wallet from JSON format file\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:189
+#, no-wrap
+msgid "Windows Service"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:198
+#, no-wrap
+msgid ""
+"| Option                 | Description\n"
+"|------------------------|-----\n"
+"|  `--run-as-service`    | true if running as windows service\n"
+"|  `--install-service`   | Install Windows service\n"
+"|  `--uninstall-service` | Uninstall Windows service\n"
+"|  `--start-service`     | Start Windows service\n"
+"|  `--stop-service`      | Stop Windows service\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:199
+#, no-wrap
+msgid "Legacy and Rare Uses"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:208
+#, no-wrap
+msgid ""
+"| Option                                              | Description\n"
+"|-----------------------------------------------------|-----\n"
+"| `--shared-ringdb-dir <arg=C:\\ProgramData\\.shared-ringdb, C:\\ProgramData\\.shared-ringdb\\testnet if 'testnet', C:\\ProgramData\\.shared-ringdb\\stagenet if 'stagenet'>`                | Set shared ring database path\n"
+"| `--no-dns`                                          | Do not use DNS\n"
+"| `--offline`                                         | Do not connect to a daemon, nor use DNS\n"
+"| `--bitmessage-address <arg=http://localhost:8442/>` | Use PyBitmessage instance at URL \\<arg>\n"
+"| `--bitmessage-login <arg=username:password>`        | Specify \\<arg> as username:password for PyBitmessage API\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:209
+#, no-wrap
+msgid "Index of JSON-RPC Methods"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**add_address_book**](#add_address_book)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**change_wallet_password**](#change_wallet_password)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**check_reserve_proof**](#check_reserve_proof)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**check_spend_proof**](#check_spend_proof)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**check_tx_key**](#check_tx_key)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**check_tx_proof**](#check_tx_proof)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**close_wallet**](#close_wallet)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**create_account**](#create_account)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**create_address**](#create_address)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**create_wallet**](#create_wallet)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**delete_address_book**](#delete_address_book)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**export_key_images**](#export_key_images)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**export_multisig_info**](#export_multisig_info)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**export_outputs**](#export_outputs)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**finalize_multisig**](#finalize_multisig)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_account_tags**](#get_account_tags)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_accounts**](#get_accounts)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_address**](#get_address)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_address_book**](#get_address_book)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_address_index**](#get_address_index)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_attribute**](#get_attribute)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_bulk_payments**](#get_bulk_payments)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_height**](#get_height)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_languages**](#get_languages)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_payments**](#get_payments)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_reserve_proof**](#get_reserve_proof)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_spend_proof**](#get_spend_proof)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_transfer_by_txid**](#get_transfer_by_txid)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_transfers**](#get_transfers)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_tx_key**](#get_tx_key)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_tx_notes**](#get_tx_notes)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_tx_proof**](#get_tx_proof)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**get_version**](#get_version)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**import_key_images**](#import_key_images)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**import_multisig_info**](#import_multisig_info)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**import_outputs**](#import_outputs)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**incoming_transfers**](#incoming_transfers)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**is_multisig**](#is_multisig)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**label_account**](#label_account)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**label_address**](#label_address)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**make_integrated_address**](#make_integrated_address)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**make_multisig**](#make_multisig)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**make_uri**](#make_uri)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**open_wallet**](#open_wallet)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**parse_uri**](#parse_uri)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**prepare_multisig**](#prepare_multisig)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**query_key**](#query_key)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**refresh**](#refresh)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**relay_tx**](#relay_tx)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**rescan_blockchain**](#rescan_blockchain)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**rescan_spent**](#rescan_spent)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**set_account_tag_description**](#set_account_tag_description)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**set_attribute**](#set_attribute)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**set_tx_notes**](#set_tx_notes)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**sign**](#sign)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**sign_multisig**](#sign_multisig)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**sign_transfer**](#sign_transfer)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**split_integrated_address**](#split_integrated_address)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**start_mining**](#start_mining)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**stop_mining**](#stop_mining)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**stop_wallet**](#stop_wallet)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**store**](#store)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**submit_multisig**](#submit_multisig)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**submit_transfer**](#submit_transfer)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**sweep_all**](#sweep_all)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**sweep_dust**](#sweep_dust)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**sweep_single**](#sweep_single)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**tag_accounts**](#tag_accounts)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**transfer**](#transfer)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**transfer_split**](#transfer_split)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**untag_accounts**](#untag_accounts)"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:283
+msgid "[**verify**](#verify)"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:284
+#, no-wrap
+msgid "JSON-RPC Methods"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:286
+#, no-wrap
+msgid "**add_address_book**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:289
+msgid "Add an entry to the address book."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:291
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:321
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:348
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:411
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:456
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:491
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:546
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:570
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:601
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:633
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:661
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:687
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:722
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:749
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:776
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:806
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:839
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:943
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:986
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1018
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1045
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1118
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1143
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1190
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1220
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1248
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1320
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1394
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1421
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1448
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1477
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1502
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1535
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1562
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1698
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1744
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1774
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1801
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1831
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1876
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1907
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1932
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1970
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1995
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2035
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2065
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2093
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2115
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2139
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2165
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2191
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2217
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2245
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2275
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2330
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2362
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2389
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2412
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2436
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2460
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2489
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2518
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2610
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2666
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2693
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2749
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2803
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2829
+msgid "Alias: _None_."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:293
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:323
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:350
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:413
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:458
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:493
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:572
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:603
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:635
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:663
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:778
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:841
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:894
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:945
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:988
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1020
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1047
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1145
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1192
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1222
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1250
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1322
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1396
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1423
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1450
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1504
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1537
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1564
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1589
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1746
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1776
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1803
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1833
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1878
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1909
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1934
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1997
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2037
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2067
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2141
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2167
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2193
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2219
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2247
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2277
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2332
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2364
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2462
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2491
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2520
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2572
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2612
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2668
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2695
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2751
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2805
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2831
+msgid "Inputs:"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:297
+msgid "_address_ - string;"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:297
+msgid ""
+"_payment_id_ - (optional) string, defaults to "
+"\"0000000000000000000000000000000000000000000000000000000000000000\";"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:297
+msgid "_description_ - (optional) string, defaults to \"\";"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:299
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:356
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:419
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:464
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:500
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:576
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:608
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:691
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:726
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:753
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:783
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:810
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:845
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:899
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:949
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:992
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1024
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1052
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1097
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1122
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1149
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1199
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1227
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1255
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1335
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1400
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1427
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1456
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1481
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1510
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1541
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1568
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1596
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1702
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1808
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1839
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1886
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1938
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1974
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2001
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2041
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2071
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2223
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2251
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2282
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2336
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2466
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2495
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2536
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2579
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2629
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2712
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2769
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2837
+msgid "Outputs:"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:301
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:665
+msgid "_index_ - unsigned int; The index of the address book entry."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:303
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:330
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:470
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:552
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:581
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:613
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:643
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:669
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:697
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:730
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:757
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:787
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:817
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:857
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:908
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:957
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:998
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1028
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1065
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1101
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1126
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1162
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1203
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1231
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1278
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1359
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1404
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1431
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1460
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1485
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1516
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1545
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1572
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1753
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1785
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1890
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1916
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1947
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1978
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2046
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2075
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2099
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2121
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2148
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2174
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2200
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2227
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2256
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2342
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2372
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2395
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2418
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2442
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2470
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2547
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2640
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2675
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2723
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2780
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2811
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2841
+msgid "Example:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:304
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"add_address_book\",\"params\":{\"address\":\"78P16M3XmFRGcWFCcsgt1WcTntA1jzcq31seQX1Eg92j8VQ99NPivmdKam4J5CKNAD7KuNWcq5xUPgoWczChzdba5WLwQ4j\",\"description\":\"Third account\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"index\": 1\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:316
+#, no-wrap
+msgid "**change_wallet_password**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:319
+msgid "Change a wallet password."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:326
+msgid ""
+"_old_password_ - string; (Optional) Current wallet password, if defined."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:326
+msgid "_new_password_ - string; (Optional) New wallet password, if not blank."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:328
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:550
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:641
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:667
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1751
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1783
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1914
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2097
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2119
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2146
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2172
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2198
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2370
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2393
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2416
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2440
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2673
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2809
+msgid "Outputs: _None_."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:331
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"change_wallet_password\",\"params\":{\"old_password\":\"theCurrentSecretPassPhrase\",\"new_password\":\"theNewSecretPassPhrase\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:343
+#, no-wrap
+msgid "**check_reserve_proof**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:346
+msgid "Proves a wallet has a disposable reserve using a signature."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:354
+msgid "_address_ - string; Public address of the wallet."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:354
+msgid ""
+"_message_ - string; (Optional) Should be the same message used in "
+"`get_reserve_proof`."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:354
+msgid "_signature_ - string; reserve signature to confirm."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:358
+msgid "_good_ - boolean; States if the inputs proves the reserve."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:360
+msgid "In the example below, the reserve has been proven:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:361
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"check_reserve_proof\",\"params\":{\"address\":\"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt\",\"signature\":\"ReserveProofV11BZ23sBt9sZJeGccf84mzyAmNCP3KzYbE1111112VKmH111118NfCYJQjZ6c46gT2kXgcHCaSSZeL8sRdzqjqx7i1e7FQfQGu2o113UYFVdwzHQi3iENDPa76Kn1BvywbKz3bMkXdZkBEEhBSF4kjjGaiMJ1ucKb6wvMVC4A8sA4nZEdL2Mk3wBucJCYTZwKqA8i1M113kqakDkG25FrjiDqdQTCYz2wDBmfKxF3eQiV5FWzZ6HmAyxnqTWUiMWukP9A3Edy3ZXqjP1b23dhz7Mbj39bBxe3ZeDNu9HnTSqYvHNRyqCkeUMJpHyQweqjGUJ1DSfFYr33J1E7MkhMnEi1o7trqWjVix32XLetYfePG73yvHbS24837L7Q64i5n1LSpd9yMiQZ3Dyaysi5y6jPx7TpAvnSqBFtuCciKoNzaXoA3dqt9cuVFZTXzdXKqdt3cXcVJMNxY8RvKPVQHhUur94Lpo1nSpxf7BN5a5rHrbZFqoZszsZmiWikYPkLX72XUdw6NWjLrTBxSy7KuPYH86c6udPEXLo2xgN6XHMBMBJzt8FqqK7EcpNUBkuHm2AtpGkf9CABY3oSjDQoRF5n4vNLd3qUaxNsG4XJ12L9gJ7GrK273BxkfEA8fDdxPrb1gpespbgEnCTuZHqj1A\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"good\": true,\n"
+"    \"spent\": 0,\n"
+"    \"total\": 100000000000\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:376
+msgid "In the example below, all wallet reserve has been proven:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:377
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"check_reserve_proof\",\"params\":{\"address\":\"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt\",\"message\":\"I have 10 at least\",\"signature\":\"...signature...\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"good\": true,\n"
+"    \"spent\": 0,\n"
+"    \"total\": 164113855714662789\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:392
+msgid ""
+"In the example below, the wrong message is used, avoiding the reserve to be "
+"proved:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:393
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:438
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"check_spend_proof\",\"params\":{\"txid\":\"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be\",\"message\":\"wrong message\",\"signature\":\"SpendProofV1aSh8Todhk54736iXgV6vJAFP7egxByuMWZeyNDaN2JY737S95X5zz5mNMQSuCNSLjjhi5HJCsndpNWSNVsuThxwv285qy1KkUrLFRkxMSCjfL6bbycYN33ScZ5UB4Fzseceo1ndpL393T1q638VmcU3a56dhNHF1RPZFiGPS61FA78nXFSqE9uoKCCoHkEz83M1dQVhxZV5CEPF2P6VioGTKgprLCH9vvj9k1ivd4SX19L2VSMc3zD1u3mkR24ioETvxBoLeBSpxMoikyZ6inhuPm8yYo9YWyFtQK4XYfAV9mJ9knz5fUPXR8vvh7KJCAg4dqeJXTVb4mbMzYtsSZXHd6ouWoyCd6qMALdW8pKhgMCHcVYMWp9X9WHZuCo9rsRjRpg15sJUw7oJg1JoGiVgj8P4JeGDjnZHnmLVa5bpJhVCbMhyM7JLXNQJzFWTGC27TQBbthxCfQaKdusYnvZnKPDJWSeceYEFzepUnsWhQtyhbb73FzqgWC4eKEFKAZJqT2LuuSoxmihJ9acnFK7Ze23KTVYgDyMKY61VXADxmSrBvwUtxCaW4nQtnbMxiPMNnDMzeixqsFMBtN72j5UqhiLRY99k6SE7Qf5f29haNSBNSXCFFHChPKNTwJrehkofBdKUhh2VGPqZDNoefWUwfudeu83t85bmjv8Q3LrQSkFgFjRT5tLo8TMawNXoZCrQpyZrEvnodMDDUUNf3NL7rxyv3gM1KrTWjYaWXFU2RAsFee2Q2MTwUW7hR25cJvSFuB1BX2bfkoCbiMk923tHZGU2g7rSKF1GDDkXAc1EvFFD4iGbh1Q5t6hPRhBV8PEncdcCWGq5uAL5D4Bjr6VXG8uNeCy5oYWNgbZ5JRSfm7QEhPv8Fy9AKMgmCxDGMF9dVEaU6tw2BAnJavQdfrxChbDBeQXzCbCfep6oei6n2LZdE5Q84wp7eoQFE5Cwuo23tHkbJCaw2njFi3WGBbA7uGZaGHJPyB2rofTWBiSUXZnP2hiE9bjJghAcDm1M4LVLfWvhZmFEnyeru3VWMETnetz1BYLUC5MJGFXuhnHwWh7F6r74FDyhdswYop4eWPbyrXMXmUQEccTGd2NaT8g2VHADZ76gMC6BjWESvcnz2D4n8XwdmM7ZQ1jFwhuXrBfrb1dwRasyXxxHMGAC2onatNiExyeQ9G1W5LwqNLAh9hvcaNTGaYKYXoceVzLkgm6e5WMkLsCwuZXvB\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"good\": false\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:406
+#, no-wrap
+msgid "**check_spend_proof**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:409
+msgid ""
+"Prove a spend using a signature. Unlike proving a transaction, it does not "
+"requires the destination public address."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:417
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:462
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:498
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1225
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1398
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1454
+msgid "_txid_ - string; transaction id."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:417
+msgid ""
+"_message_ - string; (Optional) Should be the same message used in "
+"`get_spend_proof`."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:417
+msgid "_signature_ - string; spend signature to confirm."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:421
+msgid "_good_ - boolean; States if the inputs proves the spend."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:423
+msgid "In the example below, the spend has been proven:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:424
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"check_spend_proof\",\"params\":{\"txid\":\"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be\",\"message\":\"this is my transaction\",\"signature\":\"SpendProofV1aSh8Todhk54736iXgV6vJAFP7egxByuMWZeyNDaN2JY737S95X5zz5mNMQSuCNSLjjhi5HJCsndpNWSNVsuThxwv285qy1KkUrLFRkxMSCjfL6bbycYN33ScZ5UB4Fzseceo1ndpL393T1q638VmcU3a56dhNHF1RPZFiGPS61FA78nXFSqE9uoKCCoHkEz83M1dQVhxZV5CEPF2P6VioGTKgprLCH9vvj9k1ivd4SX19L2VSMc3zD1u3mkR24ioETvxBoLeBSpxMoikyZ6inhuPm8yYo9YWyFtQK4XYfAV9mJ9knz5fUPXR8vvh7KJCAg4dqeJXTVb4mbMzYtsSZXHd6ouWoyCd6qMALdW8pKhgMCHcVYMWp9X9WHZuCo9rsRjRpg15sJUw7oJg1JoGiVgj8P4JeGDjnZHnmLVa5bpJhVCbMhyM7JLXNQJzFWTGC27TQBbthxCfQaKdusYnvZnKPDJWSeceYEFzepUnsWhQtyhbb73FzqgWC4eKEFKAZJqT2LuuSoxmihJ9acnFK7Ze23KTVYgDyMKY61VXADxmSrBvwUtxCaW4nQtnbMxiPMNnDMzeixqsFMBtN72j5UqhiLRY99k6SE7Qf5f29haNSBNSXCFFHChPKNTwJrehkofBdKUhh2VGPqZDNoefWUwfudeu83t85bmjv8Q3LrQSkFgFjRT5tLo8TMawNXoZCrQpyZrEvnodMDDUUNf3NL7rxyv3gM1KrTWjYaWXFU2RAsFee2Q2MTwUW7hR25cJvSFuB1BX2bfkoCbiMk923tHZGU2g7rSKF1GDDkXAc1EvFFD4iGbh1Q5t6hPRhBV8PEncdcCWGq5uAL5D4Bjr6VXG8uNeCy5oYWNgbZ5JRSfm7QEhPv8Fy9AKMgmCxDGMF9dVEaU6tw2BAnJavQdfrxChbDBeQXzCbCfep6oei6n2LZdE5Q84wp7eoQFE5Cwuo23tHkbJCaw2njFi3WGBbA7uGZaGHJPyB2rofTWBiSUXZnP2hiE9bjJghAcDm1M4LVLfWvhZmFEnyeru3VWMETnetz1BYLUC5MJGFXuhnHwWh7F6r74FDyhdswYop4eWPbyrXMXmUQEccTGd2NaT8g2VHADZ76gMC6BjWESvcnz2D4n8XwdmM7ZQ1jFwhuXrBfrb1dwRasyXxxHMGAC2onatNiExyeQ9G1W5LwqNLAh9hvcaNTGaYKYXoceVzLkgm6e5WMkLsCwuZXvB\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"good\": true\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:437
+msgid ""
+"In the example below, the wrong message is used, avoiding the spend to be "
+"proved:"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:451
+#, no-wrap
+msgid "**check_tx_key**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:454
+msgid "Check a transaction in the blockchain with its secret key."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:462
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1402
+msgid "_tx_key_ - string; transaction secret key."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:462
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:498
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1454
+msgid "_address_ - string; destination public address of the transaction."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:468
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:505
+msgid ""
+"_confirmations_ - unsigned int; Number of block mined after the one with the "
+"transaction."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:468
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:505
+msgid ""
+"_in_pool_ - boolean; States if the transaction is still in pool or has been "
+"added to a block."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:468
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:505
+msgid "_received_ - unsigned int; Amount of the transaction."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:471
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"check_tx_key\",\"params\":{\"txid\":\"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be\",\"tx_key\":\"feba662cf8fb6d0d0da18fc9b70ab28e01cc76311278fdd7fe7ab16360762b06\",\"address\":\"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"confirmations\": 0,\n"
+"    \"in_pool\": false,\n"
+"    \"received\": 1000000000000\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:486
+#, no-wrap
+msgid "**check_tx_proof**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:489
+msgid "Prove a transaction by checking its signature."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:498
+msgid ""
+"_message_ - string; (Optional) Should be the same message used in "
+"`get_tx_proof`."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:498
+msgid "_signature_ - string; transaction signature to confirm."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:505
+msgid "_good_ - boolean; States if the inputs proves the transaction."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:507
+msgid "In the example below, the transaction has been proven:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:508
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"check_tx_proof\",\"params\":{\"txid\":\"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be\",\"address\":\"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o\",\"message\":\"this is my transaction\",\"signature\":\"InProofV13vqBCT6dpSAXkypZmSEMPGVnNRFDX2vscUYeVS4WnSVnV5BwLs31T9q6Etfj9Wts6tAxSAS4gkMeSYzzLS7Gt4vvCSQRh9niGJMUDJsB5hTzb2XJiCkUzWkkcjLFBBRVD5QZ\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"confirmations\": 482,\n"
+"    \"good\": true,\n"
+"    \"in_pool\": false,\n"
+"    \"received\": 1000000000000\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:524
+msgid ""
+"In the example below, the wrong message is used, avoiding the transaction to "
+"be proved:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:525
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"check_tx_proof\",\"params\":{\"txid\":\"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be\",\"address\":\"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o\",\"message\":\"wrong message\",\"signature\":\"InProofV13vqBCT6dpSAXkypZmSEMPGVnNRFDX2vscUYeVS4WnSVnV5BwLs31T9q6Etfj9Wts6tAxSAS4gkMeSYzzLS7Gt4vvCSQRh9niGJMUDJsB5hTzb2XJiCkUzWkkcjLFBBRVD5QZ\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"confirmations\": 0,\n"
+"    \"good\": false,\n"
+"    \"in_pool\": false,\n"
+"    \"received\": 0\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:541
+#, no-wrap
+msgid "**close_wallet**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:544
+msgid "Close the currently opened wallet, after trying to save it."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:548
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:689
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:724
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:751
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:808
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1095
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1120
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1479
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1700
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1972
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2095
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2117
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2391
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2414
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2438
+msgid "Inputs: _None_."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:553
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"close_wallet\"}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:565
+#, no-wrap
+msgid "**create_account**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:568
+msgid "Create a new account with an optional label."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:574
+msgid "_label_ - string; (Optional) Label for the account."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:579
+msgid "_account_index_ - unsigned int; Index of the new account."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:579
+msgid ""
+"_address_ - string; Address for this account. Base58 representation of the "
+"public keys."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:582
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"create_account\",\"params\":{\"label\":\"Secondary account\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"account_index\": 1,\n"
+"    \"address\": \"77Vx9cs1VPicFndSVgYUvTdLCJEZw9h81hXLMYsjBCXSJfUehLa9TDW3Ffh45SQa7xb6dUs18mpNxfUhQGqfwXPSMrvKhVp\"\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:596
+#, no-wrap
+msgid "**create_address**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:599
+msgid "Create a new address for an account. Optionally, label the new address."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:606
+msgid "_account_index_ - unsigned int; Create a new address for this account."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:606
+msgid "_label_ - string; (Optional) Label for the new address."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:611
+msgid ""
+"_address_ - string; Newly created address. Base58 representation of the "
+"public keys."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:611
+msgid ""
+"_address_index_ - unsigned int; Index of the new address under the input "
+"account."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:614
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"create_address\",\"params\":{\"account_index\":0,\"label\":\"new-sub\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"address\": \"7BG5jr9QS5sGMdpbBrZEwVLZjSKJGJBsXdZLt8wiXyhhLjy7x2LZxsrAnHTgD8oG46ZtLjUGic2pWc96GFkGNPQQDA3Dt7Q\",\n"
+"    \"address_index\": 5\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:628
+#, no-wrap
+msgid "**create_wallet**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:631
+msgid ""
+"Create a new wallet. You need to have set the argument \"–wallet-dir\" when "
+"launching monero-wallet-rpc to make this work."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:639
+msgid "_filename_ - string; Wallet file name."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:639
+msgid "_password_ - string; (Optional) password to protect the wallet."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:639
+msgid "_language_ - string; Language for your wallets' seed."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:644
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"create_wallet\",\"params\":{\"filename\":\"mytestwallet\",\"password\":\"mytestpassword\",\"language\":\"English\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:656
+#, no-wrap
+msgid "**delete_address_book**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:659
+msgid "Delete an entry from the address book."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:670
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"delete_address_book\",\"params\":{\"index\":1}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:682
+#, no-wrap
+msgid "**export_key_images**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:685
+msgid "Export a signed set of key images."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:695
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1508
+msgid "_signed_key_images_ - array of signed key images:"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:695
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1508
+msgid "_key_image_ - string;"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:695
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1508
+msgid "_signature_ - string;"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:698
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"export_key_images\"}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"signed_key_images\": [{\n"
+"      \"key_image\": \"cd35239b72a35e26a57ed17400c0b66944a55de9d5bda0f21190fed17f8ea876\",\n"
+"      \"signature\": \"c9d736869355da2538ab4af188279f84138c958edbae3c5caf388a63cd8e780b8c5a1aed850bd79657df659422c463608ea4e0c730ba9b662c906ae933816d00\"\n"
+"    },{\n"
+"      \"key_image\": \"65158a8ee5a3b32009b85a307d85b375175870e560e08de313531c7dbbe6fc19\",\n"
+"      \"signature\": \"c96e40d09dfc45cfc5ed0b76bfd7ca793469588bb0cf2b4d7b45ef23d40fd4036057b397828062e31700dc0c2da364f50cd142295a8405b9fe97418b4b745d0c\"\n"
+"    },...]\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:717
+#, no-wrap
+msgid "**export_multisig_info**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:720
+msgid "Export multisig info for other participants."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:728
+msgid "_info_ - string; Multisig info in hex format for other participants."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:731
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"export_multisig_info\"}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"info\": \"4d6f6e65726f206d756c7469736967206578706f72740105cf6442b09b75f5eca9d846771fe1a879c9a97ab0553ffbcec64b1148eb7832b51e7898d7944c41cee000415c5a98f4f80dc0efdae379a98805bb6eacae743446f6f421cd03e129eb5b27d6e3b73eb6929201507c1ae706c1a9ecd26ac8601932415b0b6f49cbbfd712e47d01262c59980a8f9a8be776f2bf585f1477a6df63d6364614d941ecfdcb6e958a390eb9aa7c87f056673d73bc7c5f0ab1f74a682e902e48a3322c0413bb7f6fd67404f13fb8e313f70a0ce568c853206751a334ef490068d3c8ca0e\"\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:744
+#, no-wrap
+msgid "**export_outputs**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:747
+msgid "Export all outputs in hex format."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:755
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1566
+msgid "_outputs_data_hex_ - string; wallet outputs in hex format."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:758
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"export_outputs\"}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"outputs_data_hex\": \"...outputs...\"\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:771
+#, no-wrap
+msgid "**finalize_multisig**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:774
+msgid "Turn this wallet into a multisig wallet, extra step for N-1/N wallets."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:781
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1837
+msgid "_multisig_info_ - array of string; List of multisig string from peers."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:781
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1837
+msgid "_password_ - string; Wallet password"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:785
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1842
+msgid "_address_ - string; multisig wallet address."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:788
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"finalize_multisig\",\"params\":{\"multisig_info\":[\"MultisigxV1JNC6Ja2oBt5Sqea9LN2YEF7WYZCpHqr2EKvPG89Trf3X4E8RWkLaGRf29fJ3stU471MELKxwufNYeigP7LoE4tn2McPr4SbL9q15xNvZT5uwC9YRr7UwjXqSZHmTWN9PBuZEKVAQ4HPPyQciSCdNjgwsuFRBzrskMdMUwNMgKst1debYfm37i6PSzDoS2tk4kYTYj83kkAdR7kdshet1axQPd6HQ\",\"MultisigxV1Unma7Ko4zdd8Ps3Af4oZwtj2JdWKzwNfP6s2G9ZvXhMoSscwn5g7PyCfcBc1V4ffRHY3Kxqq6VocSCUTncpVeUskMcPr4SbL9q15xNvZT5uwC9YRr7UwjXqSZHmTWN9PBuZE1LTpWxLoC3vPMSrqVVcjnmL9LYfdCZz3fECjNZbCEDq3PHDiUuY5jurQTcNoGhDTio5WM9xaAdim9YByiS5KyqF4\"]}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"address\": \"5B9gZUTDuHTcGGuY3nL3t8K2tDnEHeRVHSBQgLZUTQxtFYVLnho5JJjWJyFp5YZgZRQ44RiviJi1sPHgLVMbckRsDqDx1gV\"\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:801
+#, no-wrap
+msgid "**get_account_tags**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:804
+msgid "Get a list of user-defined account tags."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:815
+msgid "_account_tags_ - array of account tag information:"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:815
+msgid "_tag_ - string; Filter tag."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:815
+msgid "_label_ - string; Label for the tag."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:815
+msgid "_accounts_ - array of int; List of tagged account indices."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:818
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_account_tags\",\"params\":\"\"}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"account_tags\": [{\n"
+"      \"accounts\": [0],\n"
+"      \"label\": \"Test tag\",\n"
+"      \"tag\": \"myTag\"\n"
+"    }]\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:834
+#, no-wrap
+msgid "**get_accounts**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:837
+msgid "Get all accounts for a wallet. Optionally filter accounts by tag."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:843
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:855
+msgid "_tag_ - string; (Optional) Tag for filtering accounts."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:855
+msgid "_subaddress_accounts_ - array of subaddress account information:"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:855
+msgid "_account_index_ - unsigned int; Index of the account."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:855
+msgid "_balance_ - unsigned int; Balance of the account (locked or unlocked)."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:855
+msgid ""
+"_base_address_ - string; Base64 representation of the first subaddress in "
+"the account."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:855
+msgid "_label_ - string; (Optional) Label of the account."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:855
+msgid "_unlocked_balance_ - unsigned int; Unlocked balance for the account."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:855
+msgid ""
+"_total_balance_ - unsigned int; Total balance of the selected accounts "
+"(locked or unlocked)."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:855
+msgid ""
+"_total_unlocked_balance_ - unsigned int; Total unlocked balance of the "
+"selected accounts."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:858
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_accounts\",\"params\":{\"tag\":\"myTag\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"subaddress_accounts\": [{\n"
+"      \"account_index\": 0,\n"
+"      \"balance\": 157663195572433688,\n"
+"      \"base_address\": \"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt\",\n"
+"      \"label\": \"Primary account\",\n"
+"      \"tag\": \"myTag\",\n"
+"      \"unlocked_balance\": 157443303037455077\n"
+"    },{\n"
+"      \"account_index\": 1,\n"
+"      \"balance\": 0,\n"
+"      \"base_address\": \"77Vx9cs1VPicFndSVgYUvTdLCJEZw9h81hXLMYsjBCXSJfUehLa9TDW3Ffh45SQa7xb6dUs18mpNxfUhQGqfwXPSMrvKhVp\",\n"
+"      \"label\": \"Secondary account\",\n"
+"      \"tag\": \"myTag\",\n"
+"      \"unlocked_balance\": 0\n"
+"    }],\n"
+"    \"total_balance\": 157663195572433688,\n"
+"    \"total_unlocked_balance\": 157443303037455077\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:887
+#, no-wrap
+msgid "**get_address**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:890
+msgid ""
+"Return the wallet's addresses for an account. Optionally filter for specific "
+"set of subaddresses."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:892
+msgid "Alias: _getaddress_."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:897
+msgid "_account_index_ - unsigned int; Return subaddresses for this account."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:897
+msgid ""
+"_address_index_ - array of unsigned int; (Optional) List of subaddresses to "
+"return from an account."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:906
+msgid ""
+"_address_ - string; The 95-character hex address string of the monero-wallet-"
+"rpc in session."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:906
+msgid "_addresses_ array of addresses informations"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:906
+msgid "_address_ string; The 95-character hex (sub)address string."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:906
+msgid "_label_ string; Label of the (sub)address"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:906
+msgid "_address_index_ unsigned int; index of the subaddress"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:906
+msgid "_used_ boolean; states if the (sub)address has already received funds"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:909
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_address\",\"params\":{\"account_index\":0,\"address_index\":[0,1,4]}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"address\": \"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt\",\n"
+"    \"addresses\": [{\n"
+"      \"address\": \"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt\",\n"
+"      \"address_index\": 0,\n"
+"      \"label\": \"Primary account\",\n"
+"      \"used\": true\n"
+"    },{\n"
+"      \"address\": \"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o\",\n"
+"      \"address_index\": 1,\n"
+"      \"label\": \"\",\n"
+"      \"used\": true\n"
+"    },{\n"
+"      \"address\": \"77xa6Dha7kzCQuvmd8iB5VYoMkdenwCNRU9khGhExXQ8KLL3z1N1ZATBD1sFPenyHWT9cm4fVFnCAUApY53peuoZFtwZiw5\",\n"
+"      \"address_index\": 4,\n"
+"      \"label\": \"test2\",\n"
+"      \"used\": true\n"
+"    }]\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:938
+#, no-wrap
+msgid "**get_address_book**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:941
+msgid "Retrieves entries from the address book."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:947
+msgid ""
+"_entries_ - array of unsigned int; indices of the requested address book "
+"entries"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:955
+msgid "_entries_ - array of entries:"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:955
+msgid "_address_ - string; Public address of the entry"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:955
+msgid "_description_ - string; Description of this address entry"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:955
+msgid "_index_ - unsigned int;"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:955
+msgid "_payment_id_ - string;"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:958
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_address_book\",\"params\":{\"entries\":[0,1]}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"entries\": [{\n"
+"      \"address\": \"77Vx9cs1VPicFndSVgYUvTdLCJEZw9h81hXLMYsjBCXSJfUehLa9TDW3Ffh45SQa7xb6dUs18mpNxfUhQGqfwXPSMrvKhVp\",\n"
+"      \"description\": \"Second account\",\n"
+"      \"index\": 0,\n"
+"      \"payment_id\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n"
+"    },{\n"
+"      \"address\": \"78P16M3XmFRGcWFCcsgt1WcTntA1jzcq31seQX1Eg92j8VQ99NPivmdKam4J5CKNAD7KuNWcq5xUPgoWczChzdba5WLwQ4j\",\n"
+"      \"description\": \"Third account\",\n"
+"      \"index\": 1,\n"
+"      \"payment_id\": \"0000000000000000000000000000000000000000000000000000000000000000\"\n"
+"    }]\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:981
+#, no-wrap
+msgid "**get_address_index**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:984
+msgid "Get account and address indexes from a specific (sub)address"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:990
+msgid "_address_ - String; (sub)address to look for."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:996
+msgid "_index_ - subaddress informations"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:996
+msgid "_major_ unsigned int; Account index."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:996
+msgid "_minor_ unsigned int; Address index."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:999
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_address_index\",\"params\":{\"address\":\"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"index\": {\n"
+"      \"major\": 0,\n"
+"      \"minor\": 1\n"
+"    }\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1013
+#, no-wrap
+msgid "**get_attribute**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1016
+msgid "Get attribute value by name."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1022
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2170
+msgid "_key_ - string; attribute name"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1026
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2170
+msgid "_value_ - string; attribute value"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1029
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_attribute\",\"params\":{\"key\":\"my_attribute\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"value\": \"my_value\"\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1040
+#, no-wrap
+msgid "**get_bulk_payments**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1043
+msgid ""
+"Get a list of incoming payments using a given payment id, or a list of "
+"payments ids, from a given height. This method is the preferred method over "
+"`get_payments`because it has the same functionality but is more extendable. "
+"Either is fine for looking up transactions by a single payment ID."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1050
+msgid ""
+"_payment_ids_ - array of: string; Payment IDs used to find the payments (16 "
+"characters hex)."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1050
+msgid ""
+"_min_block_height_ - unsigned int; The block height at which to start "
+"looking for payments."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1063
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1160
+msgid "_payments_ - list of:"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1063
+msgid "_payment_id_ - string; Payment ID matching one of the input IDs."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1063
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1160
+msgid "_tx_hash_ - string; Transaction hash used as the transaction ID."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1063
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1160
+msgid "_amount_ - unsigned int; Amount for this payment."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1063
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1160
+msgid ""
+"_block_height_ - unsigned int; Height of the block that first confirmed this "
+"payment."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1063
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1160
+msgid ""
+"_unlock_time_ - unsigned int; Time (in block height) until this payment is "
+"safe to spend."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1063
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1160
+msgid "_subaddr_index_ - subaddress index:"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1063
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1160
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1781
+msgid "_major_ - unsigned int; Account index for the subaddress."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1063
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1160
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1781
+msgid "_minor_ - unsigned int; Index of the subaddress in the account."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1063
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1160
+msgid ""
+"_address_ - string; Address receiving the payment; Base58 representation of "
+"the public keys."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1066
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_bulk_payments\",\"params\":{\"payment_ids\":[\"60900e5603bf96e3\"],\"min_block_height\":\"120000\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"payments\": [{\n"
+"      \"address\": \"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt\",\n"
+"      \"amount\": 1000000000000,\n"
+"      \"block_height\": 127606,\n"
+"      \"payment_id\": \"60900e5603bf96e3\",\n"
+"      \"subaddr_index\": {\n"
+"        \"major\": 0,\n"
+"        \"minor\": 0\n"
+"      },\n"
+"      \"tx_hash\": \"3292e83ad28fc1cc7bc26dbd38862308f4588680fbf93eae3e803cddd1bd614f\",\n"
+"      \"unlock_time\": 0\n"
+"    }]\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1088
+#, no-wrap
+msgid "**get_height**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1091
+msgid "Returns the wallet's current block height."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1093
+msgid "Alias: _getheight_."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1099
+msgid ""
+"_height_ - unsigned int; The current monero-wallet-rpc's blockchain height. "
+"If the wallet has been offline for a long time, it may need to catch up with "
+"the daemon."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1102
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_height\"}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"height\": 145545\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1113
+#, no-wrap
+msgid "**get_languages**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1116
+msgid "Get a list of available languages for your wallet's seed."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1124
+msgid "_languages_ - array of string; List of available languages"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1127
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_languages\"}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"languages\": [\"Deutsch\",\"English\",\"Español\",\"Français\",\"Italiano\",\"Nederlands\",\"Português\",\"русский язык\",\"日本語\",\"简体中文 (中国)\",\"Esperanto\",\"Lojban\"]\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1138
+#, no-wrap
+msgid "**get_payments**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1141
+msgid "Get a list of incoming payments using a given payment id."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1147
+msgid ""
+"_payment_id_ - string; Payment ID used to find the payments (16 characters "
+"hex)."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1160
+msgid "_payment_id_ - string; Payment ID matching the input parameter."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1163
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_payments\",\"params\":{\"payment_id\":\"60900e5603bf96e3\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"payments\": [{\n"
+"      \"address\": \"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt\",\n"
+"      \"amount\": 1000000000000,\n"
+"      \"block_height\": 127606,\n"
+"      \"payment_id\": \"60900e5603bf96e3\",\n"
+"      \"subaddr_index\": {\n"
+"        \"major\": 0,\n"
+"        \"minor\": 0\n"
+"      },\n"
+"      \"tx_hash\": \"3292e83ad28fc1cc7bc26dbd38862308f4588680fbf93eae3e803cddd1bd614f\",\n"
+"      \"unlock_time\": 0\n"
+"    }]\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1185
+#, no-wrap
+msgid "**get_reserve_proof**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1188
+msgid "Generate a signature to prove of an available amount in a wallet."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1197
+msgid "_all_ - boolean; Proves all wallet balance to be disposable."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1197
+msgid ""
+"_account_index_ - unsigned int; Specify the account from witch to prove "
+"reserve. (ignored if `all` is set to true)"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1197
+msgid ""
+"_amount_ - unsigned int; Amount (in atomic units) to prove the account has "
+"for reserve. (ignored if `all` is set to true)"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1197
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1225
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1454
+msgid ""
+"_message_ - string; (Optional) add a message to the signature to further "
+"authenticate the prooving process."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1201
+msgid "_signature_ - string; reserve signature."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1204
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_reserve_proof\",\"params\":{\"all\":false,\"account_index\":0,\"amount\":100000000000}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"signature\": \"ReserveProofV11BZ23sBt9sZJeGccf84mzyAmNCP3KzYbE1111112VKmH111118NfCYJQjZ6c46gT2kXgcHCaSSZeL8sRdzqjqx7i1e7FQfQGu2o113UYFVdwzHQi3iENDPa76Kn1BvywbKz3bMkXdZkBEEhBSF4kjjGaiMJ1ucKb6wvMVC4A8sA4nZEdL2Mk3wBucJCYTZwKqA8i1M113kqakDkG25FrjiDqdQTCYz2wDBmfKxF3eQiV5FWzZ6HmAyxnqTWUiMWukP9A3Edy3ZXqjP1b23dhz7Mbj39bBxe3ZeDNu9HnTSqYvHNRyqCkeUMJpHyQweqjGUJ1DSfFYr33J1E7MkhMnEi1o7trqWjVix32XLetYfePG73yvHbS24837L7Q64i5n1LSpd9yMiQZ3Dyaysi5y6jPx7TpAvnSqBFtuCciKoNzaXoA3dqt9cuVFZTXzdXKqdt3cXcVJMNxY8RvKPVQHhUur94Lpo1nSpxf7BN5a5rHrbZFqoZszsZmiWikYPkLX72XUdw6NWjLrTBxSy7KuPYH86c6udPEXLo2xgN6XHMBMBJzt8FqqK7EcpNUBkuHm2AtpGkf9CABY3oSjDQoRF5n4vNLd3qUaxNsG4XJ12L9gJ7GrK273BxkfEA8fDdxPrb1gpespbgEnCTuZHqj1A\"\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1215
+#, no-wrap
+msgid "**get_spend_proof**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1218
+msgid ""
+"Generate a signature to prove a spend. Unlike proving a transaction, it does "
+"not requires the destination public address."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1229
+msgid "_signature_ - string; spend signature."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1232
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_spend_proof\",\"params\":{\"txid\":\"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be\",\"message\":\"this is my transaction\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"signature\": \"SpendProofV1aSh8Todhk54736iXgV6vJAFP7egxByuMWZeyNDaN2JY737S95X5zz5mNMQSuCNSLjjhi5HJCsndpNWSNVsuThxwv285qy1KkUrLFRkxMSCjfL6bbycYN33ScZ5UB4Fzseceo1ndpL393T1q638VmcU3a56dhNHF1RPZFiGPS61FA78nXFSqE9uoKCCoHkEz83M1dQVhxZV5CEPF2P6VioGTKgprLCH9vvj9k1ivd4SX19L2VSMc3zD1u3mkR24ioETvxBoLeBSpxMoikyZ6inhuPm8yYo9YWyFtQK4XYfAV9mJ9knz5fUPXR8vvh7KJCAg4dqeJXTVb4mbMzYtsSZXHd6ouWoyCd6qMALdW8pKhgMCHcVYMWp9X9WHZuCo9rsRjRpg15sJUw7oJg1JoGiVgj8P4JeGDjnZHnmLVa5bpJhVCbMhyM7JLXNQJzFWTGC27TQBbthxCfQaKdusYnvZnKPDJWSeceYEFzepUnsWhQtyhbb73FzqgWC4eKEFKAZJqT2LuuSoxmihJ9acnFK7Ze23KTVYgDyMKY61VXADxmSrBvwUtxCaW4nQtnbMxiPMNnDMzeixqsFMBtN72j5UqhiLRY99k6SE7Qf5f29haNSBNSXCFFHChPKNTwJrehkofBdKUhh2VGPqZDNoefWUwfudeu83t85bmjv8Q3LrQSkFgFjRT5tLo8TMawNXoZCrQpyZrEvnodMDDUUNf3NL7rxyv3gM1KrTWjYaWXFU2RAsFee2Q2MTwUW7hR25cJvSFuB1BX2bfkoCbiMk923tHZGU2g7rSKF1GDDkXAc1EvFFD4iGbh1Q5t6hPRhBV8PEncdcCWGq5uAL5D4Bjr6VXG8uNeCy5oYWNgbZ5JRSfm7QEhPv8Fy9AKMgmCxDGMF9dVEaU6tw2BAnJavQdfrxChbDBeQXzCbCfep6oei6n2LZdE5Q84wp7eoQFE5Cwuo23tHkbJCaw2njFi3WGBbA7uGZaGHJPyB2rofTWBiSUXZnP2hiE9bjJghAcDm1M4LVLfWvhZmFEnyeru3VWMETnetz1BYLUC5MJGFXuhnHwWh7F6r74FDyhdswYop4eWPbyrXMXmUQEccTGd2NaT8g2VHADZ76gMC6BjWESvcnz2D4n8XwdmM7ZQ1jFwhuXrBfrb1dwRasyXxxHMGAC2onatNiExyeQ9G1W5LwqNLAh9hvcaNTGaYKYXoceVzLkgm6e5WMkLsCwuZXvB\"\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1243
+#, no-wrap
+msgid "**get_transfer_by_txid**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1246
+msgid "Show information about a transfer to/from this address."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1253
+msgid "_txid_ - string; Transaction ID used to find the transfer."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1253
+msgid ""
+"_account_index_ - unsigned int; (Optional) Index of the account to query for "
+"the transfer."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+msgid "_transfer_ - JSON object containing payment information:"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+msgid ""
+"_address_ - string; Address that transferred the funds. Base58 "
+"representation of the public keys."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1605
+msgid "_amount_ - unsigned int; Amount of this transfer."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid ""
+"_confirmations_ - unsigned int; Number of block mined since the block "
+"containing this transaction (or block height at which the transaction should "
+"be added to a block if not yet confirmed)."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+msgid ""
+"_destinations_ - array of JSON objects containing transfer destinations:"
+msgstr ""
+
+#. type: Bullet: '        -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+msgid "_amount_ - unsigned int; Amount transferred to this destination."
+msgstr ""
+
+#. type: Bullet: '        -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+msgid ""
+"_address_ - string; Address for this destination. Base58 representation of "
+"the public keys."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid ""
+"_double_spend_seen_ - boolean; True if the key image(s) for the transfer "
+"have been seen before."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid "_fee_ - unsigned int; Transaction fee for this transfer."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+msgid ""
+"_height_ - unsigned int; Height of the first block that confirmed this "
+"transfer."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid "_note_ - string; Note about this transfer."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid "_payment_id_ - string; Payment ID for this transfer."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid ""
+"_subaddr_index_ - JSON object containing the major & minor subaddress index:"
+msgstr ""
+
+#. type: Bullet: '        -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid "_minor_ - unsigned int; Index of the subaddress under the account."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid ""
+"_suggested_confirmations_threshold_ - unsigned int; Estimation of the "
+"confirmations needed for the transaction to be included in a block."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+msgid ""
+"_timestamp_ - unsigned int; POSIX timestamp for the block that confirmed "
+"this transfer (or timestamp submission if not mined yet)."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+msgid "_txid_ - string; Transaction ID of this transfer (same as input TXID)."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+msgid ""
+"_type_ - string; Type of transfer, one of the following: \"in\", \"out\", "
+"\"pending\", \"failed\", \"pool\""
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1276
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid ""
+"_unlock_time_ - unsigned int; Number of blocks until transfer is safely "
+"spendable."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1279
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_transfer_by_txid\",\"params\":{\"txid\":\"c36258a276018c3a4bc1f195a7fb530f50cd63a4fa765fb7c6f7f49fc051762a\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"transfer\": {\n"
+"      \"address\": \"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt\",\n"
+"      \"amount\": 300000000000,\n"
+"      \"confirmations\": 1,\n"
+"      \"destinations\": [{\n"
+"        \"address\": \"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o\",\n"
+"        \"amount\": 100000000000\n"
+"      },{\n"
+"        \"address\": \"77Vx9cs1VPicFndSVgYUvTdLCJEZw9h81hXLMYsjBCXSJfUehLa9TDW3Ffh45SQa7xb6dUs18mpNxfUhQGqfwXPSMrvKhVp\",\n"
+"        \"amount\": 200000000000\n"
+"      }],\n"
+"      \"double_spend_seen\": false,\n"
+"      \"fee\": 21650200000,\n"
+"      \"height\": 153624,\n"
+"      \"note\": \"\",\n"
+"      \"payment_id\": \"0000000000000000\",\n"
+"      \"subaddr_index\": {\n"
+"        \"major\": 0,\n"
+"        \"minor\": 0\n"
+"      },\n"
+"      \"suggested_confirmations_threshold\": 1,\n"
+"      \"timestamp\": 1535918400,\n"
+"      \"txid\": \"c36258a276018c3a4bc1f195a7fb530f50cd63a4fa765fb7c6f7f49fc051762a\",\n"
+"      \"type\": \"out\",\n"
+"      \"unlock_time\": 0\n"
+"    }\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1315
+#, no-wrap
+msgid "**get_transfers**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1318
+msgid "Returns a list of transfers."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1333
+msgid "_in_ - boolean; (Optional) Include incoming transfers."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1333
+msgid "_out_ - boolean; (Optional) Include outgoing transfers."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1333
+msgid "_pending_ - boolean; (Optional) Include pending transfers."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1333
+msgid "_failed_ - boolean; (Optional) Include failed transfers."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1333
+msgid ""
+"_pool_ - boolean; (Optional) Include transfers from the daemon's transaction "
+"pool."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1333
+msgid ""
+"_filter_by_height_ - boolean; (Optional) Filter transfers by block height."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1333
+msgid ""
+"_min_height_ - unsigned int; (Optional) Minimum block height to scan for "
+"transfers, if filtering by height is enabled."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1333
+msgid ""
+"_max_height_ - unsigned int; (Optional) Maximum block height to scan for "
+"transfers, if filtering by height is enabled (defaults to max block height)."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1333
+msgid ""
+"_account_index_ - unsigned int; (Optional) Index of the account to query for "
+"transfers. (defaults to 0)"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1333
+msgid ""
+"_subaddr_indices_ - array of unsigned int; (Optional) List of subaddress "
+"indices to query for transfers. (defaults to 0)"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid "_in_ array of transfers:"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid "_address_ - string; Public address of the transfer."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid "_amount_ - unsigned int; Amount transferred."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid ""
+"_height_ - unsigned int; Height of the first block that confirmed this "
+"transfer (0 if not mined yet)."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid ""
+"_timestamp_ - unsigned int; POSIX timestamp for when this transfer was first "
+"confirmed in a block (or timestamp submission if not mined yet)."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid "_txid_ - string; Transaction ID for this transfer."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid "_type_ - string; Transfer type: \"in\""
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid "_out_ array of transfers (see above)."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid "_pending_ array of transfers (see above)."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid "_failed_ array of transfers (see above)."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1357
+msgid "_pool_ array of transfers (see above)."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1360
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_transfers\",\"params\":{\"in\":true,\"account_index\":1}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"in\": [{\n"
+"      \"address\": \"77Vx9cs1VPicFndSVgYUvTdLCJEZw9h81hXLMYsjBCXSJfUehLa9TDW3Ffh45SQa7xb6dUs18mpNxfUhQGqfwXPSMrvKhVp\",\n"
+"      \"amount\": 200000000000,\n"
+"      \"confirmations\": 1,\n"
+"      \"double_spend_seen\": false,\n"
+"      \"fee\": 21650200000,\n"
+"      \"height\": 153624,\n"
+"      \"note\": \"\",\n"
+"      \"payment_id\": \"0000000000000000\",\n"
+"      \"subaddr_index\": {\n"
+"        \"major\": 1,\n"
+"        \"minor\": 0\n"
+"      },\n"
+"      \"suggested_confirmations_threshold\": 1,\n"
+"      \"timestamp\": 1535918400,\n"
+"      \"txid\": \"c36258a276018c3a4bc1f195a7fb530f50cd63a4fa765fb7c6f7f49fc051762a\",\n"
+"      \"type\": \"in\",\n"
+"      \"unlock_time\": 0\n"
+"    }]\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1389
+#, no-wrap
+msgid "**get_tx_key**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1392
+msgid "Get transaction secret key from transaction id."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1405
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_tx_key\",\"params\":{\"txid\":\"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"tx_key\": \"feba662cf8fb6d0d0da18fc9b70ab28e01cc76311278fdd7fe7ab16360762b06\"\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1416
+#, no-wrap
+msgid "**get_tx_notes**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1419
+msgid "Get string notes for transactions."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1425
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2196
+msgid "_txids_ - array of string; transaction ids"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1429
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2196
+msgid "_notes_ - array of string; notes for the transactions"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1432
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_tx_notes\",\"params\":{\"txids\":[\"3292e83ad28fc1cc7bc26dbd38862308f4588680fbf93eae3e803cddd1bd614f\"]}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"notes\": [\"This is an example\"]\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1443
+#, no-wrap
+msgid "**get_tx_proof**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1446
+msgid "Get transaction signature to prove it."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1458
+msgid "_signature_ - string; transaction signature."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1461
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_tx_proof\",\"params\":{\"txid\":\"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be\",\"address\":\"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o\",\"message\":\"this is my transaction\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"signature\": \"InProofV13vqBCT6dpSAXkypZmSEMPGVnNRFDX2vscUYeVS4WnSVnV5BwLs31T9q6Etfj9Wts6tAxSAS4gkMeSYzzLS7Gt4vvCSQRh9niGJMUDJsB5hTzb2XJiCkUzWkkcjLFBBRVD5QZ\"\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1472
+#, no-wrap
+msgid "**get_version**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1475
+msgid ""
+"Get RPC version Major & Minor integer-format, where Major is the first 16 "
+"bits and Minor the last 16 bits."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1483
+msgid ""
+"_version_ - unsigned int; RPC version, formatted with `Major * 2^16 + "
+"Minor`(Major encoded over the first 16 bits, and Minor over the last 16 "
+"bits)."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1486
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"get_version\"}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"version\": 65539\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1497
+#, no-wrap
+msgid "**import_key_images**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1500
+msgid "Import signed key images list and verify their spent status."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1514
+msgid "_height_ - unsigned int;"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1514
+msgid ""
+"_spent_ - unsigned int; Amount (in atomic units) spent from those key images."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1514
+msgid ""
+"_unspent_ - unsigned int; Amount (in atomic units) still available from "
+"those key images."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1517
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"import_key_images\", \"params\":{\"signed_key_images\":[{\"key_image\":\"cd35239b72a35e26a57ed17400c0b66944a55de9d5bda0f21190fed17f8ea876\",\"signature\":\"c9d736869355da2538ab4af188279f84138c958edbae3c5caf388a63cd8e780b8c5a1aed850bd79657df659422c463608ea4e0c730ba9b662c906ae933816d00\"},{\"key_image\":\"65158a8ee5a3b32009b85a307d85b375175870e560e08de313531c7dbbe6fc19\",\"signature\":\"c96e40d09dfc45cfc5ed0b76bfd7ca793469588bb0cf2b4d7b45ef23d40fd4036057b397828062e31700dc0c2da364f50cd142295a8405b9fe97418b4b745d0c\"}]}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"height\": 76428,\n"
+"    \"spent\": 62708953408711,\n"
+"    \"unspent\": 0\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1530
+#, no-wrap
+msgid "**import_multisig_info**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1533
+msgid "Import multisig info from other participants."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1539
+msgid ""
+"_info_ - array of string; List of multisig info in hex format from other "
+"participants."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1543
+msgid ""
+"_n_outputs_ - unsigned int; Number of outputs signed with those multisig "
+"info."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1546
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"import_multisig_info\",\"params\":{\"info\":[\"...multisig_info...\"]}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"n_outputs\": 35\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1557
+#, no-wrap
+msgid "**import_outputs**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1560
+msgid "Import outputs in hex format."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1570
+msgid "_num_imported_ - unsigned int; number of outputs imported."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1573
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"import_outputs\",\"params\":{\"outputs_data_hex\":\"...outputs...\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"num_imported\": 6400\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1584
+#, no-wrap
+msgid "**incoming_transfers**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1587
+msgid "Return a list of incoming transfers to the wallet."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1594
+msgid ""
+"_transfer_type_ - string; \"all\": all the transfers, \"available\": only "
+"transfers which are not yet spent, OR \"unavailable\": only transfers which "
+"are already spent."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1594
+msgid ""
+"_account_index_ - unsigned int; (Optional) Return transfers for this "
+"account. (defaults to 0)"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1594
+msgid ""
+"_subaddr_indices_ - array of unsigned int; (Optional) Return transfers sent "
+"to these subaddresses."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1594
+msgid ""
+"_verbose_ - boolean; (Optional) Enable verbose output, return key image if "
+"true."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1605
+msgid "_transfers_ - list of:"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1605
+msgid ""
+"_global_index_ - unsigned int; Mostly internal use, can be ignored by most "
+"users."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1605
+msgid ""
+"_key_image_ - string; Key image for the incoming transfer's unspent output "
+"(empty unless verbose is true)."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1605
+msgid "_spent_ - boolean; Indicates if this transfer has been spent."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1605
+msgid "_subaddr_index_ - unsigned int; Subaddress index for incoming transfer."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1605
+msgid ""
+"_tx_hash_ - string; Several incoming transfers may share the same hash if "
+"they were in the same transaction."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1605
+msgid "_tx_size_ - unsigned int; Size of transaction in bytes."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1607
+msgid "Example, get all transfers:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1608
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"incoming_transfers\",\"params\":{\"transfer_type\":\"all\",\"account_index\":0,\"subaddr_indices\":[3],\"verbose\":true}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"transfers\": [{\n"
+"      \"amount\": 60000000000000,\n"
+"      \"global_index\": 122405,\n"
+"      \"key_image\": \"768f5144777eb23477ab7acf83562581d690abaf98ca897c03a9d2b900eb479b\",\n"
+"      \"spent\": true,\n"
+"      \"subaddr_index\": 3,\n"
+"      \"tx_hash\": \"f53401f21c6a43e44d5dd7a90eba5cf580012ad0e15d050059136f8a0da34f6b\",\n"
+"      \"tx_size\": 159\n"
+"    },{\n"
+"      \"amount\": 27126892247503,\n"
+"      \"global_index\": 594994,\n"
+"      \"key_image\": \"7e561394806afd1be61980cc3431f6ef3569fa9151cd8d234f8ec13aa145695e\",\n"
+"      \"spent\": false,\n"
+"      \"subaddr_index\": 3,\n"
+"      \"tx_hash\": \"106d4391a031e5b735ded555862fec63233e34e5fa4fc7edcfdbe461c275ae5b\",\n"
+"      \"tx_size\": 157\n"
+"    },{\n"
+"      \"amount\": 27169374733655,\n"
+"      \"global_index\": 594997,\n"
+"      \"key_image\": \"e76c0a3bfeaae35e4173712f782eb34011198e26b990225b71aa787c8ba8a157\",\n"
+"      \"spent\": false,\n"
+"      \"subaddr_index\": 3,\n"
+"      \"tx_hash\": \"0bd959b59117ee1254bd8e5aa8e77ec04ef744144a1ffb2d5c1eb9380a719621\",\n"
+"      \"tx_size\": 158\n"
+"    }]\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1644
+msgid "Example, get available transfers:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1645
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"incoming_transfers\",\"params\":{\"transfer_type\":\"available\",\"account_index\":0,\"subaddr_indices\":[3],\"verbose\":true}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"transfers\": [{\n"
+"      \"amount\": 27126892247503,\n"
+"      \"global_index\": 594994,\n"
+"      \"key_image\": \"7e561394806afd1be61980cc3431f6ef3569fa9151cd8d234f8ec13aa145695e\",\n"
+"      \"spent\": false,\n"
+"      \"subaddr_index\": 3,\n"
+"      \"tx_hash\": \"106d4391a031e5b735ded555862fec63233e34e5fa4fc7edcfdbe461c275ae5b\",\n"
+"      \"tx_size\": 157\n"
+"    },{\n"
+"      \"amount\": 27169374733655,\n"
+"      \"global_index\": 594997,\n"
+"      \"key_image\": \"e76c0a3bfeaae35e4173712f782eb34011198e26b990225b71aa787c8ba8a157\",\n"
+"      \"spent\": false,\n"
+"      \"subaddr_index\": 3,\n"
+"      \"tx_hash\": \"0bd959b59117ee1254bd8e5aa8e77ec04ef744144a1ffb2d5c1eb9380a719621\",\n"
+"      \"tx_size\": 158\n"
+"    }]\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1673
+msgid "Example, get unavailable transfers:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1674
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"incoming_transfers\",\"params\":{\"transfer_type\":\"unavailable\",\"account_index\":0,\"subaddr_indices\":[3],\"verbose\":true}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"\"id\": \"0\",\n"
+"\"jsonrpc\": \"2.0\",\n"
+"\"result\": {\n"
+"  \"transfers\": [{\n"
+"    \"amount\": 60000000000000,\n"
+"    \"global_index\": 122405,\n"
+"    \"key_image\": \"768f5144777eb23477ab7acf83562581d690abaf98ca897c03a9d2b900eb479b\",\n"
+"    \"spent\": true,\n"
+"    \"subaddr_index\": 3,\n"
+"    \"tx_hash\": \"f53401f21c6a43e44d5dd7a90eba5cf580012ad0e15d050059136f8a0da34f6b\",\n"
+"    \"tx_size\": 159\n"
+"  }]\n"
+"}\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1693
+#, no-wrap
+msgid "**is_multisig**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1696
+msgid "Check if a wallet is a multisig one."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1707
+msgid "_multisig_ - boolean; States if the wallet is multisig"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1707
+msgid "_ready_ - boolean;"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1707
+msgid ""
+"_threshold_ - unsigned int; Amount of signature needed to sign a transfer."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1707
+msgid ""
+"_total_ - unsigned int; Total amount of signature in the multisig wallet."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1709
+msgid "Example for a non-multisig wallet:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1710
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"is_multisig\"}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"multisig\": false,\n"
+"    \"ready\": false,\n"
+"    \"threshold\": 0,\n"
+"    \"total\": 0\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1725
+msgid "Example for a multisig wallet:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1726
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"is_multisig\"}' -H 'Content-Type: application/json'                  {\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"multisig\": true,\n"
+"    \"ready\": true,\n"
+"    \"threshold\": 2,\n"
+"    \"total\": 2\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1739
+#, no-wrap
+msgid "**label_account**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1742
+msgid "Label an account."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1749
+msgid "_account_index_ - unsigned int; Apply label to account at this index."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1749
+msgid "_label_ - string; Label for the account."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1754
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"label_account\",\"params\":{\"account_index\":0,\"label\":\"Primary account\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"account_tags\": [{\n"
+"      \"accounts\": [0,1],\n"
+"      \"label\": \"\",\n"
+"      \"tag\": \"myTag\"\n"
+"    }]\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1769
+#, no-wrap
+msgid "**label_address**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1772
+msgid "Label an address."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1781
+msgid ""
+"_index_ - subaddress index; JSON Object containing the major & minor address "
+"index:"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1781
+msgid "_label_ - string; Label for the address."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1786
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"label_address\",\"params\":{\"index\":{\"major\":0,\"minor\":5},\"label\":\"myLabel\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1796
+#, no-wrap
+msgid "**make_integrated_address**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1799
+msgid "Make an integrated address from the wallet address and a payment id."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1806
+msgid ""
+"_standard_address_ - string; (Optional, defaults to primary address) "
+"Destination public address."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1806
+msgid ""
+"_payment_id_ - string; (Optional, defaults to a random ID) 16 characters hex "
+"encoded."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1811
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2334
+msgid "_integrated_address_ - string"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1811
+msgid "_payment_id_ - string; hex encoded;"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1813
+msgid "Example (Payment ID is empty, use a random ID):"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1814
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"make_integrated_address\",\"params\":{\"standard_address\":\"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"integrated_address\": \"5F38Rw9HKeaLQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZXCkbHUXdPHyiUeRyokn\",\n"
+"    \"payment_id\": \"420fa29b2d9a49f5\"\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1826
+#, no-wrap
+msgid "**make_multisig**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1829
+msgid "Make a wallet multisig by importing peers multisig string."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1837
+msgid ""
+"_threshold_ - unsigned int; Amount of signatures needed to sign a transfer. "
+"Must be less or equal than the amount of signature in `multisig_info`."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1842
+msgid ""
+"_multisig_info_ - string; Multisig string to share with peers to create the "
+"multisig wallet (extra step for N-1/N wallets)."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1844
+msgid "Example for 2/2 Multisig Wallet:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1845
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"make_multisig\",\"params\":{\"multisig_info\":[\"MultisigV1K4tGGe8QirZdHgTYoBZMumSug97fdDyM3Z63M3ZY5VXvAdoZvx16HJzPCP4Rp2ABMKUqLD2a74ugMdBfrVpKt4BwD8qCL5aZLrsYWoHiA7JJwDESuhsC3eF8QC9UMvxLXEMsMVh16o98GnKRYz1HCKXrAEWfcrCHyz3bLW1Pdggyowop\"],\"threshold\":2}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"address\": \"55SoZTKH7D39drxfgT62k8T4adVFjmDLUXnbzEKYf1MoYwnmTNKKaqGfxm4sqeKCHXQ5up7PVxrkoeRzXu83d8xYURouMod\",\n"
+"    \"multisig_info\": \"\"\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1858
+msgid "Example for 2/3 Multisig Wallet:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1859
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"make_multisig\",\"params\":{\"multisig_info\":[\"MultisigV1MTVm4DZAdJw1PyVutpSy8Q4WisZBCFRAaZY7hhQnMwr5AZ4swzThyaSiVVQM5FHj1JQi3zPKhQ4k81BZkPSEaFjwRJtbfqfJcVvCqRnmBVcWVxhnihX5s8fZWBCjKrzT3CS95spG4dzNzJSUcjheAkLzCpVmSzGtgwMhAS3Vuz9Pas24\",\"MultisigV1TEx58ycKCd6ADCfxF8hALpcdSRAkhZTi1bu4Rs6FdRC98EdB1LY7TAkMxasM55khFgcxrSXivaSr5FCMyJGHmojm1eE4HpGWPeZKv6cgCTThRzC4u6bkkSoFQdbzWN92yn1XEjuP2XQrGHk81mG2LMeyB51MWKJAVF99Pg9mX2BpmYFj\"],\"threshold\":2}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"address\": \"51sLpF8fWaK1111111111111111111111111111111111ABVbHNf1JFWJyFp5YZgZRQ44RiviJi1sPHgLVMbckRsDkTRgKS\",\n"
+"    \"multisig_info\": \"MultisigxV18jCaYAQQvzCMUJaAWMCaAbAoHpAD6WPmYDmLtBtazD654E8RWkLaGRf29fJ3stU471MELKxwufNYeigP7LoE4tn2Sscwn5g7PyCfcBc1V4ffRHY3Kxqq6VocSCUTncpVeUskaDKuTAWtdB9VTBGW7iG1cd7Zm1dYgur3CiemkGjRUAj9bL3xTEuyaKGYSDhtpFZFp99HQX57EawhiRHk3qq4hjWX\"\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1871
+#, no-wrap
+msgid "**make_uri**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1874
+msgid "Create a payment URI using the official URI spec."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1884
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1945
+msgid "_address_ - string; Wallet address"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1884
+msgid ""
+"_amount_ - unsigned int; (optional) the integer amount to receive, in "
+"**atomic**units"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1884
+msgid ""
+"_payment_id_ - string; (optional) 16 or 64 character hexadecimal payment id"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1884
+msgid "_recipient_name_ - string; (optional) name of the payment recipient"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1884
+msgid ""
+"_tx_description_ - string; (optional) Description of the reason for the tx"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1888
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1936
+msgid ""
+"_uri_ - string; This contains all the payment input information as a "
+"properly formatted payment URI"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1891
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"make_uri\",\"params\":{\"address\":\"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt\",\"amount\":10,\"payment_id\":\"420fa29b2d9a49f5\",\"tx_description\":\"Testing out the make_uri function.\",\"recipient_name\":\"el00ruobuob Stagenet wallet\"}}'  -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"uri\": \"monero:55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt?tx_payment_id=420fa29b2d9a49f5&tx_amount=0.000000000010&recipient_name=el00ruobuob%20Stagenet%20wallet&tx_description=Testing%20out%20the%20make_uri%20function.\"\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1902
+#, no-wrap
+msgid "**open_wallet**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1905
+msgid ""
+"Open a wallet. You need to have set the argument \"–wallet-dir\" when "
+"launching monero-wallet-rpc to make this work."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1912
+msgid "_filename_ - string; wallet name stored in –wallet-dir."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1912
+msgid ""
+"_password_ - string; (Optional) only needed if the wallet has a password "
+"defined."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1917
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"open_wallet\",\"params\":{\"filename\":\"mytestwallet\",\"password\":\"mytestpassword\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1927
+#, no-wrap
+msgid "**parse_uri**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1930
+msgid "Parse a payment URI to get payment information."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1945
+msgid "_uri_ - JSON object containing payment information:"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1945
+msgid ""
+"_amount_ - unsigned int; Decimal amount to receive, in **coin** units (0 if "
+"not provided)"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1945
+msgid ""
+"_payment_id_ - string; 16 or 64 character hexadecimal payment id (empty if "
+"not provided)"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1945
+msgid ""
+"_recipient_name_ - string; Name of the payment recipient (empty if not "
+"provided)"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1945
+msgid ""
+"_tx_description_ - string; Description of the reason for the tx (empty if "
+"not provided)"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1948
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"parse_uri\",\"params\":{\"uri\":\"monero:55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt?tx_payment_id=420fa29b2d9a49f5&tx_amount=0.000000000010&recipient_name=el00ruobuob%20Stagenet%20wallet&tx_description=Testing%20out%20the%20make_uri%20function.\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"uri\": {\n"
+"      \"address\": \"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt\",\n"
+"      \"amount\": 10,\n"
+"      \"payment_id\": \"420fa29b2d9a49f5\",\n"
+"      \"recipient_name\": \"el00ruobuob Stagenet wallet\",\n"
+"      \"tx_description\": \"Testing out the make_uri function.\"\n"
+"    }\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1965
+#, no-wrap
+msgid "**prepare_multisig**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1968
+msgid ""
+"Prepare a wallet for multisig by generating a multisig string to share with "
+"peers."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1976
+msgid ""
+"_multisig_info_ - string; Multisig string to share with peers to create the "
+"multisig wallet."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1979
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"prepare_multisig\"}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"multisig_info\": \"MultisigV1BFdxQ653cQHB8wsj9WJQd2VdnjxK89g5M94dKPBNw22reJnyJYKrz6rJeXdjFwJ3Mz6n4qNQLd6eqUZKLiNzJFi3UPNVcTjtkG2aeSys9sYkvYYKMZ7chCxvoEXVgm74KKUcUu4V8xveCBFadFuZs8shnxBWHbcwFr5AziLr2mE7KHJT\"\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1990
+#, no-wrap
+msgid "**query_key**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1993
+msgid "Return the spend or view private key."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:1999
+msgid ""
+"_key_type_ - string; Which key to retrieve: \"mnemonic\" - the mnemonic seed "
+"(older wallets do not have one) OR \"view_key\" - the view key"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2003
+msgid ""
+"_key_ - string; The view key will be hex encoded, while the mnemonic will be "
+"a string of words."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2005
+msgid "Example (Query view key):"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2006
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"query_key\",\"params\":{\"key_type\":\"view_key\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"key\": \"0a1a38f6d246e894600a3e27238a064bf5e8d91801df47a17107596b1378e501\"\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2018
+msgid "Example (Query mnemonic key):"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2019
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"query_key\",\"params\":{\"key_type\":\"mnemonic\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"key\": \"vocal either anvil films dolphin zeal bacon cuisine quote syndrome rejoices envy okay pancakes tulips lair greater petals organs enmity dedicated oust thwart tomorrow tomorrow\"\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2030
+#, no-wrap
+msgid "**refresh**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2033
+msgid "Refresh a wallet after openning."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2039
+msgid ""
+"_start_height_ - unsigned int; (Optional) The block height from which to "
+"start refreshing."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2044
+msgid "_blocks_fetched_ - unsigned int; Number of new blocks scanned."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2044
+msgid ""
+"_received_money_ - boolean; States if transactions to the wallet have been "
+"found in the blocks."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2047
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"refresh\",\"params\":{\"start_height\":100000}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"blocks_fetched\": 24,\n"
+"    \"received_money\": true\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2060
+#, no-wrap
+msgid "**relay_tx**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2063
+msgid "Relay a transaction previously created with `\"do_not_relay\":true`."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2069
+msgid ""
+"_hex_ - string; transaction metadata returned from a `transfer` method with "
+"`get_tx_metadata` set to `true`."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2073
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2721
+msgid "_tx_hash_ - String for the publically searchable transaction hash."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2076
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"relay_tx\",\"params\":{\"hex\":\"...tx_metadata...\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"tx_hash\": \"1c42dcc5672bb09bccf33fb1e9ab4a498af59a6dbd33b3d0cfb289b9e0e25fa5\"\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2087
+#, no-wrap
+msgid "**rescan_blockchain**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2091
+msgid ""
+"Rescan the blockchain from scratch, losing any information which can not be "
+"recovered from the blockchain itself.  This includes destination addresses, "
+"tx secret keys, tx notes, etc."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2100
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"rescan_blockchain\"}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2110
+#, no-wrap
+msgid "**rescan_spent**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2113
+msgid "Rescan the blockchain for spent outputs."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2122
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"rescan_spent\"}' -H 'Content-Type: application/json'\n"
+"\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2134
+#, no-wrap
+msgid "**set_account_tag_description**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2137
+msgid "Set description for an account tag."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2144
+msgid "_tag_ - string; Set a description for this tag."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2144
+msgid "_description_ - string; Description for the tag."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2149
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"set_account_tag_description\",\"params\":{\"tag\":\"myTag\",\"description\":\"Test tag\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2160
+#, no-wrap
+msgid "**set_attribute**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2163
+msgid "Set arbitrary attribute."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2175
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"set_attribute\",\"params\":{\"key\":\"my_attribute\",\"value\":\"my_value\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2186
+#, no-wrap
+msgid "**set_tx_notes**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2189
+msgid "Set arbitrary string notes for transactions."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2201
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"set_tx_notes\",\"params\":{\"txids\":[\"3292e83ad28fc1cc7bc26dbd38862308f4588680fbf93eae3e803cddd1bd614f\"],\"notes\":[\"This is an example\"]}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2212
+#, no-wrap
+msgid "**sign**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2215
+msgid "Sign a string."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2221
+msgid "_data_ - string; Anything you need to sign."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2225
+msgid ""
+"_signature_ - string; Signature generated against the \"data\" and the "
+"account public address."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2228
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"sign\",\"params\":{\"data\":\"This is sample data to be signed\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"signature\": \"SigV14K6G151gycjiGxjQ74tKX6A2LwwghvuHjcDeuRFQio5LS6Gb27BNxjYQY1dPuUvXkEbGQUkiHSVLPj4nJAHRrrw3\"\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2240
+#, no-wrap
+msgid "**sign_multisig**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2243
+msgid "Sign a transaction in multisig."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2249
+msgid ""
+"_tx_data_hex_ - string; Multisig transaction in hex format, as returned by "
+"`transfer` under `multisig_txset`."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2254
+msgid "_tx_data_hex_ - string; Multisig transaction in hex format."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2254
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2468
+msgid "_tx_hash_list_ - array of string; List of transaction Hash."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2257
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"sign_multisig\",\"params\":{\"tx_data_hex\":\"...multisig_txset...\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"tx_data_hex\": \"...multisig_txset...\",\n"
+"    \"tx_hash_list\": [\"4996091b61c1be112c1097fd5e97d8ff8b28f0e5e62e1137a8c831bacf034f2d\"]\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2270
+#, no-wrap
+msgid "**sign_transfer**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2273
+msgid ""
+"Sign a transaction created on a read-only wallet (in cold-signing process)"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2280
+msgid ""
+"_unsigned_txset_ - string. Set of unsigned tx returned by \"transfer\" or "
+"\"transfer_split\" methods."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2280
+msgid ""
+"_export_raw_ - boolean; (Optional) If true, return the raw transaction data. "
+"(Defaults to false)"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2286
+msgid ""
+"_signed_txset_ - string. Set of signed tx to be used for submitting transfer."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2286
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2497
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2545
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2588
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2638
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2778
+msgid "_tx_hash_list_ - array of: string. The tx hashes of every transaction."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2286
+msgid "_tx_raw_list_ - array of: string. The tx raw data of every transaction."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2288
+msgid ""
+"In the example below, we first generate an unsigned_txset on a read only "
+"wallet before signing it:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2290
+msgid ""
+"Generate unsigned_txset using the above \"transfer\" method on read-only "
+"wallet:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2291
+#, no-wrap
+msgid ""
+"curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"destinations\":[{\"amount\":1000000000000,\"address\":\"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o\"}],\"account_index\":0,\"subaddr_indices\":[0],\"priority\":0,\"ring_size\":7,\"do_not_relay\":true,\"get_tx_hex\":true}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"amount\": 1000000000000,\n"
+"    \"fee\": 15202740000,\n"
+"    \"multisig_txset\": \"\",\n"
+"    \"tx_blob\": \"...long_hex...\",\n"
+"    \"tx_hash\": \"c648ba0a049e5ce4ec21361dbf6e4b21eac0f828eea9090215de86c76b31d0a4\",\n"
+"    \"tx_key\": \"\",\n"
+"    \"tx_metadata\": \"\",\n"
+"    \"unsigned_txset\": \"...long_hex...\"\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2311
+msgid "Sign tx using the previously generated unsigned_txset"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2312
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"sign_transfer\",\"params\":{\"unsigned_txset\":...long_hex...\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"signed_txset\": \"...long_hex...\",\n"
+"    \"tx_hash_list\": [\"ff2e2d49fbfb1c9a55754f786576e171c8bf21b463a74438df604b7fa6cebc6d\"]\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2325
+#, no-wrap
+msgid "**split_integrated_address**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2328
+msgid ""
+"Retrieve the standard address and payment id corresponding to an integrated "
+"address."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2340
+msgid "_is_subaddress_ - boolean; States if the address is a subaddress"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2340
+msgid "_payment_ - string; hex encoded"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2340
+msgid "_standard_address_ - string"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2343
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"split_integrated_address\",\"params\":{\"integrated_address\": \"5F38Rw9HKeaLQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZXCkbHUXdPHyiUeRyokn\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"is_subaddress\": false,\n"
+"    \"payment_id\": \"420fa29b2d9a49f5\",\n"
+"    \"standard_address\": \"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt\"\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2357
+#, no-wrap
+msgid "**start_mining**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2360
+msgid "Start mining in the Monero daemon."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2368
+msgid "_threads_count_ - unsigned int; Number of threads created for mining."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2368
+msgid ""
+"_do_background_mining_ - boolean; Allow to start the miner in [smart mining]"
+"(https://ww.getmonero.org/resources/moneropedia/smartmining.html)mode."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2368
+msgid ""
+"_ignore_battery_ - boolean; Ignore battery status (for [smart mining]"
+"(https://ww.getmonero.org/resources/moneropedia/smartmining.html)  only)"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2373
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"start_mining\",\"params\":{\"threads_count\":1,\"do_background_mining\":true,\"ignore_battery\":false}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2384
+#, no-wrap
+msgid "**stop_mining**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2387
+msgid "Stop mining in the Monero daemon."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2396
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"stop_mining\"}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2407
+#, no-wrap
+msgid "**stop_wallet**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2410
+msgid "Stops the wallet, storing the current state."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2419
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"stop_wallet\"}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2431
+#, no-wrap
+msgid "**store**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2434
+msgid "Save the wallet file."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2443
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"store\"}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2455
+#, no-wrap
+msgid "**submit_multisig**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2458
+msgid "Submit a signed multisig transaction."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2464
+msgid ""
+"_tx_data_hex_ - string; Multisig transaction in hex format, as returned by "
+"`sign_multisig` under `tx_data_hex`."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2471
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"submit_multisig\",\"params\":{\"tx_data_hex\":\"...tx_data_hex...\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"tx_hash_list\": [\"4996091b61c1be112c1097fd5e97d8ff8b28f0e5e62e1137a8c831bacf034f2d\"]\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2484
+#, no-wrap
+msgid "**submit_transfer**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2487
+msgid ""
+"Submit a previously signed transaction on a read-only wallet (in cold-"
+"signing process)."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2493
+msgid "_tx_data_hex_ - string; Set of signed tx returned by \"sign_transfer\""
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2499
+msgid ""
+"In the example below, we submit the transfer using the signed_txset "
+"generated above:"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2500
+#, no-wrap
+msgid ""
+"curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"submit_transfer\",\"params\":{\"tx_data_hex\":...long_hex...\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"tx_hash_list\": [\"40fad7c828bb383ac02648732f7afce9adc520ba5629e1f5d9c03f584ac53d74\"]\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2513
+#, no-wrap
+msgid "**sweep_all**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2516
+msgid "Send all unlocked balance to an address."
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2534
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2627
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2710
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2767
+msgid "_address_ - string; Destination public address."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2534
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2627
+msgid "_account_index_ - unsigned int; Sweep transactions from this account."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2534
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2627
+msgid ""
+"_subaddr_indices_ - array of unsigned int; (Optional) Sweep from this set of "
+"subaddresses in the account."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2534
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2627
+msgid ""
+"_priority_ - unsigned int; (Optional) Priority for sending the sweep "
+"transfer, partially determines fee."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2534
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2627
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2710
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2767
+msgid ""
+"_mixin_ - unsigned int; Number of outputs from the blockchain to mix with (0 "
+"means no mixing)."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2534
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2627
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2767
+msgid "_ring_size_ - unsigned int; Sets ringsize to n (mixin + 1)."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2534
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2627
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2710
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2767
+msgid ""
+"_unlock_time_ - unsigned int; Number of blocks before the monero can be "
+"spent (0 to not add a lock)."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2534
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2627
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2710
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2767
+msgid ""
+"_payment_id_ - string; (Optional) Random 32-byte/64-character hex string to "
+"identify a transaction."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2534
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2577
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2627
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2767
+msgid ""
+"_get_tx_keys_ - boolean; (Optional) Return the transaction keys after "
+"sending."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2534
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2627
+msgid ""
+"_below_amount_ - unsigned int; (Optional) Include outputs below this amount."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2534
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2627
+msgid ""
+"_do_not_relay_ - boolean; (Optional) If true, do not relay this sweep "
+"transfer. (Defaults to false)"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2534
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2627
+msgid ""
+"_get_tx_hex_ - boolean; (Optional) return the transactions as hex encoded "
+"string. (Defaults to false)"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2534
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2627
+msgid ""
+"_get_tx_metadata_ - boolean; (Optional) return the transaction metadata as a "
+"string. (Defaults to false)"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2545
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2588
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2638
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2778
+msgid ""
+"_tx_key_list_ - array of: string. The transaction keys for every transaction."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2545
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2588
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2638
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2778
+msgid ""
+"_amount_list_ - array of: integer. The amount transferred for every "
+"transaction."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2545
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2588
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2638
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2778
+msgid ""
+"_fee_list_ - array of: integer. The amount of fees paid for every "
+"transaction."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2545
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2588
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2638
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2778
+msgid ""
+"_tx_blob_list_ - array of: string. The tx as hex string for every "
+"transaction."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2545
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2588
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2638
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2778
+msgid ""
+"_tx_metadata_list_ - array of: string. List of transaction metadata needed "
+"to relay the transactions later."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2545
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2588
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2638
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2778
+msgid ""
+"_multisig_txset_ - string. The set of signing keys used in a multisig "
+"transaction (empty for non-multisig)."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2545
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2588
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2638
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2778
+msgid ""
+"_unsigned_txset_ - string. Set of unsigned tx for cold-signing purposes."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2548
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"sweep_all\",\"params\":{\"address\":\"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt\",\"subaddr_indices\":[4],\"ring_size\":7,\"unlock_time\":0,\"get_tx_keys\":true}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"amount_list\": [9985885770000],\n"
+"    \"fee_list\": [14114230000],\n"
+"    \"multisig_txset\": \"\",\n"
+"    \"tx_hash_list\": [\"ab4b6b65cc8cd8c9dd317d0b90d97582d68d0aa1637b0065b05b61f9a66ea5c5\"],\n"
+"    \"tx_key_list\": [\"b9b4b39d3bb3062ddb85ec0266d4df39058f4c86077d99309f218ce4d76af607\"],\n"
+"    \"unsigned_txset\": \"\"\n"
+"  }\n"
+"}\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2565
+#, no-wrap
+msgid "**sweep_dust**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2568
+msgid ""
+"Send all dust outputs back to the wallet's, to make them easier to spend "
+"(and mix)."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2570
+msgid "Alias: _sweep_unmixable_."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2577
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2710
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2767
+msgid ""
+"_do_not_relay_ - boolean; (Optional) If true, the newly created transaction "
+"will not be relayed to the monero network. (Defaults to false)"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2577
+msgid ""
+"_get_tx_hex_ - boolean; (Optional) Return the transactions as hex string "
+"after sending. (Defaults to false)"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2577
+msgid ""
+"_get_tx_metadata_ - boolean; (Optional) Return list of transaction metadata "
+"needed to relay the transfer later. (Defaults to false)"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2590
+msgid ""
+"Example (In this example, `sweep_dust` returns nothing because there are no "
+"funds to sweep):"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2591
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"sweep_dust\",\"params\":{\"get_tx_keys\":true}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"multisig_txset\": \"\",\n"
+"    \"unsigned_txset\": \"\"\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2605
+#, no-wrap
+msgid "**sweep_single**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2608
+msgid "Send all of a specific unlocked output to an address."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2627
+msgid "_key_image_ - string; Key image of specific output to sweep."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2641
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"sweep_single\",\"params\":{\"address\":\"74Jsocx8xbpTBEjm3ncKE5LBQbiJouyCDaGhgSiebpvNDXZnTAbW2CmUR5SsBeae2pNk9WMVuz6jegkC4krUyqRjA6VjoLD\",\"ring_size\":7,\"unlock_time\":0,\"key_image\":\"a7834459ef795d2efb6f665d2fd758c8d9288989d8d4c712a68f8023f7804a5e\",\"get_tx_keys\":true}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"amount\": 27126892247503,\n"
+"    \"fee\": 14111630000,\n"
+"    \"multisig_txset\": \"\",\n"
+"    \"tx_blob\": \"\",\n"
+"    \"tx_hash\": \"106d4391a031e5b735ded555862fec63233e34e5fa4fc7edcfdbe461c275ae5b\",\n"
+"    \"tx_key\": \"\",\n"
+"    \"tx_metadata\": \"\",\n"
+"    \"unsigned_txset\": \"\"\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2661
+#, no-wrap
+msgid "**tag_accounts**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2664
+msgid "Apply a filtering tag to a list of accounts."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2671
+msgid "_tag_ - string; Tag for the accounts."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2671
+msgid "_accounts_ - array of unsigned int; Tag this list of accounts."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2676
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"tag_accounts\",\"params\":{\"tag\":\"myTag\",\"accounts\":[0,1]}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2688
+#, no-wrap
+msgid "**transfer**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2691
+msgid "Send monero to a number of recipients."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2710
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2767
+msgid "_destinations_ - array of destinations to receive XMR:"
+msgstr ""
+
+#. type: Bullet: '    -   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2710
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2767
+msgid ""
+"_amount_ - unsigned int; Amount to send to each destination, in atomic units."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2710
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2767
+msgid ""
+"_account_index_ - unsigned int; (Optional) Transfer from this account index. "
+"(Defaults to 0)"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2710
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2767
+msgid ""
+"_subaddr_indices_ - array of unsigned int; (Optional) Transfer from this set "
+"of subaddresses. (Defaults to 0)"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2710
+msgid ""
+"_priority_ - unsigned int; Set a priority for the transaction. Accepted "
+"Values are: 0-3 for: default, unimportant, normal, elevated, priority."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2710
+msgid ""
+"_ring_size_ - unsigned int; Number of outputs to mix in the transaction "
+"(this output + N decoys from the blockchain)."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2710
+msgid ""
+"_get_tx_key_ - boolean; (Optional) Return the transaction key after sending."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2710
+msgid ""
+"_get_tx_hex_ - boolean; Return the transaction as hex string after sending "
+"(Defaults to false)"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2710
+msgid ""
+"_get_tx_metadata_ - boolean; Return the metadata needed to relay the "
+"transaction. (Defaults to false)"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2721
+msgid "_amount_ - Amount transferred for the transaction."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2721
+msgid "_fee_ - Integer value of the fee charged for the txn."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2721
+msgid ""
+"_multisig_txset_ - Set of multisig transactions in the process of being "
+"signed (empty for non-multisig)."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2721
+msgid ""
+"_tx_blob_ - Raw transaction represented as hex string, if get_tx_hex is true."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2721
+msgid ""
+"_tx_key_ - String for the transaction key if get_tx_key is true, otherwise, "
+"blank string."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2721
+msgid ""
+"_tx_metadata_ - Set of transaction metadata needed to relay this transfer "
+"later, if get_tx_metadata is true."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2721
+msgid ""
+"_unsigned_txset_ - String. Set of unsigned tx for cold-signing purposes."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2724
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"destinations\":[{\"amount\":100000000000,\"address\":\"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o\"},{\"amount\":200000000000,\"address\":\"75sNpRwUtekcJGejMuLSGA71QFuK1qcCVLZnYRTfQLgFU5nJ7xiAHtR5ihioS53KMe8pBhH61moraZHyLoG4G7fMER8xkNv\"}],\"account_index\":0,\"subaddr_indices\":[0],\"priority\":0,\"ring_size\":7,\"get_tx_key\": true}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"amount\": 300000000000,\n"
+"    \"fee\": 86897600000,\n"
+"    \"multisig_txset\": \"\",\n"
+"    \"tx_blob\": \"\",\n"
+"    \"tx_hash\": \"7663438de4f72b25a0e395b770ea9ecf7108cd2f0c4b75be0b14a103d3362be9\",\n"
+"    \"tx_key\": \"25c9d8ec20045c80c93d665c9d3684aab7335f8b2cd02e1ba2638485afd1c70e236c4bdd7a2f1cb511dbf466f13421bdf8df988b7b969c448ca6239d7251490e4bf1bbf9f6ffacffdcdc93b9d1648ec499eada4d6b4e02ce92d4a1c0452e5d009fbbbf15b549df8856205a4c7bda6338d82c823f911acd00cb75850b198c5803\",\n"
+"    \"tx_metadata\": \"\",\n"
+"    \"unsigned_txset\": \"\"\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2744
+#, no-wrap
+msgid "**transfer_split**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2747
+msgid "Same as transfer, but can split into more than one tx if necessary."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2767
+msgid ""
+"_priority_ - unsigned int; Set a priority for the transactions. Accepted "
+"Values are: 0-3 for: default, unimportant, normal, elevated, priority."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2767
+msgid ""
+"_get_tx_hex_ - boolean; Return the transactions as hex string after sending"
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2767
+msgid ""
+"_new_algorithm_ - boolean; True to use the new transaction construction "
+"algorithm, defaults to false."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2767
+msgid ""
+"_get_tx_metadata_ - boolean; Return list of transaction metadata needed to "
+"relay the transfer later."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2781
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer_split\",\"params\":{\"destinations\":[{\"amount\":1000000000000,\"address\":\"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o\"},{\"amount\":2000000000000,\"address\":\"75sNpRwUtekcJGejMuLSGA71QFuK1qcCVLZnYRTfQLgFU5nJ7xiAHtR5ihioS53KMe8pBhH61moraZHyLoG4G7fMER8xkNv\"}],\"account_index\":0,\"subaddr_indices\":[0],\"priority\":0,\"ring_size\":7,\"get_tx_key\": true}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"amount_list\": [3000000000000],\n"
+"    \"fee_list\": [85106400000],\n"
+"    \"multisig_txset\": \"\",\n"
+"    \"tx_hash_list\": [\"c8d815f48f27d53fdaf198a74b292a91bfaf87529a9a9a9ee66079a890b3b58b\"],\n"
+"    \"unsigned_txset\": \"\"\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2798
+#, no-wrap
+msgid "**untag_accounts**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2801
+msgid "Remove filtering tag from a list of accounts."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2807
+msgid ""
+"_accounts_ - array of unsigned int; Remove tag from this list of accounts."
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2812
+#, no-wrap
+msgid ""
+"$ curl -X POST http://localhost:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"untag_accounts\",\"params\":{\"accounts\":[1]}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2824
+#, no-wrap
+msgid "**verify**"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2827
+msgid "Verify a signature on a string."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2835
+msgid "_data_ - string; What should have been signed."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2835
+msgid ""
+"_address_ - string; Public address of the wallet used to `sign` the data."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2835
+msgid "_signature_ - string; signature generated by `sign` method."
+msgstr ""
+
+#. type: Bullet: '-   '
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2839
+msgid "_good_ - boolean;"
+msgstr ""
+
+#. type: Fenced code block (Bash)
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2842
+#, no-wrap
+msgid ""
+"$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"verify\",\"params\":{\"data\":\"This is sample data to be signed\",\"address\":\"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt\",\"signature\":\"SigV14K6G151gycjiGxjQ74tKX6A2LwwghvuHjcDeuRFQio5LS6Gb27BNxjYQY1dPuUvXkEbGQUkiHSVLPj4nJAHRrrw3\"}}' -H 'Content-Type: application/json'\n"
+"{\n"
+"  \"id\": \"0\",\n"
+"  \"jsonrpc\": \"2.0\",\n"
+"  \"result\": {\n"
+"    \"good\": true\n"
+"  }\n"
+"}\n"
+"\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2854
+#, no-wrap
+msgid "Sources:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-wallet-rpc-reference.md:2856
+msgid ""
+"Reworked from [GetMonero.org](https://ww.getmonero.org/resources/developer-"
+"guides/wallet-rpc.html)"
+msgstr ""

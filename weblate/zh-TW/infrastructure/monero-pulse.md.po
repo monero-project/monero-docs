@@ -1,0 +1,329 @@
+# Language zh-TW translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: zh-TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Title #
+#: ../docs/en/infrastructure/monero-pulse.md:1
+#: ../docs/en/infrastructure/monero-pulse.md:4
+#, no-wrap
+msgid "MoneroPulse"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/infrastructure/monero-pulse.md:6
+#, no-wrap
+msgid "What is MoneroPulse?"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:9
+msgid ""
+"MoneroPulse is infrastructure for emergency checkpointing the blockchain."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:11
+msgid ""
+"It aims to mitigate chain-splits resulting from consensus bugs (like [this "
+"one from 2014](https://monero.stackexchange.com/questions/421/what-happened-"
+"at-block-202612/424#424))."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:13
+msgid ""
+"Effectively, MoneroPulse operators can publish which fork they consider the "
+"valid one. Technically, the \"checkpoint\" they publish is a block hash and "
+"the block height."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:15
+msgid ""
+"By default, Monero full node will simply warn users when MoneroPulse "
+"checkpoint does not match the fork it is on. The error will be present in "
+"the log and on the console in red. Users are free to discard it. Ideally "
+"though, users should consult community on what is going on, and make "
+"educated decission on whether to follow the checkpoint-compatible fork or "
+"the default fork."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:17
+msgid ""
+"Users can also set auto-enforcing the checkpoints via `--enforce-dns-"
+"checkpointing` option to `monerod`. In case of mismatch, `monerod` will "
+"rollback the local blockchain by a few blocks. Eventually, the alternative "
+"(\"fixed\") fork will get heavier and the node will follow it, leaving the "
+"\"invalid\" fork behind. This option is recommended for unattended full "
+"nodes."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:19
+msgid ""
+"Summing up, MoneroPulse is emergency checkpointing mechanism. It is opt-in "
+"for the users."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/infrastructure/monero-pulse.md:20
+#, no-wrap
+msgid "MoneroPulse is DNS based"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:23
+msgid ""
+"The ckeckpoints are stored as DNS TXT records for domains owned by "
+"MoneroPulse operators."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:25
+msgid ""
+"To get the idea you can access the checkpoints manually with any DNS client:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:27
+msgid "Try:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:29
+#, no-wrap
+msgid "    dig -t txt checkpoints.moneropulse.net +dnssec\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:31
+msgid "Result:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:33
+#, no-wrap
+msgid "    (cut)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:55
+#, no-wrap
+msgid ""
+"    ;; ANSWER SECTION:\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"1288616:875ac1bc7aa6c5eedc5410abb9c694034f9e7f79dce4c60698baf37009cb6365\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"375000:c80c23e387585e12ffb6649d678e9ba328181797b9583a6d8911b77e25375737\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"325000:4260d56368267bc2a70dd58d73c5ecf23b4e4d96e63c29a868e4a679b0741c7f\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"233000:4f69bec2af6c0852412bdd10c19e6af10c8d738fe2618b5511a98efd03ab477e\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"450000:4d098b511ca97723e81737c448343cfd4e6dadb3d8a0e757c6e4d595e6e48357\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"250000:f59d31839bd909ec8830b4f7f66ff213f0bd006334c8523daee452725e5c7a79\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"550000:c2e80a636438bd9f7a7ab432a6ad297e35540d80ff5b868bca098124cad2ff8c\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"650000:1d567f2b491324375a825895c5e7b52857b38e4fed0e42c40909c2d52240b4e0\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"800000:2ced10aa85357ab6c14bb12b6b56d1dde28940820dda30911b73a5cc9a301760\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"850000:00e2b557dde9fd4a9e2e3dd7ddac962f5ca475eb1095bc50aa757fd1218ab0a5\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"900000:d9958d0e7dcf91a5a7b11de225927bf7efc6eb26240315ce12372be902cc1337\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"913193:5292d5d56f6ba4de33a58d9a34d263e2cb3c6fee0aed2286fd4ac7f36d53c85f\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"913269:f8302e6b8ba1c49aad9a854b8d6c79d8272c6239dcbba5a75ed0784c1d4f56a1\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"350000:74da79f6a136969abd6364bd3d37af273c408d6471e8ab598e80569b42415f86\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"400000:1b2b0e7a30e59691491529a3d506d1ba3d6052d0f6b52198b7330b28a6f1b6ac\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"500000:2428f0dbe49796be05ed81b347f53e1f7f44aed0abf641446ec2b94cae066b02\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"600000:f5828ebf7d7d1cb61762c4dfe3ccf4ecab2e1aad23e8113668d981713b7a54c5\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"700000:12be9b3d210b93f574d2526abb9c1ab2a881b479131fd0d4f7dac93875f503cd\"\n"
+"    checkpoints.moneropulse.net. 299 IN  TXT  \"300000:0c1cd46df6ccff90ec4ab493281f2583c344cd62216c427628990fe9db1bb8b6\"\n"
+"    checkpoints.moneropulse.net. 299 IN  RRSIG  TXT 13 3 300 20180922151845 20180920131845 35273 moneropulse.net. 8CyqtsM2f9o6OHZYqtGPVf+8gcFM+eUyoMi29LlkcLtK1AXbZlKqCcdN NvdvB+4OzepmpTanSc+TbLWbz/sIzA==\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:57
+msgid "Please note the DNSSEC signature entry at the end."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:59
+msgid "The checkpoints are mirrored on several DNS servers:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:61
+msgid "Mainnet:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:66
+#, no-wrap
+msgid ""
+"    checkpoints.moneropulse.se\n"
+"    checkpoints.moneropulse.org\n"
+"    checkpoints.moneropulse.net\n"
+"    checkpoints.moneropulse.co\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:68
+msgid "Stagenet:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:73
+#, no-wrap
+msgid ""
+"    stagenetpoints.moneropulse.se\n"
+"    stagenetpoints.moneropulse.org\n"
+"    stagenetpoints.moneropulse.net\n"
+"    stagenetpoints.moneropulse.co\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:75
+msgid "Testnet:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:80
+#, no-wrap
+msgid ""
+"    testpoints.moneropulse.se\n"
+"    testpoints.moneropulse.org\n"
+"    testpoints.moneropulse.net\n"
+"    testpoints.moneropulse.co\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/infrastructure/monero-pulse.md:81
+#, no-wrap
+msgid "MoneroPulse as attack vector"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:84
+msgid ""
+"It is worth noting that MoneroPulse does not produce blocks and cannot split "
+"the chain on its own. It only suggests the valid fork."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:86
+msgid ""
+"Should MoneroPulse got entirely compromised, attacker could stop all auto-"
+"enforcing nodes from advancing, by feeding them with the fake checkpoint. "
+"This is partially mitigated by DNSSEC and by operating multiple domains. "
+"Monero expects checkpoints are consistent across domains. Thus, compromising "
+"a single domain or registrar should not lead to any disruption."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:88
+msgid ""
+"MoneroPulse also increases the say of its operators in case of possible "
+"contentious hard forks. While well intended, this effectively centralizes "
+"more power in hands of core developers, or whomever is at the time running "
+"MoneroPulse infrastructure."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/infrastructure/monero-pulse.md:89
+#, no-wrap
+msgid "Who are MoneroPulse operators?"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:92
+msgid "MoneroPulse is operated by selected core developers."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/infrastructure/monero-pulse.md:93
+#, no-wrap
+msgid "Fixing \"WARNING: no two valid MoneroPulse DNS checkpoint records were received\""
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:96
+msgid ""
+"This means DNS server you are using does not ackonwledge the +dnssec flag "
+"necessary for securely query for checkpoints."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:98
+msgid ""
+"By default, your operating system will use DNS server provided by your "
+"Internet Service Provider."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:100
+msgid ""
+"To fix this warning, change your DNS server either system-wide in your "
+"network configuration, or specifically for `monerod`."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:102
+msgid ""
+"Many people find Google's or Cloudflare's DNS servers superior to those "
+"offered by their ISPs."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:104
+msgid "Using Google DNS:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:106
+#, no-wrap
+msgid "    DNS_PUBLIC=tcp://8.8.8.8 ./monerod\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:108
+msgid "Using Cloudflare DNS:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/monero-pulse.md:110
+#, no-wrap
+msgid "    DNS_PUBLIC=tcp://1.1.1.1 ./monerod\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/infrastructure/monero-pulse.md:112
+#, no-wrap
+msgid "Reference"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/monero-pulse.md:116
+msgid ""
+"[StackExchange answer](https://monero.stackexchange.com/questions/679/what-"
+"is-moneropulse?noredirect=1&lq=1)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/monero-pulse.md:116
+msgid ""
+"[Reddit answer](https://www.reddit.com/r/Monero/comments/419qdd/"
+"p2p4warning_no_two_valid_moneropulse_dns/)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/monero-pulse.md:116
+msgid ""
+"[Monero source code](https://github.com/monero-project/monero/blob/"
+"ff7dc087ae5f7de162131cea9dbcf8eac7c126a1/src/checkpoints/checkpoints.cpp)"
+msgstr ""

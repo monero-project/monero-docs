@@ -1,0 +1,265 @@
+# Portuguese translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. type: Title #
+#: ../docs/en/interacting/overview.md:1 ../docs/en/interacting/overview.md:4
+#, no-wrap
+msgid "Interacting with Monero"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/overview.md:7
+msgid ""
+"You can interact with Monero via desktop GUI, commandline interface, and "
+"programming API."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/overview.md:9
+msgid ""
+"On top of that, Monero nodes interact with each other in a peer-to-peer "
+"network."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/overview.md:10
+#, no-wrap
+msgid "Installation directory overview"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/overview.md:13
+msgid ""
+"Once unpacked you will see several executable files. You will also find a "
+"nice PDF guide for the GUI wallet."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/overview.md:16
+msgid ""
+"Monero project nicely decouples network node logic from wallet logic.  "
+"Wallet logic is offered through three independent user interfaces - the GUI, "
+"the CLI, and the HTTP API."
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/interacting/overview.md:17
+#, no-wrap
+msgid ""
+"# cd monero-gui-v0.17.1.9\n"
+"\n"
+"# ---- guide to Monero GUI ----\n"
+"\n"
+"monero-gui-wallet-guide.pdf\n"
+"\n"
+"# ---- main executable files -----------\n"
+"\n"
+"monerod\n"
+"monero-wallet-gui\n"
+"\n"
+"# ---- extra executable files -----------\n"
+"\n"
+"extras/monero-wallet-cli\n"
+"extras/monero-wallet-rpc\n"
+"\n"
+"extras/monero-blockchain-prune\n"
+"extras/monero-gen-trusted-multisig\n"
+"extras/monero-gen-ssl-cert\n"
+"\n"
+"extras/monero-blockchain-export\n"
+"extras/monero-blockchain-import\n"
+"\n"
+"# ---- don't bother with these ----------\n"
+"\n"
+"extras/monero-blockchain-stats\n"
+"extras/monero-blockchain-mark-spent-outputs\n"
+"extras/monero-blockchain-prune-known-spent-data\n"
+"extras/monero-blockchain-usage\n"
+"extras/monero-blockchain-ancestry\n"
+"extras/monero-blockchain-depth\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/overview.md:51
+#, no-wrap
+msgid "Executables"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/overview.md:64
+#, no-wrap
+msgid ""
+"| Executable                 | Description\n"
+"| -------------------------- |:-----------------------------------------------------------------------------------------------------------------------------------\n"
+"| `monerod`                  | The full node daemon. Does not require a wallet. <br />[Documentation](/interacting/monerod-reference/).\n"
+"| `monero-wallet-gui`        | Wallet logic and __graphical__ user interface. <br />Requires `monerod` running.\n"
+"| `monero-wallet-cli`        | Wallet logic and __commandline__ user interface. <br />Requires `monerod` running.\n"
+"| `monero-wallet-rpc`        | Wallet logic and __HTTP API__ (JSON-RPC protocol). <br />Requires `monerod` running.\n"
+"| `monero-blockchain-prune`  | Prune existing local blockchain. This saves 2/3 of disk space (down to 31GB as of Jan 2021). This is preferable over `monerod --prune-blockchain` which only logically releases space inside the file while the file remains large. The `monero-blockchain-prune` creates a shrinked copy of the blockchain file. See [tutorial1](https://monero.stackexchange.com/questions/11454/how-do-i-utilize-blockchain-pruning-in-the-gui-monero-wallet-gui), [tutorial2](https://www.publish0x.com/solareclipse/howto-prune-shrink-the-database-of-the-monero-blockchain-on-xpgwjx).\n"
+"| `monero-gen-ssl-cert`      | Generate 4096 bit RSA private key and self signed TLS certificate for use with `monerod` RPC interface. Note, Monero daemon automatically generates TLS certificate on each restart. Manual generation with this tool is only useful if you want to pin TLS certificate fingerprint in your monero wallet. See the [pull request](https://github.com/monero-project/monero/pull/5495).\n"
+"| `monero-gen-trusted-multisig`          | Tool to generate a set of multisig wallets. <br />See chapter on [multisignatures](/multisignature).\n"
+"| `monero-blockchain-export` | Tool to export blockchain to `blockchain.raw` file.\n"
+"| `monero-blockchain-import` | Tool to import [blockchain.raw](https://downloads.getmonero.org/blockchain.raw) - ideally your own trusted copy.\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/overview.md:65
+#, no-wrap
+msgid "Executables - legacy"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/overview.md:68
+msgid ""
+"You most likely should not bother with these legacy or very specialized "
+"tools."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/overview.md:77
+#, no-wrap
+msgid ""
+"| Executable                 | Description\n"
+"| -------------------------- |:-----------------------------------------------------------------------------------------------------------------------------------\n"
+"| `monero-blockchain-stats`              | Generate stats like tx/day, blocks/day, bytes/day based on your local blockchain.\n"
+"| `monero-blockchain-mark-spent-outputs` | Advanced tool to mitigate potential privacy issues related to Monero forks. You normally shouldn't be concerned with that.<br />See the [commit](https://github.com/monero-project/monero/commit/df6fad4c627b99a5c3e2b91b69a0a1cc77c4be14#diff-0410fba131d9a7024ed4dcf9fb4a4e07) and [pull request](https://github.com/monero-project/monero/pull/3322).\n"
+"| `monero-blockchain-prune-known-spent-data`  | Previous limited pruning tool to prune select \"known spent\" transaction outputs (from the before RCT era). Nowadays prefer `monero-blockchain-prune`. This only saves ~200 MB. See the [commit](https://github.com/monero-project/monero/commit/d855f9bb92dbfab707a0e37505906366de818a14).\n"
+"| `monero-blockchain-usage`              | Advanced tool to mitigate potential privacy issues related to Monero forks. You normally shouldn't be concerned with that.<br />See the [commit](https://github.com/monero-project/monero/commit/0590f62ab64cf023d397b995072035986931a6b4) and the [pull request](https://github.com/monero-project/monero/pull/3322).\n"
+"| `monero-blockchain-ancestry`           | Advanced research tool to learn ancestors of a transaction, block or chain. Irrelevant for normal users. See this [pull request](https://github.com/monero-project/monero/pull/4147/files).\n"
+"| `monero-blockchain-depth`              | Advanced research tool to learn depth of a transaction, block or chain. Irrelevant for normal users. See this [commit](https://github.com/monero-project/monero/commit/289880d82d3cb206a2cf4ae67d2deacdab43d4f4#diff-34abcc1a0c100efb273bf36fb95ebfa0).\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/overview.md:79
+#, no-wrap
+msgid "Interacting"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/overview.md:83
+msgid ""
+"There are quite a few ways you can interact with Monero software.  Perhaps "
+"the most surprising for newcomers is that `monerod` daemon accepts "
+"interactive keyboard commands while it is running."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/overview.md:86
+msgid ""
+"Also, please note that HTTP API is split across `monerod` and `monero-wallet-"
+"rpc`. You need to run and call both daemons to explore the full API.  This "
+"follows the node-logic vs wallet-logic split mentioned earlier."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/overview.md:88
+msgid "All wallet implementations depend on the `monerod` running."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/overview.md:95
+#, no-wrap
+msgid ""
+"| Executable                 | p2p network         | node commands via keyboard | node HTTP API | wallet commands via keyboard | wallet HTTP API | wallet via GUI\n"
+"| -------------------------- | ------------------- | -------------------------- | ------------- | ---------------------------- | --------------- | --------------\n"
+"| `monerod`                  | ✔                   | ✔                          | ✔             |                              |                 |\n"
+"| `monero-wallet-cli`        |                     |                            |               | ✔                            |                 |\n"
+"| `monero-wallet-rpc`        |                     |                            |               |                              | ✔               |\n"
+"| `monero-wallet-gui`        |                     |                            |               |                              |                 | ✔\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/overview.md:96
+#, no-wrap
+msgid "Data directory"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/overview.md:99
+msgid ""
+"This is where the blockchain, log files, and p2p network memory are stored."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/overview.md:101
+msgid "By default data directory is at:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/overview.md:104
+msgid "`$HOME/.bitmonero/` on Linux and macOS"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/overview.md:104
+msgid "`C:\\ProgramData\\bitmonero\\` on Windows"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/overview.md:106
+msgid "Please mind:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/overview.md:109
+msgid "data directory is hidden as per OS convention"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/overview.md:109
+msgid ""
+"the `bitmonero` directory name is historical artefact from before Monero "
+"forked away from Bitmonero, about 2000 years Before Christ"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/overview.md:111
+msgid "Data directory contains:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/overview.md:115
+msgid "`lmdb/` - the blockchain database directory"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/overview.md:115
+msgid "`p2pstate.bin` - saved memory of discovered and rated peers"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/overview.md:115
+msgid "`bitmonero.log` - log file"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/overview.md:117
+msgid ""
+"It can also contain subdirectories for stagenet and testnet, mirroring the "
+"same structure:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/overview.md:119
+msgid "`stagenet/` - data directory for Stagenet"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/overview.md:119
+msgid "`testnet/` - data directory for Testnet"
+msgstr ""

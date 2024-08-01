@@ -1,0 +1,311 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: YAML Front Matter: title
+#: ../docs/en/public-address/standard-address.md:1
+#, no-wrap
+msgid "Standard Address"
+msgstr ""
+
+#. type: Title #
+#: ../docs/en/public-address/standard-address.md:4
+#, markdown-text, no-wrap
+msgid "Address"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:7
+#, markdown-text
+msgid "Monero public address is what you publish to get paid."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:9
+#, markdown-text
+msgid "An address can be generated offline and for free. It boils down to generating a large random number representing your private spending key."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:11
+#, markdown-text
+msgid "Publishing your Monero address does __not__ endanger your privacy. That's because in Monero transactions go to stealth addresses which are decoupled from your public address."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:13
+#, markdown-text
+msgid "There are a few **types of public addresses** in Monero:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/public-address/standard-address.md:17
+#, markdown-text
+msgid "Standard address - basic type of an address, also referred to as raw address"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/public-address/standard-address.md:17
+#, markdown-text
+msgid "Subaddress - what you should be using by default"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/public-address/standard-address.md:17
+#, markdown-text
+msgid "Integrated address - relevant for exchanges, merchants, and other businesses accepting Monero in a fully automated way"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/public-address/standard-address.md:18
+#, markdown-text, no-wrap
+msgid "Standard address"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:21
+#, markdown-text
+msgid "Historically, raw address was the only available option. For that reason it is the most widely adopted and supported address type."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:23
+#, markdown-text
+msgid "Its strength is simplicity. However, these days users should prefer receiving to subaddresses instead."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:25
+#, markdown-text
+msgid "Technically, raw address is also a basis for creating subaddresses and integrated addresses."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:27
+#, markdown-text
+msgid "Raw address is **still useful for**:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/public-address/standard-address.md:31
+#, markdown-text
+msgid "accepting block reward in a solo-mining scenario as other addresses are not supported"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/public-address/standard-address.md:31
+#, markdown-text
+msgid "accepting from senders who batch payouts (like mining pools); in this scenario the sender is paying multiple parties using a single transaction; such transaction has multiple outputs; subaddresses do not work in this scenario"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/public-address/standard-address.md:31
+#, markdown-text
+msgid "accepting from senders who use legacy wallets (can't send to subaddress)"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:33
+#, markdown-text
+msgid "Monero raw address is composed of two public keys:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/public-address/standard-address.md:36
+#, markdown-text
+msgid "public spend key"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/public-address/standard-address.md:36
+#, markdown-text
+msgid "public view key"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:38
+#, markdown-text
+msgid "It also contains a checksum and a \"network byte\" which actually identifies both the network and the address type."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/public-address/standard-address.md:39
+#, markdown-text, no-wrap
+msgid "Data structure"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:47
+#, markdown-text, no-wrap
+msgid ""
+"Index       | Size in bytes    | Description\n"
+"------------|------------------|-------------------------------------------------------------\n"
+"0           | 1                | identifies the network and address type; [18](https://github.com/monero-project/monero/blob/793bc973746a10883adb2f89827e223f562b9651/src/cryptonote_config.h#L149) - main chain; [53](https://github.com/monero-project/monero/blob/793bc973746a10883adb2f89827e223f562b9651/src/cryptonote_config.h#L161) - test chain\n"
+"1           | 32               | public spend key\n"
+"33          | 32               | public view key\n"
+"65          | 4                | checksum ([Keccak-f[1600] hash](https://github.com/monero-project/monero/blob/8f1f43163a221153403a46902d026e3b72f1b3e3/src/common/base58.cpp#L261) of the previous 65 bytes, trimmed to first [4](https://github.com/monero-project/monero/blob/8f1f43163a221153403a46902d026e3b72f1b3e3/src/common/base58.cpp#L53) bytes)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:49
+#, markdown-text
+msgid "It totals to 69 bytes. The bytes are then encoded ([src](https://github.com/monero-project/monero/blob/8f1f43163a221153403a46902d026e3b72f1b3e3/src/common/base58.cpp#L240)) in [Monero specific Base58](/cryptography/base58) format, resulting in a 95 chars long string. Example standard address:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:51
+#, markdown-text
+msgid "`4AdUndXHHZ6cfufTMvppY6JwXNouMBzSkbLYfpAV5Usx3skxNgYeYTRj5UzqtReoS44qo9mtmXCqY45DJ852K5Jv2684Rge`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:53
+#, markdown-text
+msgid "See the [source code](https://github.com/monero-project/monero/blob/f7b9f44c1b0d53170fd7f53d37fc67648f3247a2/src/cryptonote_basic/cryptonote_basic_impl.cpp#L159)."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/public-address/standard-address.md:54
+#, markdown-text, no-wrap
+msgid "Generating"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/public-address/standard-address.md:56
+#, markdown-text, no-wrap
+msgid "Generating the keys"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:59
+#, markdown-text
+msgid "As mentioned above, a Monero address encodes two elliptic curve public keys so the first step is to generate two elliptic curve private keys from which the public keys may be derived."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:61
+#, markdown-text
+msgid "Each private key is represented by a scalar between 1 and 2^252 + 27742317777372353535851937790883648492 inclusive. (Note: 2^252 + 27742317777372353535851937790883648492 + 1 is a prime order of the elliptic curve basepoint, `l`)."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:63
+#, markdown-text
+msgid "To generate a new private key, the convention is to generate a random 256 bit numbers and reduce it modulo 2^252 + 27742317777372353535851937790883648493."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:65
+#, markdown-text
+msgid "To get the public keys to be encoded in the address, the ed25519 basepoint `G` is multiplied by each key scalar."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/public-address/standard-address.md:66
+#, markdown-text, no-wrap
+msgid "Checksum"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:69
+#, markdown-text
+msgid "A checksum of the network byte and public keys is included in the address to help wallet software verify that a typo hasn't been made when users enter the address."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:71
+#, markdown-text
+msgid "To get this checksum, the network byte as well as the public spend and view keys are concatenated together and Keccak-256 hashed. The first four bytes of this hash are the checksum."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:73
+#, markdown-text
+msgid "When wallet software parses a Monero address it should decode the address and recompute the checksum and verify that it matches the checksum included in the address."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/public-address/standard-address.md:74
+#, markdown-text, no-wrap
+msgid "Base58 Encoding"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:77
+#, markdown-text
+msgid "In an effort to further prevent errors from typos Monero addresses are encoded using a special character dictionary."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:79
+#, markdown-text
+msgid "Characters used in Monero base58: `123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz`. Notice how characters that look similar such as `O` and `0` are missing."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:81
+#, markdown-text
+msgid "[More about Monero base58](https://monerodocs.org/cryptography/base58/)."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/public-address/standard-address.md:82
+#, markdown-text, no-wrap
+msgid "Deteministic Wallets"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:85
+#, markdown-text
+msgid "There is no way to regulate how people choose their address keys, it is simply highly suggested that they are chosen at random. The original CryptoNote implementation generated each keypair randomly, independently of each other. Addresses generated this way are called non-deterministic, they have fallen out of popularity."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:87
+#, markdown-text
+msgid "As of present, the convention is to derive an address's view key deterministically from the spend key which allows for human language encoded seed mnemonics."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/public-address/standard-address.md:89
+#, markdown-text
+msgid "Deterministic addresses derive the private view key from the private spend key by hashing it (conventionally Keccak-256) and reducing it modulo `l`."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/public-address/standard-address.md:90
+#, markdown-text, no-wrap
+msgid "Reference"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/public-address/standard-address.md:94
+#, markdown-text
+msgid "[StackExchenge answer](https://monero.stackexchange.com/questions/980/what-are-the-public-viewkeys-and-spendkeys)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/public-address/standard-address.md:94
+#, markdown-text
+msgid "[https://xmr.llcoins.net/addresstests.html](https://xmr.llcoins.net/addresstests.html)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/public-address/standard-address.md:94
+#, markdown-text
+msgid "[src/cryptonote_basic/account.cpp account_base::generate](https://github.com/monero-project/monero/blob/dcba757dd283a3396120f0df90fe746e3ec02292/src/cryptonote_basic/account.cpp#L155)"
+msgstr ""

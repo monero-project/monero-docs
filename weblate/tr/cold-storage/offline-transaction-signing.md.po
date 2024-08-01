@@ -1,0 +1,531 @@
+# Turkish translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. type: Title #
+#: ../docs/en/cold-storage/offline-transaction-signing.md:1
+#, no-wrap
+msgid "Offline Transaction Signing"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:7
+#, no-wrap
+msgid ""
+"!!! warning\n"
+"    This is **NOT** necessarily the recommended cold storage setup,\n"
+"    due to high complexity, large room for errors and employing\n"
+"    a general purpose computer for transaction signing (even if offline).\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:9
+#, no-wrap
+msgid "    Published for educational purposes only to understand \"what would it take to sign offline\".\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:11
+#, no-wrap
+msgid "    It is generally better to use a hardware wallet like Trezor or Ledger.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:13
+#, no-wrap
+msgid "    Opinions may vary.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:16
+#, no-wrap
+msgid ""
+"!!! note\n"
+"    This is a guest tutorial contributed by [crocket](https://github.com/crocket).\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:18
+msgid "Offline transaction signing involves:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cold-storage/offline-transaction-signing.md:24
+msgid "Creating an unsigned transaction on an online, view-only wallet"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cold-storage/offline-transaction-signing.md:24
+msgid "Moving the unsigned transaction to an offline machine"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cold-storage/offline-transaction-signing.md:24
+msgid "Signing the unsigned transaction on an offline machine"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cold-storage/offline-transaction-signing.md:24
+msgid "Moving the signed transaction back to online, view-only wallet"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cold-storage/offline-transaction-signing.md:24
+msgid "Broadcasting the transaction"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cold-storage/offline-transaction-signing.md:25
+#, no-wrap
+msgid "Creating a new offline wallet"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:28
+msgid "Constructing a new offline wallet is done by executing:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:29
+#, no-wrap
+msgid "monero-wallet-cli --generate-new-wallet /path/to/wallet-file\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:34
+msgid ""
+"on an offline machine. Record the seed on paper by executing `seed` on the "
+"offline wallet."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cold-storage/offline-transaction-signing.md:35
+#, no-wrap
+msgid "Creating a new offline wallet with seed offset passphrase"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:44
+msgid ""
+"Seed and seed offset passphrase combine to create a new seed. You can store "
+"seed and seed offset passphrase in separate places so that a thief can't "
+"steal your fund without stealing seed and seed offset passphrase. I "
+"recommend 6 to 8 (english) words as a seed offset passphrase as one english "
+"word has 11 bits of entropy on average and 8 words have 88 bits of entropy. "
+"With seed passphrase, you can also create decoy wallets that contain a "
+"little bit of money and can protect you from torturers or blackmailers who "
+"demand money from you."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:49
+msgid ""
+"If you want to create an offline wallet with seed and seed passphrase, "
+"create an offline wallet, record the seed on paper, delete the wallet file, "
+"generate seed offset passphrase, record seed offset passphrase on paper, and "
+"execute"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:50
+#, no-wrap
+msgid ""
+"monero-wallet-cli --generate-new-wallet /path/to/wallet-file \\\n"
+"---restore-deterministic-wallet\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:57
+msgid ""
+"to restore from seed and seed offset passphrase. When you restore from seed, "
+"you can enter seed offset passphrase."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:60
+msgid ""
+"Generate seed offset passphrase on an offline machine or with diceware "
+"because humans are bad at creating random passphrases."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:63
+msgid ""
+"If you want to reconstruct an existing offline wallet that received or sent "
+"transactions, you need extra steps. Refer to `Restoring offline wallet`."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cold-storage/offline-transaction-signing.md:64
+#, no-wrap
+msgid "Creating a new view-only wallet"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:70
+msgid ""
+"To create a view-only wallet, copy primary address and secret view key from "
+"an offline wallet to an online machine where a view-only wallet is going to "
+"be created. You can get primary address by executing `address` on an offline "
+"wallet and secret view key by executing `viewkey` on the offline wallet."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:74
+msgid ""
+"You can use a microSD card and two USB microSD card readers to exchange data "
+"between an offline wallet and a view-only wallet. You can also use a USB "
+"flash drive."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:76
+msgid "To create a view-only wallet on an online machine, execute"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:77
+#, no-wrap
+msgid ""
+"monero-wallet-cli --generate-from-view-key /path/to/wallet-file \\\n"
+"--daemon-address remote-node-address:port\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:84
+msgid ""
+"If you want to reconstruct an existing view-only wallet that received or "
+"sent transactions, refer to `Restoring view-only wallet`."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cold-storage/offline-transaction-signing.md:85
+#, no-wrap
+msgid "Launching offline wallet"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:88
+#: ../docs/en/cold-storage/offline-transaction-signing.md:96
+#: ../docs/en/cold-storage/offline-transaction-signing.md:148
+msgid "Execute"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:89
+#, no-wrap
+msgid "monero-wallet-cli --wallet-file /path/to/wallet-file\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cold-storage/offline-transaction-signing.md:93
+#, no-wrap
+msgid "Launching a view-only wallet"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:97
+#, no-wrap
+msgid ""
+"monero-wallet-cli --wallet-file /path/to/wallet-file \\\n"
+"--daemon-address remote-node-address:port\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:104
+msgid ""
+"It's safe to sync your wallet over clearnet. If you want to broadcast a "
+"transaction without revealing your IP address, execute"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:105
+#, no-wrap
+msgid ""
+"monero-wallet-cli --wallet-file /path/to/wallet-file \\\n"
+"--daemon-address tor-or-i2p-remote-node-address:port \\\n"
+"--proxy 127.0.0.1:tor-or-i2p-port\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:114
+msgid ""
+"Synchronizing wallet over clearnet is a lot faster than doing it on tor or "
+"i2p.  Thus, consider synchronizing over clearnet even if you broadcast "
+"transactions over tor or i2p."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cold-storage/offline-transaction-signing.md:115
+#, no-wrap
+msgid "Offline transaction signing"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:118
+msgid ""
+"Execute any wallet command that transfers monero to any address. For example,"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:119
+#, no-wrap
+msgid "transfer xmr-address amount-of-xmr-to-send\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:125
+msgid ""
+"Any transfer command on a view-only wallet creates `unsigned_monero_tx` in "
+"the current working directory."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:128
+msgid ""
+"Move `unsigned_monero_tx` to an offline machine that has an offline wallet.  "
+"Execute"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:129
+#, no-wrap
+msgid "sign_transfer\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:137
+msgid ""
+"on the offline wallet in the directory with `unsigned_monero_tx`.  "
+"`signed_monero_tx` file is created in the current working directory. Move "
+"`signed_monero_tx` to the online machine with a view-only wallet. In the "
+"directory with `signed_monero_tx`, launch the view-only wallet, and execute"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:138
+#, no-wrap
+msgid "submit_transfer\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:146
+msgid ""
+"Because a view-only wallet doesn't have key images, it can't see outgoing "
+"transactions. To make a view-only wallet see outgoing transactions, it has "
+"to export new outputs created by `submit_transfer` to an offline wallet "
+"which creates key images out of new outputs."
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:149
+#, no-wrap
+msgid "export_outputs outputs\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:155
+msgid ""
+"on a view-only wallet. Move `outputs` file to the offline machine with an "
+"offline wallet. Launch the offline wallet, and execute"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:156
+#, no-wrap
+msgid "import_outputs /path/to/outputs\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:161
+msgid "Export key images derived from new outputs by executing"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:162
+#, no-wrap
+msgid "export_key_images key_images\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:168
+msgid ""
+"on an offline wallet. Move `key_images` file to the machine with a view-only "
+"wallet. Launch the view-only wallet, and execute"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:169
+#, no-wrap
+msgid "import_key_images /path/to/key_images\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cold-storage/offline-transaction-signing.md:173
+#, no-wrap
+msgid "Updating wallet software on an offline signing machine"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:178
+msgid ""
+"When you update an offline machine with offline wallets, you can't just "
+"connect the machine to the internet and update wallet software because doing "
+"so exposes offline wallets to the internet."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:181
+msgid ""
+"Instead, boot OS installation media, wipe filesystems, and then connect to "
+"the internet, and install everything from scratch again."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:185
+msgid ""
+"If your root filesystem is encrypted, OS installation media can connect to "
+"the internet from the beginning because encrypted data are safe until they "
+"are decrypted."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cold-storage/offline-transaction-signing.md:186
+#, no-wrap
+msgid "Restoring offline wallet"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:190
+msgid ""
+"After updating wallet software on an offline signing machine by wiping it "
+"out and reinstalling everything, you have to restore offline wallet."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:192
+msgid ""
+"Restore an offline wallet from seed (and seed offset passphrase) by executing"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:193
+#, no-wrap
+msgid "monero-wallet-cli --generate-new-wallet wallet-file --restore-deterministic-wallet\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:200
+msgid ""
+"The new offline wallet can't sign new transactions because it doesn't have "
+"all trasaction outputs that precede a new unsigned transaction. Thus, it "
+"first has to import all outputs from a view-only wallet."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:202
+msgid "On a view-only wallet that was derived from the offline wallet, execute"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:203
+#, no-wrap
+msgid "export_outputs all all_outputs\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:209
+msgid ""
+"`all` is important because `export_outputs` exports only new outputs that "
+"weren't exported before, but"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:210
+#, no-wrap
+msgid "export_outputs all\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:216
+msgid ""
+"exports all outputs. Move `all_outputs` file to the offline machine with the "
+"offline wallet. Execute"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:217
+#, no-wrap
+msgid "import_outputs /path/to/all_outputs\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:222
+msgid "on the new offline wallet."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cold-storage/offline-transaction-signing.md:223
+#, no-wrap
+msgid "Restoring view-only wallet"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:229
+msgid ""
+"If you reconstruct view-only wallet, because it doesn't have key images, it "
+"can't see outgoing transactions. If it can't see outgoing transactions, it "
+"reports wrong account balances. Thus, it has to import all key images from "
+"its corresponding offline wallet."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:231
+msgid "On the offline wallet, execute"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:232
+#, no-wrap
+msgid "export_key_images all all_key_images\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:238
+msgid ""
+"`export_key_images` doesn't work because it exports only new key images that "
+"weren't exported before."
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:239
+#, no-wrap
+msgid "export_key_images all\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cold-storage/offline-transaction-signing.md:245
+msgid ""
+"exports all key images. Move `all_key_images` file to the machine with the "
+"view-only wallet. Execute"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/cold-storage/offline-transaction-signing.md:246
+#, no-wrap
+msgid "import_key_images /path/to/all_key_images\n"
+msgstr ""
