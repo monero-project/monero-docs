@@ -1,0 +1,166 @@
+# French translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. type: Title #
+#: ../docs/en/cryptography/asymmetric/key-image.md:1
+#: ../docs/en/cryptography/asymmetric/key-image.md:4
+#, no-wrap
+msgid "Monero Private Key Image"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/key-image.md:8
+#, no-wrap
+msgid ""
+"!!! note\n"
+"    Author is nowhere close to being a cryptographer. Be sceptical on accuracy.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/key-image.md:10
+msgid "Private key image serves to detect double spending attempts."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/key-image.md:13
+msgid ""
+"In Monero funds are always sent to a one-time public key `P`.  Related one-"
+"time private key `x` is specific to unspent output."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/key-image.md:15
+msgid ""
+"As output can be spent only once (in whole), the related private key can be "
+"used only once as well."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/key-image.md:18
+msgid ""
+"Thus, specific private key image `I` being present on the blockchain means "
+"that related output was already spent, and subsequent attempts must not be "
+"allowed."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/key-image.md:22
+msgid ""
+"This whole scheme is necessary because Monero uses Ring Signatures which "
+"make it impossible to know whom exactly signed the transaction.  This is why "
+"a simple Bitcoin-like double spending check wouldn't work here."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cryptography/asymmetric/key-image.md:23
+#, no-wrap
+msgid "Definition"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/key-image.md:26
+#, no-wrap
+msgid "    I = x*Hp(P)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/key-image.md:28
+msgid "Where:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/asymmetric/key-image.md:33
+msgid "`I` - private key image (or \"key image\" for short)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/asymmetric/key-image.md:33
+msgid "`x` - one-time private key used to unlock an unspent output"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/asymmetric/key-image.md:33
+msgid "`P` - one-time public key of an unspent output"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/asymmetric/key-image.md:33
+msgid "`Hp()` - hash function accepting an EC point as an argument"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/key-image.md:35
+msgid "The `P` comes from this:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/key-image.md:37
+#, no-wrap
+msgid "    P = xG\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/key-image.md:39
+msgid ""
+"Where `G` is the [edwards25519](/cryptography/asymmetric/edwards25519) base "
+"point."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/key-image.md:41
+msgid "Substitute `P` with `xG` and we get:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/key-image.md:43
+#, no-wrap
+msgid "    I = x*Hp(xG)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/key-image.md:45
+msgid "The key image `I` is a one-way function of the private key `x`."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cryptography/asymmetric/key-image.md:46
+#, no-wrap
+msgid "Reference"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/asymmetric/key-image.md:50
+msgid ""
+"[StackExchange answer](https://monero.stackexchange.com/questions/2883/what-"
+"is-a-key-image)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/asymmetric/key-image.md:50
+msgid ""
+"[Another SE answer](https://monero.stackexchange.com/questions/2158/what-is-"
+"moneros-mechanism-for-defending-against-a-double-spend-attack)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/asymmetric/key-image.md:50
+msgid ""
+"[Critical bug](https://getmonero.org/2017/05/17/disclosure-of-a-major-bug-in-"
+"cryptonote-based-currencies.html) regarding key image verification that was "
+"once present in Monero"
+msgstr ""

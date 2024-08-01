@@ -1,0 +1,188 @@
+# Russian translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. type: Title #
+#: ../docs/en/cryptography/asymmetric/private-key.md:1
+#: ../docs/en/cryptography/asymmetric/private-key.md:4
+#, no-wrap
+msgid "Private Keys in Monero"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/private-key.md:8
+#, no-wrap
+msgid ""
+"!!! note\n"
+"    Author is nowhere close to being a cryptographer. Be sceptical on accuracy.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/private-key.md:10
+msgid ""
+"In Monero, the root private key is generated [randomly](/cryptography/prng). "
+"Other private keys are derived deterministically from the root private key."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/private-key.md:12
+msgid "Private key must be kept secret."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/private-key.md:15
+msgid ""
+"Private key is a **large integer** impossible to guess, like: "
+"`108555083659983933209597798445644913612440610624038028786991485007418559037440`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/private-key.md:17
+msgid "Private key is 256 bits long."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/private-key.md:19
+msgid "Private key is a **scalar**, meaning it is a single value."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/private-key.md:21
+msgid "In equations scalars are represented by **lowercase letters**."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cryptography/asymmetric/private-key.md:22
+#, no-wrap
+msgid "Relation to Ed25519"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/private-key.md:25
+msgid ""
+"Being simply a random integer, private key is not specific to any particular "
+"asymmetric cryptography scheme."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/private-key.md:30
+msgid ""
+"In context of Monero EC cryptography the private key is a number the base "
+"point `G` is multiplied by.  The result of the multiplication is the public "
+"key `P` (another point on the curve).  Multiplication of a point by a number "
+"has a very special definition in EC cryptography.  See this [this guide]"
+"(https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-"
+"elliptic-curve-cryptography/) for details."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/cryptography/asymmetric/private-key.md:31
+#, no-wrap
+msgid "Key strength"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/private-key.md:35
+msgid ""
+"Before deriving the public key, private key is subject to modulo `l`, where "
+"`l` is the maximum scalar allowed by the [edwards25519 curve](/cryptography/"
+"asymmetric/edwards25519)."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/private-key.md:38
+msgid ""
+"The `l` is on the order of 2^252, so the effective key strength is "
+"technically 252 bits, not 256 bits.  This is standard for EC cryptography "
+"and is more of a cosmetic nuance than any concern."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cryptography/asymmetric/private-key.md:39
+#, no-wrap
+msgid "Encoding"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/private-key.md:42
+msgid "In user-facing contexts, the private key integer is:"
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../docs/en/cryptography/asymmetric/private-key.md:46
+msgid "Taken modulo `l` to avoid malleability"
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../docs/en/cryptography/asymmetric/private-key.md:46
+msgid ""
+"Put as array of 32 bytes in a [little-endian](https://en.wikipedia.org/wiki/"
+"Endianness#Little) direction (the first byte is the least significant)"
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../docs/en/cryptography/asymmetric/private-key.md:46
+msgid ""
+"Converted to hexadecimal form, like: "
+"`b3588a87056fb21dc4d052d59e83b54293882e646b543c29478e4cf45c28a402`"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cryptography/asymmetric/private-key.md:47
+#, no-wrap
+msgid "Private spend key"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/private-key.md:50
+msgid "Private spend key is used to spend moneros."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/private-key.md:52
+msgid ""
+"More specifically, it is used to build one-time private keys which allow to "
+"spend related outputs."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cryptography/asymmetric/private-key.md:53
+#, no-wrap
+msgid "Private view key"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/private-key.md:56
+msgid ""
+"Private view key is used to recognize your incoming transactions on the "
+"otherwise opaque blockchain."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cryptography/asymmetric/private-key.md:57
+#, no-wrap
+msgid "One-time private keys"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/private-key.md:59
+msgid ""
+"One-time private key like construct is used in [stealth addresses](https://"
+"monero.stackexchange.com/questions/1409/constructing-a-stealth-monero-"
+"address)."
+msgstr ""

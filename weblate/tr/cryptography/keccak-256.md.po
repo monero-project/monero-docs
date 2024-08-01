@@ -1,0 +1,152 @@
+# Turkish translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. type: Title #
+#: ../docs/en/cryptography/keccak-256.md:1
+#: ../docs/en/cryptography/keccak-256.md:4
+#, no-wrap
+msgid "Keccak-256 Hash Function"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/keccak-256.md:8
+msgid ""
+"Monero employs Keccak as a hashing function. In most context specifically "
+"Keccak-256 is used, providing 32-byte hashes."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/keccak-256.md:11
+msgid ""
+"Keccak is the leading hashing function, designed by non-NSA designers.  "
+"Keccak won [NIST competition](https://en.wikipedia.org/wiki/"
+"NIST_hash_function_competition) to become the official SHA3."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cryptography/keccak-256.md:12
+#, no-wrap
+msgid "Use Cases"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/keccak-256.md:15
+msgid ""
+"Monero does **not** employ Keccak for Proof-of-Work. Instead, Keccak is used "
+"for:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/keccak-256.md:24
+msgid "random number generator"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/keccak-256.md:24
+msgid "block hashing"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/keccak-256.md:24
+msgid "transaction hashing"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/keccak-256.md:24
+msgid "stealth address private key image (for double spend protection)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/keccak-256.md:24
+msgid "public address checksum"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/keccak-256.md:24
+msgid "RingCT"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/keccak-256.md:24
+msgid "multisig"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/keccak-256.md:24
+msgid "bulletproofs"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/keccak-256.md:26
+msgid "...and likely a few other things."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cryptography/keccak-256.md:27
+#, no-wrap
+msgid "Keccak-256 vs SHA3-256"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/keccak-256.md:30
+#, no-wrap
+msgid ""
+"SHA3-256 is Keccak-256, except that NIST changed the padding.\n"
+"For this reason, the original Keccak-256 gives a different hash value than NIST SHA3-256.  \n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/keccak-256.md:33
+#, no-wrap
+msgid ""
+"Monero uses original Keccak-256.\n"
+"The NIST standard was only published on August 2015, while Monero went live on 18 April 2014.  \n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cryptography/keccak-256.md:35
+#, no-wrap
+msgid "Reference"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/keccak-256.md:40
+msgid ""
+"[Keccak source code used in Monero](https://github.com/monero-project/monero/"
+"blob/5c2dfe157b48a486eb2b92dcf8789b3b1eb20f60/src/crypto/keccak.c)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/keccak-256.md:40
+msgid "[SHA3 on Wikipedia](https://en.wikipedia.org/wiki/SHA-3)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/keccak-256.md:40
+msgid ""
+"[Keccak-256 vs SHA3-256](https://ethereum.stackexchange.com/questions/550/"
+"which-cryptographic-hash-function-does-ethereum-use) explained on Ethereum "
+"stackexchange"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/keccak-256.md:40
+msgid ""
+"[Online tool to calculate Keccak-256 and SHA3-256](https://emn178.github.io/"
+"online-tools/keccak_256.html)"
+msgstr ""

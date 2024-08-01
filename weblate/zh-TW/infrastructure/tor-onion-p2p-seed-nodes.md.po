@@ -1,0 +1,205 @@
+# Language zh-TW translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: zh-TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: YAML Front Matter: title
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:1
+#, no-wrap
+msgid "Tor Onion Seed Nodes for Monero P2P Network"
+msgstr ""
+
+#. type: Title #
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:4
+#, no-wrap
+msgid "Tor onion seed nodes for Monero network"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:7
+#, no-wrap
+msgid "When this is necessary?"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:10
+msgid ""
+"This is only necessary if you run a full node and you want to propagate "
+"locally-originating transactions over Tor (using `tx-proxy` option, see "
+"[monerod reference](/interacting/monerod-reference/#tori2p)). This allows "
+"you to mask your IP (as transaction originator) against P2P network "
+"surveillence, on top of Monero's built-in Dandelion++."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:11
+#, no-wrap
+msgid "What are P2P seed nodes?"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:14
+msgid ""
+"Your monero daemon will discover other P2P nodes but it needs to start "
+"somewhere. These starting nodes are known as \"seed nodes\". For clearnet "
+"the seed nodes are hardcoded in the software so no configuration is needed."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:16
+msgid ""
+"For the Tor network there are no hardcoded seed nodes. You must specify them "
+"manually by using the `add-peer` option in `monero.conf`."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:17
+#, no-wrap
+msgid "Config snippet"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:20
+msgid ""
+"These were tested working as of 2020-01-11. They are ran by volunteers and "
+"are **not guaranteed** to work or be maintained. See below how you can "
+"quickly test them."
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:21
+#, no-wrap
+msgid ""
+"# monero.conf snippet\n"
+"# ...\n"
+"add-peer=moneroxmrxw44lku6qniyarpwgznpcwml4drq7vb24ppatlcg4kmxpqd.onion:18080\n"
+"add-peer=monerozf6koypqrt.onion:18080\n"
+"add-peer=zbjkbsxc5munw3qusl7j2hpcmikhqocdf4pqhnhtpzw5nt5jrmofptid.onion:18083        # https://github.com/monero-project/monero/blob/master/src/p2p/net_node.inl\n"
+"add-peer=rno75kjcw3ein6i446sqby2xkyqjarb75oq36ah6c2mribyklzhurpyd.onion:28083        # it is mainnet despite the weird port\n"
+"add-peer=sqzrokz36lgkng2i2nlzgzns2ugcxqosflygsxbkybb4xn6gq3ouugqd.onion:18083        # very flaky, works 1 in 3 times\n"
+"add-peer=blzchctiibfjfvtukctsydhquucz2oajnxnfc5hh4ix35gyqjhdnaqqd.onion:18083        # full node by author of monerodocs.org\n"
+"# ...\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:33
+#, no-wrap
+msgid "How to test onion seed nodes?"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:36
+msgid ""
+"You need Tor daemon installed and running on your laptop. You will also need "
+"`torsocks` command line tool that either comes with Tor or needs to be "
+"installed separately."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:37
+#, no-wrap
+msgid "Test using torsocks and telnet"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:40
+msgid "You need tor, torsocks and telnet installed."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:42
+msgid "To test speficic onion:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:44
+#, no-wrap
+msgid "    torsocks telnet moneroxmrxw44lku6qniyarpwgznpcwml4drq7vb24ppatlcg4kmxpqd.onion 18080\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:46
+msgid "The expected output (domain resolution errors are fine):"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:47
+#, no-wrap
+msgid ""
+"1610372702 ERROR torsocks[11332]: Unable to resolve. Status reply: 4 (in socks5_recv_resolve_reply() at socks5.c:677)\n"
+"Trying 127.42.42.0...\n"
+"Connected to moneroxmrxw44lku6qniyarpwgznpcwml4drq7vb24ppatlcg4kmxpqd.onion.\n"
+"Escape character is '^]'.\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:54
+#, no-wrap
+msgid "Test using torsocks and proxychains"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:57
+msgid "You need tor, torsocks and proxychains installed."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:59
+msgid "To test specific onion:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:61
+#, no-wrap
+msgid "    proxychains nmap -Pn -p 18080 moneroxmrxw44lku6qniyarpwgznpcwml4drq7vb24ppatlcg4kmxpqd.onion\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:63
+msgid "The expected output (example):"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:64
+#, no-wrap
+msgid ""
+"[proxychains] Strict chain  ...  127.0.0.1:9050  ...  moneroxmrxw44lku6qniyarpwgznpcwml4drq7vb24ppatlcg4kmxpqd.onion:18080  ...  OK\n"
+"Nmap scan report for moneroxmrxw44lku6qniyarpwgznpcwml4drq7vb24ppatlcg4kmxpqd.onion (224.0.0.1)\n"
+"Host is up (0.74s latency).\n"
+"rDNS record for 224.0.0.1: all-systems.mcast.net\n"
+"\n"
+"PORT      STATE SERVICE\n"
+"18080/tcp open  unknown\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:74
+#, no-wrap
+msgid "Not enough onion seed nodes"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:77
+msgid ""
+"The onion seed nodes are a scarce resource. Most nodes are only maintained "
+"temporarily by their authors."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/tor-onion-p2p-seed-nodes.md:78
+msgid ""
+"You can greatly contribute to Monero P2P network performance and resillience "
+"by running onion-enabled monero full node."
+msgstr ""

@@ -1,0 +1,378 @@
+# Language zh-TW translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: zh-TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: YAML Front Matter: title
+#: ../docs/en/technical-specs.md:1
+#, no-wrap
+msgid "Monero Technical Specification"
+msgstr ""
+
+#. type: Title #
+#: ../docs/en/technical-specs.md:4
+#, no-wrap
+msgid "Monero Technical Specs"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/technical-specs.md:6
+#, no-wrap
+msgid "Live"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:9
+msgid "Monero blockchain is live since 18 April 2014"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/technical-specs.md:10
+#, no-wrap
+msgid "No premine, no instamine, no ICO, no token"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:15
+msgid "Monero had no premine or instamine"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:15
+msgid "Monero did not sell any token"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:15
+msgid "Monero had no presale of any kind"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/technical-specs.md:16
+#, no-wrap
+msgid "Proof of Work"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:25
+msgid "CryptoNight"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/technical-specs.md:25
+msgid "v0 since block height 0"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/technical-specs.md:25
+msgid "v1 since block height 1546000 (forked on 2018-04-06)"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/technical-specs.md:25
+msgid "v2 since block height 1685555 (forked on 2018-10-18)"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/technical-specs.md:25
+msgid "v3 since block height 1788000 (forked on 2019-03-09); \"CryptonightR\""
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:25
+msgid "RandomX"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/technical-specs.md:25
+msgid "v0 since block height 1978433 (forked on 2019-11-30)"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/technical-specs.md:26
+#, no-wrap
+msgid "Difficulty retarget"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:30
+msgid "every block"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:30
+msgid ""
+"based on the last 720 blocks (24h), excluding 20% of the timestamp outliers"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/technical-specs.md:31
+#, no-wrap
+msgid "Block time"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:35
+msgid "2 minutes"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:35
+msgid "may change in the future as long as emission curve is preserved"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/technical-specs.md:36
+#, no-wrap
+msgid "Block reward"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:40
+msgid ""
+"smoothly decreasing and subject to penalties for blocks greater than median "
+"size of the last 100 blocks (M100)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:40
+msgid ""
+"0.6 XMR as of June 2023; for the current reward check the coinbase "
+"transaction of the [latest block](https://xmrchain.net/)"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/technical-specs.md:41
+#, no-wrap
+msgid "Block size"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:46
+msgid "dynamic"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:46
+msgid "maximum of two times the median size of the last 100 blocks (2 * M100)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:46
+msgid ""
+"~50KB as of June 2020; check [the latest block size](https://bitinfocharts."
+"com/comparison/monero-size.html#3m)"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/technical-specs.md:47
+#, no-wrap
+msgid "Current blockchain size"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:51
+msgid "Pruned node: ~ 57GB as of Jan 2023"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:51
+msgid "Complete chain without any pruning: ~138GB as of Jan 2023"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/technical-specs.md:52
+#, no-wrap
+msgid "Emission curve"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/technical-specs.md:54
+#, no-wrap
+msgid "Main emission"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:59
+msgid ""
+"first, the main emission is about to produce ~18.132 million coins by the "
+"end of May 2022"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:59
+msgid "as of June 2023 the emission is about 3 XMR per 10 minutes"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:59
+msgid ""
+"see [charts and details](https://www.reddit.com/r/Monero/comments/512kwh/"
+"useful_for_learning_about_monero_coin_emission/)"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/technical-specs.md:60
+#, no-wrap
+msgid "Tail emission"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:65
+msgid "the tail emission kicked in after main emission is done"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:65
+msgid "it will produce 0.6 XMR per 2-minute block"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:65
+msgid "this translates to <1% inflation decreasing over time"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/technical-specs.md:66
+#, no-wrap
+msgid "Max supply"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:70
+msgid "~18.293 million XMR + 0.6 XMR per 2 minutes"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:70
+msgid ""
+"technically infinite but practically deflationary if accounted for lost coins"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/technical-specs.md:71
+#, no-wrap
+msgid "Divisibility"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:75
+msgid "Monero is divisible up to 12 digits"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:75
+msgid ""
+"The smallest unit is called piconero and equals 1e-12 XMR, or 0.000000000001 "
+"XMR"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/technical-specs.md:76
+#, no-wrap
+msgid "Sender privacy"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:81
+msgid "ring signatures"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/technical-specs.md:81
+msgid "the ring size is 16 (15 decoys)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:81
+msgid "assurance: probabilistic / plausible deniability"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/technical-specs.md:82
+#, no-wrap
+msgid "Recipient privacy"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:86
+msgid "stealth addresses"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:86 ../docs/en/technical-specs.md:91
+msgid "assurance: strong"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/technical-specs.md:87
+#, no-wrap
+msgid "Amount privacy"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:91
+msgid "ring confidential transactions"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/technical-specs.md:92
+#, no-wrap
+msgid "IP address privacy"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/technical-specs.md:95
+msgid "For the full node (`monerod`):"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:99
+msgid "dandelion++"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:99
+msgid ""
+"assurance: won't protect against ISP/VPN provider, won't protect against the "
+"very first remote node in Dandellion++ protocol"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:99
+msgid "for the full protection user must manually wrap `monerod` with Tor"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/technical-specs.md:101
+msgid "For the wallet (`monero-wallet-gui` or `monero-wallet-cli`):"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:104
+msgid ""
+"typically wallet runs on the same machine as full node so there is no risk"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/technical-specs.md:104
+msgid ""
+"if wallet connects to remote full node, there is no IP protection by default"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/technical-specs.md:104
+msgid "user must manually wrap wallet with Tor or I2P"
+msgstr ""

@@ -1,0 +1,60 @@
+# Polish translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+
+#. type: Title #
+#: ../docs/en/accepting-monero/overview.md:1
+#: ../docs/en/accepting-monero/overview.md:4
+#, no-wrap
+msgid "Accepting Monero for Businesses"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/accepting-monero/overview.md:7
+msgid ""
+"This is for businesses that want to accept Monero in an automated way, "
+"including:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/accepting-monero/overview.md:11
+msgid "merchants"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/accepting-monero/overview.md:11
+msgid "service providers"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/accepting-monero/overview.md:11
+msgid "exchanges"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/accepting-monero/overview.md:13
+msgid ""
+"We prepared a comparison of available venues to accept Monero, as of "
+"2019-01-28:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/accepting-monero/overview.md:15
+#, no-wrap
+msgid "[<img src=\"/images/sheets-icon.png\" width=\"20px\" height=\"20px\" style=\"margin-bottom: -4px;\" /> Accepting Monero as a Business - Comparison Matrix](/r/accepting-monero-comparison-matrix)\n"
+msgstr ""
