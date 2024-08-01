@@ -17,6 +17,8 @@ The goal is to educate and onboard power users faster.
 To contribute to MoneroDocs, you'll need to setup your local [Mkdocs-Material](https://squidfunk.github.io/mkdocs-material/) environment:
 
 ```sh
+
+# coolify comment test
 # Fork the monerodocs/md Github repo
 
 # Clone your newly created repo- be sure to include the submodule flag
