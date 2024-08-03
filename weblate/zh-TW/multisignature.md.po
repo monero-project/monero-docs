@@ -1,0 +1,1077 @@
+# Language zh-TW translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: zh-TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Title #
+#: ../docs/en/multisignature.md:1 ../docs/en/multisignature.md:4
+#, no-wrap
+msgid "Multisignature"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:7
+msgid ""
+"In cryptocurrencies, multisig feature allows to sign a transaction with more "
+"than one private key. Funds protected with multisig can only be spent by "
+"signing with M-of-N keys."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:9
+msgid "Example use cases:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/multisignature.md:15
+msgid ""
+"shared account (1-of-2; both husband and wife individually have full access "
+"to their funds)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/multisignature.md:15
+msgid ""
+"consensus account (2-of-2; both husband and wife must agree to spend their "
+"funds)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/multisignature.md:15
+msgid ""
+"threshold account (2-of-3; an escrow service is involved as an independent "
+"3rd party, to co-sign with either the seller, or with the buyer, if seller "
+"and buyer do not agree)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/multisignature.md:15
+msgid ""
+"secure account (2-of-3; a single owner controls all 3 keys but secures them "
+"via a different means to diversify risks)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/multisignature.md:15
+msgid ""
+"arbitrary threshold account (M-of-N; some cryptocurrencies provide full "
+"flexibility on the number of signers)"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/multisignature.md:16
+#, no-wrap
+msgid "Monero's multisig design"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:19
+msgid ""
+"Monero doesn't directly implement multisignatures (at least not in a "
+"classical sense). Monero emulates the feature by secret splitting."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:21
+msgid ""
+"Transactions are still signed with a single spend key. The spend key is a "
+"sum of all N private keys. The rationale for such design is to decouple "
+"multisig from ring signatures."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:23
+msgid ""
+"Let's consider the 2-of-3 scheme. We have 3 participants. Each participant "
+"is granted exactly 2 private keys in a way that pairs do not repeat between "
+"participants. This way any 2 participants together have all 3 private keys "
+"required to create the private spend key."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:25
+msgid ""
+"Multi-signing is a wallet-level feature, and there is no separate multisig "
+"address type. This means there is no way to learn from the blockchain which "
+"transactions were created using multiple signatures."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:27
+msgid ""
+"After multisig wallet setup every participant ends up knowing the public "
+"address and private view key. This is necessary for participants to "
+"recognize and decipher transactions they are supposed to co-sign."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/multisignature.md:28
+#, no-wrap
+msgid "Multisig wallet setup"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:31
+msgid ""
+"Multisig is currently only available via the Command Line Interface (CLI). "
+"This tutorial will assume you have some familiarity with the CLI before "
+"beginning."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:33
+msgid ""
+"In this example we will use a 2-of-3 multisig scheme, as it generalizes well."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:35
+msgid ""
+"Initially, while you're becoming familiar with multisig, it's suggested you "
+"begin by using **stagenet**, such that no valuable Monero are lost."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:37
+msgid ""
+"If you're not already familiar with stagenet, it is a separate, but "
+"functionally identical instance of the Monero network, created for testing "
+"purposes. To use it you simply add the --stagenet flag when creating and "
+"running your stagenet wallet."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/multisignature.md:38
+#, no-wrap
+msgid "1: Create a new wallet"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:41
+msgid ""
+"To begin you will need to create a new wallet. Multisig cannot be applied to "
+"a wallet that has previously received funds."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:43
+msgid ""
+"First you create a new wallet. The below the code assumes you're using a "
+"remote node, but using a local node is ideal:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:44
+#, no-wrap
+msgid "./monero-wallet-cli --stagenet --daemon-address address-URL  # Create your wallet\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:49
+msgid ""
+"In the above, replace address-URL with the actual URL that you want to "
+"connect to. At the time of writing, a list of remote nodes can be found at: "
+"[monero.fail](https://monero.fail). The default view shows mainnet servers, "
+"so make sure to filter by stagenet servers first."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:51
+msgid "Next, **enable** multisig via:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:52
+#, no-wrap
+msgid "set enable-multisig-experimental 1\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:57
+msgid ""
+"If you don't set this flag, then try to issue the first command, you will "
+"see:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:58
+#, no-wrap
+msgid ""
+"Error: Multisig is disabled.\n"
+"Error: Multisig is an experimental feature and may have bugs. Things that could go wrong include: funds sent to a multisig wallet can't be spent at all, can only be spent with the participation of a malicious group member, or can be stolen by a malicious group member.\n"
+"Error: You can enable it with:\n"
+"Error:   set enable-multisig-experimental 1\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:66
+msgid ""
+"This warning message is there to let people know that Multisig is still an "
+"experimental feature and may have bugs. You can [read more](#warning) about "
+"this message below."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:68
+#, no-wrap
+msgid "**Recommendation:** By default the CLI applies a screen timeout of 90 seconds. After which, you will be asked to input your password to continue using the wallet. Unfortunately, once the wallet times out, it interrupts the multisig creation process.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:70
+msgid "To extend the timeout to 10 minutes, use the command:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:71
+#, no-wrap
+msgid "set inactivity-lock-timeout 600\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:76
+msgid ""
+"To disable the timeout entirely (for this session only), use the command:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:77
+#, no-wrap
+msgid "set inactivity-lock-timeout 0\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/multisignature.md:81
+#, no-wrap
+msgid "2: prepare_multisig"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:84
+msgid ""
+"To begin, every participant independently generates **initialization data**, "
+"which is **not** an address."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:86
+msgid ""
+"Participants then send their initialization data manually to all other "
+"participants over a secure channel."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:88
+msgid ""
+"However, if you're creating the multisig wallet without external "
+"participants, then you simply transfer the data between terminal windows."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:90
+msgid "Begin by using the command:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:91
+#, no-wrap
+msgid "prepare_multisig\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:96
+#, no-wrap
+msgid "**Note:** if you try to use this command on a wallet that has already been used, you will see the error message:\n"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:97
+#, no-wrap
+msgid "Error: This wallet has been used before, please use a new wallet to create a multisig wallet\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:102
+msgid ""
+"After prepare_multisig you will see a message that looks similar to the "
+"below:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:103
+#, no-wrap
+msgid ""
+"MultisigxV2R1C9Bd2LNS9oDXLwDWbVbWc53nfUJpFnQqPDDtHksVVrY33DADgnhKetL5Swgk477uP1AENAy2pz11zW73NGqZojTai2TSDyARK3QR8uVt1t26oW21mFdZtd8iuNqTPBjuCc2q9jaRzqUG75rXtnn8eD5DwJX6NaMP63o2n2fta7dXZcpM\n"
+"Send this multisig info to all other participants, then use make_multisig <threshold> <info1> [<info2>...] with others' multisig info\n"
+"This includes the PRIVATE view key, so needs to be disclosed only to that multisig wallet's participants \n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:110
+msgid ""
+"The long string that begins Multisig is important, and will be shared with "
+"the other wallets in the next step."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:112
+msgid ""
+"Before you move to the next step, you'll want to run the "
+"**prepare_multisig** command on the rest of the wallets you want to use in "
+"your multisig setup. For example, 2 more if you're doing a 2/3 multisig."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/multisignature.md:113
+#, no-wrap
+msgid "3: make_multisig"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:116
+msgid ""
+"This command is where you set the threshold for your multisig wallet and "
+"then pass the initialization data from the other participants. The "
+"initialization data is the long string beginning **Multisig** mentioned "
+"above."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:118
+msgid ""
+"For example, if you're doing a 2 of 2 multisig, then your threshold is 2 and "
+"you'll pass 1 piece of data. If you're doing a 3 of 5 multisig, then your "
+"threshold is 3 and you'll pass 4 pieces of data."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:120
+msgid ""
+"Continuing with our 2/3 multisig example, you would then type into your CLI:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:121
+#, no-wrap
+msgid "make_multisig 2 <data1> <data2>\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:126
+msgid "Which in practice would look similar to:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:127
+#, no-wrap
+msgid "make_multisig 2 MultisigxV2R1MyhE1hgED7AFwytsfW44s7G4abNHFKhwfJH9kvB2Q7xNVBdJAyY9gm7eJkHVRo1T3Hb6PeYsyzUrqQsmpBByDq4iRywanpRLxLN2JKuvKPBDayAywAHBzGxdnGiyoXhLdnZiU6Azy3VNocwH1jgfFvYDUUCo7H8mFacnLUFVLC8LjEfz MultisigxV2R1CzwgGBTPxb51nWfvLg7mYPRBnqDgppZq85E745qR1NvGNCLBaHSCmUQ4JRb41tW9PUerAgz9pKHJ5NpKgE6vsZnpLJkCP3u4zwcXJW3UHjABc446jdQegP1hyHnGgJpah8RmdeLcLCAqa6WXgt3xJoz6QF5o66tnCiyJkYyebjWeXV2y\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:132
+msgid "If you were doing a 3/5 multisig, you'd instead run:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:133
+#, no-wrap
+msgid "make_multisig 3 <data1> <data2> <data3> <data4>\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:138
+msgid ""
+"Once this command is run on each wallet, you will then receive a second "
+"round of initialization data, that looks similar to:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:139
+#, no-wrap
+msgid ""
+"Another step is needed\n"
+"MultisigxV2Rn1LVYohry597ZfzPhWnuL6qcueBNdq4ivrP7zqDm4W5eKBhxgdcERcSvFs8F5EkLSuYFyKfBEeh4Fui6xHTeRqb7cWshXY96WruxMaSxMafTdPn48ko52e8UHvA4kWwpuPidBYg5dyVWoQLWgqCMDANxWnjhenw6HTwpT96yB8n1a16oQEYyQWg66r2sZHi9RMmivTsihnMq66rTHKPKKau1SHButDwQ\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:145
+#, no-wrap
+msgid "**Side note:** If you make a mistake, such as inputting the wrong threshold or missing out some initialization data, there isn't an undo function. That individual wallet will get created incorrectly, and you will need to re-do it.\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/multisignature.md:146
+#, no-wrap
+msgid "4: exchange_multisig_keys"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:149
+msgid ""
+"With the threshold established in the prior command, the "
+"exchange_multisig_keys command simply takes the init data from the other "
+"participants, no threshold parameter needed."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:151
+msgid "For example:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:152 ../docs/en/multisignature.md:172
+#, no-wrap
+msgid "exchange_multisig_keys <data1> <data2>\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:157
+msgid "It is either run once or twice in total."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:159
+msgid ""
+"Once if your wallet has the same threshold as the total number of "
+"participants, e.g. 2 of 2."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:161
+msgid "Twice if you have a different threshold, e.g. 2 of 3."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:163
+msgid ""
+"Continuing our 2/3 multisig example, after inputting the above "
+"exchange_multisig_keys command, we would then see:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:164
+#, no-wrap
+msgid ""
+"Another step is needed\n"
+"MultisigxV2Rn1WCSNqbsjuTXaPVfFsk3ekFF444yFN5PMCXcQHv1Pv794ZdkDZRnfVGgeP5JwpysR3ingQtQMMnmQDEXnP4qgdnh3SU2NXvfe7kMaSxMafTdPn48ko52e8UHvA4kWwpuPidBYg5JdJwdEAh8Ud7kBFX34zP33ZBbrYXcQbQKTcM3XQ8AEP8bVXHVqQSGzkAkjZRp3H63k6ZSXSYdH9WaC9pdr9FV3tx\n"
+"Send this multisig info to all other participants, then use exchange_multisig_keys <info1> [<info2>...] with others' multisig info\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:171
+msgid "Then for a second, and last time, we input:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:177
+msgid "And we receive back:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:178
+#, no-wrap
+msgid ""
+"Multisig wallet has been successfully created. Current wallet type: 2/3\n"
+"Multisig address: 56MD1L4zky3bFXDQb9qvSx7PDbg8F4x1HgPrFNrDnGnYDqFZcWGswWc1p2moFa1F44ccJniY9Wkzk6urkJbEDvubHqYtkcs\n"
+"\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:185
+msgid ""
+"This results in a wallet **public address** and **private view key** to be "
+"known for all participants."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:187
+msgid ""
+"So if you're the sole participant in the multisig setup, you'll know it has "
+"worked when you see the same multisig address across all the wallets."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/multisignature.md:188
+#, no-wrap
+msgid "Receiving funds"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/multisignature.md:190
+#, no-wrap
+msgid "1: Funding the Multisig Account"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:193
+msgid ""
+"Addresses created by a multisig wallet operate the same as normal, non-"
+"multisig addresses. This means:"
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/multisignature.md:195
+msgid ""
+"Each wallet can create subaddresses independently, no collaboration needed."
+msgstr ""
+
+#. type: Bullet: '- '
+#: ../docs/en/multisignature.md:197
+msgid ""
+"All participants can see incoming funds as they share the private view key."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:199
+msgid ""
+"The main difference comes when trying to spend funds from a multisig wallet. "
+"See the **Spending Funds** section below for how to do this."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/multisignature.md:200
+#, no-wrap
+msgid "2: Check Account Balance"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:203
+msgid ""
+"To check the account balance, open one of the multisig wallets and type the "
+"**refresh** command."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:205
+msgid ""
+"This will refresh the wallet and display your balance. The output will look "
+"similar to the below, but with a different amount:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:206
+#, no-wrap
+msgid ""
+"Starting refresh...\n"
+"Refresh done, blocks received: 0                                \n"
+"Currently selected account: [0] Primary account\n"
+"Tag: (No tag assigned)\n"
+"Balance: 10.000000000000, unlocked balance: 10.000000000000 (Some owned outputs have partial key images - import_multisig_info needed)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:215
+msgid "If you see that last sentence:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:215
+#, no-wrap
+msgid "(Some owned outputs have partial key images - import_multisig_info needed)\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:219
+msgid ""
+"This means that you haven't synchronized your wallet with the threshold "
+"amount of wallets needed (1 other in the case of 2/3 multisig) for the "
+"outputs to become spendable."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:221
+msgid ""
+"You can also use the command **show_transfers** to display a list of funds "
+"received and the transfer date, with the output looking similar to:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:222
+#, no-wrap
+msgid " 1263592     in unlocked       2023-01-09 21:13:59      10.000000000000 c5a3eec347401b1e263f45577b840c036568aa841eb2ebc6eb1332c1bc281f28 0000000000000000 0.000000000000 76Matb:10.000000000000 1 - \n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/multisignature.md:226
+#, no-wrap
+msgid "Spending funds"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:229
+msgid ""
+"Prior to explaining the process for spending multisig funds, it may help to "
+"have a high level overview of the process. There are two core steps:"
+msgstr ""
+
+#. type: Bullet: '1) '
+#: ../docs/en/multisignature.md:231
+msgid ""
+"**First, the sharing of partial key-images** - At minimum, the spender needs "
+"to get a partial key image from the people (1 or more) who will sign the "
+"transaction with him later. They need to export a file and share it with the "
+"future spender, who then imports the file to their wallet."
+msgstr ""
+
+#. type: Bullet: '2) '
+#: ../docs/en/multisignature.md:233
+msgid ""
+"**Second, creating, signing & submitting the transaction** - A transfer is "
+"created, written to file, and then this file needs to be signed by the co-"
+"signers, before it can lastly be submitted to the network."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/multisignature.md:235
+#, no-wrap
+msgid "Preparation for spending"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:238
+#, no-wrap
+msgid "**Preparation Step 1: Export partial key image**\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:240
+msgid ""
+"Prior to constructing a transaction, the spender will need to get a partial "
+"key image from the wallet or wallet**s** which will later co-sign the "
+"transaction."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:242
+msgid ""
+"In our 2/3 multisig example, the spender needs to get 1 partial key image, "
+"because the threshold is 2."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:244
+msgid ""
+"The wallet that will provide the partial key image needs to enter the "
+"command:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:245
+#, no-wrap
+msgid "export_multisig_info key1\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:250
+msgid "Where **key1** can be any filename. The output will then be:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:251
+#, no-wrap
+msgid "Multisig info exported to key1\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:256
+msgid ""
+"The file will be saved to the present working directory in the terminal."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:258
+msgid ""
+"It then needs to be shared with the wallet which will create the spending "
+"transaction."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:260
+#, no-wrap
+msgid "**Preparation Step 2: Import partial key image**\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:262
+msgid ""
+"Now that the spending wallet has the partial key image it can import it. "
+"Assuming the file is in the present working directory, the command would be:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:263
+#, no-wrap
+msgid "import_multisig_info key1\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:268
+msgid ""
+"If two or more key images were being imported, you would specify them side "
+"by side, such as:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:269
+#, no-wrap
+msgid "import_multisig_info key1 key2 key3\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:274
+msgid ""
+"After issuing that command, the wallet will display how many new inputs it "
+"has verified, for example if 1 output is verified:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:275
+#, no-wrap
+msgid ""
+"Height 1263592, txid <c5a3eec347401b1e263f45577b840c036568aa841eb2ebc6eb1332c1bc281f28>, 10.000000000000, idx 0/1\n"
+"Multisig info imported. Number of outputs updated: 1\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/multisignature.md:280
+#, no-wrap
+msgid "Spending"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:283
+#, no-wrap
+msgid "**Spending Step 1 - Create Unsigned Transaction**\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:285
+msgid ""
+"Creating a new transaction can be done by **any** of the multisig wallets. "
+"However, to avoid weird things from happening, only do it for 1 transaction "
+"at a time. If anything weird happens, re-do steps 1 & 2 again to fix."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:287
+msgid ""
+"The wallet initiating the transfer should create a transfer, as per the "
+"normal CLI transfer process:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:288
+#, no-wrap
+msgid "transfer <address> <amount>\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:293
+msgid "So for example:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:294
+#, no-wrap
+msgid ""
+"[wallet 56MD1L]: transfer 72Qv1pqug5rX1qS77Bj9C4XBbrvdYRJLM6769bseDytqVZWV2iQxGDnZ85KmubdiCQgtZjeb4fPdUNGq8Foae5b1Bo77T64 5\n"
+"Wallet password: \n"
+"\n"
+"Transaction 1/1:\n"
+"Spending from address index 1\n"
+"Sending 5.000000000000.  The transaction fee is 0.000167640000\n"
+"\n"
+"Is this okay?  (Y/Yes/N/No): Yes\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:306
+msgid "The output will look like:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:307
+#, no-wrap
+msgid "Unsigned transaction(s) successfully written to file: multisig_monero_tx\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:312
+msgid ""
+"The present working directory will now contain a file named "
+"**multisig_monero_tx**, which should then be shared with the co-signer."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:315
+#, no-wrap
+msgid "**Spending Step 2 - Sign Transaction**\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:317
+msgid ""
+"The wallet that has been chosen to co-sign the transaction now needs to run "
+"the command:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:318
+#, no-wrap
+msgid "sign_multisig multisig_monero_tx\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:323
+msgid "Which will result in an output similar to:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:324
+#, no-wrap
+msgid ""
+"Loaded 1 transactions, for 10.000000000000, fee 0.000167640000, sending 5.000000000000 to 72Qv1pqug5rX1qS77Bj9C4XBbrvdYRJLM6769bseDytqVZWV2iQxGDnZ85KmubdiCQgtZjeb4fPdUNGq8Foae5b1Bo77T64, 4.999832360000 change to 56MD1L4zky3bFXDQb9qvSx7PDbg8F4x1HgPrFNrDnGnYDqFZcWGswWc1p2moFa1F44ccJniY9Wkzk6urkJbEDvubHqYtkcs, with min ring size 16, dummy encrypted payment ID. Is this okay?  (Y/Yes/N/No): y\n"
+"Transaction successfully signed to file multisig_monero_tx, txid 82132a4302188b15c87916c05df79755dafb9ada78c39164937c246a4c2dee0a\n"
+"It may be relayed to the network with submit_multisig\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:332
+#, no-wrap
+msgid ""
+"**Note:**\n"
+"Once you synchronize the partial key images, there is a certain time window by which you can create and send your transaction. I'm unsure exactly how long the time window is. If you leave it too long you will see the output:\n"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:333
+#, no-wrap
+msgid "Error: Multisig error: This signature was made with stale data: export fresh multisig data, which other participants must then use\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:338
+msgid ""
+"The solution is to re-do steps 1 and 2 of the preparation for sending. Once "
+"that's completed, you can return to the sending steps."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:340
+#, no-wrap
+msgid "**Spending Step 3 - Submit Transaction**\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:342
+msgid ""
+"Now that your transaction has been co-signed, it is possible to submit it. "
+"You can do this from any of the wallets, as long as they have the co-signed "
+"multisig_monero_tx file. Using the command:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:343
+#, no-wrap
+msgid " submit_multisig multisig_monero_tx\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:348
+msgid "You will then see an output similar to:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:349
+#, no-wrap
+msgid ""
+"[wallet 56MD1L]: submit_multisig multisig_monero_tx\n"
+"Wallet password: \n"
+"Loaded 1 transactions, for 10.000000000000, fee 0.000167640000, sending 5.000000000000 to 72Qv1pqug5rX1qS77Bj9C4XBbrvdYRJLM6769bseDytqVZWV2iQxGDnZ85KmubdiCQgtZjeb4fPdUNGq8Foae5b1Bo77T64, 4.999832360000 change to 56MD1L4zky3bFXDQb9qvSx7PDbg8F4x1HgPrFNrDnGnYDqFZcWGswWc1p2moFa1F44ccJniY9Wkzk6urkJbEDvubHqYtkcs, with min ring size 16, dummy encrypted payment ID. Is this okay?  (Y/Yes/N/No): y\n"
+"Transaction successfully submitted, transaction <82132a4302188b15c87916c05df79755dafb9ada78c39164937c246a4c2dee0a>\n"
+"You can check its status by using the `show_transfers` command.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:358
+msgid ""
+"The transaction has now been broadcast to the network. If you want to create "
+"another one, you will need to go back to the preparation stage and re-sync "
+"the partial key images."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/multisignature.md:359
+#, no-wrap
+msgid "Mnemonic Seeds"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:362
+msgid ""
+"With a regular wallet is it possible to create a mnemonic seed that you can "
+"backup, and later use to recreate the wallet."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:364
+msgid ""
+"Fortunately, multisig wallets have the same feature. The only difference is "
+"that the seed is a **long string** of letters and numbers, rather than a set "
+"of dictionary words. Unfortunately, it needs to encode too much data to fit "
+"neatly into the regular mnemonic seed dictionary output."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:366
+msgid ""
+"To access your wallet seed, open the wallet within the CLI and type "
+"**seed**. You will see an output similar to this:"
+msgstr ""
+
+#. type: Fenced code block
+#: ../docs/en/multisignature.md:367
+#, no-wrap
+msgid ""
+"NOTE: the following string can be used to recover access to your wallet. Write them down and store them somewhere safe and secure. Please do not store them in your email or on file storage services outside of your immediate control.\n"
+"\n"
+"020000000300000051512b513c603a023df44e2400ad58b3f4751e2dcba44b1d4316be5adffd330b773b3818a07ab6ccc4ffcee1feed5526296b52f5ea0844eb8562cb3e63e8154c5c91f0cfd102a830d8692cec64e662f7ffac4cb82dd950c891a92a22dc80930ab78dd01a1ec7ed04d90eff530d2af9d4e40670576863492357727c6615620e95d2e962632518d958040b710474a4c944cb3a286e3fe9ad0b1d651ff6d8b4c50c81a74423650210bbcb7b427435e90b3eb494cb108bd148cab56e5352303d55070d35e703217b7b051a96af50c1c912bc372f65a4ffa93631ae009a544106bd5dfcf477573387f159ce6cae10fb2ffe63f55e75ed94d0893ece9b67b0a1cf0fc2034ca04ef7c862494a13237bfaa8e822f824ea59de561353f2ac01fbc279280c\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:374
+#, no-wrap
+msgid "**Note:** This seed will only recreate the individual wallet it is created from. Each wallet would need to be backed up separately.\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/multisignature.md:375
+#, no-wrap
+msgid "<a id=\"warning\"></a>About the experimental feature warning message"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:378
+msgid ""
+"Prior to a pull request in mid 2022 ([PR #8149](https://github.com/monero-"
+"project/monero/pull/8149)) Monero's multisig feature had some known bugs."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:380
+msgid ""
+"PR #8149 fixed these issues, including findings identified by an "
+"[independent audit](https://github.com/monero-project/monero/"
+"pull/8149#issuecomment-1167912258) of multisig."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:382
+msgid ""
+"However, there is still a possibility of a yet **unknown** bug that would "
+"allow a malicious group member, in a worst-case scenario, to acquire all "
+"funds within the multisig wallet."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:384
+msgid ""
+"Two potential steps to get Monero's multisig implementation further tested "
+"and more secure would be the completion of a formal specification and a "
+"third-party audit. However, there is currently no timeline for this."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:386
+msgid ""
+"It's worth noting that the risks implied by this unknown bug scenario depend "
+"upon the individual use-case. For example:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:388
+msgid ""
+"a) If one planned to use multisig in collaboration with other people, then "
+"this risk is there."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:390
+msgid ""
+"b) If one planned to use multisig solely to shard a cold wallet, and store "
+"it in multiple locations, then this risk may be lessened. On the basis that "
+"it requires two coincidences to come together:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:392
+msgid ""
+"i) A malicious actor who has the capability to exploit an unknown bug in "
+"Monero's multisig."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:394
+msgid ""
+"ii) This malicious actor is then able to access one of the, presumably "
+"secured, multisig wallets."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:396
+msgid ""
+"However, if an exploit was made public knowledge, then the risk increases, "
+"because the attacker no longer needs to figure out the exploit, they simply "
+"need to locate your wallet and then implement the public exploit."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:398
+msgid ""
+"Thus, if one took the risk to use multisig in method b), they would be "
+"prudent to stay up to date on multisig development. Such that they would "
+"learn quickly if such an exploit was discovered."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/multisignature.md:399
+#, no-wrap
+msgid "References"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/multisignature.md:402
+msgid ""
+"The below guides are very detailed, and were formative in the creation of "
+"this document. Note that they are both a little out of date, as a few of the "
+"CLI commands have been updated in the interim."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/multisignature.md:404
+msgid ""
+"[https://monero.stackexchange.com/questions/5646/how-to-use-monero-"
+"multisignature-wallets-2-2-2-3](https://monero.stackexchange.com/"
+"questions/5646/how-to-use-monero-multisignature-wallets-2-2-2-3)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/multisignature.md:404
+msgid ""
+"[https://taiga.getmonero.org/project/rbrunner7-really-simple-multisig-"
+"transactions/wiki/23-multisig-in-cli-wallet](https://taiga.getmonero.org/"
+"project/rbrunner7-really-simple-multisig-transactions/wiki/23-multisig-in-"
+"cli-wallet)"
+msgstr ""

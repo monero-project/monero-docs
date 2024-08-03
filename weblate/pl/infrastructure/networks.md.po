@@ -1,0 +1,261 @@
+# Polish translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+
+#. type: YAML Front Matter: title
+#: ../docs/en/infrastructure/networks.md:1
+#, no-wrap
+msgid "Mainnet, Stagenet, Testnet"
+msgstr ""
+
+#. type: Title #
+#: ../docs/en/infrastructure/networks.md:4
+#, no-wrap
+msgid "Networks"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:7
+msgid ""
+"Monero offers three separate networks and blockchains: **mainnet**, "
+"**stagenet** and **testnet**. Every blockchain has its own genesis block and "
+"is entirely seperate from others. Also, corresponding p2p networks are "
+"separate."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/infrastructure/networks.md:8
+#, no-wrap
+msgid "Mainnet"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:11
+msgid "Mainnet is the \"production\" network and blockchain."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:13
+msgid "Mainnet is the only blockchain where XMR units have value."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:15
+msgid "Mainnet is what people mean by default."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:17
+#: ../docs/en/infrastructure/networks.md:35
+#: ../docs/en/infrastructure/networks.md:58
+msgid "Default TCP ports (listening):"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/networks.md:21
+msgid "18080 - p2p network"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/networks.md:21
+msgid "18081 - JSON-RPC server"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/networks.md:21
+msgid "18082 - ZMQ server"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/infrastructure/networks.md:22
+#, no-wrap
+msgid "Stagenet"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:25
+msgid "Stagenet is what you need to learn Monero safely."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:27
+msgid ""
+"Stagenet is technically equivalent to mainnet, both in terms of features and "
+"consensus rules. Similar to mainnet, use the [latest official Monero release]"
+"(https://getmonero.org/downloads/) to be compatible with stagenet."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:29
+#: ../docs/en/infrastructure/networks.md:51
+msgid "To get started:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/networks.md:33
+msgid ""
+"Connect your GUI or CLI to stagenet open node **monero-stagenet.exan."
+"tech:38081**"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/networks.md:33
+msgid ""
+"Get free stagenet XMR from [stagenet faucet](https://melo.tools/faucet/"
+"stagenet/) or [stagenet faucet 2](https://stagenet-faucet.xmr-tw.org/)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/networks.md:33
+msgid ""
+"Check the [stagenet block explorer 1](https://stagenet.xmrchain.net/) or "
+"[stagenet block explorer 2](https://melo.tools/explorer/stagenet/)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/networks.md:39
+msgid "38080 - p2p network"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/networks.md:39
+msgid "38081 - JSON-RPC server"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/networks.md:39
+msgid "38082 - ZMQ server"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:41
+msgid "Stagenet was introduced in March 2018 as part of Monero 0.12.0.0."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/infrastructure/networks.md:42
+#, no-wrap
+msgid "Testnet"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:45
+msgid ""
+"As a normal user, use [stagenet](#stagenet) instead. Testnet is for "
+"developers."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:47
+msgid ""
+"Testnet is the \"experimental\" network and blockchain where things get "
+"released long before mainnet."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:49
+msgid ""
+"Testnet forks early and often. Most of the time you need to compile Monero "
+"from source to be compatible with testnet. Otherwise you will get stuck on "
+"the old not-forked version."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/networks.md:56
+msgid "Build Monero from [source](https://github.com/monero-project/monero)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/networks.md:56
+msgid ""
+"Connect your GUI or CLI to testnet open node **monero-testnet.exan."
+"tech:28081**"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/networks.md:56
+msgid "Get free XMR from [testnet faucet](https://melo.tools/faucet/testnet/)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/networks.md:56
+msgid ""
+"Check the [testnet block explorer 1](https://testnet.xmrchain.net/) or "
+"[testnet block explorer 2](https://melo.tools/explorer/testnet/)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/networks.md:62
+msgid "28080 - p2p network"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/networks.md:62
+msgid "28081 - JSON-RPC server"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/infrastructure/networks.md:62
+msgid "28082 - ZMQ server"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/infrastructure/networks.md:63
+#, no-wrap
+msgid "Private Testnet"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:66
+msgid "You can also create your private version of the testnet."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:68
+msgid ""
+"Private testnet gives more flexibility to arange for specific situations for "
+"developers."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:70
+msgid ""
+"Check the [private testnet guide](https://github.com/moneroexamples/private-"
+"testnet)."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/infrastructure/networks.md:71
+#, no-wrap
+msgid "Why stagenet and testnet coins have no value?"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:74
+msgid ""
+"If mainnet and stagenet are technically equivalent then why only mainnet "
+"coins have value?"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/infrastructure/networks.md:75
+msgid ""
+"This is simply the convention community embraced. Value only comes from a "
+"shared believe that mainnet coins will be accepted by other people in the "
+"future."
+msgstr ""

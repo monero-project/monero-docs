@@ -1,0 +1,523 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Title #
+#: ../docs/en/proof-of-work/cryptonight.md:1
+#: ../docs/en/proof-of-work/cryptonight.md:4
+#, markdown-text, no-wrap
+msgid "CryptoNight"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:7
+#, markdown-text, no-wrap
+msgid "> CryptoNight is a memory hard hash function\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/proof-of-work/cryptonight.md:8
+#, markdown-text, no-wrap
+msgid "Background"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:11
+#, markdown-text
+msgid "CryptoNight was originally designed around 2013 as part of the CryptoNote suite."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:13
+#, markdown-text
+msgid "One design goal was to make it very friendly for the off-the-shelf CPU-s, by employing:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:17
+#, markdown-text
+msgid "native AES encryption"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:17
+#, markdown-text
+msgid "fast 64 bit multipliers"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:17
+#, markdown-text
+msgid "scratchpad fitting exactly the size of the per-core L3 cache on Intel CPUs (about 2MB)"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:21
+#, markdown-text
+msgid "More ambitious design goal was to make it inefficiently computable on ASIC-s.  This goal has since failed, as it inevitably happens with \"ASIC hard\" algorithms.  Efficient CryptoNight ASIC was developed in 2017 by Bitmain."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:25
+#, markdown-text
+msgid "Monero inherited CryptoNight as its proof of work in 2014.  Since then Monero slightly evolved the algorithm to intentionally break compatibility with released ASIC-s. Three used variants existed: Cryptonightv1, Cryptonightv2 and [Cryptonight-R](https://github.com/SChernykh/CryptonightR).  **Monero no longer uses CryptoNight or any variant. Monero changed its mining algorithm to [RandomX](/proof-of-work/random-x) in November 2019.**"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/proof-of-work/cryptonight.md:26
+#, markdown-text, no-wrap
+msgid "The goal is to find small-enough hash"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:29
+#, markdown-text
+msgid "In hashing based PoW algorithms the goal is to find small-enough hash."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:33
+#, markdown-text
+msgid "Hash is simply an integer (normally, a very large integer).  Most hashing functions result in 256-bit hashes (integers between 0 and 2^256).  This includes Bitcoin's double-SHA-256 and Monero's CryptoNight."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:36
+#, markdown-text, no-wrap
+msgid ""
+"Miner randomly tweaks input data until the hash fits under specified threshold.\n"
+"The threshold (also a large integer) is established collectively by the network as part of the consensus mechanism.\n"
+"The PoW is only considered valid (solved) if hash fits under the threshold.  \n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:40
+#, markdown-text
+msgid "Because hash functions are one-way, it is not possible to analytically calculate input data that would result in a small-enough hash.  The solution must be brute-forced by tweaking the input data and recalculating the hash over and over again."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:43
+#, markdown-text
+msgid "Miners have a few areas of flexibility regarding input data - most importantly they can iterate with the nonce value.  They also have a power over which transactions are included in the block and how they are put together in a merkle tree."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/proof-of-work/cryptonight.md:44
+#, markdown-text, no-wrap
+msgid "Cryptographic primitives"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:47
+#, markdown-text
+msgid "CryptoNight is based on:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:55
+#, markdown-text
+msgid "AES encryption"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:55
+#, markdown-text
+msgid "5 hashing functions, all of which were finalists in NIST SHA-3 competition:"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/proof-of-work/cryptonight.md:55
+#, markdown-text
+msgid "Keccak (the primary one)"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/proof-of-work/cryptonight.md:55
+#, markdown-text
+msgid "BLAKE"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/proof-of-work/cryptonight.md:55
+#, markdown-text
+msgid "Groestl"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/proof-of-work/cryptonight.md:55
+#, markdown-text
+msgid "JH"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/proof-of-work/cryptonight.md:55
+#, markdown-text
+msgid "Skein"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/proof-of-work/cryptonight.md:56
+#, markdown-text, no-wrap
+msgid "Input data"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:59
+#, markdown-text
+msgid "In Monero the input to hashing function is concatenation of:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:63
+#, markdown-text
+msgid "serialized block header (around 46 bytes; subject to varint representation)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:63
+#, markdown-text
+msgid "merkle tree root (32 bytes)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:63
+#, markdown-text
+msgid "number of transactions included in the block (around 1-2 bytes; subject to varint representation)"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:65
+#, markdown-text
+msgid "See [get_block_hashing_blob()](https://github.com/monero-project/monero/blob/master/src/cryptonote_basic/cryptonote_format_utils.cpp#L1078) function to dig further."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/proof-of-work/cryptonight.md:66
+#, markdown-text, no-wrap
+msgid "Algorithm"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:72
+#, markdown-text, no-wrap
+msgid ""
+"!!! warning\n"
+"    The article attempts to give reader a high-level understanding of the CryptoNight algorithm.\n"
+"    For implementation details refer to CryptoNote Standard and Monero source code.\n"
+"    See references at the bottom. \n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/proof-of-work/cryptonight.md:73
+#, markdown-text, no-wrap
+msgid "Overview"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:76
+#, markdown-text
+msgid "CryptoNight attempts to make memory access a bottleneck for performance (\"memory hardness\"). It has three steps:"
+msgstr ""
+
+#. type: Bullet: '1. '
+#: ../docs/en/proof-of-work/cryptonight.md:80
+#, markdown-text
+msgid "Initialize large area of memory with pseudo-random data. This memory is known as the scratchpad."
+msgstr ""
+
+#. type: Bullet: '2. '
+#: ../docs/en/proof-of-work/cryptonight.md:80
+#, markdown-text
+msgid "Perform numerous read/write operations at pseudo-random (but deterministic) addresses on the scratchpad."
+msgstr ""
+
+#. type: Bullet: '3. '
+#: ../docs/en/proof-of-work/cryptonight.md:80
+#, markdown-text
+msgid "Hash the entire scratchpad to produce the resulting value."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/proof-of-work/cryptonight.md:81
+#, markdown-text, no-wrap
+msgid "Step 1: scratchpad initialization"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:84
+#, markdown-text
+msgid "Firstly, the input data is hashed with Keccak-1600. This results in 200 bytes of pseudorandom data (1600 bits == 200 bytes)."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:87
+#, markdown-text
+msgid "These 200 bytes become a seed to generate a larger, 2MB-wide buffer of pseudorandom data, by applying AES-256 encryption."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:89
+#, markdown-text
+msgid "The first 0..31 bytes of Keccak-1600 hash are used as AES key."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:93
+#, markdown-text
+msgid "The encryption is performed on 128 bytes-long payloads until 2MB is ready.  The first payload are Keccak-1600 bytes 66..191.  The next payload is encryption result of the previous payload."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:95
+#, markdown-text
+msgid "Each 128-byte payload is actually encrypted 10 times."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:96
+#, markdown-text, no-wrap
+msgid "The details are a bit more nuanced, see \"Scratchpad Initialization\" in [CryptoNote Standard](https://cryptonote.org/cns/cns008.txt).  \n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/proof-of-work/cryptonight.md:98
+#, markdown-text, no-wrap
+msgid "Step 2: memory-hard loop"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:101
+#, markdown-text
+msgid "The second step is basically 524288 iterations of a simple stateful algorithm."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:104
+#, markdown-text
+msgid "Each algorithm iteration reads from and writes back to the scratchpad, at pseudorandom-but-deterministic locations."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:107
+#, markdown-text
+msgid "Critically, next iteration depends on the state prepared by previous iterations.  It is not possible to directly calculate state of future iterations."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:109
+#, markdown-text
+msgid "The specific operations include AES, XOR, 8byte_mul, 8byte_add - operations that are CPU-friendly (highly optimized on modern CPU-s)."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:111
+#, markdown-text
+msgid "The goal here is to make memory latency the bottleneck in attempt to close the gap between potential ASIC-s and general purpose CPU-s."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/proof-of-work/cryptonight.md:112
+#, markdown-text, no-wrap
+msgid "Step 3: hashing"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:115
+#, markdown-text
+msgid "The final step (simplifying) is to:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:123
+#, markdown-text
+msgid "combine original Keccak-1600 output with the whole scratchpad"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:123
+#, markdown-text
+msgid "pick the hashing algorithm based on 2 low-order bits of the result"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/proof-of-work/cryptonight.md:123
+#, markdown-text
+msgid "0=BLAKE-256"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/proof-of-work/cryptonight.md:123
+#, markdown-text
+msgid "1=Groestl-256"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/proof-of-work/cryptonight.md:123
+#, markdown-text
+msgid "2=JH-256"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/proof-of-work/cryptonight.md:123
+#, markdown-text
+msgid "3=Skein-256"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:123
+#, markdown-text
+msgid "hash the result with selected function"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:125
+#, markdown-text
+msgid "The resulting 256-bit hash is the final output of CryptoNight algorithm."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/proof-of-work/cryptonight.md:126
+#, markdown-text, no-wrap
+msgid "Monero specific modifications"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/proof-of-work/cryptonight.md:128
+#, markdown-text, no-wrap
+msgid "CryptoNight v0"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:131
+#, markdown-text
+msgid "This is how Monero community refers to original implementation of CryptoNight."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/proof-of-work/cryptonight.md:132
+#, markdown-text, no-wrap
+msgid "CryptoNight v1"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:135
+#, markdown-text
+msgid "See the [source code diff](https://github.com/monero-project/monero/pull/3253/files)."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/proof-of-work/cryptonight.md:136
+#, markdown-text, no-wrap
+msgid "CryptoNight v2"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:139
+#, markdown-text
+msgid "See the [rationale](https://github.com/SChernykh/xmr-stak-cpu/blob/master/README.md) and the [source code diff](https://github.com/monero-project/monero/commit/5fd83c13fbf8dc304909345e60a853c15b0de1e5#diff-7000dc02c792439471da62856f839d62)."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/proof-of-work/cryptonight.md:140
+#, markdown-text, no-wrap
+msgid "CryptoNight v3 aka CryptoNightR"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:143
+#, markdown-text
+msgid "See the [rationale](https://github.com/monero-project/monero/pull/5126) and the [source code diff](https://github.com/monero-project/monero/pull/5126/files)."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/proof-of-work/cryptonight.md:144
+#, markdown-text, no-wrap
+msgid "Critique"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:150
+#, markdown-text
+msgid "CryptoNight hash is relatively expensive to verify. This poses a risk of DoS-ing nodes with incorrect proofs to process. See [strong asymmetry](/proof-of-work/what-is-pow/#strong-asymmetry) requirement."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:150
+#, markdown-text
+msgid "The hash function was designed from scratch with limited peer review. While CryptoNight is composed of proven and peer-reviewed primitives, combining secure primitives doesn't necessarily result in a secure cryptosystem."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:150
+#, markdown-text
+msgid "CryptoNight ultimately failed to prevent ASIC-s."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:150
+#, markdown-text
+msgid "Complexity of CryptoNight kills competition in ASIC manufacturing."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/cryptonight.md:152
+#, markdown-text
+msgid "CryptoNight proof of work remains one of the most controversial aspect of Monero."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/proof-of-work/cryptonight.md:153
+#, markdown-text, no-wrap
+msgid "Reference"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:160
+#, markdown-text
+msgid "[CryptoNight hash function](https://cryptonote.org/cns/cns008.txt) description in the CryptoNote Standard"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:160
+#, markdown-text
+msgid "[CryptoNight v2 source code](https://github.com/monero-project/monero/blob/master/src/crypto/slow-hash.c)"
+msgstr ""
+
+#. type: Bullet: '    * '
+#: ../docs/en/proof-of-work/cryptonight.md:160
+#, markdown-text
+msgid "The entry point is `cn_slow_hash()` function. Manually removing support and optimizations for multiple architectures should help you understand the actual code."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:160
+#, markdown-text
+msgid "\"Egalitarian Proof of Work\" chapter in [CryptoNote whitepaper](https://downloads.getmonero.org/whitepaper_annotated.pdf)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:160
+#, markdown-text
+msgid "[First days of Monero mining](https://da-data.blogspot.com/2014/08/minting-money-with-monero-and-cpu.html) by dr David Andersen"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/proof-of-work/cryptonight.md:160
+#, markdown-text
+msgid "Some [test vectors](https://github.com/monero-project/monero/tree/master/tests/hash) in Monero source code"
+msgstr ""

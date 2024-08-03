@@ -1,0 +1,134 @@
+# Italian translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. type: Title #
+#: ../docs/en/proof-of-work/what-is-pow.md:1
+#: ../docs/en/proof-of-work/what-is-pow.md:4
+#, no-wrap
+msgid "Proof of Work"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/what-is-pow.md:7
+#, no-wrap
+msgid "> Proof of work is a way to legitimize untrusted party\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/proof-of-work/what-is-pow.md:8
+#, no-wrap
+msgid "What exactly is proof of work?"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/what-is-pow.md:11
+msgid ""
+"Proof of work is a cryptographic proof that untrusted party committed "
+"significant computational resources to solve artificial problem."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/what-is-pow.md:13
+msgid "Technically, the \"proof\" is simply a solution to the problem at hand."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/proof-of-work/what-is-pow.md:14
+#, no-wrap
+msgid "It's all about legitimizing untrusted party"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/what-is-pow.md:17
+msgid ""
+"How an untrusted party on the Internet could earn any level of your trust?"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/what-is-pow.md:19
+msgid ""
+"It can prove its commitment by solving agreed computationally hard problem."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/what-is-pow.md:21
+msgid ""
+"For example, by requiring untrusted party to perform a hard computation "
+"before you accept their connection, you limit connections only to "
+"\"committed\" parties."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/what-is-pow.md:23
+msgid ""
+"In another example, you could require PoW to be attached to incoming e-mails "
+"to make spam prohibitively expensive."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/proof-of-work/what-is-pow.md:24
+#, no-wrap
+msgid "Work must be otherwise useless"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/what-is-pow.md:27
+msgid ""
+"The work on and solution to \"computationally hard problem\" cannot be "
+"useful in any other way than to prove the commitment."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/what-is-pow.md:29
+msgid ""
+"If the work is useful elsewhere then it doesn't prove commitment to you."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/what-is-pow.md:31
+msgid ""
+"The problem must be artificial. Otherwise incentives are skewed and the "
+"whole scheme breaks."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/proof-of-work/what-is-pow.md:32
+#, no-wrap
+msgid "Strong asymmetry"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/what-is-pow.md:35
+msgid ""
+"The requirement for proof of work scheme is strong asymmetry for work vs "
+"verification resources."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/what-is-pow.md:36
+#, no-wrap
+msgid "The work must be arbitrarily hard. At the same time proof verification must remain dirt cheap (in terms of computational resources).  \n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/what-is-pow.md:39
+msgid ""
+"Cheap verification is critical because at this stage we are dealing with "
+"potentially huge number of untrusted parties, who could DoS the verifier by "
+"submitting invalid proofs. Such proofs should be trivial to discard."
+msgstr ""

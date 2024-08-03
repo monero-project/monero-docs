@@ -1,0 +1,264 @@
+# French translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. type: Title #
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:1
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:4
+#, no-wrap
+msgid "Edwards25519 Elliptic Curve"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:8
+#, no-wrap
+msgid ""
+"!!! note\n"
+"    Author is nowhere close to being a cryptographer. Be sceptical on accuracy.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:11
+#, no-wrap
+msgid ""
+"!!! note\n"
+"    This article is only about the underlying curve. Public key derivation and signing algorithm will be treated separately. \n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:13
+msgid ""
+"Monero employs edwards25519 elliptic curve as a basis for its key pair "
+"generation."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:15
+msgid ""
+"The curve comes from the Ed25519 signature scheme. While Monero takes the "
+"curve unchanged, it does not exactly follow rest of the Ed25519."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:17
+msgid ""
+"The edwards25519 curve is [birationally equivalent to Curve25519](https://"
+"tools.ietf.org/html/rfc7748#section-4.1)."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:18
+#, no-wrap
+msgid "Definition"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:23
+msgid ""
+"This is the standard edwards25519 curve definition, no Monero specific stuff "
+"here, except the naming convention. The convention comes from the CryptoNote "
+"whitepaper and is widely used in Monero literature."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:24
+#, no-wrap
+msgid "Curve equation"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:27
+#, no-wrap
+msgid "    −x^2 + y^2 = 1 − (121665/121666) * x^2 * y^2\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:29
+msgid "Note:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:32
+msgid ""
+"curve is in two dimensions (nothing fancy, like all the curves is high "
+"school)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:32
+msgid ""
+"curve is mirrored below y axis due to `y^2` part of the equation (not a "
+"polynomial)"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:33
+#, no-wrap
+msgid "Base point: `G`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:38
+msgid ""
+"The base point is a specific point on the curve. It is used as a basis for "
+"further calculations. It is an arbitrary choice by the curve authors, just "
+"to standardize the scheme."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:41
+msgid ""
+"Note that it is enough to specify the y value and the sign of the x value.  "
+"That's because the specific x can be calculated from the curve equation."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:43
+#, no-wrap
+msgid "    G = (x, 4/5)  # take the point with the positive x\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:46
+#, no-wrap
+msgid ""
+"    # The hex representation of the base point\n"
+"    5866666666666666666666666666666666666666666666666666666666666666    \n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:47
+#, no-wrap
+msgid "Prime order of the base point: `l`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:53
+msgid ""
+"In layment terms, the \"canvas\" where the curve is drawn is assumed to have "
+"a finite \"resolution\", so point coordinates must \"wrap around\" at some "
+"point. This is achieved by modulo the `l` value (lowercase L).  In other "
+"words, the `l` defines the maximum scalar we can use."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:56
+#, no-wrap
+msgid ""
+"    l = 2^252 + 27742317777372353535851937790883648493\n"
+"    # => 7237005577332262213973186563042994240857116359379907606001950938285454250989\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:58
+msgid "The `l` is a prime number specified by the curve authors."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:60
+msgid "In practice this is the private key's strength."
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:61
+#, no-wrap
+msgid "Total number of points on the curve"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:64
+msgid "The total number of points on the curve is also a prime number:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:66
+#, no-wrap
+msgid "    q = 2^255 - 19\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:68
+msgid ""
+"In practice not all points are \"useful\" and so the private key strength is "
+"limited to `l` describe above."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:69
+#, no-wrap
+msgid "Implementation"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:72
+msgid ""
+"Monero uses (apparently modified) Ref10 implementation by Daniel J. "
+"Bernstein."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:73
+#, no-wrap
+msgid "Reference"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:81
+msgid ""
+"[A (Relatively Easy To Understand) Primer on Elliptic Curve Cryptography]"
+"(https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-"
+"elliptic-curve-cryptography/)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:81
+msgid "[RFC 8032 defining EdDSA](https://tools.ietf.org/html/rfc8032)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:81
+msgid ""
+"[Understanding Monero Cryptography](https://steemit.com/monero/@luigi1111/"
+"understanding-monero-cryptography-privacy-introduction) - excellent writeup "
+"by Luigi"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:81
+msgid ""
+"[StackOverflow answer](https://monero.stackexchange.com/questions/2290/why-"
+"how-does-monero-generate-public-ed25519-keys-without-using-the-standard-publ)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:81
+msgid ""
+"[Python implementation](https://github.com/monero-project/mininero/blob/"
+"master/ed25519.py) - not the reference one but easier to understand"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:81
+msgid ""
+"[Encoding point to hex](https://monero.stackexchange.com/questions/6050/what-"
+"is-the-base-point-g-from-the-whitepaper-and-how-is-it-represented-as-a)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/asymmetric/edwards25519.md:81
+msgid "[EdDSA on Wikipedia](https://en.wikipedia.org/wiki/EdDSA)"
+msgstr ""

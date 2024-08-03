@@ -1,0 +1,298 @@
+# French translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. type: Title #
+#: ../docs/en/interacting/monero-config-file.md:1
+#: ../docs/en/interacting/monero-config-file.md:4
+#, no-wrap
+msgid "Monero Configuration File"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-config-file.md:6
+#, no-wrap
+msgid "Applicability"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:9
+msgid ""
+"By default Monero looks for `bitmonero.conf` in Monero [data directory](/"
+"interacting/overview/#data-directory)."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:11
+msgid "To use a specific config file add `--config-file` option:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:13
+msgid "`./monerod --config-file=/etc/monerod.conf`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:15
+msgid "The `--config-file` option is available for:"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/monero-config-file.md:20
+msgid "`monerod`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/monero-config-file.md:20
+msgid "`monero-wallet-cli`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/monero-config-file.md:20
+msgid "`monero-wallet-rpc`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/monero-config-file.md:20
+msgid "`monero-gen-trusted-multisig`"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-config-file.md:21
+#, no-wrap
+msgid "Syntax"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/monero-config-file.md:27
+msgid "`option-name=value`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/monero-config-file.md:27
+msgid "`valueless-option-name=1` for options that don't expect value"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/monero-config-file.md:27
+msgid "`# comment`"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/monero-config-file.md:27
+msgid "whitespace is ignored"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-config-file.md:28
+#, no-wrap
+msgid "Reference"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:31
+msgid ""
+"All configuration options are the same as command line options for the "
+"binary."
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/monero-config-file.md:35
+msgid "[monerod reference](/interacting/monerod-reference)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/monero-config-file.md:35
+msgid "[monero-wallet-cli reference](/interacting/monero-wallet-cli-reference)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/monero-config-file.md:35
+msgid "[monero-wallet-rpc reference](/interacting/monero-wallet-rpc-reference)"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:37
+msgid "Skip the `--` from `--option-name`."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:39
+msgid "Example:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:41
+msgid "`./monerod --log-level=4 --stagenet`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:43
+msgid "translates to:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:46
+#, no-wrap
+msgid ""
+"    log-level=4\n"
+"    stagenet=1     # use value \"1\" to enable the value-less options like --stagenet \n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-config-file.md:47
+#, no-wrap
+msgid "Examples"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-config-file.md:49
+#, no-wrap
+msgid "`monerod.conf`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:52
+msgid "This config is tailored for production server usage."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:54
+#, no-wrap
+msgid "    # /etc/monero/monerod.conf\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:57
+#, no-wrap
+msgid ""
+"    # Data directory (blockchain db and indices)\n"
+"    data-dir=/home/monero/.monero  # Remember to create the monero user first\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:61
+#, no-wrap
+msgid ""
+"    # Log file\n"
+"    log-file=/var/log/monero/monerod.log\n"
+"    max-log-file-size=0            # Prevent monerod from managing the log files; we want logrotate to take care of that\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:65
+#, no-wrap
+msgid ""
+"    # P2P full node\n"
+"    p2p-bind-ip=0.0.0.0            # Bind to all interfaces (the default)\n"
+"    p2p-bind-port=18080            # Bind to default port\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:72
+#, no-wrap
+msgid ""
+"    # RPC open node\n"
+"    rpc-bind-ip=0.0.0.0            # Bind to all interfaces\n"
+"    rpc-bind-port=18081            # Bind on default port\n"
+"    confirm-external-bind=1        # Open node (confirm)\n"
+"    restricted-rpc=1               # Prevent unsafe RPC calls\n"
+"    no-igd=1                       # Disable UPnP port mapping\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:75
+#, no-wrap
+msgid ""
+"    # Slow but reliable db writes\n"
+"    db-sync-mode=safe\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:79
+#, no-wrap
+msgid ""
+"    # Emergency checkpoints set by MoneroPulse operators will be enforced to workaround potential consensus bugs\n"
+"    # Check https://monerodocs.org/infrastructure/monero-pulse/ for explanation and trade-offs\n"
+"    enforce-dns-checkpointing=1\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:82
+#, no-wrap
+msgid ""
+"    out-peers=64              # This will enable much faster sync and tx awareness; the default 8 is suboptimal nowadays\n"
+"    in-peers=1024             # The default is unlimited; we prefer to put a cap on this\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:85
+#, no-wrap
+msgid ""
+"    limit-rate-up=1048576     # 1048576 kB/s == 1GB/s; a raise from default 2048 kB/s; contribute more to p2p network\n"
+"    limit-rate-down=1048576   # 1048576 kB/s == 1GB/s; a raise from default 8192 kB/s; allow for faster initial sync\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-config-file.md:86
+#, no-wrap
+msgid "`monero-wallet-cli.conf`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:89
+msgid ""
+"This config is tailored for desktop usage on [stagenet](/infrastructure/"
+"networks)."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:91
+#, no-wrap
+msgid "    # $HOME/.bitmonero/stagenet/monero-wallet-cli.conf\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:94
+#, no-wrap
+msgid ""
+"    # Pick network\n"
+"    stagenet=1\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:98
+#, no-wrap
+msgid ""
+"    # Connect to a remote full node    \n"
+"    daemon-address=monero-stagenet.exan.tech:38081\n"
+"    untrusted-daemon=1\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:101
+#, no-wrap
+msgid ""
+"    # Log file\n"
+"    log-file=/tmp/monero-wallet-cli.log\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-config-file.md:102
+#, no-wrap
+msgid "    # wallet-file=/home/YOUR-USER/.bitmonero/stagenet/wallets/MoneroExampleStagenetWallet\n"
+msgstr ""

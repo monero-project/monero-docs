@@ -1,0 +1,88 @@
+# Language zh-TW translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: zh-TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Title #
+#: ../docs/en/cryptography/base58.md:1 ../docs/en/cryptography/base58.md:4
+#, no-wrap
+msgid "Base58"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/base58.md:7
+msgid ""
+"Base58 is a binary-to-text encoding scheme. It is similar to Base64 but has "
+"been modified to avoid both non-alphanumeric characters and letters which "
+"might look ambiguous when printed. The characters excluded in relation to "
+"Base64 are: `IOl0+/`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/base58.md:9
+msgid ""
+"Base58 does not strictly specify the format. This results in some "
+"implementations being incompatible with others, for example with regard to "
+"alphabet order."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/base58.md:11
+msgid "For details, see [Wikipedia](https://en.wikipedia.org/wiki/Base58)."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cryptography/base58.md:12
+#, no-wrap
+msgid "Base58 in Monero"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/base58.md:15
+msgid "Monero has its own variant of Base58."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/base58.md:17
+msgid ""
+"In Monero the Base58 encoding is performed in 8-byte blocks, except the last "
+"block which is the remaining (8 or less) bytes ."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/base58.md:19
+msgid ""
+"The 8-byte block converts to 11 or less Base58 characters. If the block "
+"converted to less than 11 characters, the output is padded with \"1\"s (0 in "
+"Base58). The final block is padded as well to whatever would be the maximum "
+"size of this number of bytes encoded in Base58."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/base58.md:21
+msgid ""
+"The advantage of Monero implementation is that output is of a fixed size "
+"which is not the case with plain Base58. The disadvantage is that default "
+"libraries won't work."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/base58.md:22
+msgid ""
+"For details, see [reference C++ Base58](https://github.com/monero-project/"
+"monero/blob/master/src/common/base58.cpp) implementation and [unofficial "
+"Python Base58](https://github.com/bigreddmachine/MoneroPy/blob/master/"
+"moneropy/base58.py) implementation."
+msgstr ""

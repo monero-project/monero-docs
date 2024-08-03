@@ -1,0 +1,207 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: YAML Front Matter: title
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:1
+#, no-wrap
+msgid "monero-blockchain-export - Reference"
+msgstr ""
+
+#. type: Title #
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:4
+#, markdown-text, no-wrap
+msgid "`monero-blockchain-export` - Reference"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:8
+#, markdown-text, no-wrap
+msgid ""
+"!!! note\n"
+"    Nowadays, there is little usage for raw blockchain export / import. In the past the p2p blockchain download was much slower. Back than blockchain.raw file was used to speed up the process of bootstrapping a node. \n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:9
+#, markdown-text, no-wrap
+msgid "Overview"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:12
+#, markdown-text
+msgid "The tool dumps local blockchain to raw format, known as the `blockchain.raw` file."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:15
+#, markdown-text
+msgid "This could be useful if you want to process blockchain efficiently with your custom tools, as the raw format is probably easier to work with than Monero's custom lmdb database."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:17
+#, markdown-text
+msgid "The tool works on your local copy of the blockchain. It does not require `monerod` running."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:18
+#, markdown-text, no-wrap
+msgid "Syntax"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:21
+#, markdown-text
+msgid "`./monero-blockchain-export [options]`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:23
+#, markdown-text
+msgid "Example:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:25
+#, markdown-text
+msgid "`./monero-blockchain-export --help`"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:26
+#, markdown-text, no-wrap
+msgid "Running"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:29
+#, markdown-text
+msgid "Go to directory where you unpacked Monero."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:31
+#, markdown-text
+msgid "`./monero-blockchain-export --stagenet --output-file=/tmp/blockchain.raw`"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:33
+#, markdown-text, no-wrap
+msgid "Options"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:35
+#, markdown-text, no-wrap
+msgid "Help"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:40
+#, markdown-text, no-wrap
+msgid ""
+"| Option              | Description\n"
+"|---------------------|--------------------------------------------------------------------------------------------------------------------------------------\n"
+"| `--help`            | Enlist available options.\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:41
+#, markdown-text, no-wrap
+msgid "Pick network"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:48
+#, markdown-text, no-wrap
+msgid ""
+"| Option              | Description\n"
+"|---------------------|--------------------------------------------------------------------------------------------------------------------------------------\n"
+"| (missing)           | By default `monero-blockchain-export` assumes [mainnet](/infrastructure/networks#mainnet).\n"
+"| `--stagenet`        | Export [stagenet](/infrastructure/networks#stagenet) blockchain.\n"
+"| `--testnet`         | Export [testnet](/infrastructure/networks#testnet) blockchain.\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:49
+#, markdown-text, no-wrap
+msgid "Logging"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:52
+#, markdown-text
+msgid "Specifying the log file path is not supported."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:56
+#, markdown-text, no-wrap
+msgid ""
+"| Option              | Description\n"
+"|---------------------|--------------------------------------------------------------------------------------------------------------------------------------\n"
+"| `--log-level`       | `0-4` with `0` being minimal logging and `4` being full tracing. Defaults to `0`. These are general presets and do not directly map to severity levels. For example, even with minimal `0`, you may see some most important `INFO` entries. Example: <br />`./monero-blockchain-export --log-level=1`\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:57
+#, markdown-text, no-wrap
+msgid "Input"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:63
+#, markdown-text, no-wrap
+msgid ""
+"| Option                     | Description\n"
+"|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------\n"
+"| `--data-dir`               | Full path to data directory. This is where the blockchain, log files, and p2p network memory are stored. For defaults and details see [data directory](/interacting/overview/#data-directory).\n"
+"| `--database`, `--db-type`  | The default and only valid value is `lmdb`.\n"
+msgstr ""
+
+#. type: Title ###
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:64
+#, markdown-text, no-wrap
+msgid "Output"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:71
+#, markdown-text, no-wrap
+msgid ""
+"| Option              | Description\n"
+"|---------------------|--------------------------------------------------------------------------------------------------------------------------------------\n"
+"| `--output-file`     | Specify output file path. The default is `$DATA_DIR/export/blockchain.raw`. Example: <br />`./monero-blockchain-export --output-file=/tmp/blockchain.raw`\n"
+"| `--blocksdat`       | Output in blocks.dat format.\n"
+"| `--block-stop`      | Only export up to this block number. By default do the full export (value `0`).\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:72
+#, markdown-text, no-wrap
+msgid "Reference"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/interacting/monero-blockchain-export-reference.md:74
+#, markdown-text
+msgid "[https://github.com/monero-project/monero/tree/master/src/blockchain_utilities](https://github.com/monero-project/monero/tree/master/src/blockchain_utilities)"
+msgstr ""

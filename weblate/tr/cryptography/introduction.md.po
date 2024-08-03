@@ -1,0 +1,51 @@
+# Turkish translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. type: YAML Front Matter: title
+#: ../docs/en/cryptography/introduction.md:1
+#, no-wrap
+msgid "Cryptography in Monero"
+msgstr ""
+
+#. type: Title #
+#: ../docs/en/cryptography/introduction.md:4
+#, no-wrap
+msgid "Cryptography in Monero "
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/introduction.md:7
+msgid ""
+"Monero uses a wide variety of cryptographic primitives for various use cases."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/introduction.md:9
+msgid ""
+"Comparing to altcoins, Monero cryptography is considered conservative, sound "
+"and robust."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/introduction.md:11
+msgid ""
+"Comparing to Bitcoin, Monero uses much more primitives, and some of them are "
+"more advanced, especially those related to privacy and Proof of Work.  Some "
+"choices are deliberately non-standard (for better or worse) - oftentimes a "
+"legacy of the CryptoNote protocol."
+msgstr ""

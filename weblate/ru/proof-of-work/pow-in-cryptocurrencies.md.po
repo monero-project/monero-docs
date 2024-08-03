@@ -1,0 +1,128 @@
+# Russian translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. type: Title #
+#: ../docs/en/proof-of-work/pow-in-cryptocurrencies.md:1
+#: ../docs/en/proof-of-work/pow-in-cryptocurrencies.md:4
+#, no-wrap
+msgid "Proof of Work in Cryptocurrencies"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/pow-in-cryptocurrencies.md:7
+#, no-wrap
+msgid "> Proof of work is a Sybil protection mechanism\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/proof-of-work/pow-in-cryptocurrencies.md:8
+#, no-wrap
+msgid "PoW protects against Sybil attack"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/pow-in-cryptocurrencies.md:11
+msgid ""
+"In decentralized cryptocurrencies **untrusted** actors confirm (blocks of) "
+"transactions."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/pow-in-cryptocurrencies.md:15
+msgid ""
+"If threshold voting was employed then the scheme would break immediately.  "
+"This is because nothing prevents a single actor from creating arbitrary "
+"number of pseudonyms and take over the voting.  In distributed systems this "
+"is known as Sybil attack."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/pow-in-cryptocurrencies.md:19
+msgid ""
+"Instead, cryptocurrencies employ proof of work. In the proof of work scheme, "
+"it is not the number of actors that counts. It is the amount of committed "
+"computational resources."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/pow-in-cryptocurrencies.md:22
+#, no-wrap
+msgid ""
+"This, of course, is much harder to game.\n"
+"To endanger the scheme, an attacker would have to actually control majority (>50%) of computational resources.\n"
+"In practice, attacker would need this control over significant period of time.  \n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/proof-of-work/pow-in-cryptocurrencies.md:24
+#, no-wrap
+msgid "PoW is a leader election mechanism"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/pow-in-cryptocurrencies.md:27
+msgid ""
+"In distributed systems \"leader election\" is a process of establishing "
+"which node is responsible for (temporarily) coordinating the system."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/pow-in-cryptocurrencies.md:29
+msgid ""
+"In cryptocurrencies PoW is used to elect the node that \"wins\" the next "
+"block."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/pow-in-cryptocurrencies.md:31
+msgid ""
+"Using PoW for leader election was one of the key inventions introduced by "
+"Bitcoin."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/pow-in-cryptocurrencies.md:35
+msgid ""
+"Competing nodes (known as \"miners\") work on a solution to artificial "
+"problem.  Every now and then, someone randomly finds the solution.  Chances "
+"are linearly proportional to committed computing power."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/pow-in-cryptocurrencies.md:37
+msgid ""
+"The winner uses its solution to \"underwrite\" the block it assembled. Only "
+"blocks with valid solutions are accepted by the network."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/pow-in-cryptocurrencies.md:39
+msgid ""
+"The winner also gets a reward for its work. The reward is a specific amount "
+"of cryptocurrency created \"out of thin air\" and assigned to self. The "
+"winner also gets all fees coming from transactions included in the block."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/proof-of-work/pow-in-cryptocurrencies.md:40
+msgid ""
+"The difficulty of the PoW problem is dynamically adjusted by the network, "
+"with the goal of finding blocks with a roughly constant rate (typically, "
+"every couple of minutes)."
+msgstr ""

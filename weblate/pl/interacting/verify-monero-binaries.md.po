@@ -1,0 +1,210 @@
+# Polish translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+
+#. type: YAML Front Matter: title
+#: ../docs/en/interacting/verify-monero-binaries.md:1
+#, no-wrap
+msgid "Verifying Monero Binaries Signature"
+msgstr ""
+
+#. type: Title #
+#: ../docs/en/interacting/verify-monero-binaries.md:4
+#, no-wrap
+msgid "Verify Monero Binaries"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:7
+msgid ""
+"Verification must be carried on **before extracting the archive and before "
+"using Monero**."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:9
+msgid ""
+"Instructions were tested on Linux. They should also work on macOS with "
+"slight modifications."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/verify-monero-binaries.md:10
+#, no-wrap
+msgid "1. Import lead maintainer PGP key"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:13
+msgid ""
+"This is a one time action. Skip this step for subsequent Monero releases."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:15
+msgid "Monero core developers sign a list of hashes of released binaries."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:19
+msgid ""
+"BinaryFate is Monero core developer who signs the releases.  His public key "
+"is available on GitHub in the project source code.  Import binaryFate's "
+"public key to your keyring:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:21
+msgid ""
+"`curl https://raw.githubusercontent.com/monero-project/monero/master/utils/"
+"gpg_keys/binaryfate.asc | gpg --import`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:23
+msgid "Trust binaryFate's public key (fingerprint must be exactly this):"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:27
+#, no-wrap
+msgid ""
+"    gpg --edit-key '81AC591FE9C4B65C5806AFC3F0AF4D462A0BDF92'\n"
+"    trust\n"
+"    4\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:31
+#, no-wrap
+msgid ""
+"!!! danger\n"
+"    If key with this fingerprint was not found then remove imported key immediately (gpg --delete-keys ...).\n"
+"    That would mean the key changed (likely was compromised).\n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/verify-monero-binaries.md:32
+#, no-wrap
+msgid "2. Verify signature of hash list (hashes.txt)"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:36
+#, no-wrap
+msgid ""
+"The list of binaries and their hashes is published on [getmonero.org](https://www.getmonero.org/downloads/hashes.txt) and a few other places like release notes on [r/monero](https://reddit.com/r/monero).\n"
+"Please note the publication channel does not matter as long as you properly verify the signature!                                                                        u\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:38
+msgid "To verify these are real hashes (not tampered with) run:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:40
+msgid "`curl https://www.getmonero.org/downloads/hashes.txt | gpg --verify`"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:42
+msgid "The expected output should contain the line:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:44
+msgid "`gpg: Good signature from \"binaryFate <binaryfate@getmonero.org>\"`"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/interacting/verify-monero-binaries.md:45
+#, no-wrap
+msgid "3. Verify the hash"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:48
+msgid "By this step we checked that published hashes were not tampered with."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:50
+msgid ""
+"The last step is to compare published hash with downloaded archive SHA-256 "
+"hash."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:52
+msgid ""
+"[Download Monero](/interacting/download-monero-binaries) if you didn't "
+"already (but do not unpack)."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:54
+msgid "Replace the example file name with actual one:"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:56
+#, no-wrap
+msgid "    file_name=monero-gui-linux-x64-v0.17.1.9.tar.bz2\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:58
+#, no-wrap
+msgid "    file_hash=`sha256sum $file_name | cut -c 1-64`\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:60
+#, no-wrap
+msgid "    curl https://www.getmonero.org/downloads/hashes.txt > /tmp/reference-hashes.txt\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:63
+#, no-wrap
+msgid ""
+"    # verify the signature (previous step is repeated here for completeness)\n"
+"    gpg --verify /tmp/reference-hashes.txt\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:66
+#, no-wrap
+msgid ""
+"    # grep must print the hash (output cannot be empty)\n"
+"    grep $file_hash /tmp/reference-hashes.txt\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:69
+#, no-wrap
+msgid ""
+"!!! danger\n"
+"    If the grep output is empty then double check everything because apparently the hashes don't match.\n"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/interacting/verify-monero-binaries.md:70
+msgid "If grep printed filename and hash then everything is alright!"
+msgstr ""

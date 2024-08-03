@@ -1,0 +1,76 @@
+# Arabic translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-08-01 16:57+0100\n"
+"PO-Revision-Date: 2024-08-01 16:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Title #
+#: ../docs/en/cryptography/prng.md:1 ../docs/en/cryptography/prng.md:4
+#, no-wrap
+msgid "Monero Pseudorandom Number Generator"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/prng.md:8
+msgid ""
+"Monero uses PRNG based on the Keccak hashing function.  Basically, output of "
+"the previous hashing round is input for the next one."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/prng.md:12
+msgid ""
+"The initial seed comes from entropy sources provided by operating system.  "
+"On Linux and MacOS the seed comes from `/dev/urandom`.  On Windows the "
+"WinAPI `CryptGenRandom` call is used for seeding."
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/prng.md:14
+msgid "There is no reseeding."
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cryptography/prng.md:15
+#, no-wrap
+msgid "Caveats"
+msgstr ""
+
+#. type: Plain text
+#: ../docs/en/cryptography/prng.md:20
+#, no-wrap
+msgid ""
+"* This concerns the reference C++ implementation of Monero.\n"
+"Please note there are many alternative implementations of private key generation,\n"
+"including JavaScript, Python, Android/Java. These should be researched case by case for correctness.    \n"
+"* In Monero source code you can also find libsodium based random bytes generator. It is part of the embedded library and apparently is not used in actual Monero code.  \n"
+msgstr ""
+
+#. type: Title ##
+#: ../docs/en/cryptography/prng.md:22
+#, no-wrap
+msgid "Reference"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/prng.md:25
+msgid ""
+"[Source code](https://github.com/monero-project/monero/"
+"blob/1a4298685aa9e694bc555ae69be59d14d3790465/src/crypto/random.c)"
+msgstr ""
+
+#. type: Bullet: '* '
+#: ../docs/en/cryptography/prng.md:25
+msgid "[StackExchange answer](https://monero.stackexchange.com/a/2076/3218)"
+msgstr ""
