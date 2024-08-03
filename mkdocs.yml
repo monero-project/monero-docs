@@ -1,11 +1,11 @@
 # Project information
-site_name: Monero Documentation
-site_description: 'Unofficial Monero Documentation'
-site_author: "Piotr 'Qertoip' Włodarek"
+site_name: Monero Docs
+site_description: 'Monero Documentation'
+site_author: "Monero Community"
 site_url: 'https://docs.getmonero.org'
 site_dir: 'public'
 
-copyright: '© 2021 MoneroDocs under <a href="https://opensource.org/licenses/MIT">MIT</a>'
+copyright: '© 2024 Monero Community under <a href="https://opensource.org/licenses/MIT">MIT</a>'
 
 nav:
 - Home: 'index.md'
@@ -119,6 +119,7 @@ extra_css: ['overrides.css']
 
 repo_name: 'monero-project/monero-docs'
 repo_url: 'https://github.com/monero-project/monero-docs'
+# todo: change to master branch
 edit_uri: blob/test/docs/
 
 markdown_extensions:
