@@ -77,8 +77,8 @@ C4 is meant to provide a reusable optimal collaboration model for open source so
 - Thus, the release history of the project SHALL be a list of meaningful issues logged and solved.
 - To work on an issue, a Contributor SHALL fork the project repository and then work on their forked repository.
 - To submit a patch, a Contributor SHALL create a Platform pull request back to the project.
-- A Contributor SHALL NOT commit changes directly to the project.
-- If the Platform implements pull requests as issues, a Contributor MAY directly send a pull request without logging a separate issue.
+- A Contributor SHALL NOT commit changes directly to the repository.
+- A Contributor MAY directly send a pull request without logging a separate issue.
 - To discuss a patch, people MAY comment on the Platform pull request, on the commit, or elsewhere.
 - To accept or reject a patch, a Maintainer SHALL use the Platform interface.
 - Maintainers SHOULD NOT merge their own patches except in exceptional cases, such as non-responsiveness from other Maintainers for an extended period (more than 1-2 days).
@@ -114,22 +114,22 @@ C4 is meant to provide a reusable optimal collaboration model for open source so
 
 - The project founders SHALL act as Administrators to manage the set of project Maintainers.
 - The Administrators SHALL ensure their own succession over time by promoting the most effective Maintainers.
-- A new Contributor who makes a correct patch SHALL be invited to become a Maintainer.
-- Administrators MAY remove Maintainers who are inactive for an extended period of time, or who repeatedly fail to apply this process accurately.
+- A new Contributor who makes a correct patch MAY be invited to become a Maintainer.
+- Administrators SHOULD remove Maintainers who are inactive for an extended period of time, or who repeatedly fail to apply this process accurately.
 - Administrators SHOULD block or ban "bad actors" who cause stress and pain to others in the project. This should be done after public discussion, with a chance for all parties to speak. A bad actor is someone who repeatedly ignores the rules and culture of the project, who is needlessly argumentative or hostile, or who is offensive, and who is unable to self-correct their behavior when asked to do so by others.
 
 # Addendum to [Code of Conduct (22/C4.1)](http://rfc.zeromq.org/spec:22)
 
 ## License
 
-Copyright (c) 2017 The Monero Project
+Copyright (c) 2017-2024 The Monero Project
 
 ## Language
 
-The "Monero Site Maintainer Team" is defined in this document as the following users:
-- fluffypony
-- anonimal
+The "Monero Docs Maintainer Team" is defined in this document as the following users:
+- luigi1111
+- nahuhh
 
 ### Development Process
 
-- Maintainers MUST NOT merge pull requests in less than 168 hours (1 week) unless deemed urgent by the Monero Site Maintainer Team
+- Maintainers SHOULD NOT merge pull requests in less than 48 hours (2 days) unless deemed urgent by the Monero Docs Maintainer Team
