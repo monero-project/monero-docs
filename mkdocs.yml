@@ -53,8 +53,6 @@ nav:
   - Open Node + Tor Onion: 'running-node/open-node-tor-onion.md'
 - Cold storage:
     - Offline Transaction Signing: 'cold-storage/offline-transaction-signing.md'
-- Accepting Monero:
-    - Overview: 'accepting-monero/overview.md'
 
 
 theme:
