@@ -59,7 +59,7 @@ nav:
 
 theme:
   name: material
-  #custom_dir: mkdocs-material/material/overrides
+  custom_dir: overrides
   features:
     - announce.dismiss
     - content.action.edit
