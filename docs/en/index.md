@@ -1,16 +1,8 @@
 ---
-title: Monero Documentation
+title: Monero Docs
 ---
-# Unofficial Monero Documentation
+# Monero Documentation
 
-## Work in Progress
+Monero Docs intends to be a Knowledge Base and User Guide for interacting with Monero.
 
-Monerodocs attempts to organize basic technical knowledge on Monero in one place.
-
-While technical explanations are out there, knowledge is scattered through reddit posts, git comments, stack exchange answers, chat logs and the source code. This makes it hard to find complete and up-to-date explanations on advanced topics.
-
-The goal is to educate and onboard power users faster.
-
-Please submit your feedback and corrections directly on [github](https://github.com/monerodocs/md/issues).
-
-Find my contact details at [qertoip.com](https://qertoip.com/).
+Contributions can be made via issues and pull requests to the [GitHub](https://github.com/monero-project/monero-docs) repository, or by joining the #monero-docs workgroup on [Matrix](https://matrix.to/#/%23monero-docs:monero.social) and [IRC (libera.chat)](https://libera.chat).
