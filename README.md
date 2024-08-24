@@ -4,7 +4,7 @@ This repository contains the source files to Monero Community documentation host
 
 - [About](#about)
 - [Contributing](#contributing)
-- [Build](#build)
+- [Local Deployment](#run-the-documentation-server-locally)
 - [License](#license)
 
 ## About
