@@ -95,15 +95,15 @@ theme:
         name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: indigo
+      primary: white
+      accent: deep-orange
       toggle:
         icon: material/toggle-switch
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: black
-      accent: indigo
+      accent: deep-orange
       toggle:
         icon: material/toggle-switch-off
         name: Switch to system preference
@@ -114,6 +114,8 @@ theme:
   icon:
     logo: logo
   logo: 'images/monero.svg'
+  static_templates:
+    - 404.html
 
 extra_css: ['overrides.css']
 
@@ -193,6 +195,3 @@ plugins:
         - locale: nb
           name: Norsk Bokmål
           build: true
-
-static_templates:
-  - 404.html
