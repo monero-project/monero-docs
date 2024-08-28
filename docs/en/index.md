@@ -1,7 +1,7 @@
 ---
 title: Monero Docs
 ---
-# Monero Documentation
+# Webhooks
 
 Monero Docs intends to be a Knowledge Base and User Guide for interacting with Monero.
 
