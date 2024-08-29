@@ -10,51 +10,60 @@ copyright: '© 2024 Monero Community under <a href="https://opensource.org/licen
 nav:
 - Home: 'index.md'
 - Interacting:
-  - Download: 'interacting/download-monero-binaries.md'
-  - Verify: 'interacting/verify-monero-binaries.md'
-  - Overview: 'interacting/overview.md'
-  - Config file: 'interacting/monero-config-file.md'
-  - monerod: 'interacting/monerod-reference.md'
-  - monero-wallet-cli: 'interacting/monero-wallet-cli-reference.md'
-  - monero-wallet-gui: 'interacting/monero-wallet-gui-reference.md'
-  - monero-wallet-rpc: 'interacting/monero-wallet-rpc-reference.md'
-  - monero-blockchain-export: 'interacting/monero-blockchain-export-reference.md'
-  - monero-blockchain-import: 'interacting/monero-blockchain-import-reference.md'
-- Technical specs: 'technical-specs.md'
-- Cryptography:
+  - The Basics:
+    - Overview: 'interacting/overview.md'
+    - Tokenomics: 'technical-specs.md'
+    - Networks: 'infrastructure/networks.md'
+  - Download & Verify:
+    - Download: 'interacting/download-monero-binaries.md'
+    - Verify: 'interacting/verify-monero-binaries.md'
+  - Monerod:
+    - Flags: 'interacting/monerod-reference.md'
+    - Setup Guide:
+#      - I2P: 'running-node/open-node-tor-onion.md' TODO
+      - Tor: 'running-node/open-node-tor-onion.md'
+#      - Tor onion seed nodes: 'infrastructure/tor-onion-p2p-seed-nodes.md'
+    - Sample Configs:
+      - VPS: 'interacting/monero-config-file.md'
+#      - Home: 'interacting/moneord-tori2p.md' # TODO
+  - Wallets:
+    - monero-wallet-gui: 'interacting/monero-wallet-gui-reference.md'
+    - monero-wallet-cli: 'interacting/monero-wallet-cli-reference.md'
+    - monero-wallet-rpc: 'interacting/monero-wallet-rpc-reference.md'
+    - Advanced Transactions:
+      - Multisignature: 'multisignature.md'
+      - Offline Transaction Signing: 'cold-storage/offline-transaction-signing.md'
+  - Blockchain Tools:
+    - monero-blockchain-export: 'interacting/monero-blockchain-export-reference.md'
+    - monero-blockchain-import: 'interacting/monero-blockchain-import-reference.md'
+  - External:
+    - MoneroPulse: 'infrastructure/monero-pulse.md'
+#- RPC Library:
+#  - Node RPC: 'rpc-library/monerod-rpc.md'
+#  - Wallet RPC: 'rpc-library/wallet-rpc.md'
+- R&D:
+  - Cryptography:
     - Introduction: 'cryptography/introduction.md'
-    - Asymmetric:
+    - Asymmetric: # Needs clarity
       - Introduction: 'cryptography/asymmetric/introduction.md'
       - Private keys: 'cryptography/asymmetric/private-key.md'
       - Public keys: 'cryptography/asymmetric/public-key.md'
       - Edwards25519 curve: 'cryptography/asymmetric/edwards25519.md'
       - Key image: 'cryptography/asymmetric/key-image.md'
     - Base58: 'cryptography/base58.md'
+    - Keccak-256: 'cryptography/keccak-256.md'
     - PRNG: 'cryptography/prng.md'
-    - 'Keccak-256': 'cryptography/keccak-256.md'
-- Address:
+  - Address Types:
     - Standard: 'public-address/standard-address.md'
     - Subaddress: 'public-address/subaddress.md'
     - Integrated: 'public-address/integrated-address.md'
-- Proof of Work:
+  - Proof of Work: # This section needs improvement
     - What is PoW?: 'proof-of-work/what-is-pow.md'
     - PoW in Cryptocurrencies: 'proof-of-work/pow-in-cryptocurrencies.md'
     - CryptoNight: 'proof-of-work/cryptonight.md'
     - RandomX: 'proof-of-work/random-x.md'
-- Multisignature: 'multisignature.md'
-- Infrastructure:
-    - Mainnet, stagenet, testnet: 'infrastructure/networks.md'
-    - Tor onion seed nodes: 'infrastructure/tor-onion-p2p-seed-nodes.md'
-    - MoneroPulse: 'infrastructure/monero-pulse.md'
-- Running a Node:
-  # - On your Laptop: 'localhost-node.md'
-  # - Remote Node: 'remote-node.md'
-  # - Open Remote Node: 'open-remote-node.md'
-  - Open Node + Tor Onion: 'running-node/open-node-tor-onion.md'
-- Cold storage:
-    - Offline Transaction Signing: 'cold-storage/offline-transaction-signing.md'
-- Accepting Monero:
-    - Overview: 'accepting-monero/overview.md'
+#- Accepting Monero:
+#    - Overview: 'accepting-monero/overview.md'
 
 
 theme:
