@@ -38,9 +38,9 @@ nav:
     - monero-blockchain-import: 'interacting/monero-blockchain-import-reference.md'
   - External:
     - MoneroPulse: 'infrastructure/monero-pulse.md'
-#- RPC Library:
-#  - Node RPC: 'rpc-library/monerod-rpc.md'
-#  - Wallet RPC: 'rpc-library/wallet-rpc.md'
+- RPC Library:
+  - Node RPC: 'rpc-library/monerod-rpc.md'
+  - Wallet RPC: 'rpc-library/wallet-rpc.md'
 - R&D:
   - Cryptography:
     - Introduction: 'cryptography/introduction.md'
