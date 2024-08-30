@@ -15,6 +15,13 @@ COPY --from=builder /monero-docs/public /usr/share/nginx/html
 # Inline Nginx configuration
 RUN echo 'server { \
     listen 80; \
+    add_header Onion-Location http://xmrdoc6phnvjbf5hmjbwdfu47zavzfngymlnwhs2gyxxpxmad4c65kyd.onion$request_uri; \
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"; \
+    add_header Referrer-Policy "no-referrer"; \
+    add_header X-XSS-Protection "0"; \
+    add_header X-Frame-Options "DENY"; \
+    add_header X-Content-Type-Options "nosniff"; \
+    add_header Permissions-Policy "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), clipboard-read=(), clipboard-write=(), display-capture=(), document-domain=(), encrypted-media=(), fullscreen=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), interest-cohort=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), sync-xhr=(), usb=(), xr-spatial-tracking=()"; \
     root /usr/share/nginx/html; \
     index index.html index.htm; \
     error_page 404 /404.html; \
