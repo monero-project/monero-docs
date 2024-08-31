@@ -26,3 +26,8 @@ article .md-typeset__table {
     --md-typeset-a-color:  #FF6600;
     --md-code-bg-color: #191919;
 }
+
+[role=tooltip]>.md-tooltip2__inner {
+    font-size: 0.9rem;
+}
+
