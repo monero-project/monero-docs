@@ -129,10 +129,14 @@ markdown_extensions:
   - admonition
   - abbr
   - def_list
+  - attr_list
   - footnotes
   - meta
   - toc:
       permalink: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.details
   - pymdownx.highlight:
       use_pygments: true         # build time highlighting, not client side
