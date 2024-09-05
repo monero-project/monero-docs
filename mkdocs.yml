@@ -117,7 +117,29 @@ theme:
   static_templates:
     - 404.html
 
-extra_css: ['overrides.css']
+extra_css:
+  - overrides.css
+
+extra:
+  social:
+    - icon: material/web
+      link: https://docs.getmonero.org
+      name: Clearnet Website
+    - icon: simple/torbrowser
+      link: http://xmrdoc6phnvjbf5hmjbwdfu47zavzfngymlnwhs2gyxxpxmad4c65kyd.onion
+      name: Tor Onion
+    - icon: custom/i2p
+      link: http://xmrdoc6k4licya7zsnba5s7vugzo72blcpukkvqno75o4ruhaqla.b32.i2p
+      name: I2P Eepsite
+    - icon: fontawesome/brands/github
+      link: https://github.com/monero-project/monero-docs
+      name: GitHub Repository
+    - icon: simple/matrix
+      link: https://matrix.to/#/%23monero-docs:monero.social
+      name: Matrix
+    - icon: simple/liberadotchat
+      link: https://web.libera.chat/#monero-docs
+      name: IRC via Libera.chat
 
 repo_name: 'monero-project/monero-docs'
 repo_url: 'https://github.com/monero-project/monero-docs'
