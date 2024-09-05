@@ -92,19 +92,19 @@ MoneroPulse is operated by selected core developers.
 
 ## Fixing "WARNING: no two valid MoneroPulse DNS checkpoint records were received"
 
-This means DNS server you are using does not ackonwledge the +dnssec flag necessary for securely query for checkpoints.
+This means that the DNS server you're using doesn't acknowledge the `+dnssec` flag which is necessary to securely query for checkpoints.
 
 By default, your operating system will use DNS server provided by your Internet Service Provider.
 
-To fix this warning, change your DNS server either system-wide in your network configuration, or specifically for `monerod`.
+To fix this warning, change your DNS server to one that supports DNSSEC.
 
-Many people find Google's or Cloudflare's DNS servers superior to those offered by their ISPs.
+Changes can be made either system-wide in your network configuration, or specifically for your `monerod` instance.
 
-Using Google DNS:
+Example Using Google DNS for monerod:
 
     DNS_PUBLIC=tcp://8.8.8.8 ./monerod
 
-Using Cloudflare DNS:
+Example Using Cloudflare DNS for monerod:
 
     DNS_PUBLIC=tcp://1.1.1.1 ./monerod
 
@@ -113,4 +113,4 @@ Using Cloudflare DNS:
 
 * [StackExchange answer](https://monero.stackexchange.com/questions/679/what-is-moneropulse?noredirect=1&lq=1)
 * [Reddit answer](https://www.reddit.com/r/Monero/comments/419qdd/p2p4warning_no_two_valid_moneropulse_dns/)
-* [Monero source code](https://github.com/monero-project/monero/blob/ff7dc087ae5f7de162131cea9dbcf8eac7c126a1/src/checkpoints/checkpoints.cpp)
+* [Monero source code](https://github.com/monero-project/monero/blob/master/src/checkpoints/checkpoints.cpp)
