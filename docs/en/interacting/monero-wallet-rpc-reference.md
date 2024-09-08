@@ -393,8 +393,8 @@ Inputs:
 Outputs:
 
 -   _good_  - boolean; States if the inputs proves the reserve.
--   _spent_  - unsigned int; Amount (in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.'")) of the total that has been spent.
--   _total_  - unsigned int; Total amount (in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.'")) of the reserve that was proven.
+-   _spent_  - unsigned int; Amount (in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")) of the total that has been spent.
+-   _total_  - unsigned int; Total amount (in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")) of the reserve that was proven.
 
 In the example below, the reserve has been proven:
 
@@ -749,14 +749,14 @@ Inputs:
 Outputs:
 
 -   _desc_  - The description of the transfer as a list of:
-    -   _amount_in_  - unsigned int (64 bit); The sum of the inputs spent by the transaction in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.'").
-    -   _amount_out_  - unsigned int (64 bit); The sum of the outputs created by the transaction in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.'").
+    -   _amount_in_  - unsigned int (64 bit); The sum of the inputs spent by the transaction in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+    -   _amount_out_  - unsigned int (64 bit); The sum of the outputs created by the transaction in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
     -   _recipients_  - list of:
         -   _address_  - string; The public address of the recipient. 
-        -   _amount_  - unsigned int; The amount sent to the recipient in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.'").
+        -   _amount_  - unsigned int; The amount sent to the recipient in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
     -   _change_address_  - string; The address of the change recipient.
-    -   _change_amount_  - unsigned int; The amount sent to the change address in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.'").
-    -   _fee_  - unsigned int; The fee charged for the transaction in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.'").
+    -   _change_amount_  - unsigned int; The amount sent to the change address in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+    -   _fee_  - unsigned int; The fee charged for the transaction in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
     -   _payment_id_  - string; payment ID for this transfer.
     -   _ring_size_  - unsigned int; The number of inputs in the ring (1 real output + the number of decoys from the blockchain) (Unless dealing with pre rct outputs, this field is ignored on mainnet).
     -   _unlock_time_  - unsigned int; The number of blocks before the monero can be spent (0 for no lock).
@@ -1574,7 +1574,7 @@ Inputs:
 
 -   _all_  - boolean; Proves all wallet balance to be disposable.
 -   _account_index_  - unsigned int; Specify the account from which to prove reserve. (ignored if `all` is set to true)
--   _amount_  - unsigned int; Amount (in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.'")) to prove the account has in reserve. (ignored if `all` is set to true)
+-   _amount_  - unsigned int; Amount (in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")) to prove the account has in reserve. (ignored if `all` is set to true)
 -   _message_  - string; (Optional) add a message to the signature to further authenticate the proving process. If a _message_ is added to `get_reserve_proof` (optional), this message will be required when using `check_reserve_proof`
 
 Outputs:
@@ -2032,8 +2032,8 @@ Inputs:
 Outputs:
 
 -   _height_  - unsigned int;
--   _spent_  - unsigned int; Amount (in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.'")) spent from those key images.
--   _unspent_  - unsigned int; Amount (in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.'")) still available from those key images.
+-   _spent_  - unsigned int; Amount (in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")) spent from those key images.
+-   _unspent_  - unsigned int; Amount (in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")) still available from those key images.
 
 Example:
 
@@ -2459,7 +2459,7 @@ Alias:  _None_.
 Inputs:
 
 -   _address_  - string; Wallet address
--   _amount_  - unsigned int; (optional) the integer amount to receive, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.'").
+-   _amount_  - unsigned int; (optional) the integer amount to receive, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
 -   _payment_id_  - string; (Optional, defaults to a random ID) 16 characters hex encoded.
 -   _recipient_name_  - string; (optional) name of the payment recipient
 -   _tx_description_  - string; (optional) Description of the reason for the tx
@@ -2520,7 +2520,7 @@ Outputs:
 
 -   _uri_  - JSON object containing payment information:
     -   _address_  - string; Wallet address
-    -   _amount_  - unsigned int; Integer amount to receive, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.'") (0 if not provided)
+    -   _amount_  - unsigned int; Integer amount to receive, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.") (0 if not provided)
     -   _payment_id_  - string; (Optional, defaults to a random ID) 16 characters hex encoded.
     -   _recipient_name_  - string; Name of the payment recipient (empty if not provided)
     -   _tx_description_  - string; Description of the reason for the tx (empty if not provided)
@@ -3427,7 +3427,7 @@ Alias:  _None_.
 Inputs:
 
 -   _destinations_  - array of destinations to receive XMR:
-    -   _amount_  - unsigned int; Amount to send to each destination, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.'").
+    -   _amount_  - unsigned int; Amount to send to each destination, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
     -   _address_  - string; Destination public address.
 -   _account_index_  - unsigned int; (Optional) Transfer from this account index. (Defaults to 0)
 -   _subaddr_indices_  - array of unsigned int; (Optional) Transfer from this set of subaddresses. (Defaults to empty - all indices)
@@ -3482,7 +3482,7 @@ Alias:  _None_.
 Inputs:
 
 -   _destinations_  - array of destinations to receive XMR:
-    -   _amount_  - unsigned int; Amount to send to each destination, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.'").
+    -   _amount_  - unsigned int; Amount to send to each destination, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
     -   _address_  - string; Destination public address.
 -   _account_index_  - unsigned int; (Optional) Transfer from this account index. (Defaults to 0)
 -   _subaddr_indices_  - array of unsigned int; (Optional) Transfer from this set of subaddresses. (Defaults to empty - all indices)
