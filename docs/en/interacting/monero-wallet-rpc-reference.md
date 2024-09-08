@@ -209,6 +209,7 @@ The **atomic unit** used by the API is the smallest fraction of 1 XMR according 
 ## Index of JSON-RPC Methods
 
 - [**add_address_book**](#add_address_book)
+- [**auto_refresh**](#auto_refresh)
 - [**change_wallet_password**](#change_wallet_password)
 - [**check_reserve_proof**](#check_reserve_proof)
 - [**check_spend_proof**](#check_spend_proof)
@@ -219,16 +220,24 @@ The **atomic unit** used by the API is the smallest fraction of 1 XMR according 
 - [**create_address**](#create_address)
 - [**create_wallet**](#create_wallet)
 - [**delete_address_book**](#delete_address_book)
+- [**describe_transfer**](#describe_transfer)
+- [**edit_address_book**](#edit_address_book)
+- [**estimate_tx_size_and_weight**](#estimate_tx_size_and_weight)
+- [**exchange_multisig_keys**](#exchange_multisig_keys)
 - [**export_key_images**](#export_key_images)
 - [**export_multisig_info**](#export_multisig_info)
 - [**export_outputs**](#export_outputs)
 - [**finalize_multisig**](#finalize_multisig)
+- [**freeze**](#freeze)
+- [**frozen**](#frozen)
+- [**generate_from_keys**](#generate_from_keys)
 - [**get_account_tags**](#get_account_tags)
 - [**get_accounts**](#get_accounts)
 - [**get_address**](#get_address)
 - [**get_address_book**](#get_address_book)
 - [**get_address_index**](#get_address_index)
 - [**get_attribute**](#get_attribute)
+- [**get_balance**](#get_balance)
 - [**get_bulk_payments**](#get_bulk_payments)
 - [**get_height**](#get_height)
 - [**get_languages**](#get_languages)
@@ -259,8 +268,11 @@ The **atomic unit** used by the API is the smallest fraction of 1 XMR according 
 - [**relay_tx**](#relay_tx)
 - [**rescan_blockchain**](#rescan_blockchain)
 - [**rescan_spent**](#rescan_spent)
+- [**restore_deterministic_wallet**](#restore_deterministic_wallet)
+- [**scan_tx**](#scan_tx)
 - [**set_account_tag_description**](#set_account_tag_description)
 - [**set_attribute**](#set_attribute)
+- [**set_daemon**](#set_daemon)
 - [**set_tx_notes**](#set_tx_notes)
 - [**sign**](#sign)
 - [**sign_multisig**](#sign_multisig)
@@ -276,6 +288,7 @@ The **atomic unit** used by the API is the smallest fraction of 1 XMR according 
 - [**sweep_dust**](#sweep_dust)
 - [**sweep_single**](#sweep_single)
 - [**tag_accounts**](#tag_accounts)
+- [**thaw**](#thaw)
 - [**transfer**](#transfer)
 - [**transfer_split**](#transfer_split)
 - [**untag_accounts**](#untag_accounts)
@@ -292,7 +305,7 @@ Alias:  _None_.
 Inputs:
 
 -   _address_  - string;
--   _payment_id_  - (optional) string, defaults to "0000000000000000000000000000000000000000000000000000000000000000";
+-   _payment_id_  - string; (Optional, defaults to a random ID) 16 characters hex encoded.
 -   _description_  - (optional) string, defaults to "";
 
 Outputs:
@@ -310,6 +323,31 @@ $ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
     "index": 1
   }
 }
+
+```
+
+### **auto_refresh**
+
+Set whether and how often to automatically refresh the current wallet.
+
+Inputs:
+
+-   _enable_  - boolean; (Optional) Enable or disable automatic refreshing (default = true).
+-   _period_  - unsigned integer; (Optional) The period of the wallet refresh cycle (i.e. time between refreshes) in seconds.
+
+Outputs:  _none_.
+
+Example:
+
+```Bash
+$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"auto_refresh","params":{"enable":true, "period":10}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+  }
+}
+
 ```
 
 
@@ -349,12 +387,14 @@ Alias:  _None_.
 Inputs:
 
 -   _address_  - string; Public address of the wallet.
--   _message_  - string; (Optional) Should be the same message used in  `get_reserve_proof`.
+-   _message_  - string; If a _message_ was added to `get_reserve_proof` (optional), this message will be required when using `check_reserve_proof`
 -   _signature_  - string; reserve signature to confirm.
 
 Outputs:
 
 -   _good_  - boolean; States if the inputs proves the reserve.
+-   _spent_  - unsigned int; Amount (in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")) of the total that has been spent.
+-   _total_  - unsigned int; Total amount (in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")) of the reserve that was proven.
 
 In the example below, the reserve has been proven:
 
@@ -412,7 +452,7 @@ Alias:  _None_.
 Inputs:
 
 -   _txid_  - string; transaction id.
--   _message_  - string; (Optional) Should be the same message used in  `get_spend_proof`.
+-   _message_  - string; (Optional) Should be the same message used in `get_spend_proof`.
 -   _signature_  - string; spend signature to confirm.
 
 Outputs:
@@ -603,22 +643,28 @@ Inputs:
 
 -   _account_index_  - unsigned int; Create a new address for this account.
 -   _label_  - string; (Optional) Label for the new address.
+-   _count_  - unsigned int; (Optional) Number of addresses to create (Defaults to 1).
 
 Outputs:
 
 -   _address_  - string; Newly created address. Base58 representation of the public keys.
 -   _address_index_  - unsigned int; Index of the new address under the input account.
+-   _address_indices_  - array of unsigned int; List of address indices.
+-   _addresses_  - array of string; list of addresses.
 
 Example:
 
 ``` Bash
-$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"create_address","params":{"account_index":0,"label":"new-sub"}}' -H 'Content-Type: application/json'
+$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"create_address","params":{"account_index":0,"label":"new-subs","count":2}}' -H 'Content-Type: application/json'
 {
   "id": "0",
   "jsonrpc": "2.0",
   "result": {
     "address": "7BG5jr9QS5sGMdpbBrZEwVLZjSKJGJBsXdZLt8wiXyhhLjy7x2LZxsrAnHTgD8oG46ZtLjUGic2pWc96GFkGNPQQDA3Dt7Q",
-    "address_index": 5
+    "address_index": 5,
+    "address_indices": [5,6],
+    "addresses": ["7BG5jr9QS5sGMdpbBrZEwVLZjSKJGJBsXdZLt8wiXyhhLjy7x2LZxsrAnHTgD8oG46ZtLjUGic2pWc96GFkGNPQQDA3Dt7Q","72sRxcVHmxV9RSpEJoSyukj4z2zjk3AhmRJabPSonGHZepYfyFDiKKtPvreg7kYiFHMHFG9Wi4Hqg9uKzP44aieQJVccLnc"]
+
   }
 }
 
@@ -627,7 +673,7 @@ $ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 ### **create_wallet**
 
-Create a new wallet. You need to have set the argument "–wallet-dir" when launching monero-wallet-rpc to make this work.
+Create a new wallet. You need to have set the argument "--wallet-dir" when launching monero-wallet-rpc to make this work.
 
 Alias:  _None_.
 
@@ -678,6 +724,168 @@ $ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 ```
 
+### **describe_transfer**
+
+Returns details for each transaction in an unsigned or multisig transaction set. Transaction sets are obtained as return values from one of the following RPC methods:    
+
+-   transfer    
+-   transfer_split    
+-   sweep_all    
+-   sweep_single    
+-   sweep_dust    
+
+These methods return unsigned transaction sets if the wallet is view-only (i.e. the wallet was created without the private spend key).
+
+!!! warning
+
+    Verify that the transfer has a sane `unlock_time` otherwise the funds might be inaccessible.
+    Note: Since [v18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
+
+Inputs:
+
+-   _unsigned_txset_  - string; (Optional) A hexadecimal string representing a set of unsigned transactions (empty for multisig transactions; non-multisig signed transactions are not supported).
+-   _multisig_txset_  - string; (Optional) A hexadecimal string representing the set of signing keys used in a multisig transaction (empty for unsigned transactions; non-multisig signed transactions are not supported).
+
+Outputs:
+
+-   _desc_  - The description of the transfer as a list of:
+    -   _amount_in_  - unsigned int (64 bit); The sum of the inputs spent by the transaction in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+    -   _amount_out_  - unsigned int (64 bit); The sum of the outputs created by the transaction in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+    -   _recipients_  - list of:
+        -   _address_  - string; The public address of the recipient. 
+        -   _amount_  - unsigned int; The amount sent to the recipient in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+    -   _change_address_  - string; The address of the change recipient.
+    -   _change_amount_  - unsigned int; The amount sent to the change address in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+    -   _fee_  - unsigned int; The fee charged for the transaction in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+    -   _payment_id_  - string; payment ID for this transfer.
+    -   _ring_size_  - unsigned int; The number of inputs in the ring (1 real output + the number of decoys from the blockchain) (Unless dealing with pre rct outputs, this field is ignored on mainnet).
+    -   _unlock_time_  - unsigned int; The number of blocks before the monero can be spent (0 for no lock).
+    -   _dummy_outputs_  - unsigned int; The number of fake outputs added to single-output transactions.  Fake outputs have 0 amount and are sent to a random address.
+    -   _extra_  - string; Arbitrary transaction data in hexadecimal format.
+  
+Example:
+
+```Bash
+$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"describe_transfer","params":{"unsigned_txset":"...long hex..."}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "desc": [{
+      "amount_in": 886489038634812,
+      "amount_out": 886455352051344,
+      "change_address": "5BqWeZrK944YesCy5VdmBneWeaSZutEijFVAKjpVHeVd4unsCSM55CjgViQsK9WFNHK1eZgcCuZ3fRqYpzKDokqSUmQfJzvswQs13AAidJ",
+      "change_amount": 4976287087263,
+      "dummy_outputs": 0,
+      "extra": 01b998f16459bcbac9c92074d3128d10724f10b74f5a7b1ec8e5a1e7f1150544020209010000000000000000",
+      "fee": 33686583468, 
+      "payment_id": "0000000000000000",
+      "recipients": [{
+        "address": "0b057f69acc1552014cb157138e5c4dd495347d333f68ff0af70494b979aed10",
+        "amount": 881479064964081
+      }],       
+      "ring_size": 11,
+      "unlock_time": 0
+    ]}
+  }
+}
+
+```
+
+### **edit_address_book**
+
+Edit an existing address book entry.
+
+Alias:  _None_
+
+Inputs:
+
+-   _index_  - unsigned_int; Index of the address book entry to edit.
+-   _set_address_  - boolean; If true, set the address for this entry to the value of "address".
+-   _address_  - string; (Optional) The 95-character public address to set.
+-   _set_description_  - boolean; If true, set the description for this entry to the value of "description".
+-   _description_  - string; (Optional) Human-readable description for this entry.
+-   _set_payment_id_  - boolean; If true, set the payment ID for this entry to the value of "payment_id".
+-   _payment_id_  - string; (Optional, defaults to a random ID) 16 characters hex encoded.
+
+Outputs:  _none_.
+
+Example:
+
+```Bash
+$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"edit_address_book","params":{"index":0, "set_address":true, "address":"0b057f69acc1552014cb157138e5c4dd495347d333f68ff0af70494b979aed10", "set_payment_id":true, "payment_id":"60900e5603bf96e3", "set_description":true, "description":"Example description."}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+  }
+}
+
+```
+
+### **estimate_tx_size_and_weight**
+
+Alias:  _None_.
+
+Inputs:
+
+-   _n_inputs_  - unsigned int;
+-   _n_outputs_  - unsigned int;
+-   _ring_size_  - unsigned int; Sets ringsize to n (mixin + 1). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
+-   _rct_  - bool; Is this a Ring Confidential Transaction (post blockheight 1220516)
+
+Outputs:
+
+-   _size_  - int;
+-   _weight_  - int;
+
+Example:
+
+```Bash
+$ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"estimate_tx_size_and_weight","params":{"n_inputs":1,"n_outputs":2,"ring_size":16,"rct":true}}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "size": 1630,
+    "weight": 1630
+  }
+}
+
+```
+
+### **exchange_multisig_keys**
+
+Performs extra multisig keys exchange rounds. Needed for arbitrary M/N multisig wallets
+
+Alias:  _None_.
+
+Inputs:
+
+-   _password_  - string;
+-   _multisig_info_  - string;
+-   _force_update_use_with_caution_  - bool; (Optional; Default false) only require the minimum number of signers to complete this round (including local signer) ( minimum = num_signers - (round num - 1).
+
+Outputs:
+
+-   _address_  - string;
+-   _multisig_info_  - string;
+
+Example:
+
+```Bash
+$ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"exchange_multisig_keys","params":{"password":"","multisig_info":"MultisigxV2R1hSyd7Zdx5A92zWF7E9487XQg8zZRDYM6c9aNfEShmCKoUx9ftccXZvH9cRcadd5veh6mwk9sXuGzWZRo57MdvSkJi3ABLt8wZPv8FTkBqVDVcgUdXm4tS81HdJ5WQXboQJJQQd5JKoySKJ4S9xHGojL2i3VUvbWAyduaWGjMK4hrLQA1"}}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "address": "55TZyExQSnbiTrJCrgZZucFAmvfyaKK9vMca7tNmzP3NLdykxBrYvdsWPQbM7aw52HQ4VsvBxJDKuKGuuaTZw8DqFdhsJrL",
+    "multisig_info": "MultisigxV2Rn1LVZfU8ySEo1APrEQz2G5jYLLyEabZ8a2KK7C4uak9KT7wCdTjztLy8A9XUiregzXU5STWvNJwuDURA7zuw7wLQxcYaJctpXt1pCUmPQnciHoNd8NcxvYKUCbeAnER2UGcrQFYwrX9ftXLb5mSrfRQ6ieL1PUSfvcw5kV8LCTQvpc5FqMaX5LHU196NDTwEmD9UkYnjgsmgFpGR5ZPpMUr6ky56vHyH"
+  }
+}
+
+```
+
 
 ### **export_key_images**
 
@@ -685,10 +893,13 @@ Export a signed set of key images.
 
 Alias:  _None_.
 
-Inputs:  _None_.
+Inputs:
+
+-   _all_  - boolean (optional); If true, export all key images. Otherwise, export key images since the last export. (default = false)
 
 Outputs:
 
+-   _offset_  - unsigned int
 -   _signed_key_images_  - array of signed key images:
     -   _key_image_  - string;
     -   _signature_  - string;
@@ -743,11 +954,13 @@ $ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 ### **export_outputs**
 
-Export all outputs in hex format.
+Export outputs in hex format.
 
 Alias:  _None_.
 
-Inputs:  _None_.
+Inputs:
+
+-   _all_  - boolean (optional); If true, export all outputs. Otherwise, export outputs since the last export. (default = false)
 
 Outputs:
 
@@ -797,6 +1010,91 @@ $ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 ```
 
+### **freeze**
+
+Freeze a single output by key image so it will not be used
+
+Alias:  _None_.
+
+Inputs:
+
+-   _key_image_  - string;
+
+Outputs: _None_.
+
+Example:
+
+```Bash
+$ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"freeze","params":{"key_image":"d0071ab34ab7f567f9b54303ed684de6cd5ed969a6b6c4bf352d25242f0b3da9"}}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+  }
+}
+
+```
+
+### **frozen**
+
+Checks whether a given output is currently frozen by key image
+
+Alias:  _None_.
+
+Inputs:
+
+-   _key_image_  - string;
+
+Outputs:
+
+-   _frozen_  - bool;
+
+Example:
+
+```Bash
+$ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"frozen","params":{"key_image":"d0071ab34ab7f567f9b54303ed684de6cd5ed969a6b6c4bf352d25242f0b3da9"}}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "frozen": true
+  }
+}
+
+```
+
+### **generate_from_keys**
+
+Restores a wallet from a given wallet address, view key, and optional spend key.
+
+Inputs:
+
+-   _restore_height_  - integer; (Optional; defaults to 0) The block height to restore the wallet from.
+-   _filename_  - string; The wallet's file name on the RPC server. 
+-   _address_  - string; The wallet's primary address.
+-   _spendkey_  - string; (Optional; omit to create a view-only wallet) The wallet's private spend key. 
+-   _viewkey_  - string; The wallet's private view key.
+-   _password_  - string; The wallet's password.
+-   _autosave_current_  - boolean; (Defaults to true) If true, save the current wallet before generating the new wallet. 
+
+Outputs:
+
+-   _address_  - string; The wallet's address.
+-   _info_  - string; Verification message indicating that the wallet was generated successfully and whether or not it is a view-only wallet.
+
+Example:
+
+```Bash
+$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"generate_from_keys", "params":{"restore_height":0,"filename":"wallet_name","address":"42gt8cXJSHAL4up8XoZh7fikVuswDU7itAoaCjSQyo6fFoeTQpAcAwrQ1cs8KvFynLFSBdabhmk7HEe3HS7UsAz4LYnVPYM","spendkey":"11d3fd247672c4cb29b6e38791dcf07629cd2d68d868f0b78811ce584a6b0d01","viewkey":"97cf64f2cd6c930242e9bed5f14f8f16a33047229aca3eababf4af7e8d113209","password":"pass","autosave_current":true}},' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  result": {"address":"42gt8cXJSHAL4up8XoZh7fikVuswDU7itAoaCjSQyo6fFoeTQpAcAwrQ1cs8KvFynLFSBdabhmk7HEe3HS7UsAz4LYnVPYM",
+    "info":"Wallet has been generated successfully."   
+  }
+}
+
+```
 
 ### **get_account_tags**
 
@@ -840,7 +1138,8 @@ Alias:  _None_.
 Inputs:
 
 -   _tag_  - string; (Optional) Tag for filtering accounts.
-
+-   _regex_  - boolean; (Optional) allow regular expression filters if set to true (Defaults to false).
+-   _strict_balances_  - boolean; (Optional) when `true`, balance only considers the blockchain, when `false` it considers both the blockchain and some recent actions, such as a recently created transaction which spent some outputs, which isn't yet mined.
 Outputs:
 
 -   _subaddress_accounts_  - array of subaddress account information:
@@ -892,17 +1191,17 @@ Alias:  _getaddress_.
 
 Inputs:
 
--   _account_index_  - unsigned int; Return subaddresses for this account.
--   _address_index_  - array of unsigned int; (Optional) List of subaddresses to return from an account.
+-   _account_index_  - unsigned int; Return the addresses for this account.
+-   _address_index_  - array of unsigned int; (Optional, defaults to all) List of address indices to return for the account. Index 0 of account 0 is the primary address, all others are subaddresses.
 
 Outputs:
 
--   _address_  - string; The 95-character hex address string of the monero-wallet-rpc in session.
--   _addresses_  array of addresses informations
-    -   _address_  string; The 95-character hex (sub)address string.
-    -   _label_  string; Label of the (sub)address
-    -   _address_index_  unsigned int; index of the subaddress
-    -   _used_  boolean; states if the (sub)address has already received funds
+-   _address_  - string; The first address, in base58, of the requested account index. For account index 0, this is the primary address.
+-   _addresses_  - array of address information entries
+    -   _address_  - string; The (sub)address represented in base58.
+    -   _label_  - string; Label of the (sub)address
+    -   _address_index_  - unsigned int; index of the (sub)address.
+    -   _used_  - boolean; states if the (sub)address has already received funds
 
 Example:
 
@@ -965,12 +1264,12 @@ $ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
       "address": "77Vx9cs1VPicFndSVgYUvTdLCJEZw9h81hXLMYsjBCXSJfUehLa9TDW3Ffh45SQa7xb6dUs18mpNxfUhQGqfwXPSMrvKhVp",
       "description": "Second account",
       "index": 0,
-      "payment_id": "0000000000000000000000000000000000000000000000000000000000000000"
+      "payment_id": "0000000000000000"
     },{
       "address": "78P16M3XmFRGcWFCcsgt1WcTntA1jzcq31seQX1Eg92j8VQ99NPivmdKam4J5CKNAD7KuNWcq5xUPgoWczChzdba5WLwQ4j",
       "description": "Third account",
       "index": 1,
-      "payment_id": "0000000000000000000000000000000000000000000000000000000000000000"
+      "payment_id": "0000000000000000"
     }]
   }
 }
@@ -991,8 +1290,8 @@ Inputs:
 Outputs:
 
 -   _index_  - subaddress informations
-    -   _major_  unsigned int; Account index.
-    -   _minor_  unsigned int; Address index.
+    -   _major_  - unsigned int; Account index.
+    -   _minor_  - unsigned int; Address index.
 
 Example:
 
@@ -1035,11 +1334,87 @@ $ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
     "value": "my_value"
   }
 }
+
+```
+
+### **get_balance**
+
+Return the wallet's balance.
+
+Alias:  _getbalance_.
+
+Inputs:
+
+-   _account_index_  - unsigned int; Return balance for this account.
+-   _address_indices_  - array of unsigned int; (Optional) Return balance detail for those subaddresses.
+-   _all_accounts_  - boolean; (Defaults to false)
+-   _strict_  - boolean; (Defaults to false) all changes go to 0-th subaddress (in the current subaddress account)
+
+Outputs:
+
+-   _balance_  - unsigned int; The total balance of the current monero-wallet-rpc in session.
+-   _unlocked_balance_  - unsigned int; Unlocked funds are those funds that are sufficiently deep enough in the Monero blockchain to be considered safe to spend.
+-   _multisig_import_needed_  - boolean; True if importing multisig data is needed for returning a correct balance.
+-   _time_to_unlock_  - unsigned int; Time (in seconds) before balance is safe to spend.
+-   _blocks_to_unlock_  - unsigned int; Number of blocks before balance is safe to spend.
+-   _per_subaddress_  - array of subaddress information; Balance information for each subaddress in an account.
+    -   _account_index_  - unsigned int;
+    -   _address_index_  - unsigned int; Index of the subaddress in the account.
+    -   _address_  - string; Address at this index. Base58 representation of the public keys.
+    -   _balance_  - unsigned int; Balance for the subaddress (locked or unlocked).
+    -   _unlocked_balance_  - unsigned int; Unlocked balance for the subaddress.
+    -   _label_  - string; Label for the subaddress.
+    -   _num_unspent_outputs_  - unsigned int; Number of unspent outputs available for the subaddress.
+    -   _time_to_unlock_  - unsigned int;
+    -   _blocks_to_unlock_  - unsigned int;
+
+Example:
+
+```Bash
+$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_balance","params":{"account_index":0,"address_indices":[0,1]}}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "balance": 157443303037455077,
+    "blocks_to_unlock": 0,
+    "multisig_import_needed": false,
+    "per_subaddress": [{
+      "account_index": 0,
+      "address": "55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt",
+      "address_index": 0,
+      "balance": 157360317826255077,
+      "blocks_to_unlock": 0,
+      "label": "Primary account",
+      "num_unspent_outputs": 5281,
+      "time_to_unlock": 0,
+      "unlocked_balance": 157360317826255077
+    },{
+      "account_index": 0,
+      "address": "7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o",
+      "address_index": 1,
+      "balance": 59985211200000,
+      "blocks_to_unlock": 0,
+      "label": "",
+      "num_unspent_outputs": 1,
+      "time_to_unlock": 0,
+      "unlocked_balance": 59985211200000
+    }],
+    "time_to_unlock": 0,
+    "unlocked_balance": 157443303037455077
+  }
+}
+
 ```
 
 ### **get_bulk_payments**
 
-Get a list of incoming payments using a given payment id, or a list of payments ids, from a given height. This method is the preferred method over  `get_payments`because it has the same functionality but is more extendable. Either is fine for looking up transactions by a single payment ID.
+Get a list of incoming payments using a given payment id, or a list of payments ids, from a given height. This method is the preferred method over `get_payments` because it has the same functionality but is more extendable. Either is fine for looking up transactions by a single payment ID.
+
+!!! warning
+
+    Verify that the transfer has a sane `unlock_time` otherwise the funds might be inaccessible.
+    Note: Since [v18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
 
 Alias:  _None_.
 
@@ -1139,6 +1514,11 @@ $ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 Get a list of incoming payments using a given payment id.
 
+!!! warning
+
+    Verify that the transfer has a sane `unlock_time` otherwise the funds might be inaccessible.
+    Note: Since [v18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
+
 Alias:  _None_.
 
 Inputs:
@@ -1153,6 +1533,7 @@ Outputs:
     -   _amount_  - unsigned int; Amount for this payment.
     -   _block_height_  - unsigned int; Height of the block that first confirmed this payment.
     -   _unlock_time_  - unsigned int; Time (in block height) until this payment is safe to spend.
+    -   _locked_  - boolean; Is the output spendable.
     -   _subaddr_index_  - subaddress index:
         -   _major_  - unsigned int; Account index for the subaddress.
         -   _minor_  - unsigned int; Index of the subaddress in the account.
@@ -1176,7 +1557,8 @@ $ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
         "minor": 0
       },
       "tx_hash": "3292e83ad28fc1cc7bc26dbd38862308f4588680fbf93eae3e803cddd1bd614f",
-      "unlock_time": 0
+      "unlock_time": 0,
+      "locked": false
     }]
   }
 }
@@ -1191,9 +1573,9 @@ Alias:  _None_.
 Inputs:
 
 -   _all_  - boolean; Proves all wallet balance to be disposable.
--   _account_index_  - unsigned int; Specify the account from witch to prove reserve. (ignored if  `all`  is set to true)
--   _amount_  - unsigned int; Amount (in  atomic units) to prove the account has for reserve. (ignored if  `all`  is set to true)
--   _message_  - string; (Optional) add a message to the signature to further authenticate the prooving process.
+-   _account_index_  - unsigned int; Specify the account from which to prove reserve. (ignored if `all` is set to true)
+-   _amount_  - unsigned int; Amount (in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")) to prove the account has in reserve. (ignored if `all` is set to true)
+-   _message_  - string; (Optional) add a message to the signature to further authenticate the proving process. If a _message_ is added to `get_reserve_proof` (optional), this message will be required when using `check_reserve_proof`
 
 Outputs:
 
@@ -1244,6 +1626,11 @@ $ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 Show information about a transfer to/from this address.
 
+!!! warning
+
+    Verify that the transfer has a sane `unlock_time` otherwise the funds might be inaccessible.
+    Note: Since [v18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
+
 Alias:  _None_.
 
 Inputs:
@@ -1256,25 +1643,91 @@ Outputs:
 -   _transfer_  - JSON object containing payment information:
     -   _address_  - string; Address that transferred the funds. Base58 representation of the public keys.
     -   _amount_  - unsigned int; Amount of this transfer.
+    -   _amounts_  - list; Individual amounts if multiple where received.
     -   _confirmations_  - unsigned int; Number of block mined since the block containing this transaction (or block height at which the transaction should be added to a block if not yet confirmed).
-    -   _destinations_  - array of JSON objects containing transfer destinations:
+    -   _destinations_  - array of JSON objects containing transfer destinations: (only for outgoing transactions)
         -   _amount_  - unsigned int; Amount transferred to this destination.
         -   _address_  - string; Address for this destination. Base58 representation of the public keys.
     -   _double_spend_seen_  - boolean; True if the key image(s) for the transfer have been seen before.
     -   _fee_  - unsigned int; Transaction fee for this transfer.
     -   _height_  - unsigned int; Height of the first block that confirmed this transfer.
+    -   _locked_  - boolean;
     -   _note_  - string; Note about this transfer.
     -   _payment_id_  - string; Payment ID for this transfer.
     -   _subaddr_index_  - JSON object containing the major & minor subaddress index:
         -   _major_  - unsigned int; Account index for the subaddress.
         -   _minor_  - unsigned int; Index of the subaddress under the account.
-    -   _suggested_confirmations_threshold_  - unsigned int; Estimation of the confirmations needed for the transaction to be included in a block.
+    -   _suggested_confirmations_threshold_  - unsigned int; Number of confirmations needed for the amount received to be lower than the accumulated block reward (or close to that).
     -   _timestamp_  - unsigned int; POSIX timestamp for the block that confirmed this transfer (or timestamp submission if not mined yet).
     -   _txid_  - string; Transaction ID of this transfer (same as input TXID).
     -   _type_  - string; Type of transfer, one of the following: "in", "out", "pending", "failed", "pool"
     -   _unlock_time_  - unsigned int; Number of blocks until transfer is safely spendable.
+-   _transfers_  - list; If the list length is > 1 then multiple outputs where received in this transaction, each of which has its own `transfer` JSON object.
 
-Example:
+In the example below, a single output was received at 1 address (note how it is duplicated in `transfers`:
+
+```Bash
+$ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_transfer_by_txid","params":{"txid":"765f7124d01bd2eb2d4e7e59aa44a28c24339a41e4009f463955b087017b0ca3"}}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "transfer": {
+      "address": "53zii2WaqQwZU4oUsCUcrHgaSv2CrUGCSFJLdQnkLPyH7ZLPYHjtoHhi14dqjF6jywNRknYLwbate2eGv8TuZcS7GuR7wMY",
+      "amount": 100000000000,
+      "amounts": [100000000000],
+      "confirmations": 19,
+      "double_spend_seen": false,
+      "fee": 53840000,
+      "height": 1140109,
+      "locked": false,
+      "note": "",
+      "payment_id": "0000000000000000",
+      "subaddr_index": {
+        "major": 0,
+        "minor": 0
+      },
+      "subaddr_indices": [{
+        "major": 0,
+        "minor": 0
+      }],
+      "suggested_confirmations_threshold": 1,
+      "timestamp": 1658360753,
+      "txid": "765f7124d01bd2eb2d4e7e59aa44a28c24339a41e4009f463955b087017b0ca3",
+      "type": "in",
+      "unlock_time": 0
+    },
+    "transfers": [{
+      "address": "53zii2WaqQwZU4oUsCUcrHgaSv2CrUGCSFJLdQnkLPyH7ZLPYHjtoHhi14dqjF6jywNRknYLwbate2eGv8TuZcS7GuR7wMY",
+      "amount": 100000000000,
+      "amounts": [100000000000],
+      "confirmations": 19,
+      "double_spend_seen": false,
+      "fee": 53840000,
+      "height": 1140109,
+      "locked": false,
+      "note": "",
+      "payment_id": "0000000000000000",
+      "subaddr_index": {
+        "major": 0,
+        "minor": 0
+      },
+      "subaddr_indices": [{
+        "major": 0,
+        "minor": 0
+      }],
+      "suggested_confirmations_threshold": 1,
+      "timestamp": 1658360753,
+      "txid": "765f7124d01bd2eb2d4e7e59aa44a28c24339a41e4009f463955b087017b0ca3",
+      "type": "in",
+      "unlock_time": 0
+    }]
+  }
+}
+
+```
+
+In the example below, 2 outputs where sent to 2 addresses in the same transaction. Note that `transfer` contains only one of them, but `transfers` contains both. If the length of transfers is != 1 then we have received multiple outputs in one transaction and must loop the `transfers` list accordingly.
 
 ```Bash
 $ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_transfer_by_txid","params":{"txid":"c36258a276018c3a4bc1f195a7fb530f50cd63a4fa765fb7c6f7f49fc051762a"}}' -H 'Content-Type: application/json'
@@ -1283,31 +1736,79 @@ $ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
   "jsonrpc": "2.0",
   "result": {
     "transfer": {
-      "address": "55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt",
-      "amount": 300000000000,
-      "confirmations": 1,
-      "destinations": [{
-        "address": "7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o",
-        "amount": 100000000000
-      },{
-        "address": "77Vx9cs1VPicFndSVgYUvTdLCJEZw9h81hXLMYsjBCXSJfUehLa9TDW3Ffh45SQa7xb6dUs18mpNxfUhQGqfwXPSMrvKhVp",
-        "amount": 200000000000
-      }],
+      "address": "737i9TiWFvwPxabBEEi7gqGCirrSRmMxMapEbumEG4XiTtNj7aYA2fX4WafyJNi7CuVvhUtBkuN2Nb2bAohrvu4P7jkcTBb",
+      "amount": 100000000000,
+      "amounts": [100000000000],
+      "confirmations": 28,
       "double_spend_seen": false,
-      "fee": 21650200000,
-      "height": 153624,
+      "fee": 74860000,
+      "height": 1140111,
+      "locked": false,
       "note": "",
       "payment_id": "0000000000000000",
       "subaddr_index": {
         "major": 0,
-        "minor": 0
+        "minor": 1
       },
+      "subaddr_indices": [{
+        "major": 0,
+        "minor": 1
+      }],
       "suggested_confirmations_threshold": 1,
-      "timestamp": 1535918400,
-      "txid": "c36258a276018c3a4bc1f195a7fb530f50cd63a4fa765fb7c6f7f49fc051762a",
-      "type": "out",
+      "timestamp": 1658360798,
+      "txid": "fb3a28d268ed21aa61dab0c0aec84bb9261b2b5ddc531124fc38422d86d2ded3",
+      "type": "in",
       "unlock_time": 0
-    }
+    },
+    "transfers": [{
+      "address": "737i9TiWFvwPxabBEEi7gqGCirrSRmMxMapEbumEG4XiTtNj7aYA2fX4WafyJNi7CuVvhUtBkuN2Nb2bAohrvu4P7jkcTBb",
+      "amount": 100000000000,
+      "amounts": [100000000000],
+      "confirmations": 28,
+      "double_spend_seen": false,
+      "fee": 74860000,
+      "height": 1140111,
+      "locked": false,
+      "note": "",
+      "payment_id": "0000000000000000",
+      "subaddr_index": {
+        "major": 0,
+        "minor": 1
+      },
+      "subaddr_indices": [{
+        "major": 0,
+        "minor": 1
+      }],
+      "suggested_confirmations_threshold": 1,
+      "timestamp": 1658360798,
+      "txid": "fb3a28d268ed21aa61dab0c0aec84bb9261b2b5ddc531124fc38422d86d2ded3",
+      "type": "in",
+      "unlock_time": 0
+    },{
+      "address": "77XVaxe4xY1RTxBt1xCuUHEtkiMYd38uABPoP2y2cgsVeZLUbhDFYxnc1abiC25o4N4BnzbNvqPPSfKWzjbu4tnoPXyXgs8",
+      "amount": 200000000000,
+      "amounts": [200000000000],
+      "confirmations": 28,
+      "double_spend_seen": false,
+      "fee": 74860000,
+      "height": 1140111,
+      "locked": false,
+      "note": "",
+      "payment_id": "0000000000000000",
+      "subaddr_index": {
+        "major": 0,
+        "minor": 2
+      },
+      "subaddr_indices": [{
+        "major": 0,
+        "minor": 2
+      }],
+      "suggested_confirmations_threshold": 1,
+      "timestamp": 1658360798,
+      "txid": "fb3a28d268ed21aa61dab0c0aec84bb9261b2b5ddc531124fc38422d86d2ded3",
+      "type": "in",
+      "unlock_time": 0
+    }]
   }
 }
 ```
@@ -1316,44 +1817,59 @@ $ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 Returns a list of transfers.
 
+!!! warning
+
+    Verify that the transfer has a sane `unlock_time` otherwise the funds might be inaccessible.
+    Note: Since [v18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
+
 Alias:  _None_.
 
 Inputs:
 
--   _in_  - boolean; (Optional) Include incoming transfers.
--   _out_  - boolean; (Optional) Include outgoing transfers.
--   _pending_  - boolean; (Optional) Include pending transfers.
--   _failed_  - boolean; (Optional) Include failed transfers.
--   _pool_  - boolean; (Optional) Include transfers from the daemon's transaction pool.
+-   _in_  - boolean; (defaults to false) Include incoming transfers.
+-   _out_  - boolean; (defaults to false) Include outgoing transfers.
+-   _pending_  - boolean; (defaults to false) Include pending transfers.
+-   _failed_  - boolean; (defaults to false) Include failed transfers.
+-   _pool_  - boolean; (defaults to false) Include transfers from the daemon's transaction pool.
 -   _filter_by_height_  - boolean; (Optional) Filter transfers by block height.
 -   _min_height_  - unsigned int; (Optional) Minimum block height to scan for transfers, if filtering by height is enabled.
 -   _max_height_  - unsigned int; (Optional) Maximum block height to scan for transfers, if filtering by height is enabled (defaults to max block height).
 -   _account_index_  - unsigned int; (Optional) Index of the account to query for transfers. (defaults to 0)
--   _subaddr_indices_  - array of unsigned int; (Optional) List of subaddress indices to query for transfers. (defaults to 0)
+-   _subaddr_indices_  - array of unsigned int; (Optional) List of subaddress indices to query for transfers. (Defaults to empty - all indices).
+-   _all_accounts_  - boolean;  (Optional) (Defaults to false).
 
 Outputs:
 
--   _in_  array of transfers:
+-   _in_  - array of transfers:
     -   _address_  - string; Public address of the transfer.
     -   _amount_  - unsigned int; Amount transferred.
+    -   _amounts_  - array of unsigned int; If multiple amounts where recived they are individually listed.
     -   _confirmations_  - unsigned int; Number of block mined since the block containing this transaction (or block height at which the transaction should be added to a block if not yet confirmed).
     -   _double_spend_seen_  - boolean; True if the key image(s) for the transfer have been seen before.
     -   _fee_  - unsigned int; Transaction fee for this transfer.
     -   _height_  - unsigned int; Height of the first block that confirmed this transfer (0 if not mined yet).
     -   _note_  - string; Note about this transfer.
+    -   _destinations_  - array;
+    -  amount_  - unsigned int;
+    -  address_  - string;
     -   _payment_id_  - string; Payment ID for this transfer.
     -   _subaddr_index_  - JSON object containing the major & minor subaddress index:
         -   _major_  - unsigned int; Account index for the subaddress.
         -   _minor_  - unsigned int; Index of the subaddress under the account.
-    -   _suggested_confirmations_threshold_  - unsigned int; Estimation of the confirmations needed for the transaction to be included in a block.
+    -   _subaddr_indices_  - array; list of indices if multiple where requested.
+        -   _major_  - unsigned int; Account index for the subaddress.
+        -   _minor_  - unsigned int; Index of the subaddress under the account.
+    -   _suggested_confirmations_threshold_  - unsigned int; Number of confirmations needed for the amount received to be lower than the accumulated block reward (or close to that).
     -   _timestamp_  - unsigned int; POSIX timestamp for when this transfer was first confirmed in a block (or timestamp submission if not mined yet).
     -   _txid_  - string; Transaction ID for this transfer.
     -   _type_  - string; Transfer type: "in"
     -   _unlock_time_  - unsigned int; Number of blocks until transfer is safely spendable.
--   _out_  array of transfers (see above).
--   _pending_  array of transfers (see above).
--   _failed_  array of transfers (see above).
--   _pool_  array of transfers (see above).
+    -   _locked_  - boolean; Is the output spendable.
+-   _out_  - array of transfers (see above).
+-   _pending_  - array of transfers (see above).
+-   _failed_  - array of transfers (see above).
+-   _pool_  - array of transfers (see above).
+
 
 Example:
 
@@ -1366,16 +1882,22 @@ $ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
     "in": [{
       "address": "77Vx9cs1VPicFndSVgYUvTdLCJEZw9h81hXLMYsjBCXSJfUehLa9TDW3Ffh45SQa7xb6dUs18mpNxfUhQGqfwXPSMrvKhVp",
       "amount": 200000000000,
+      "amounts" [200000000000],
       "confirmations": 1,
       "double_spend_seen": false,
       "fee": 21650200000,
       "height": 153624,
+      "locked": false,
       "note": "",
       "payment_id": "0000000000000000",
       "subaddr_index": {
         "major": 1,
         "minor": 0
       },
+      "subaddr_indices": [{
+        "major": 1,
+        "minor": 0
+      }],
       "suggested_confirmations_threshold": 1,
       "timestamp": 1535918400,
       "txid": "c36258a276018c3a4bc1f195a7fb530f50cd63a4fa765fb7c6f7f49fc051762a",
@@ -1479,7 +2001,7 @@ Inputs:  _None_.
 
 Outputs:
 
--   _version_  - unsigned int; RPC version, formatted with  `Major * 2^16 + Minor`(Major encoded over the first 16 bits, and Minor over the last 16 bits).
+-   _version_  - unsigned int; RPC version, formatted with `Major * 2^16 + Minor` (Major encoded over the first 16 bits, and Minor over the last 16 bits).
 
 Example:
 
@@ -1502,6 +2024,7 @@ Alias:  _None_.
 
 Inputs:
 
+-   _offset_  - unsigned int (optional)
 -   _signed_key_images_  - array of signed key images:
     -   _key_image_  - string;
     -   _signature_  - string;
@@ -1509,8 +2032,8 @@ Inputs:
 Outputs:
 
 -   _height_  - unsigned int;
--   _spent_  - unsigned int; Amount (in  atomic units) spent from those key images.
--   _unspent_  - unsigned int; Amount (in  atomic units) still available from those key images.
+-   _spent_  - unsigned int; Amount (in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")) spent from those key images.
+-   _unspent_  - unsigned int; Amount (in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")) still available from those key images.
 
 Example:
 
@@ -1590,60 +2113,83 @@ Inputs:
 -   _transfer_type_  - string; "all": all the transfers, "available": only transfers which are not yet spent, OR "unavailable": only transfers which are already spent.
 -   _account_index_  - unsigned int; (Optional) Return transfers for this account. (defaults to 0)
 -   _subaddr_indices_  - array of unsigned int; (Optional) Return transfers sent to these subaddresses.
--   _verbose_  - boolean; (Optional) Enable verbose output, return key image if true.
 
 Outputs:
 
 -   _transfers_  - list of:
     -   _amount_  - unsigned int; Amount of this transfer.
     -   _global_index_  - unsigned int; Mostly internal use, can be ignored by most users.
-    -   _key_image_  - string; Key image for the incoming transfer's unspent output (empty unless verbose is true).
+    -   _key_image_  - string; Key image for the incoming transfer's unspent output.
     -   _spent_  - boolean; Indicates if this transfer has been spent.
-    -   _subaddr_index_  - unsigned int; Subaddress index for incoming transfer.
+    -   _subaddr_index_  - JSON object containing the major & minor subaddress index:
+        -   _major_  - unsigned int; Account index for the subaddress.
+        -   _minor_  - unsigned int; Index of the subaddress under the account.
     -   _tx_hash_  - string; Several incoming transfers may share the same hash if they were in the same transaction.
-    -   _tx_size_  - unsigned int; Size of transaction in bytes.
+    -   _frozen_  - boolean; has the output been frozen by `freeze`.
+    -   _unlocked_  - boolean; is the output spendable.
+    -   _block_height_  - unsigned int;
+    -   _pubkey_  - string; public key of our owned output.
 
 Example, get all transfers:
 
 ```Bash
-$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"incoming_transfers","params":{"transfer_type":"all","account_index":0,"subaddr_indices":[3],"verbose":true}}' -H 'Content-Type: application/json'
+$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"incoming_transfers","params":{"transfer_type":"all","account_index":0,"subaddr_indices":[3]}}' -H 'Content-Type: application/json'
 {
   "id": "0",
   "jsonrpc": "2.0",
   "result": {
     "transfers": [{
       "amount": 60000000000000,
+      "block_height": 2758159,
       "global_index": 122405,
       "key_image": "768f5144777eb23477ab7acf83562581d690abaf98ca897c03a9d2b900eb479b",
       "spent": true,
-      "subaddr_index": 3,
+      "subaddr_index": {
+        "major": 0,
+        "minor": 3
+        },
       "tx_hash": "f53401f21c6a43e44d5dd7a90eba5cf580012ad0e15d050059136f8a0da34f6b",
-      "tx_size": 159
+      "pubkey": "253c35abc9e88268df40e622376572adedd391f667ef8db9f3d20789f733b35a",
+      "frozen": false,
+      "unlocked": false
     },{
       "amount": 27126892247503,
+      "blockheight": 2758161,
       "global_index": 594994,
       "key_image": "7e561394806afd1be61980cc3431f6ef3569fa9151cd8d234f8ec13aa145695e",
       "spent": false,
-      "subaddr_index": 3,
+      "subaddr_index": {
+        "major": 0,
+        "minor": 3
+        },
       "tx_hash": "106d4391a031e5b735ded555862fec63233e34e5fa4fc7edcfdbe461c275ae5b",
-      "tx_size": 157
+      "pubkey": "c1544f7fe535a643bb2c4bebdcbcfd2b7c16681de298c2f4712d4f67273e9472",
+      "frozen": false,
+      "unlocked": true
     },{
       "amount": 27169374733655,
+      "block_height": 2758670,
       "global_index": 594997,
       "key_image": "e76c0a3bfeaae35e4173712f782eb34011198e26b990225b71aa787c8ba8a157",
       "spent": false,
-      "subaddr_index": 3,
+      "subaddr_index": {
+        "major": 0,
+        "minor": 3
+        },
       "tx_hash": "0bd959b59117ee1254bd8e5aa8e77ec04ef744144a1ffb2d5c1eb9380a719621",
-      "tx_size": 158
+      "pubkey": "99cb6ec639ee514c00758934aab69c965c4ff0dbc136d9199011a683be1e6df1",
+      "frozen": false,
+      "unlocked": true
     }]
   }
 }
+
 ```
 
 Example, get available transfers:
 
 ```Bash
-$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"incoming_transfers","params":{"transfer_type":"available","account_index":0,"subaddr_indices":[3],"verbose":true}}' -H 'Content-Type: application/json'
+$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"incoming_transfers","params":{"transfer_type":"available","account_index":0,"subaddr_indices":[3]}}' -H 'Content-Type: application/json'
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1672,7 +2218,7 @@ $ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 Example, get unavailable transfers:
 
 ```Bash
-$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"incoming_transfers","params":{"transfer_type":"unavailable","account_index":0,"subaddr_indices":[3],"verbose":true}}' -H 'Content-Type: application/json'
+$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"incoming_transfers","params":{"transfer_type":"unavailable","account_index":0,"subaddr_indices":[3]}}' -H 'Content-Type: application/json'
 {
 "id": "0",
 "jsonrpc": "2.0",
@@ -1793,6 +2339,42 @@ $ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 }
 ```
 
+### validate_address
+
+Analyzes a string to determine whether it is a valid monero wallet address and returns the result and the address specifications.
+
+Inputs:
+
+-   _address_  - string; The address to validate.
+-   _any_net_type_  - boolean (Optional); If true, consider addresses belonging to any of the three Monero networks (mainnet, stagenet, and testnet) valid. Otherwise, only consider an address valid if it belongs to the network on which the rpc-wallet's current daemon is running (Defaults to false).
+-   _allow_openalias_  - boolean (Optional); If true, consider [OpenAlias-formatted addresses](https://www.getmonero.org/resources/moneropedia/openalias.html) valid (Defaults to false).
+
+Outputs:
+
+-   _valid_  - boolean; True if the input address is a valid Monero address.
+-   _integrated_  - boolean; True if the given address is an [integrated address](https://www.getmonero.org/resources/moneropedia/address.html).
+-   _subaddress_  - boolean; True if the given address is a [subaddress](https://github.com/monero-project/monero/pull/2056)
+-   _nettype_  - string; Specifies which of the three Monero networks (mainnet, stagenet, and testnet) the address belongs to.
+-   _openalias_address_  - string; Address which the [OpenAlias-formatted address](https://www.getmonero.org/resources/moneropedia/openalias.html) points to, if given.
+
+Example:
+
+```Bash
+$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"validate_address","params":{"address":"42go2d3XqA9Mx4HjZoqr93BHspcMxwAUBivs3yJKV1FyTycEcbgjNyEaGNEcgnUE9DDDAXNanzB16YgMt88Sa8cFSm2QcHK","any_net_type":true,"allow_openalias":true},' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "integrated": false,
+    "nettype": "mainnet",
+    "openalias_address": "",
+    "subaddress": false,
+    "valid": true
+  }
+}
+
+```
+
 ### **make_integrated_address**
 
 Make an integrated address from the wallet address and a payment id.
@@ -1832,7 +2414,7 @@ Alias:  _None_.
 Inputs:
 
 -   _multisig_info_  - array of string; List of multisig string from peers.
--   _threshold_  - unsigned int; Amount of signatures needed to sign a transfer. Must be less or equal than the amount of signature in  `multisig_info`.
+-   _threshold_  - unsigned int; Amount of signatures needed to sign a transfer. Must be less or equal than the amount of signature in `multisig_info`.
 -   _password_  - string; Wallet password
 
 Outputs:
@@ -1877,8 +2459,8 @@ Alias:  _None_.
 Inputs:
 
 -   _address_  - string; Wallet address
--   _amount_  - unsigned int; (optional) the integer amount to receive, in  **atomic**units
--   _payment_id_  - string; (optional) 16 or 64 character hexadecimal payment id
+-   _amount_  - unsigned int; (optional) the integer amount to receive, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+-   _payment_id_  - string; (Optional, defaults to a random ID) 16 characters hex encoded.
 -   _recipient_name_  - string; (optional) name of the payment recipient
 -   _tx_description_  - string; (optional) Description of the reason for the tx
 
@@ -1901,13 +2483,13 @@ $ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 ### **open_wallet**
 
-Open a wallet. You need to have set the argument "–wallet-dir" when launching monero-wallet-rpc to make this work.
+Open a wallet. You need to have set the argument "--wallet-dir" when launching monero-wallet-rpc to make this work.
 
 Alias:  _None_.
 
 Inputs:
 
--   _filename_  - string; wallet name stored in –wallet-dir.
+-   _filename_  - string; wallet name stored in --wallet-dir.
 -   _password_  - string; (Optional) only needed if the wallet has a password defined.
 
 Outputs:  _None_.
@@ -1938,8 +2520,8 @@ Outputs:
 
 -   _uri_  - JSON object containing payment information:
     -   _address_  - string; Wallet address
-    -   _amount_  - unsigned int; Decimal amount to receive, in  **coin**  units (0 if not provided)
-    -   _payment_id_  - string; 16 or 64 character hexadecimal payment id (empty if not provided)
+    -   _amount_  - unsigned int; Integer amount to receive, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.") (0 if not provided)
+    -   _payment_id_  - string; (Optional, defaults to a random ID) 16 characters hex encoded.
     -   _recipient_name_  - string; Name of the payment recipient (empty if not provided)
     -   _tx_description_  - string; Description of the reason for the tx (empty if not provided)
 
@@ -1995,7 +2577,7 @@ Alias:  _None_.
 
 Inputs:
 
--   _key_type_  - string; Which key to retrieve: "mnemonic" - the mnemonic seed (older wallets do not have one) OR "view_key" - the view key
+-   _key_type_  - string; Which key to retrieve: "mnemonic" - the mnemonic seed (older wallets do not have one) OR "view_key" - the view key OR "spend_key".
 
 Outputs:
 
@@ -2035,7 +2617,7 @@ Alias:  _None_.
 
 Inputs:
 
--   _start_height_  - unsigned int; (Optional) The block height from which to start refreshing.
+-   _start_height_  - unsigned int; (Optional) The block height from which to start refreshing. Passing no value or a value less than the last block scanned by the wallet refreshes from the last block scanned.
 
 Outputs:
 
@@ -2131,6 +2713,77 @@ $ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 ```
 
+### **restore_deterministic_wallet**
+
+Create and open a wallet on the RPC server from an existing mnemonic phrase and close the currently open wallet.
+
+Alias:  _None_.
+
+Inputs:
+
+-   _filename_  - string; Name of the wallet.
+-   _password_  - string; Password of the wallet.
+-   _seed_  - string; Mnemonic phrase of the wallet to restore.
+-   _restore_height_  - integer; (Optional) Block height to restore the wallet from (default = 0).
+-   _language_  - string; (Optional) Language of the mnemonic phrase in case the old language is invalid.
+-   _seed_offset_  - string; (Optional) Offset used to derive a new seed from the given mnemonic to recover a secret wallet from the mnemonic phrase.
+-   _autosave_current_  - boolean; Whether to save the currently open RPC wallet before closing it (Defaults to true).
+
+Outputs: 
+
+-   _address_  - string; 95-character hexadecimal address of the restored wallet as a string.
+-   _info_  - string; Message describing the success or failure of the attempt to restore the wallet.
+-   _seed_  - string; Mnemonic phrase of the restored wallet, which is updated if the wallet was restored from a deprecated-style mnemonic phrase.
+-   _was_deprecated_  - boolean; Indicates if the restored wallet was created from a deprecated-style mnemonic phrase.
+
+Example:
+
+```Bash
+$ curl -X POST http://localhost:38083/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"restore_deterministic_wallet","params":{"filename":"My Wallet","password":"mypassword123","seed":"awkward vogue odometer amply bagpipe kisses poker aspire slug eluded hydrogen selfish later toolbox enigma wolf tweezers eluded gnome soprano ladder broken jukebox lordship aspire","restore_height":0, "language":"English","seed_offset":"","autosave_current":true}}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "address": "9wB1Jc5fy5hjTkFBnv4UNY3WfhUswhx8M7uWjZrwRBzH2uatJcn8AqiKEHWuSNrnapApCzzTxP4iSiV3y3pqYcRbDHNboJK",
+    "info": "Wallet has been restored successfully.",
+    "seed": "awkward vogue odometer amply bagpipe kisses poker aspire slug eluded hydrogen selfish later toolbox enigma wolf tweezers eluded gnome soprano ladder broken jukebox lordship aspire",
+    "was_deprecated": false
+  }
+}
+
+```
+
+### **scan_tx**
+
+Given list of txids, scan each for outputs belonging to your wallet. Note that the node will see these specific requests and may be a privacy concern.
+
+Alias:  _None_.
+
+Inputs:
+
+-   _txids_  - string list;
+
+Outputs:  _None_.
+
+Example:
+
+```Bash
+$ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"scan_tx","params":{"txids":["7313fb7f9d26454866abacc98d17662bea468421178ec577661610003bf0193e"]}}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+  }
+}
+
+```
+
+Logfile output:
+
+```Bash
+2022-10-13 15:23:24.065 W Received money: 4.900000000000, with tx: <7313fb7f9d26454866abacc98d17662bea468421178ec577661610003bf0193e>
+```
+
 ### **set_account_tag_description**
 
 Set description for an account tag.
@@ -2174,6 +2827,40 @@ Example:
 
 ```Bash
 $ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_attribute","params":{"key":"my_attribute","value":"my_value"}}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+  }
+}
+
+```
+
+### **set_daemon**
+
+Connect the RPC server to a Monero daemon.
+
+Alias:  _None_.
+
+Inputs:
+
+-   _address_  - string; (Optional; Default: "") The URL of the daemon to connect to.
+-   _trusted_  - boolean; (Optional; Default: false) If false, some RPC wallet methods will be disabled.
+-   _ssl_support_  - string; (Optional; Default: autodetect; Accepts: disabled, enabled, autodetect) Specifies whether the Daemon uses SSL encryption.
+-   _ssl_private_key_path_  - string; (Optional) The file path location of the SSL key.
+-   _ssl_certificate_path_  - string; (Optional) The file path location of the SSL certificate.
+-   _ssl_ca_file_  - string; (Optional) The file path location of the certificate authority file.
+-   _ssl_allowed_fingerprints_  - array of string; (Optional) The SHA1 fingerprints accepted by the SSL certificate.
+-   _ssl_allow_any_cert_  - boolean; (Optional; Default: false) If false, the certificate must be signed by a trusted certificate authority.
+-   _username_  - string; (Optional) 
+-   _password_  - string; (Optional)
+
+Outputs: _None_.
+
+Example:
+
+```Bash
+$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_daemon","params": {"address":"http://localhost:18081","trusted":true,"ssl_support":"enabled","ssl_private_key_path":"path/to/ssl/key","ssl_certificate_path":"path/to/ssl/certificate","ssl_ca_file":"path/to/ssl/ca/file","ssl_allowed_fingerprints":["85:A7:68:29:BE:73:49:80:84:91:7A:BB:1F:F1:AD:7E:43:FE:CC:B8"],"ssl_allow_any_cert":true}},' -H 'Content-Type: application/json'
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2277,19 +2964,21 @@ Inputs:
 
 -   _unsigned_txset_  - string. Set of unsigned tx returned by "transfer" or "transfer_split" methods.
 -   _export_raw_  - boolean; (Optional) If true, return the raw transaction data. (Defaults to false)
+-   _get_tx_keys_  - boolean; (Optional) Return the transaction keys after signing.
 
 Outputs:
 
 -   _signed_txset_  - string. Set of signed tx to be used for submitting transfer.
 -   _tx_hash_list_  - array of: string. The tx hashes of every transaction.
 -   _tx_raw_list_  - array of: string. The tx raw data of every transaction.
+-   _tx_key_list_  - array of: string.
 
 In the example below, we first generate an unsigned_txset on a read only wallet before signing it:
 
 Generate unsigned_txset using the above "transfer" method on read-only wallet:
 
 ```Bash
-curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"transfer","params":{"destinations":[{"amount":1000000000000,"address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o"}],"account_index":0,"subaddr_indices":[0],"priority":0,"ring_size":7,"do_not_relay":true,"get_tx_hex":true}}' -H 'Content-Type: application/json'
+curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"transfer","params":{"destinations":[{"amount":1000000000000,"address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o"}],"account_index":0,"subaddr_indices":[0],"priority":0,"do_not_relay":true,"get_tx_hex":true}}' -H 'Content-Type: application/json'
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2363,8 +3052,8 @@ Alias:  _None_.
 Inputs:
 
 -   _threads_count_  - unsigned int; Number of threads created for mining.
--   _do_background_mining_  - boolean; Allow to start the miner in  [smart mining](https://ww.getmonero.org/resources/moneropedia/smartmining.html)mode.
--   _ignore_battery_  - boolean; Ignore battery status (for  [smart mining](https://ww.getmonero.org/resources/moneropedia/smartmining.html)  only)
+-   _do_background_mining_  - boolean; Allow to start the miner in  [smart mining](https://www.getmonero.org/resources/moneropedia/smartmining.html) mode.
+-   _ignore_battery_  - boolean; Ignore battery status (for [smart mining](https://www.getmonero.org/resources/moneropedia/smartmining.html) only)
 
 Outputs:  _None_.
 
@@ -2406,7 +3095,7 @@ $ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 ### **stop_wallet**
 
-Stops the wallet, storing the current state.
+Store the current state of any open wallet and exit the monero-wallet-rpc process.
 
 Alias:  _None_.
 
@@ -2521,11 +3210,12 @@ Inputs:
 -   _address_  - string; Destination public address.
 -   _account_index_  - unsigned int; Sweep transactions from this account.
 -   _subaddr_indices_  - array of unsigned int; (Optional) Sweep from this set of subaddresses in the account.
+-   _subaddr_indices_all_  - boolean; (Optional) use outputs in all subaddresses within an account (Defaults to false).
 -   _priority_  - unsigned int; (Optional) Priority for sending the sweep transfer, partially determines fee.
--   _mixin_  - unsigned int; Number of outputs from the blockchain to mix with (0 means no mixing).
--   _ring_size_  - unsigned int; Sets ringsize to n (mixin + 1).
+-   _outputs_  - unsigned int; specify the number of separate outputs of smaller denomination that will be created by sweep operation.
+-   _ring_size_  - unsigned int; Sets ringsize to n (mixin + 1). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
 -   _unlock_time_  - unsigned int; Number of blocks before the monero can be spent (0 to not add a lock).
--   _payment_id_  - string; (Optional) Random 32-byte/64-character hex string to identify a transaction.
+-   _payment_id_  - string; (Optional, defaults to a random ID) 16 characters hex encoded.
 -   _get_tx_keys_  - boolean; (Optional) Return the transaction keys after sending.
 -   _below_amount_  - unsigned int; (Optional) Include outputs below this amount.
 -   _do_not_relay_  - boolean; (Optional) If true, do not relay this sweep transfer. (Defaults to false)
@@ -2538,15 +3228,18 @@ Outputs:
 -   _tx_key_list_  - array of: string. The transaction keys for every transaction.
 -   _amount_list_  - array of: integer. The amount transferred for every transaction.
 -   _fee_list_  - array of: integer. The amount of fees paid for every transaction.
+-   _weight_list_  - array of: integer. Metric used for adjusting fee.
 -   _tx_blob_list_  - array of: string. The tx as hex string for every transaction.
 -   _tx_metadata_list_  - array of: string. List of transaction metadata needed to relay the transactions later.
 -   _multisig_txset_  - string. The set of signing keys used in a multisig transaction (empty for non-multisig).
 -   _unsigned_txset_  - string. Set of unsigned tx for cold-signing purposes.
+-   _spent_key_images_list_  - array of: string. Key images of spent outputs.
+    -   _key_images_  - array of string;
 
 Example:
 
 ```Bash
-$ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sweep_all","params":{"address":"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt","subaddr_indices":[4],"ring_size":7,"unlock_time":0,"get_tx_keys":true}}' -H 'Content-Type: application/json'
+$ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sweep_all","params":{"address":"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt","subaddr_indices":[4],"get_tx_keys":true}}' -H 'Content-Type: application/json'
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2554,9 +3247,16 @@ $ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
     "amount_list": [9985885770000],
     "fee_list": [14114230000],
     "multisig_txset": "",
+    "spent_key_images_list": [{
+      "key_images": ["cea4f54494d4cc28c006af7551b57a49eb6e8aac966ffa7b169f32298213c6ca"]
+    }],
     "tx_hash_list": ["ab4b6b65cc8cd8c9dd317d0b90d97582d68d0aa1637b0065b05b61f9a66ea5c5"],
     "tx_key_list": ["b9b4b39d3bb3062ddb85ec0266d4df39058f4c86077d99309f218ce4d76af607"],
-    "unsigned_txset": ""
+    "unsigned_txset": "",
+    "weight_list": [6414],
+    "spent_key_images_list": [{
+      "key_images": ["cea4f54494d4cc28c006af7551b57a49eb6e8aac966ffa7b169f32298213c6ca"]
+    }],
   }
 }
 ```
@@ -2581,12 +3281,16 @@ Outputs:
 -   _tx_key_list_  - array of: string. The transaction keys for every transaction.
 -   _amount_list_  - array of: integer. The amount transferred for every transaction.
 -   _fee_list_  - array of: integer. The amount of fees paid for every transaction.
+-   _weight_list_  - array of: integer. Metric used to calculate transaction fee.
 -   _tx_blob_list_  - array of: string. The tx as hex string for every transaction.
 -   _tx_metadata_list_  - array of: string. List of transaction metadata needed to relay the transactions later.
 -   _multisig_txset_  - string. The set of signing keys used in a multisig transaction (empty for non-multisig).
 -   _unsigned_txset_  - string. Set of unsigned tx for cold-signing purposes.
+-   _spent_key_images_list_  - array of: string. Key images of spent outputs.
+    -   _key_images_  - array of string;
 
-Example (In this example,  `sweep_dust`  returns nothing because there are no funds to sweep):
+Example (In this example, `sweep_dust` returns nothing because there are no funds to sweep):
+
 
 ```Bash
 $ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sweep_dust","params":{"get_tx_keys":true}}' -H 'Content-Type: application/json'
@@ -2611,47 +3315,50 @@ Alias:  _None_.
 Inputs:
 
 -   _address_  - string; Destination public address.
--   _account_index_  - unsigned int; Sweep transactions from this account.
--   _subaddr_indices_  - array of unsigned int; (Optional) Sweep from this set of subaddresses in the account.
 -   _priority_  - unsigned int; (Optional) Priority for sending the sweep transfer, partially determines fee.
--   _mixin_  - unsigned int; Number of outputs from the blockchain to mix with (0 means no mixing).
--   _ring_size_  - unsigned int; Sets ringsize to n (mixin + 1).
+-   _outputs_  - unsigned int; specify the number of separate outputs of smaller denomination that will be created by sweep operation.
+-   _ring_size_  - unsigned int; Sets ringsize to n (mixin + 1). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
 -   _unlock_time_  - unsigned int; Number of blocks before the monero can be spent (0 to not add a lock).
--   _payment_id_  - string; (Optional) Random 32-byte/64-character hex string to identify a transaction.
--   _get_tx_keys_  - boolean; (Optional) Return the transaction keys after sending.
+-   _payment_id_  - string; (Optional, defaults to a random ID) 16 characters hex encoded.
+-   _get_tx_key_  - boolean; (Optional) Return the transaction keys after sending.
 -   _key_image_  - string; Key image of specific output to sweep.
--   _below_amount_  - unsigned int; (Optional) Include outputs below this amount.
 -   _do_not_relay_  - boolean; (Optional) If true, do not relay this sweep transfer. (Defaults to false)
 -   _get_tx_hex_  - boolean; (Optional) return the transactions as hex encoded string. (Defaults to false)
 -   _get_tx_metadata_  - boolean; (Optional) return the transaction metadata as a string. (Defaults to false)
 
 Outputs:
 
--   _tx_hash_list_  - array of: string. The tx hashes of every transaction.
--   _tx_key_list_  - array of: string. The transaction keys for every transaction.
--   _amount_list_  - array of: integer. The amount transferred for every transaction.
--   _fee_list_  - array of: integer. The amount of fees paid for every transaction.
--   _tx_blob_list_  - array of: string. The tx as hex string for every transaction.
--   _tx_metadata_list_  - array of: string. List of transaction metadata needed to relay the transactions later.
+-   _tx_hasht_  - array of: string. The tx hashes of every transaction.
+-   _tx_key_  - array of: string. The transaction keys for every transaction.
+-   _amount_  - array of: integer. The amount transferred for every transaction.
+-   _fee_  - array of: integer. The amount of fees paid for every transaction.
+-   _weight_  - unsigned int; Metric used to calculate transaction fee.
+-   _tx_blob_  - array of: string. The tx as hex string for every transaction.
+-   _tx_metadata_  - string. Transaction metadata needed to relay the transactions later.
 -   _multisig_txset_  - string. The set of signing keys used in a multisig transaction (empty for non-multisig).
 -   _unsigned_txset_  - string. Set of unsigned tx for cold-signing purposes.
+-   _spent_key_images_  - array of: string. Key images of spent outputs.
 
 Example:
 
 ```Bash
-$ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sweep_single","params":{"address":"74Jsocx8xbpTBEjm3ncKE5LBQbiJouyCDaGhgSiebpvNDXZnTAbW2CmUR5SsBeae2pNk9WMVuz6jegkC4krUyqRjA6VjoLD","ring_size":7,"unlock_time":0,"key_image":"a7834459ef795d2efb6f665d2fd758c8d9288989d8d4c712a68f8023f7804a5e","get_tx_keys":true}}' -H 'Content-Type: application/json'
+$ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sweep_single","params":{"address":"74Jsocx8xbpTBEjm3ncKE5LBQbiJouyCDaGhgSiebpvNDXZnTAbW2CmUR5SsBeae2pNk9WMVuz6jegkC4krUyqRjA6VjoLD","key_image":"a7834459ef795d2efb6f665d2fd758c8d9288989d8d4c712a68f8023f7804a5e","get_tx_key":true}}' -H 'Content-Type: application/json'
 {
   "id": "0",
   "jsonrpc": "2.0",
   "result": {
     "amount": 27126892247503,
+    "spent_key_images": {
+      "key_images": ["a7834459ef795d2efb6f665d2fd758c8d9288989d8d4c712a68f8023f7804a5e"]
+    },
     "fee": 14111630000,
     "multisig_txset": "",
     "tx_blob": "",
     "tx_hash": "106d4391a031e5b735ded555862fec63233e34e5fa4fc7edcfdbe461c275ae5b",
-    "tx_key": "",
+    "tx_key": "222e62ffd46a15c92184d6d9cccec5eafbddd19884c0f4f8f10e068015947e05",
     "tx_metadata": "",
-    "unsigned_txset": ""
+    "unsigned_txset": "",
+    "weight": 1528
   }
 }
 
@@ -2684,6 +3391,32 @@ $ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 ```
 
+### **thaw**
+
+Thaw a single output by key image so it may be used again
+
+Alias:  _None_.
+
+Inputs:
+
+-   _key_image_  - string;
+
+Outputs:
+
+-   _None_
+
+Example:
+
+```Bash
+$ curl -X POST http://localhost:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"thaw","params":{"key_image":"d0071ab34ab7f567f9b54303ed684de6cd5ed969a6b6c4bf352d25242f0b3da9"}}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+  }
+}
+
+```
 
 ### **transfer**
 
@@ -2694,15 +3427,14 @@ Alias:  _None_.
 Inputs:
 
 -   _destinations_  - array of destinations to receive XMR:
-    -   _amount_  - unsigned int; Amount to send to each destination, in  atomic units.
+    -   _amount_  - unsigned int; Amount to send to each destination, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
     -   _address_  - string; Destination public address.
 -   _account_index_  - unsigned int; (Optional) Transfer from this account index. (Defaults to 0)
--   _subaddr_indices_  - array of unsigned int; (Optional) Transfer from this set of subaddresses. (Defaults to 0)
+-   _subaddr_indices_  - array of unsigned int; (Optional) Transfer from this set of subaddresses. (Defaults to empty - all indices)
 -   _priority_  - unsigned int; Set a priority for the transaction. Accepted Values are: 0-3 for: default, unimportant, normal, elevated, priority.
 -   _mixin_  - unsigned int; Number of outputs from the blockchain to mix with (0 means no mixing).
--   _ring_size_  - unsigned int; Number of outputs to mix in the transaction (this output + N decoys from the blockchain).
+-   _ring_size_  - unsigned int; Number of outputs to mix in the transaction (this output + N decoys from the blockchain). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
 -   _unlock_time_  - unsigned int; Number of blocks before the monero can be spent (0 to not add a lock).
--   _payment_id_  - string; (Optional) Random 32-byte/64-character hex string to identify a transaction.
 -   _get_tx_key_  - boolean; (Optional) Return the transaction key after sending.
 -   _do_not_relay_  - boolean; (Optional) If true, the newly created transaction will not be relayed to the monero network. (Defaults to false)
 -   _get_tx_hex_  - boolean; Return the transaction as hex string after sending (Defaults to false)
@@ -2750,19 +3482,17 @@ Alias:  _None_.
 Inputs:
 
 -   _destinations_  - array of destinations to receive XMR:
-    -   _amount_  - unsigned int; Amount to send to each destination, in  atomic units.
+    -   _amount_  - unsigned int; Amount to send to each destination, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
     -   _address_  - string; Destination public address.
 -   _account_index_  - unsigned int; (Optional) Transfer from this account index. (Defaults to 0)
--   _subaddr_indices_  - array of unsigned int; (Optional) Transfer from this set of subaddresses. (Defaults to 0)
--   _mixin_  - unsigned int; Number of outputs from the blockchain to mix with (0 means no mixing).
--   _ring_size_  - unsigned int; Sets ringsize to n (mixin + 1).
+-   _subaddr_indices_  - array of unsigned int; (Optional) Transfer from this set of subaddresses. (Defaults to empty - all indices)
+-   _ring_size_  - unsigned int; Sets ringsize to n (mixin + 1). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
 -   _unlock_time_  - unsigned int; Number of blocks before the monero can be spent (0 to not add a lock).
--   _payment_id_  - string; (Optional) Random 32-byte/64-character hex string to identify a transaction.
+-   _payment_id_  - string; (Optional, defaults to a random ID) 16 characters hex encoded.
 -   _get_tx_keys_  - boolean; (Optional) Return the transaction keys after sending.
 -   _priority_  - unsigned int; Set a priority for the transactions. Accepted Values are: 0-3 for: default, unimportant, normal, elevated, priority.
 -   _do_not_relay_  - boolean; (Optional) If true, the newly created transaction will not be relayed to the monero network. (Defaults to false)
 -   _get_tx_hex_  - boolean; Return the transactions as hex string after sending
--   _new_algorithm_  - boolean; True to use the new transaction construction algorithm, defaults to false.
 -   _get_tx_metadata_  - boolean; Return list of transaction metadata needed to relay the transfer later.
 
 Outputs:
@@ -2771,24 +3501,32 @@ Outputs:
 -   _tx_key_list_  - array of: string. The transaction keys for every transaction.
 -   _amount_list_  - array of: integer. The amount transferred for every transaction.
 -   _fee_list_  - array of: integer. The amount of fees paid for every transaction.
+-   _weight_list_  - array of: integer. Metric used to calculate transaction fee.
 -   _tx_blob_list_  - array of: string. The tx as hex string for every transaction.
 -   _tx_metadata_list_  - array of: string. List of transaction metadata needed to relay the transactions later.
 -   _multisig_txset_  - string. The set of signing keys used in a multisig transaction (empty for non-multisig).
 -   _unsigned_txset_  - string. Set of unsigned tx for cold-signing purposes.
+-   _spent_key_images_list_  - array of: string. Key images of spent outputs.
+    -   _key_images_  - array of string;
 
 Example:
 
 ```Bash
-$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"transfer_split","params":{"destinations":[{"amount":1000000000000,"address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o"},{"amount":2000000000000,"address":"75sNpRwUtekcJGejMuLSGA71QFuK1qcCVLZnYRTfQLgFU5nJ7xiAHtR5ihioS53KMe8pBhH61moraZHyLoG4G7fMER8xkNv"}],"account_index":0,"subaddr_indices":[0],"priority":0,"ring_size":7,"get_tx_key": true}}' -H 'Content-Type: application/json'
+$ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"transfer_split","params":{"destinations":[{"amount":1000000000000,"address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o"},{"amount":2000000000000,"address":"75sNpRwUtekcJGejMuLSGA71QFuK1qcCVLZnYRTfQLgFU5nJ7xiAHtR5ihioS53KMe8pBhH61moraZHyLoG4G7fMER8xkNv"}],"account_index":0,"subaddr_indices":[0],"priority":0,"ring_size":7,"get_tx_keys": true}}' -H 'Content-Type: application/json'
 {
   "id": "0",
   "jsonrpc": "2.0",
   "result": {
     "amount_list": [3000000000000],
-    "fee_list": [85106400000],
+    "fee_list": [473710000],
+    "weight_list": 51456,
     "multisig_txset": "",
-    "tx_hash_list": ["c8d815f48f27d53fdaf198a74b292a91bfaf87529a9a9a9ee66079a890b3b58b"],
+    "tx_hash_list": ["4adcdc1af3f665770cdf8fb7a380887cd07ac53c2b771bd18df5ca375d5e7540"],
+    "tx_key_list": ["5b455c0f97168be652a2c03c5c68a064bb84cdae4ddef01b5c48d73a0bbb27075fb714f2ca19ea6c8ff592417e606addea6deb1d6530e2969f75681ffcbfc4075677b94a8c9197963ae38fa6f543ee68f0a4c4bbda4c453f39538f00b28e980ea08509730b51c004960101ba2f3adbc34cbbdff0d5af9dba061b523090debd06"],
     "unsigned_txset": ""
+    "spent_key_images_list": [{
+      "key_images": ["cea4f54494d4cc28c006af7551b57a49eb6e8aac966ffa7b169f32298213c6ca"]
+    }],
   }
 }
 
@@ -2853,4 +3591,4 @@ $ curl -X POST http://127.0.0.1:18082/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 ## Sources:
 
-Reworked from [GetMonero.org](https://ww.getmonero.org/resources/developer-guides/wallet-rpc.html)
+Reworked from [GetMonero.org](https://www.getmonero.org/resources/developer-guides/wallet-rpc.html)
