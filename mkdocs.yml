@@ -184,40 +184,40 @@ plugins:
           build: true
         - locale: fr
           name: Français
-          build: true
+          build: false
         - locale: es
           name: Español
-          build: true
+          build: false
         - locale: it
           name: Italiano
-          build: true
+          build: false
         - locale: pl
           name: Polski
-          build: true
+          build: false
         - locale: ar
           name: العربية
-          build: true
+          build: false
         - locale: ru
           name: Русский
-          build: true
+          build: false
         - locale: de
           name: Deutsch
-          build: true
+          build: false
         - locale: nl
           name: Nederlands
-          build: true
+          build: false
         - locale: pt
           name: Português
-          build: true
+          build: false
         - locale: tr
           name: Türkçe
-          build: true
+          build: false
         - locale: zh
           name: 中文 (简体)
-          build: true
+          build: false
         - locale: zh-TW
           name: 中文 (繁體)
-          build: true
+          build: false
         - locale: nb
           name: Norsk Bokmål
-          build: true
+          build: false
