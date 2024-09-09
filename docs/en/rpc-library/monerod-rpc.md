@@ -4,88 +4,89 @@ title: "Daemon RPC documentation"
 
 # Daemon RPC
 
+**`monerod`** [Overview](../interacting/monerod-reference.md)
+
 ## Introduction
 
-This is a list of the monerod daemon RPC calls, their inputs and outputs, and examples of each.
-
+This is a list of the monerod daemon RPC calls, their inputs and outputs, and examples of each.    
 Many RPC calls use the daemon's JSON RPC interface while others use their own interfaces, as demonstrated below.
 
-Note: "@atomic-units" refer to the smallest fraction of 1 XMR according to the monerod implementation. **1 XMR = 1e12 @atomic-units.**
+Note: "[atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")" refer to the smallest fraction of 1 XMR according to the monerod implementation. **1 XMR = 1e12 [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").**
 
 ### [JSON RPC Methods](#json-rpc-methods):
 
-* [get_block_count](#get_block_count)
-* [on_get_block_hash](#on_get_block_hash)
-* [get_block_template](#get_block_template)
-* [submit_block](#submit_block)
-* [generateblocks](#generateblocks)
-* [get_last_block_header](#get_last_block_header)
-* [get_block_header_by_hash](#get_block_header_by_hash)
-* [get_block_header_by_height](#get_block_header_by_height)
-* [get_block_headers_range](#get_block_headers_range)
-* [get_block](#get_block)
-* [get_connections](#get_connections)
-* [get_info](#get_info)
-* [hard_fork_info](#hard_fork_info)
-* [set_bans](#set_bans)
-* [get_bans](#get_bans)
-* [banned](#banned)
-* [flush_txpool](#flush_txpool)
-* [get_output_histogram](#get_output_histogram)
-* [get_version](#get_version)
-* [get_coinbase_tx_sum](#get_coinbase_tx_sum)
-* [get_fee_estimate](#get_fee_estimate)
-* [get_alternate_chains](#get_alternate_chains)
-* [relay_tx](#relay_tx)
-* [sync_info](#sync_info)
-* [get_txpool_backlog](#get_txpool_backlog)
-* [get_output_distribution](#get_output_distribution)
-* [get_miner_data](#get_miner_data)
-* [prune_blockchain](#prune_blockchain)
-* [calc_pow](#calc_pow)
-* [flush_cache](#flush_cache)
-* [add_aux_pow](#add_aux_pow)
+- [get_block_count](#get_block_count)
+- [on_get_block_hash](#on_get_block_hash)
+- [get_block_template](#get_block_template)
+- [submit_block](#submit_block)
+- [generateblocks](#generateblocks)
+- [get_last_block_header](#get_last_block_header)
+- [get_block_header_by_hash](#get_block_header_by_hash)
+- [get_block_header_by_height](#get_block_header_by_height)
+- [get_block_headers_range](#get_block_headers_range)
+- [get_block](#get_block)
+- [get_connections](#get_connections)
+- [get_info](#get_info)
+- [hard_fork_info](#hard_fork_info)
+- [set_bans](#set_bans)
+- [get_bans](#get_bans)
+- [banned](#banned)
+- [flush_txpool](#flush_txpool)
+- [get_output_histogram](#get_output_histogram)
+- [get_version](#get_version)
+- [get_coinbase_tx_sum](#get_coinbase_tx_sum)
+- [get_fee_estimate](#get_fee_estimate)
+- [get_alternate_chains](#get_alternate_chains)
+- [relay_tx](#relay_tx)
+- [sync_info](#sync_info)
+- [get_txpool_backlog](#get_txpool_backlog)
+- [get_output_distribution](#get_output_distribution)
+- [get_miner_data](#get_miner_data)
+- [prune_blockchain](#prune_blockchain)
+- [calc_pow](#calc_pow)
+- [flush_cache](#flush_cache)
+- [add_aux_pow](#add_aux_pow)
 
 
 ### [Other RPC Methods](#other-daemon-rpc-calls):
 
-* [/get_height](#get_height)
-* [/get_blocks.bin](#get_blocksbin)
-* [/get_blocks_by_height.bin](#get_blocks_by_heightbin)
-* [/get_hashes.bin](#get_hashesbin)
-* [/get_o_indexes.bin](#get_o_indexesbin)
-* [/get_outs.bin](#get_outsbin)
-* [/get_output_distribution.bin](#get_output_distributionbin)
-* [/get_transactions](#get_transactions)
-* [/get_alt_blocks_hashes](#get_alt_blocks_hashes)
-* [/is_key_image_spent](#is_key_image_spent)
-* [/send_raw_transaction](#send_raw_transaction)
-* [/start_mining](#start_mining)
-* [/stop_mining](#stop_mining)
-* [/mining_status](#mining_status)
-* [/save_bc](#save_bc)
-* [/get_peer_list](#get_peer_list)
-* [/set_log_hash_rate](#set_log_hash_rate)
-* [/set_log_level](#set_log_level)
-* [/set_log_categories](#set_log_categories)
-* [/set_bootstrap_daemon](#set_bootstrap_daemon)
-* [/get_transaction_pool](#get_transaction_pool)
-* [/get_transaction_pool_hashes.bin](#get_transaction_pool_hashesbin)
-* [/get_transaction_pool_stats](#get_transaction_pool_stats)
-* [/stop_daemon](#stop_daemon)
-* [/get_info (not JSON)](#get_info-not-json)
-* [/get_limit](#get_limit)
-* [/set_limit](#set_limit)
-* [/out_peers](#out_peers)
-* [/in_peers](#in_peers)
-* [/get_net_stats](#get_net_stats)
-* [/start_save_graph](#start_save_graph)
-* [/stop_save_graph](#stop_save_graph)
-* [/get_outs](#get_outs)
-* [/update](#update)
-* [/pop_blocks](#pop_blocks)
-* [/get_transaction_pool_hashes](#get_transaction_pool_hashes)
-* [/get_public_nodes](#get_public_nodes)
+- [/get_height](#get_height)
+- [/get_blocks.bin](#get_blocksbin)
+- [/get_blocks_by_height.bin](#get_blocks_by_heightbin)
+- [/get_hashes.bin](#get_hashesbin)
+- [/get_o_indexes.bin](#get_o_indexesbin)
+- [/get_outs.bin](#get_outsbin)
+- [/get_output_distribution.bin](#get_output_distributionbin)
+- [/get_transactions](#get_transactions)
+- [/get_alt_blocks_hashes](#get_alt_blocks_hashes)
+- [/is_key_image_spent](#is_key_image_spent)
+- [/send_raw_transaction](#send_raw_transaction)
+- [/start_mining](#start_mining)
+- [/stop_mining](#stop_mining)
+- [/mining_status](#mining_status)
+- [/save_bc](#save_bc)
+- [/get_peer_list](#get_peer_list)
+- [/set_log_hash_rate](#set_log_hash_rate)
+- [/set_log_level](#set_log_level)
+- [/set_log_categories](#set_log_categories)
+- [/set_bootstrap_daemon](#set_bootstrap_daemon)
+- [/get_transaction_pool](#get_transaction_pool)
+- [/get_transaction_pool_hashes.bin](#get_transaction_pool_hashesbin)
+- [/get_transaction_pool_stats](#get_transaction_pool_stats)
+- [/stop_daemon](#stop_daemon)
+- [/get_info (not JSON)](#get_info-not-json)
+- [/get_limit](#get_limit)
+- [/set_limit](#set_limit)
+- [/out_peers](#out_peers)
+- [/in_peers](#in_peers)
+- [/get_net_stats](#get_net_stats)
+- [/start_save_graph](#start_save_graph)
+- [/stop_save_graph](#stop_save_graph)
+- [/get_outs](#get_outs)
+- [/update](#update)
+- [/pop_blocks](#pop_blocks)
+- [/get_transaction_pool_hashes](#get_transaction_pool_hashes)
+- [/get_public_nodes](#get_public_nodes)
 
 
 ---
@@ -94,7 +95,7 @@ Note: "@atomic-units" refer to the smallest fraction of 1 XMR according to the m
 
 The majority of monerod RPC calls use the daemon's `json_rpc` interface to request various bits of information. These methods all follow a similar structure, for example:
 
-```
+```Bash
 IP=127.0.0.1
 PORT=18081
 METHOD='get_block_header_by_height'
@@ -112,19 +113,19 @@ Some methods include parameters, while others do not. Examples of each JSON RPC 
 
 Look up how many blocks are in the longest chain known to the node.
 
-Alias: *getblockcount*.
+Alias: _getblockcount_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *count* - unsigned int; Number of blocks in longest chain seen by the node.
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _count_ - unsigned int; Number of blocks in longest chain seen by the node.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_count"}' -H 'Content-Type: application/json'  
 
 {  
@@ -143,7 +144,7 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 Look up a block's hash by its height.
 
-Alias: *on_getblockhash*.
+Alias: _on_getblockhash_ .
 
 Inputs:
 
@@ -155,7 +156,7 @@ Outputs:
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"on_get_block_hash","params":[912345]}' -H 'Content-Type: application/json'
 
 {
@@ -170,33 +171,33 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"o
 
 Get a block template on which mining a new block.
 
-Alias: *getblocktemplate*.
+Alias: _getblocktemplate_ .
 
 Inputs:
 
-* *wallet_address* - string; Address of wallet to receive coinbase transactions if block is successfully mined.
-* *reserve_size* - unsigned int; Reserve size.
+- _wallet_address_ - string; Address of wallet to receive coinbase transactions if block is successfully mined.
+- _reserve_size_ - unsigned int; Reserve size.
 
 Outputs:
 
-* *blocktemplate_blob* - string; Blob on which to try to mine a new block.
-* *blockhashing_blob* - string; Blob on which to try to find a valid nonce.
-* *difficulty* - unsigned int; Least-significant 64 bits of the 128-bit network difficulty.
-* *difficulty_top64* - unsigned int; Most-significant 64 bits of the 128-bit network difficulty.
-* *expected_reward* - unsigned int; Coinbase reward expected to be received if block is successfully mined.
-* *height* - unsigned int; Height on which to mine.
-* *next_seed_hash* - string; Hash of the next block to use as seed for Random-X proof-of-work.
-* *prev_hash* - string; Hash of the most recent block on which to mine the next block.
-* *reserved_offset* - unsigned int; Reserved offset.
-* *seed_hash* - string; Hash of block to use as seed for Random-X proof-of-work.
-* *seed_height* - unsigned int; Height of block to use as seed for Random-X proof-of-work.
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
-* *wide_difficulty* - string; Network difficulty (analogous to the strength of the network) as a hexadecimal string representing a 128-bit number.
+- _blocktemplate_blob_ - string; Blob on which to try to mine a new block.
+- _blockhashing_blob_ - string; Blob on which to try to find a valid nonce.
+- _difficulty_ - unsigned int; Least-significant 64 bits of the 128-bit network difficulty.
+- _difficulty_top64_ - unsigned int; Most-significant 64 bits of the 128-bit network difficulty.
+- _expected_reward_ - unsigned int; Coinbase reward expected to be received if block is successfully mined.
+- _height_ - unsigned int; Height on which to mine.
+- _next_seed_hash_ - string; Hash of the next block to use as seed for Random-X proof-of-work.
+- _prev_hash_ - string; Hash of the most recent block on which to mine the next block.
+- _reserved_offset_ - unsigned int; Reserved offset.
+- _seed_hash_ - string; Hash of block to use as seed for Random-X proof-of-work.
+- _seed_height_ - unsigned int; Height of block to use as seed for Random-X proof-of-work.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _wide_difficulty_ - string; Network difficulty (analogous to the strength of the network) as a hexadecimal string representing a 128-bit number.
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_template","params":{"wallet_address":"44GBHzv6ZyQdJkjqZje6KLZ3xSyN1hBSFAnLP6EAqJtCRVzMzZmeXTC2AHKDS9aEDTRKmo6a6o9r9j86pYfhCWDkKjbtcns","reserve_size":60}}' -H 'Content-Type: application/json'
 
 {
@@ -225,7 +226,7 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 Submit a mined block to the network.
 
-Alias: *submitblock*.
+Alias: _submitblock_ .
 
 Inputs:
 
@@ -233,11 +234,11 @@ Inputs:
 
 Outputs:
 
-* *status* - string; Block submit status.
+- _status_ - string; Block submit status.
 
 In this example, a block blob which has not been mined is submitted:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"submit_block","params":["0707e6bdfedc053771512f1bc27c62731ae9e8f2443db64ce742f4e57f5cf8d393de28551e441a0000000002fb830a01ffbf830a018cfe88bee283060274c0aae2ef5730e680308d9c00b6da59187ad0352efe3c71d36eeeb28782f29f2501bd56b952c3ddc3e350c2631d3a5086cac172c56893831228b17de296ff4669de020200000000"]}' -H 'Content-Type: application/json'
 
 {
@@ -255,20 +256,20 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"s
 Generate a block and specify the address to receive the coinbase reward.
 
 Inputs:
-* *amount_of_blocks* - unsigned int; number of blocks to be generated.
-* *wallet_address* - string; address to receive the coinbase reward.
-* *prev_block* - string;
-* *starting_nonce* - unsigned int; Increased by miner until it finds a matching result that solves a block.
+- _amount_of_blocks_ - unsigned int; number of blocks to be generated.
+- _wallet_address_ - string; address to receive the coinbase reward.
+- _prev_block_ - string;
+- _starting_nonce_ - unsigned int; Increased by miner until it finds a matching result that solves a block.
 
 Outputs:
-* *blocks* - list of string;
-* *height* - unsigned int;
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _blocks_ - list of string;
+- _height_ - unsigned int;
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 The example below uses monerod with the start flags `--regtest --offline --fixed-difficulty 1`. `--offline` ensures that the node does not connect to the main network and learn of its latest chaintip and `--fixed-difficulty` keeps the difficulty constant, allowing a large number of blocks to be generated quickly.
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"generateblocks","params":{"amount_of_blocks":1,"wallet_address":"44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A","starting_nonce": 0}' -H 'Content-Type: application/json'
 
 {
@@ -287,45 +288,45 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 Block header information for the most recent block is easily retrieved with this method. No inputs are needed.
 
-Alias: *getlastblockheader*.
+Alias: _getlastblockheader_ .
 
 Inputs:
 
-* *fill_pow_hash* - boolean; (Optional; defaults to `false`) Add PoW hash to block_header response.
+- _fill_pow_hash_ - boolean; (Optional; defaults to `false`) Add PoW hash to block_header response.
 
 Outputs:
 
-* *block_header* - A structure containing block header information.
-  * *block_size* - unsigned int; Backward compatibility, same as *block_weight*, use that instead
-  * *block_weight* - unsigned int; The adjusted block size, in bytes. This is the raw size, plus a positive adjustment for any Bulletproof transactions with more than 2 outputs.
-  * *cumulative_difficulty* - unsigned int; Least-significant 64 bits of the cumulative difficulty of all blocks up to the block in the reply.
-  * *cumulative_difficulty_top64* - unsigned int; Most-significant 64 bits of the 128-bit cumulative difficulty.
-  * *depth* -  unsigned int; The number of blocks succeeding this block on the blockchain. A larger number means an older block.
-  * *difficulty* - unsigned int; The strength of the Monero network based on mining power.
-  * *difficulty_top64* - unsigned int; Most-significant 64 bits of the 128-bit network difficulty.
-  * *hash* - string; The hash of this block.
-  * *height* - unsigned int; The number of blocks preceding this block on the blockchain.
-  * *long_term_weight* - unsigned int; The long term block weight, based on the median weight of the preceding 100000 blocks.
-  * *major_version* - unsigned int; The major version of the monero protocol at this block height.
-  * *miner_tx_hash* - string; The hash of this block's coinbase transaction.
-  * *minor_version* - unsigned int; The minor version of the monero protocol at this block height.
-  * *nonce* - unsigned int; a cryptographic random one-time number used in mining a Monero block.
-  * *num_txes* - unsigned int; Number of transactions in the block, not counting the coinbase tx.
-  * *orphan_status* - boolean; Usually `false`. If `true`, this block is not part of the longest chain.
-  * *pow_hash* - string; The hash, as a hexadecimal string, calculated from the block as proof-of-work.
-  * *prev_hash* - string; The hash of the block immediately preceding this block in the chain.
-  * *reward* - unsigned int; The amount of new @atomic-units generated in this block and rewarded to the miner. Note: 1 XMR = 1e12 @atomic-units.
-  * *timestamp* - unsigned int; The unix time at which the block was recorded into the blockchain.
-  * *wide_cumulative_difficulty* - Cumulative difficulty of all blocks in the blockchain as a hexadecimal string representing a 128-bit number.
-  * *wide_difficulty* - string; Network difficulty (analogous to the strength of the network) as a hexadecimal string representing a 128-bit number.
-* *credits* - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *top_hash* - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _block_header_ - A structure containing block header information.
+  - _block_size_ - unsigned int; Backward compatibility, same as _block_weight_ , use that instead
+  - _block_weight_ - unsigned int; The adjusted block size, in bytes. This is the raw size, plus a positive adjustment for any Bulletproof transactions with more than 2 outputs.
+  - _cumulative_difficulty_ - unsigned int; Least-significant 64 bits of the cumulative difficulty of all blocks up to the block in the reply.
+  - _cumulative_difficulty_top64_ - unsigned int; Most-significant 64 bits of the 128-bit cumulative difficulty.
+  - _depth_ -  unsigned int; The number of blocks succeeding this block on the blockchain. A larger number means an older block.
+  - _difficulty_ - unsigned int; The strength of the Monero network based on mining power.
+  - _difficulty_top64_ - unsigned int; Most-significant 64 bits of the 128-bit network difficulty.
+  - _hash_ - string; The hash of this block.
+  - _height_ - unsigned int; The number of blocks preceding this block on the blockchain.
+  - _long_term_weight_ - unsigned int; The long term block weight, based on the median weight of the preceding 100000 blocks.
+  - _major_version_ - unsigned int; The major version of the monero protocol at this block height.
+  - _miner_tx_hash_ - string; The hash of this block's coinbase transaction.
+  - _minor_version_ - unsigned int; The minor version of the monero protocol at this block height.
+  - _nonce_ - unsigned int; a cryptographic random one-time number used in mining a Monero block.
+  - _num_txes_ - unsigned int; Number of transactions in the block, not counting the coinbase tx.
+  - _orphan_status_ - boolean; Usually `false`. If `true`, this block is not part of the longest chain.
+  - _pow_hash_ - string; The hash, as a hexadecimal string, calculated from the block as proof-of-work.
+  - _prev_hash_ - string; The hash of the block immediately preceding this block in the chain.
+  - _reward_ - unsigned int; The amount of new [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.") generated in this block and rewarded to the miner. Note: 1 XMR = 1e12 [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+  - _timestamp_ - unsigned int; The unix time at which the block was recorded into the blockchain.
+  - _wide_cumulative_difficulty_ - Cumulative difficulty of all blocks in the blockchain as a hexadecimal string representing a 128-bit number.
+  - _wide_difficulty_ - string; Network difficulty (analogous to the strength of the network) as a hexadecimal string representing a 128-bit number.
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 In this example, the most recent block (1562023 at the time) is returned:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_last_block_header"}' -H 'Content-Type: application/json'
 
 {
@@ -369,22 +370,22 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 Block header information can be retrieved using either a block's hash or height. This method includes a block's hash as an input parameter to retrieve basic information about the block.
 
-Alias: *getblockheaderbyhash*.
+Alias: _getblockheaderbyhash_ .
 
 Inputs:
 
-* *hash* - string; The block's sha256 hash.
-* *fill_pow_hash* - boolean; (Optional; defaults to `false`) Add PoW hash to block_header response.
+- _hash_ - string; The block's sha256 hash.
+- _fill_pow_hash_ - boolean; (Optional; defaults to `false`) Add PoW hash to block_header response.
 
 Outputs:
 
-* *block_header* - A structure containing block header information. See [get_last_block_header](#get_last_block_header).
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _block_header_ - A structure containing block header information. See [get_last_block_header](#get_last_block_header).
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 In this example, block 912345 is looked up by its hash:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_header_by_hash","params":{"hash":"e22cf75f39ae720e8b71b3d120a5ac03f0db50bba6379e2850975b4859190bc6"}}' -H 'Content-Type: application/json'
 
 {
@@ -428,22 +429,22 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 Similar to [get_block_header_by_hash](#get_block_header_by_hash) above, this method includes a block's height as an input parameter to retrieve basic information about the block.
 
-Alias: *getblockheaderbyheight*.
+Alias: _getblockheaderbyheight_ .
 
 Inputs:
 
-* *height* - unsigned int; The block's height.
-* *fill_pow_hash* - boolean; (Optional; defaults to `false`) Add PoW hash to block_header response.
+- _height_ - unsigned int; The block's height.
+- _fill_pow_hash_ - boolean; (Optional; defaults to `false`) Add PoW hash to block_header response.
 
 Outputs:
 
-* *block_header* - A structure containing block header information. See [get_last_block_header](#get_last_block_header).
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _block_header_ - A structure containing block header information. See [get_last_block_header](#get_last_block_header).
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 In this example, block 912345 is looked up by its height (notice that the returned information is the same as in the previous example):
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_header_by_height","params":{"height":912345}}' -H 'Content-Type: application/json'
 
 {
@@ -486,25 +487,25 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 Similar to [get_block_header_by_height](#get_block_header_by_height) above, but for a range of blocks. This method includes a starting block height and an ending block height as parameters to retrieve basic information about the range of blocks.
 
-Alias: *getblockheadersrange*.
+Alias: _getblockheadersrange_ .
 
 Inputs:
 
-* *start_height* - unsigned int; The starting block's height.
-* *end_height* - unsigned int; The ending block's height.
-* *fill_pow_hash* - boolean; (Optional; defaults to `false`) Add PoW hash to block_header response.
+- _start_height_ - unsigned int; The starting block's height.
+- _end_height_ - unsigned int; The ending block's height.
+- _fill_pow_hash_ - boolean; (Optional; defaults to `false`) Add PoW hash to block_header response.
 
 Outputs:
 
-* *credits* - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-* *headers* - array of `block_header` (a structure containing block header information. See [get_last_block_header](#get_last_block_header)).
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *top_hash* - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+- _headers_ - array of `block_header` (a structure containing block header information. See [get_last_block_header](#get_last_block_header)).
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 In this example, blocks range from height 1545999 to 1546000 is looked up (notice that the returned information are ascending order and that it is at the April 2018 network upgrade time):
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_headers_range","params":{"start_height":1545999,"end_height":1546000}}' -H 'Content-Type: application/json'
 
 {
@@ -571,50 +572,51 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 Full block information can be retrieved by either block height or hash, like with the above block header calls. For full block information, both lookups use the same method, but with different input parameters.
 
-Alias: *getblock*.
+Alias: _getblock_ .
 
 Inputs (pick height or hash):
 
-* *height* - unsigned int; The block's height.
-* *hash* - string; The block's hash.
-* *fill_pow_hash* - bool; (Optional; Default false) Add PoW hash to block_header response.
+- _height_ - unsigned int; The block's height.
+- _hash_ - string; The block's hash.
+- _fill_pow_hash_ - bool; (Optional; Default false) Add PoW hash to block_header response.
 
 Outputs:
 
-* *blob* - string; Hexadecimal blob of block information.
-* *block_header* - A structure containing block header information. See [get_last_block_header](#get_last_block_header).
-* *credits* - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-* *json* - json string; JSON formatted block details:
-  * *major_version* - Same as in block header.
-  * *minor_version* - Same as in block header.
-  * *timestamp* - Same as in block header.
-  * *prev_id* - Same as `prev_hash` in block header.
-  * *nonce* - Same as in block header.
-  * *miner_tx* - Miner transaction information
-    * *version* - Transaction version number.
-    * *unlock_time* - The block height when the coinbase transaction becomes spendable.
-    * *vin* - List of transaction inputs:
-      * *gen* - Miner txs are coinbase txs, or "gen".
-        * *height* - This block height, a.k.a. when the coinbase is generated.
-    * *vout* - List of transaction outputs. Each output contains:
-      * *amount* - The amount of the coinbase output, in @atomic-units.
-      * *target* -
-        * *tagged_key* -
-          * *key* - the public key of the output
-          * *view_tag* - The 1st byte of a shared secret (used for reducing synchronization time)
-    * *extra* - Usually called the "transaction ID" but can be used to include any random 32 byte/64 character hex string.
-    * *rct_signatures* - Contain signatures of tx signers. Coinbased txs do not have signatures.
-  * *tx_hashes* - List of hashes of non-coinbase transactions in the block. If there are no other transactions, this will be an empty list.
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *top_hash* - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _blob_ - string; Hexadecimal blob of block information.
+- _block_header_ - A structure containing block header information. See [get_last_block_header](#get_last_block_header).
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+- _json_ - json string; JSON formatted block details:
+  - _major_version_ - Same as in block header.
+  - _minor_version_ - Same as in block header.
+  - _timestamp_ - Same as in block header.
+  - _prev_id_ - Same as `prev_hash` in block header.
+  - _nonce_ - Same as in block header.
+  - _miner_tx_ - Miner transaction information
+    - _version_ - Transaction version number.
+    - _unlock_time_ - The block height when the coinbase transaction becomes spendable.
+    - _vin_ - List of transaction inputs:
+      - _gen_ - Miner txs are coinbase txs, or "gen".
+        - _height_ - This block height, a.k.a. when the coinbase is generated.
+    - _vout_ - List of transaction outputs. Each output contains:
+      - _amount_ - The amount of the coinbase output, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+      - _target_ -
+        - _tagged_key_ -
+          - _key_ - the public key of the output
+          - _view_tag_ - The 1st byte of a shared secret (used for reducing synchronization time)
+    - _extra_ - Usually called the "transaction ID" but can be used to include any random 32 byte/64 character hex string.
+    - _rct_signatures_ - Contain signatures of tx signers. Coinbased txs do not have signatures.
+  - _tx_hashes_ - List of hashes of non-coinbase transactions in the block. If there are no other transactions, this will be an empty list.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 **Look up by height:**
 
 In the following example, block 2751506 is looked up by its height. Note that block 2751506 does not have any non-coinbase transactions. (See the next example for a block with extra transactions):
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block","params":{"height":2751506}}' -H 'Content-Type: application/json'
+
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -658,8 +660,9 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 In the following example, block 2751210 is looked up by its hash. Note that block 2751210 has 2 non-coinbase transactions:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block","params":{"hash":"86d421322b700166dde2d7eba1cc8600925ef640abf6c0a2cc8ce0d6dd90abfd"}' -H 'Content-Type: application/json'
+
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -705,40 +708,40 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 Retrieve information about incoming and outgoing connections to your node.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *connections* - List of all connections and their info:
-  * *address* - string; The peer's address, actually IPv4 & port
-  * *avg_download* - unsigned int; Average bytes of data downloaded by node.
-  * *avg_upload* - unsigned int; Average bytes of data uploaded by node.
-  * *connection_id* - string; The connection ID
-  * *current_download* - unsigned int; Current bytes downloaded by node.
-  * *current_upload* - unsigned int; Current bytes uploaded by node.
-  * *height*- unsigned int; The peer height
-  * *host* - string; The peer host
-  * *incoming* - boolean; Is the node getting information from your node?
-  * *ip* - string; The node's IP address.
-  * *live_time* - unsigned int
-  * *local_ip* - boolean
-  * *localhost* - boolean
-  * *peer_id* - string; The node's ID on the network.
-  * *port* - string; The port that the node is using to connect to the network.
-  * *recv_count* - unsigned int
-  * *recv_idle_time* - unsigned int
-  * *send_count* - unsigned int
-  * *send_idle_time* - unsigned int
-  * *state* - string
-  * *support_flags* - unsigned int
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _connections_ - List of all connections and their info:
+  - _address_ - string; The peer's address, actually IPv4 & port
+  - _avg_download_ - unsigned int; Average bytes of data downloaded by node.
+  - _avg_upload_ - unsigned int; Average bytes of data uploaded by node.
+  - _connection_id_ - string; The connection ID
+  - _current_download_ - unsigned int; Current bytes downloaded by node.
+  - _current_upload_ - unsigned int; Current bytes uploaded by node.
+  - _height_ - unsigned int; The peer height
+  - _host_ - string; The peer host
+  - _incoming_ - boolean; Is the node getting information from your node?
+  - _ip_ - string; The node's IP address.
+  - _live_time_ - unsigned int
+  - _local_ip_ - boolean
+  - _localhost_ - boolean
+  - _peer_id_ - string; The node's ID on the network.
+  - _port_ - string; The port that the node is using to connect to the network.
+  - _recv_count_ - unsigned int
+  - _recv_idle_time_ - unsigned int
+  - _send_count_ - unsigned int
+  - _send_idle_time_ - unsigned int
+  - _state_ - string
+  - _support_flags_ - unsigned int
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _$1_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Following is an example of `get_connections` and it's return:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_connections"}' -H 'Content-Type: application/json'
 
 {
@@ -788,61 +791,61 @@ Retrieve general information about the state of your node and the network.
 
 Alias:
 
-* */get_info*
-* */getinfo*
+- _/get_info_ 
+- _/getinfo_ 
 
 See other RPC Methods [/get_info (not JSON)](#get_info-not-json)
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *adjusted_time* - unsigned int; Current time approximated from chain data, as Unix time.
-* *alt_blocks_count* - unsigned int; Number of alternative blocks to main chain.
-* *block_size_limit* - unsigned int; Backward compatibility, same as *block_weight_limit*, use that instead
-* *block_size_median* - unsigned int; Backward compatibility, same as *block_weight_median*, use that instead
-* *block_weight_limit* - unsigned int; Maximum allowed adjusted block size based on latest 100000 blocks
-* *block_weight_median* - unsigned int; Median adjusted block size of latest 100000 blocks
-* *bootstrap_daemon_address* - string; @Bootstrap-node to give immediate usability to wallets while syncing by proxying RPC to it. (Note: the replies may be untrustworthy).
-* *busy_syncing* - boolean; States if new blocks are being added (`true`) or not (`false`).
-* *credits* - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-* *cumulative_difficulty* - unsigned int; Least-significant 64 bits of the 128-bit cumulative difficulty.
-* *cumulative_difficulty_top64* - unsigned int; Most-significant 64 bits of the 128-bit cumulative difficulty.
-* *database_size* - unsigned int; The size of the blockchain database, in bytes.
-* *difficulty* - unsigned int; Least-significant 64 bits of the 128-bit network difficulty.
-* *difficulty_top64* - unsigned int; Most-significant 64 bits of the 128-bit network difficulty.
-* *free_space* - unsigned int; Available disk space on the node.
-* *grey_peerlist_size* - unsigned int; Grey Peerlist Size
-* *height* - unsigned int; Current length of longest chain known to daemon.
-* *height_without_bootstrap* - unsigned int; Current length of the local chain of the daemon.
-* *incoming_connections_count* - unsigned int; Number of peers connected to and pulling from your node.
-* *mainnet* - boolean; States if the node is on the mainnet (`true`) or not (`false`).
-* *nettype* - string; Network type (one of `mainnet`, `stagenet` or `testnet`).
-* *offline* - boolean; States if the node is offline (`true`) or online (`false`).
-* *outgoing_connections_count* - unsigned int; Number of peers that you are connected to and getting information from.
-* *rpc_connections_count* - unsigned int; Number of RPC client connected to the daemon (Including this RPC request).
-* *stagenet* - boolean; States if the node is on the stagenet (`true`) or not (`false`).
-* *start_time* - unsigned int; Start time of the daemon, as UNIX time.
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *synchronized* - boolean; States if the node is synchronized (`true`) or not (`false`).
-* *target* - unsigned int; Current target for next proof of work.
-* *target_height* - unsigned int; The height of the next block in the chain.
-* *testnet* - boolean; States if the node is on the testnet (`true`) or not (`false`).
-* *top_block_hash* - string; Hash of the highest block in the chain.
-* *top_hash* - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-* *tx_count* - unsigned int; Total number of non-coinbase transaction in the chain.
-* *tx_pool_size* - unsigned int; Number of transactions that have been broadcast but not included in a block.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
-* *update_available* - boolean; States if a newer Monero software version is available.
-* *version* - string; The version of the Monero software the node is running.
-* *was_bootstrap_ever_used* - boolean; States if a bootstrap node has ever been used since the daemon started.
-* *white_peerlist_size* - unsigned int; White Peerlist Size
-* *wide_cumulative_difficulty* - Cumulative difficulty of all blocks in the blockchain as a hexadecimal string representing a 128-bit number.
-* *wide_difficulty* - string; Network difficulty (analogous to the strength of the network) as a hexadecimal string representing a 128-bit number.
+- _adjusted_time_ - unsigned int; Current time approximated from chain data, as Unix time.
+- _alt_blocks_count_ - unsigned int; Number of alternative blocks to main chain.
+- _block_size_limit_ - unsigned int; Backward compatibility, same as _block_weight_limit_ , use that instead
+- _block_size_median_ - unsigned int; Backward compatibility, same as _block_weight_median_ , use that instead
+- _block_weight_limit_ - unsigned int; Maximum allowed adjusted block size based on latest 100000 blocks
+- _block_weight_median_ - unsigned int; Median adjusted block size of latest 100000 blocks
+- _bootstrap_daemon_address_ - string; @Bootstrap-node to give immediate usability to wallets while syncing by proxying RPC to it. (Note: the replies may be untrustworthy).
+- _busy_syncing_ - boolean; States if new blocks are being added (`true`) or not (`false`).
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+- _cumulative_difficulty_ - unsigned int; Least-significant 64 bits of the 128-bit cumulative difficulty.
+- _cumulative_difficulty_top64_ - unsigned int; Most-significant 64 bits of the 128-bit cumulative difficulty.
+- _database_size_ - unsigned int; The size of the blockchain database, in bytes.
+- _difficulty_ - unsigned int; Least-significant 64 bits of the 128-bit network difficulty.
+- _difficulty_top64_ - unsigned int; Most-significant 64 bits of the 128-bit network difficulty.
+- _free_space_ - unsigned int; Available disk space on the node.
+- _grey_peerlist_size_ - unsigned int; Grey Peerlist Size
+- _height_ - unsigned int; Current length of longest chain known to daemon.
+- _height_without_bootstrap_ - unsigned int; Current length of the local chain of the daemon.
+- _incoming_connections_count_ - unsigned int; Number of peers connected to and pulling from your node.
+- _mainnet_ - boolean; States if the node is on the mainnet (`true`) or not (`false`).
+- _nettype_ - string; Network type (one of `mainnet`, `stagenet` or `testnet`).
+- _offline_ - boolean; States if the node is offline (`true`) or online (`false`).
+- _outgoing_connections_count_ - unsigned int; Number of peers that you are connected to and getting information from.
+- _rpc_connections_count_ - unsigned int; Number of RPC client connected to the daemon (Including this RPC request).
+- _stagenet_ - boolean; States if the node is on the stagenet (`true`) or not (`false`).
+- _start_time_ - unsigned int; Start time of the daemon, as UNIX time.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _synchronized_ - boolean; States if the node is synchronized (`true`) or not (`false`).
+- _target_ - unsigned int; Current target for next proof of work.
+- _target_height_ - unsigned int; The height of the next block in the chain.
+- _testnet_ - boolean; States if the node is on the testnet (`true`) or not (`false`).
+- _top_block_hash_ - string; Hash of the highest block in the chain.
+- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _tx_count_ - unsigned int; Total number of non-coinbase transaction in the chain.
+- _tx_pool_size_ - unsigned int; Number of transactions that have been broadcast but not included in a block.
+- _$1_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _update_available_ - boolean; States if a newer Monero software version is available.
+- _version_ - string; The version of the Monero software the node is running.
+- _was_bootstrap_ever_used_ - boolean; States if a bootstrap node has ever been used since the daemon started.
+- _white_peerlist_size_ - unsigned int; White Peerlist Size
+- _wide_cumulative_difficulty_ - Cumulative difficulty of all blocks in the blockchain as a hexadecimal string representing a 128-bit number.
+- _wide_difficulty_ - string; Network difficulty (analogous to the strength of the network) as a hexadecimal string representing a 128-bit number.
 
 Following is an example `get_info` call and its return:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_info"}' -H 'Content-Type: application/json'
 
 {
@@ -900,28 +903,28 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 Look up information regarding hard fork voting and readiness.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *credits* - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-* *earliest_height* - unsigned int; Block height at which hard fork would be enabled if voted in.
-* *enabled* - boolean; Tells if hard fork is enforced.
-* *state* - unsigned int; Current hard fork state: 0 (There is likely a hard fork), 1 (An update is needed to fork properly), or 2 (Everything looks good).
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *threshold* - unsigned int; Minimum percent of votes to trigger hard fork. Default is 80.
-* *top_hash* - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
-* *version* - unsigned int; The major block version for the fork.
-* *votes* - unsigned int; Number of votes towards hard fork.
-* *voting* - unsigned int; Hard fork voting status.
-* *window* - unsigned int; Number of blocks over which current votes are cast. Default is 10080 blocks.
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+- _earliest_height_ - unsigned int; Block height at which hard fork would be enabled if voted in.
+- _enabled_ - boolean; Tells if hard fork is enforced.
+- _state_ - unsigned int; Current hard fork state: 0 (There is likely a hard fork), 1 (An update is needed to fork properly), or 2 (Everything looks good).
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _threshold_ - unsigned int; Minimum percent of votes to trigger hard fork. Default is 80.
+- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _$1_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _version_ - unsigned int; The major block version for the fork.
+- _votes_ - unsigned int; Number of votes towards hard fork.
+- _voting_ - unsigned int; Hard fork voting status.
+- _window_ - unsigned int; Number of blocks over which current votes are cast. Default is 10080 blocks.
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"hard_fork_info"}' -H 'Content-Type: application/json'
 
 {
@@ -949,19 +952,19 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"h
 
 Ban another node by IP.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *bans* - A list of nodes to ban:
-  * *host* - string; Host to ban (IP in A.B.C.D form - will support I2P address in the future).
-  * *ip* - unsigned int; IP address to ban, in Int format.
-  * *ban* - boolean; Set `true` to ban.
-  * *seconds* - unsigned int; Number of seconds to ban node.
+- _bans_ - A list of nodes to ban:
+  - _host_ - string; Host to ban (IP in A.B.C.D form - will support I2P address in the future).
+  - _ip_ - unsigned int; IP address to ban, in Int format.
+  - _ban_ - boolean; Set `true` to ban.
+  - _seconds_ - unsigned int; Number of seconds to ban node.
 
 Outputs:
 
-* *status* - string; General RPC error code. "OK" means everything looks good.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
 
 Examples:
 
@@ -969,7 +972,7 @@ Examples:
 
 In the following example, host is banned with its IP address string-formatted as A.B.C.D:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_bans","params":{"bans":[{"host":"192.168.1.51","ban":true,"seconds":30}]}}' -H  'Content-Type: application/json'
 
 {
@@ -986,7 +989,7 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"s
 
 In the following example, integer-formatted IP is banned:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_bans","params":{"bans":[{"ip":838969536,"ban":true,"seconds":30}]}}' -H  'Content-Type: application/json'
 
 {
@@ -1003,22 +1006,22 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"s
 
 Get list of banned IPs.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *bans* - List of banned nodes:
-  * *host* - string; Banned host (IP in A.B.C.D form).
-  * *ip* - unsigned int; Banned IP address, in Int format.
-  * *seconds* - unsigned int; Local Unix time that IP is banned until.
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _bans_ - List of banned nodes:
+  - _host_ - string; Banned host (IP in A.B.C.D form).
+  - _ip_ - unsigned int; Banned IP address, in Int format.
+  - _seconds_ - unsigned int; Local Unix time that IP is banned until.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_bans"}' -H 'Content-Type: application/json'
 
 {
@@ -1045,21 +1048,21 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 Check if an IP address is banned and for how long.
 
-Alias: *None*
+Alias: _None_ 
 
 Inputs:
 
-* *address* - string;
+- _address_ - string;
 
 Outputs:
 
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *banned* - boolean;
-* *seconds* - unsigned int;
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _banned_ - boolean;
+- _seconds_ - unsigned int;
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"banned","params":{"address":"95.216.203.255"}}' -H 'Content-Type: application/json'
 
 {
@@ -1077,20 +1080,21 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"b
 
 Flush tx ids from transaction pool
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *txids* - array of strings; Optional, list of transactions IDs to flush from pool (all tx ids flushed if empty).
+- _txids_ - array of strings; Optional, list of transactions IDs to flush from pool (all tx ids flushed if empty).
 
 Outputs:
 
-* *status* - string; General RPC error code. "OK" means everything looks good.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"flush_txpool","params":{"txids":["dc16fa8eaffe1484ca9014ea050e13131d3acf23b419f33bb4cc0b32b6c49308",""]}}' -H 'Content-Type: application/json'
+
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1107,27 +1111,27 @@ RingCT outputs counts as 0 amount.
 
 Inputs:
 
-* *amounts* - list of unsigned int
-* *min_count* - unsigned int
-* *max_count* - unsigned int
-* *unlocked* - boolean
-* *recent_cutoff* - unsigned int
+- _amounts_ - list of unsigned int
+- _min_count_ - unsigned int
+- _max_count_ - unsigned int
+- _unlocked_ - boolean
+- _recent_cutoff_ - unsigned int
 
 Outputs:
 
-* *credits* - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-* *histogram* - list of histogram entries, in the following structure:
-  * *amount* - unsigned int; Output amount in @atomic-units
-  * *total_instances* - unsigned int;
-  * *unlocked_instances* - unsigned int;
-  * *recent_instances* - unsigned int;
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *top_hash* - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+- _histogram_ - list of histogram entries, in the following structure:
+  - _amount_ - unsigned int; Output amount in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")
+  - _total_instances_ - unsigned int;
+  - _unlocked_instances_ - unsigned int;
+  - _recent_instances_ - unsigned int;
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_output_histogram","params":{"amounts":[20000000000]}}' -H 'Content-Type: application/json'
 
 {
@@ -1153,29 +1157,29 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 Get the coinbase amount and the fees amount for n last blocks starting at particular height
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *height* - unsigned int; Block height from which getting the amounts
-* *count* - unsigned int; number of blocks to include in the sum
+- _height_ - unsigned int; Block height from which getting the amounts
+- _count_ - unsigned int; number of blocks to include in the sum
 
 Outputs:
 
-* *credits* - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-* *emission_amount* - unsigned int; Least significant 64 bits for 128 bit integer representing the sum of coinbase rewards in @atomic-units. (See src/rpc/core_rpc_server.cpp store_128)
-* *emission_amount_top64* - unsigned it; Most significant 64 bits for 128 bit integer representing the sum of coinbase rewards in @atomic-units
-* *fee_amount* - unsigned int; Most significant 64 bits for 128 bit integer representing the sum of fees in @atomic-units.
-* *fee_amount_top64* - unsigned int; Most significant 64 bits for 128 bit integer representing the sum of fees in @atomic-units.
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *top_hash* - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
-* *wide_emission_amount* - string (128 bit hex encoded integer); Sum of coinbase rewards in @atomic-units.
-* *wide_fee_amount* - string (128 bit hex encoded integer); Sum of fees in @atomic-units.
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+- _emission_amount_ - unsigned int; Least significant 64 bits for 128 bit integer representing the sum of coinbase rewards in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR."). (See src/rpc/core_rpc_server.cpp store_128)
+- _emission_amount_top64_ - unsigned it; Most significant 64 bits for 128 bit integer representing the sum of coinbase rewards in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")
+- _fee_amount_ - unsigned int; Most significant 64 bits for 128 bit integer representing the sum of fees in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+- _fee_amount_top64_ - unsigned int; Most significant 64 bits for 128 bit integer representing the sum of fees in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _wide_emission_amount_ - string (128 bit hex encoded integer); Sum of coinbase rewards in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+- _wide_fee_amount_ - string (128 bit hex encoded integer); Sum of fees in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_coinbase_tx_sum","params":{"height":1563078,"count":2}}' -H 'Content-Type: application/json'
 
 {
@@ -1201,20 +1205,20 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 Give the node current version
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *release* - boolean; States if the daemon software version corresponds to an official tagged release (`true`), or not (`false`)
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
-* *version* - unsigned int;
+- _release_ - boolean; States if the daemon software version corresponds to an official tagged release (`true`), or not (`false`)
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _version_ - unsigned int;
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_version"}' -H 'Content-Type: application/json'
 
 {
@@ -1233,25 +1237,25 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 Gives an estimation on fees per byte.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *grace_blocks* - unsigned int; Optional
+- _grace_blocks_ - unsigned int; Optional
 
 Outputs:
 
-* *credits* - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-* *fee* - unsigned int; Amount of fees estimated per byte in @atomic-units
-* *fees* - array of unsigned int; Represents the base fees at different priorities [slow, normal, fast, fastest].
-* *quantization_mask* - unsigned int; Final fee should be rounded up to an even multiple of this value
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *top_hash* - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+- _fee_ - unsigned int; Amount of fees estimated per byte in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")
+- _fees_ - array of unsigned int; Represents the base fees at different priorities [slow, normal, fast, fastest].
+- _quantization_mask_ - unsigned int; Final fee should be rounded up to an even multiple of this value
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_fee_estimate"}' -H 'Content-Type: application/json'
 
 {
@@ -1274,27 +1278,27 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 Display alternative chains seen by the node.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *chains* - array of chains, the following structure:
-  * *block_hash* - string; the block hash of the first diverging block of this alternative chain.
-  * *block_hashes* - array of strings; An array of all block hashes in the alternative chain that are not in the main chain.
-  * *difficulty* - unsigned int; Least-significant 64 bits of 128-bit integer for the cumulative difficulty of all blocks in the alternative chain.
-  * *difficulty_top64* - unsigned int; Most-significant 64 bits of the 128-bit network difficulty.
-  * *height* - unsigned int; the block height of the first diverging block of this alternative chain.
-  * *length* - unsigned int; the length in blocks of this alternative chain, after divergence.
-  * *main_chain_parent_block* - string; The hash of the greatest height block that is shared between the alternative chain and the main chain.
-  * *wide_difficulty* - string; Network difficulty (analogous to the strength of the network) as a hexadecimal string representing a 128-bit number.
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _chains_ - array of chains, the following structure:
+  - _block_hash_ - string; the block hash of the first diverging block of this alternative chain.
+  - _block_hashes_ - array of strings; An array of all block hashes in the alternative chain that are not in the main chain.
+  - _difficulty_ - unsigned int; Least-significant 64 bits of 128-bit integer for the cumulative difficulty of all blocks in the alternative chain.
+  - _difficulty_top64_ - unsigned int; Most-significant 64 bits of the 128-bit network difficulty.
+  - _height_ - unsigned int; the block height of the first diverging block of this alternative chain.
+  - _length_ - unsigned int; the length in blocks of this alternative chain, after divergence.
+  - _main_chain_parent_block_ - string; The hash of the greatest height block that is shared between the alternative chain and the main chain.
+  - _wide_difficulty_ - string; Network difficulty (analogous to the strength of the network) as a hexadecimal string representing a 128-bit number.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_alternate_chains"}' -H 'Content-Type: application/json'
 
 {
@@ -1322,19 +1326,19 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 Relay a list of transaction IDs.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *txids* - array of string; list of transaction IDs to relay
+- _txids_ - array of string; list of transaction IDs to relay
 
 Outputs:
 
-* *status* - string; General RPC error code. "OK" means everything looks good.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"relay_tx","params":{"txids":["9fd75c429cbe52da9a52f2ffc5fbd107fe7fd2099c0d8de274dc8a67e0c98613"]}}' -H 'Content-Type: application/json'
 
 {
@@ -1351,32 +1355,32 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"r
 
 Get synchronization information
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *credits* - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-* *height* - unsigned int;
-* *next_needed_pruning_seed* - unsigned int; The next pruning seed needed for pruned sync.
-* *overview* - string; Overview of current block queue where each character in the string represents a block set in the queue. `. = requested but not received`, `o = set received`, `m  = received set that matches the next blocks needed`
-* *peers* - array of peer structure, defined as follows:
-  * *info* - structure of connection info, as defined in [get_connections](#get_connections)
-* *spans* - array of span structure, defined as follows (optional, absent if node is fully synced):
-  * *connection_id* - string; Id of connection
-  * *nblocks* - unsigned int; number of blocks in that span
-  * *rate* - unsigned int; connection rate
-  * *remote_address* - string; peer address the node is downloading (or has downloaded) than span from
-  * *size* - unsigned int; total number of bytes in that span's blocks (including txes)
-  * *speed* - unsigned int; connection speed
-  * *start_block_height* - unsigned int; block height of the first block in that span
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *target_height* - unsigned int; target height the node is syncing from (will be 0 if node is fully synced)
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+- _height_ - unsigned int;
+- _next_needed_pruning_seed_ - unsigned int; The next pruning seed needed for pruned sync.
+- _overview_ - string; Overview of current block queue where each character in the string represents a block set in the queue. `. = requested but not received`, `o = set received`, `m  = received set that matches the next blocks needed`
+- _peers_ - array of peer structure, defined as follows:
+  - _info_ - structure of connection info, as defined in [get_connections](#get_connections)
+- _spans_ - array of span structure, defined as follows (optional, absent if node is fully synced):
+  - _connection_id_ - string; Id of connection
+  - _nblocks_ - unsigned int; number of blocks in that span
+  - _rate_ - unsigned int; connection rate
+  - _remote_address_ - string; peer address the node is downloading (or has downloaded) than span from
+  - _size_ - unsigned int; total number of bytes in that span's blocks (including txes)
+  - _speed_ - unsigned int; connection speed
+  - _start_block_height_ - unsigned int; block height of the first block in that span
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _target_height_ - unsigned int; target height the node is syncing from (will be 0 if node is fully synced)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sync_info"}' -H 'Content-Type: application/json'
 
 {
@@ -1440,22 +1444,22 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"s
 
 Get all transaction pool backlog
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *backlog*: array of structures *tx_backlog_entry* (in binary form):
-  * *blob_size* - unsigned int (in binary form)
-  * *fee* - unsigned int (in binary form)
-  * *time_in_pool* - unsigned int (in binary form)
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _backlog_ : array of structures _tx_backlog_entry_ (in binary form):
+  - _blob_size_ - unsigned int (in binary form)
+  - _fee_ - unsigned int (in binary form)
+  - _time_in_pool_ - unsigned int (in binary form)
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_txpool_backlog"}' -H 'Content-Type: application/json'
 
 {
@@ -1474,27 +1478,27 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *amounts* - array of unsigned int; amounts to look for
-* *cumulative* - boolean; (optional, default is `false`) States if the result should be cumulative (`true`) or not (`false`)
-* *from_height* - unsigned int; (optional, default is 0) starting height to check from
-* *to_height* - unsigned int; (optional, default is 0) ending height to check up to
+- _amounts_ - array of unsigned int; amounts to look for
+- _cumulative_ - boolean; (optional, default is `false`) States if the result should be cumulative (`true`) or not (`false`)
+- _from_height_ - unsigned int; (optional, default is 0) starting height to check from
+- _to_height_ - unsigned int; (optional, default is 0) ending height to check up to
 
 Outputs:
 
-* *distributions* - array of structure distribution as follows:
-  * *amount* - unsigned int
-  * *base* - unsigned int
-  * *distribution* - array of unsigned int
-  * *start_height* - unsigned int
-* *status* - string; General RPC error code. "OK" means everything looks good.
+- _distributions_ - array of structure distribution as follows:
+  - _amount_ - unsigned int
+  - _base_ - unsigned int
+  - _distribution_ - array of unsigned int
+  - _start_height_ - unsigned int
+- _status_ - string; General RPC error code. "OK" means everything looks good.
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_output_distribution","params":{"amounts":[628780000],"from_height":1462078}}' -H 'Content-Type: application/json'
 
 {
@@ -1517,28 +1521,28 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 Provide the necessary data to create a custom block template. They are used by p2pool.
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *major_version* - unsigned int; major fork version.
-* *height* - unsigned int; current blockheight.
-* *prev_id* - string; previous block id.
-* *seed_hash* - string; RandomX seed hash.
-* *difficulty* - unsigned int; network. difficulty.
-* *median_weight* - unsigned int; median block weight.
-* *already_generated_coins* - unsigned int; coins mined by the network so far.
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *tx_backlog* - array of mineable mempool transactions.
-  * *id* - string;
-  * *weight* - unsigned int; 
-  * *fee* - unsigned int;
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _major_version_ - unsigned int; major fork version.
+- _height_ - unsigned int; current blockheight.
+- _prev_id_ - string; previous block id.
+- _seed_hash_ - string; RandomX seed hash.
+- _difficulty_ - unsigned int; network. difficulty.
+- _median_weight_ - unsigned int; median block weight.
+- _already_generated_coins_ - unsigned int; coins mined by the network so far.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _tx_backlog_ - array of mineable mempool transactions.
+  - _id_ - string;
+  - _weight_ - unsigned int; 
+  - _fee_ - unsigned int;
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
-$ curl http://localhost:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_miner_data"}' -H 'Content-Type: application/json'
+```Bash
+$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_miner_data"}' -H 'Content-Type: application/json'
 
 {
   "id": "0",
@@ -1569,22 +1573,22 @@ $ curl http://localhost:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 ### **prune_blockchain** 
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *check* - boolean; Optional (`false` by default) - If set to `true` then pruning status is checked instead of initiating pruning.
+- _check_ - boolean; Optional (`false` by default) - If set to `true` then pruning status is checked instead of initiating pruning.
 
 Outputs:
 
-* *pruned* - boolean;
-* *pruning_seed* - unsigned int; Blockheight at which pruning began.
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _pruned_ - boolean;
+- _pruning_seed_ - unsigned int; Blockheight at which pruning began.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"prune_blockchain","params":{"check":true}}' -H 'Content-Type: application/json'
 
 {
@@ -1604,22 +1608,22 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"p
 
 Calculate PoW hash for a block candidate.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *major_version* - unsigned int; The major version of the monero protocol at this block height.
-* *height* - unsigned int;
-* *block_blob* - blobdata;
-* *seed_hash* - string;
+- _major_version_ - unsigned int; The major version of the monero protocol at this block height.
+- _height_ - unsigned int;
+- _block_blob_ - blobdata;
+- _seed_hash_ - string;
 
 Outputs:
 
-* *result* - string; PoW hash.
+- _result_ - string; PoW hash.
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"calc_pow","params":{"major_version":14,"height":2286447,"block_blob":"0e0ed286da8006ecdc1aab3033cf1716c52f13f9d8ae0051615a2453643de94643b550d543becd0000000002abc78b0101ffefc68b0101fcfcf0d4b422025014bb4a1eade6622fd781cb1063381cad396efa69719b41aa28b4fce8c7ad4b5f019ce1dc670456b24a5e03c2d9058a2df10fec779e2579753b1847b74ee644f16b023c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000051399a1bc46a846474f5b33db24eae173a26393b976054ee14f9feefe99925233802867097564c9db7a36af5bb5ed33ab46e63092bd8d32cef121608c3258edd55562812e21cc7e3ac73045745a72f7d74581d9a0849d6f30e8b2923171253e864f4e9ddea3acb5bc755f1c4a878130a70c26297540bc0b7a57affb6b35c1f03d8dbd54ece8457531f8cba15bb74516779c01193e212050423020e45aa2c15dcb","seed_hash":"d432f499205150873b2572b5f033c9c6e4b7c6f3394bd2dd93822cd7085e7307"}}' -H 'Content-Type: application/json'
 
 {
@@ -1634,21 +1638,21 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"c
 
 Flush bad transactions / blocks from the cache.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *bad_txs* - boolean; Optional (`false` by default).
-* *bad_blocks* - boolean; Optional (`false` by default).
+- _bad_txs_ - boolean; Optional (`false` by default).
+- _bad_blocks_ - boolean; Optional (`false` by default).
 
 Outputs:
 
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"flush_cache","params":{"bad_txs":true,"bad_blocks":true}}' -H 'Content-Type: application/json'
 
 {
@@ -1666,28 +1670,28 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"f
 
 Easily enable merge mining with Monero without requiring software that manually alters the extra field in the coinbase tx to include the merkle root of the aux blocks.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *blocktemplate_blob* - string;
-* *aux_pow* - array;
-  * *id* - string;
-  * *hash* - string;
+- _blocktemplate_blob_ - string;
+- _aux_pow_ - array;
+  - _id_ - string;
+  - _hash_ - string;
 
 Outputs:
 
-* *blocktemplate_blob* - string;
-* *blockhashing_blob* - string;
-* *merkle_root* - string;
-* *merkle_tree_depth* - unsigned int;
-* *aux_pow* - array;
-  * *id* - string;
-  * *hash* - string;
+- _blocktemplate_blob_ - string;
+- _blockhashing_blob_ - string;
+- _merkle_root_ - string;
+- _merkle_tree_depth_ - unsigned int;
+- _aux_pow_ - array;
+  - _id_ - string;
+  - _hash_ - string;
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"add_aux_pow","params":{"blocktemplate_blob":" ... ","aux_pow":[{"id":"3200b4ea97c3b2081cd4190b58e49572b2319fed00d030ad51809dff06b5d8c8","hash":"7b35762de164b20885e15dbe656b1138db06bb402fa1796f5765a23933d8859a"}]}}' -H 'Content-Type: application/json''
 
 {
@@ -1717,6 +1721,7 @@ Not all daemon RPC calls use the JSON_RPC interface. This section gives examples
 
 The data structure for these calls is different than the JSON RPC calls. Whereas the JSON RPC methods were called using the `/json_rpc` extension and specifying a method, these methods are called at their own extensions. For example:
 
+```Bash
     IP=127.0.0.1
     PORT=18081
     METHOD='gettransactions'
@@ -1725,8 +1730,9 @@ The data structure for these calls is different than the JSON RPC calls. Whereas
 		http://$IP:$PORT/$METHOD \
 		-d $PARAMS \
 		-H 'Content-Type: application/json'
+```
 
-Note: It is recommended to use JSON RPC where such alternatives exist, rather than the following methods. For example, the recommended way to get a node's height is via the JSON RPC methods [get_info](#getinfo) or [get_last_block_header](#get_last_block_header), rather than [getheight](#getheight) below.
+Note: It is recommended to use JSON RPC where such alternatives exist, rather than the following methods. For example, the recommended way to get a node's height is via the JSON RPC methods [get_info](#get_info) or [get_last_block_header](#get_last_block_header), rather than [get_height](#get_height) below.
 
 For calls that end with **.bin**, the data is exchanged in the form of binary, serialized objects, as defined in the [Core RPC Server](https://github.com/monero-project/monero/blob/master/src/rpc/core_rpc_server_commands_defs.h).
 
@@ -1735,18 +1741,18 @@ For calls that end with **.bin**, the data is exchanged in the form of binary, s
 
 Get the node's current height.
 
-Alias: */getheight*.
+Alias: _/getheight_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *hash* - string; The block's hash.
-* *height* - unsigned int; Current length of longest chain known to daemon.
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _hash_ - string; The block's hash.
+- _height_ - unsigned int; Current length of longest chain known to daemon.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/get_height -H 'Content-Type: application/json'
 
 {
@@ -1763,29 +1769,29 @@ $ curl http://127.0.0.1:18081/get_height -H 'Content-Type: application/json'
 
 Get all blocks info. Binary request.
 
-Alias: */getblocks.bin*.
+Alias: _/getblocks.bin_ .
 
 Inputs:
 
-* *block_ids* - binary array of hashes; first 10 blocks id goes sequential, next goes in pow(2,n) offset, like 2, 4, 8, 16, 32, 64 and so on, and the last one is always genesis block
-* *start_height* - unsigned int
-* *prune* - boolean
+- _block_ids_ - binary array of hashes; first 10 blocks id goes sequential, next goes in pow(2,n) offset, like 2, 4, 8, 16, 32, 64 and so on, and the last one is always genesis block
+- _start_height_ - unsigned int
+- _prune_ - boolean
 
 Outputs:
 
-* *blocks* - array of block complete entries
-* *current_height* - unsigned int
-* *output_indices* - structure as follows:
-  * *indices* - array of tx output indices, structure as follows:
-    * *indices* - array of unsigned int
-* *start_height* - unsigned int
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _blocks_ - array of block complete entries
+- _current_height_ - unsigned int
+- _output_indices_ - structure as follows:
+  - _indices_ - array of tx output indices, structure as follows:
+    - _indices_ - array of unsigned int
+- _start_height_ - unsigned int
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 <!-- Cannot get this working
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/get_blocks.bin -d '{"block_ids":["d109a406528a7b44fef8bc03e75eaabb0f919f852884b43b550b8b3be80a49e7"],"start_height":1562062}' -H 'Content-Type: application/json'
 
 ```
@@ -1795,22 +1801,22 @@ $ curl http://127.0.0.1:18081/get_blocks.bin -d '{"block_ids":["d109a406528a7b44
 
 Get blocks by height. Binary request.
 
-Alias: */getblocks_by_height.bin*.
+Alias: _/getblocks_by_height.bin_ .
 
 Inputs:
 
-* *heights* - array of unsigned int; list of block heights
+- _heights_ - array of unsigned int; list of block heights
 
 Outputs:
 
-* *blocks* - array of block complete entries
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _blocks_ - array of block complete entries
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 <!-- Cannot get this working
 Example:
 
-```
+```Bash
 $ echo -e '\x7B\x22\x68\x65\x69\x67\x68\x74\x73\x22\x3A\x5B\x31\x35\x36\x34\x32\x34\x36\x5D\x7D\x' | curl --data-binary @- http://127.0.0.1:18081/get_blocks_by_height.bin
 $ echo -e '1564246' | curl --data-binary @- http://127.0.0.1:18081/get_blocks_by_height.bin
 curl http://127.0.0.1:18081/get_blocks_by_height.bin --data-binary '{"heights":[1564246]}'
@@ -1823,25 +1829,25 @@ curl http://127.0.0.1:18081/get_blocks_by_height.bin --data-binary '{"heights":[
 
 Get hashes. Binary request.
 
-Alias: */gethashes.bin*.
+Alias: _/gethashes.bin_ .
 
 Inputs:
 
-* *block_ids* - binary array of hashes; first 10 blocks id goes sequential, next goes in pow(2,n) offset, like 2, 4, 8, 16, 32, 64 and so on, and the last one is always genesis block
-* *start_height* - unsigned int
+- _block_ids_ - binary array of hashes; first 10 blocks id goes sequential, next goes in pow(2,n) offset, like 2, 4, 8, 16, 32, 64 and so on, and the last one is always genesis block
+- _start_height_ - unsigned int
 
 Outputs:
 
-* *current_height* - unsigned int
-* *m_block_ids* - binary array of hashes; see *block_ids* above.
-* *start_height* - unsigned int
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _current_height_ - unsigned int
+- _m_block_ids_ - binary array of hashes; see _block_ids_ above.
+- _start_height_ - unsigned int
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 <!-- Cannot get this working
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/get_hashes.bin -d '{"block_ids":["d109a406528a7b44fef8bc03e75eaabb0f919f852884b43b550b8b3be80a49e7"],"start_height":1562062}' -H 'Content-Type: application/json'
 
 ```
@@ -1852,22 +1858,22 @@ $ curl http://127.0.0.1:18081/get_hashes.bin -d '{"block_ids":["d109a406528a7b44
 
 Get global outputs of transactions. Binary request.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *txid* - binary txid
+- _txid_ - binary txid
 
 Outputs:
 
-* *o_indexes* - array of unsigned int; List of output indexes
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _o_indexes_ - array of unsigned int; List of output indexes
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 <!-- Cannot get this working
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/get_o_indexes.bin --data-binary '{"txid":"d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408"}'
 
 ```
@@ -1878,30 +1884,30 @@ $ curl http://127.0.0.1:18081/get_o_indexes.bin --data-binary '{"txid":"d6e48158
 
 Get outputs. Binary request.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *outputs* - array of structure *get_outputs_out* as follows:
-  * *amount* - unsigned int;
-  * *index* - unsigned int;
+- _outputs_ - array of structure _get_outputs_out_ as follows:
+  - _amount_ - unsigned int;
+  - _index_ - unsigned int;
 
 Outputs:
 
-* *outs* - array of structure *outkey* as follows:
-  * *amount* - unsigned int;
-  * *height* - unsigned int; block height of the output
-  * *key* - the public key of the output
-  * *mask*
-  * *txid* - transaction id
-  * *unlocked* - boolean; States if output is locked (`false`) or not (`true`)
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _outs_ - array of structure _outkey_ as follows:
+  - _amount_ - unsigned int;
+  - _height_ - unsigned int; block height of the output
+  - _key_ - the public key of the output
+  - _mask_ 
+  - _txid_ - transaction id
+  - _unlocked_ - boolean; States if output is locked (`false`) or not (`true`)
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 <!-- Cannot get this working
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/get_o_indexes.bin --data-binary '{"txid":"d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408"}'
 
 ```
@@ -1912,108 +1918,108 @@ $ curl http://127.0.0.1:18081/get_o_indexes.bin --data-binary '{"txid":"d6e48158
 
 Get outputs. Binary request version of [get_output_distribution](#get_output_distribution).
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *credits* - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-* *top_hash* - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-* *amounts* - array of unsigned int; amounts to look for
-* *cumulative* - boolean; (optional, default is `false`) States if the result should be cumulative (`true`) or not (`false`)
-* *from_height* - unsigned int; (optional, default is 0) starting height to check from
-* *to_height* - unsigned int; (optional, default is 0) ending height to check up to
-* *binary* - boolean; (optional, default is `true`); Must be `true`.
-* *compress* - unsigned int; (optional, default is `false`) Respond with compressed data.
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _amounts_ - array of unsigned int; amounts to look for
+- _cumulative_ - boolean; (optional, default is `false`) States if the result should be cumulative (`true`) or not (`false`)
+- _from_height_ - unsigned int; (optional, default is 0) starting height to check from
+- _to_height_ - unsigned int; (optional, default is 0) ending height to check up to
+- _binary_ - boolean; (optional, default is `true`); Must be `true`.
+- _compress_ - unsigned int; (optional, default is `false`) Respond with compressed data.
 
 Outputs:
 
-* *credits* - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-* *distributions* - array of structure distribution as follows:
-  * *amount* - unsigned int
-  * *base* - unsigned int
-  * *binary* - boolean; Always `true`.
-  * *compress* - unsigned int; `true` if compressed data, `false` otherwise.
-  * *distribution* - array of unsigned int; This field exists instead of *compressed_data* if the *compress* option was not used.
-  * *compressed_data* - array of unsigned int; This field exists instead of *distribution* if the *compress* option was used.
-  * *start_height* - unsigned int
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *top_hash* - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+- _distributions_ - array of structure distribution as follows:
+  - _amount_ - unsigned int
+  - _base_ - unsigned int
+  - _binary_ - boolean; Always `true`.
+  - _compress_ - unsigned int; `true` if compressed data, `false` otherwise.
+  - _distribution_ - array of unsigned int; This field exists instead of _compressed_data_ if the _compress_ option was not used.
+  - _compressed_data_ - array of unsigned int; This field exists instead of _distribution_ if the _compress_ option was used.
+  - _start_height_ - unsigned int
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 
 ### **/get_transactions**
 
 Look up one or more transactions by hash.
 
-Alias: */gettransactions*.
+Alias: _/gettransactions_ .
 
 Inputs:
 
-* *txs_hashes* - string list; List of transaction hashes to look up.
-* *decode_as_json* - boolean; Optional (`false` by default). If set `true`, the returned transaction information will be decoded rather than binary.
-* *prune* - boolean; Optional (`false` by default).
-* *split* - boolean; Optional (`false` by default).
+- _txs_hashes_ - string list; List of transaction hashes to look up.
+- _decode_as_json_ - boolean; Optional (`false` by default). If set `true`, the returned transaction information will be decoded rather than binary.
+- _prune_ - boolean; Optional (`false` by default).
+- _split_ - boolean; Optional (`false` by default).
 
 Outputs:
 
-* *missed_tx* - array of strings. (Optional - returned if not empty) Transaction hashes that could not be found.
-* *status* - General RPC error code. "OK" means everything looks good.
-* *top_hash* - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-* *txs* - array of structure *entry* as follows:
-  * *as_hex* - string; Full transaction information as a hex string.
-  * *as_json* - json string; List of transaction info:
-    * *version* - Transaction version
-    * *unlock_time* - If not 0, this tells when a transaction output is spendable.
-    * *vin* - List of inputs into transaction:
-      * *key* - The public key of the previous output spent in this transaction.
-        * *amount* - The amount of the input, in @atomic-units.
-        * *key_offsets* - A list of integer offsets to the input.
-        * *k_image* - The key image for the given input
-    * *vout* - List of outputs from transaction:
-      * *amount* - Amount of transaction output (if coinbase output, otherwise 0), in @atomic-units.
-      * *target* - Output destination information:
-        * *tagged_key*
-          * *key* - The stealth public key of the receiver. Whoever owns the private key associated with this key controls this transaction output.
-          * *view_tag* - The 1st byte of a shared secret (used for reducing synchronization time).
-    * *extra* - Usually called the "payment ID" but can be used to include any random 32 bytes.
-    * *rct_signatures* - List of signatures used in ring signature to hide the true origin of the transaction.
-      * *ecdhInfo* - array of Diffie Helman Elipctic curves structures as follows:
-        * *mask* - String;
-        * *amount* - String;
-      * *outPk* - List
-      * *txnFee* -
-      * *type* -
-    * *rctsig_prunable* -
-      * *CLSAGs* - List
-        * *D* -
-        * *c1* -
-        * *s* - List
-      * *bpp* - List
-        * *A* -
-        * *A1* -
-        * *B* -
-        * *L* - List
-        * *R* - List
-        * *d1* -
-        * *r1* -
-        * *s1* -
-      * *npb* -
-      * *pseudoOuts* -
-  * *block_height* - unsigned int; block height including the transaction
-  * *block_timestamp* - unsigned int; Unix time at chich the block has been added to the blockchain
-  * *double_spend_seen* - boolean; States if the transaction is a double-spend (`true`) or not (`false`)
-  * *in_pool* - boolean; States if the transaction is in pool (`true`) or included in a block (`false`)
-  * *output_indices* - array of unsigned int; transaction indexes
-  * *prunable_as_hex* - string; Prunable block encoded as a hex string.
-  * *prunable_hash* - string; Keccak-256 hash of the prunable portion of the block.
-  * *pruned_as_hex* - string; Pruned block encoded as hex string.
-  * *tx_hash* - string; transaction hash
-* *txs_as_hex* - string; Full transaction information as a hex string (old compatibility parameter)
-* *txs_as_json* - json string; (Optional - returned if set in inputs. Old compatibility parameter) List of transaction as in *as_json* above:
+- _missed_tx_ - array of strings. (Optional - returned if not empty) Transaction hashes that could not be found.
+- _status_ - General RPC error code. "OK" means everything looks good.
+- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _txs_ - array of structure _entry_ as follows:
+  - _as_hex_ - string; Full transaction information as a hex string.
+  - _as_json_ - json string; List of transaction info:
+    - _version_ - Transaction version
+    - _unlock_time_ - If not 0, this tells when a transaction output is spendable.
+    - _vin_ - List of inputs into transaction:
+      - _key_ - The public key of the previous output spent in this transaction.
+        - _amount_ - The amount of the input, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+        - _key_offsets_ - A list of integer offsets to the input.
+        - _k_image_ - The key image for the given input
+    - _vout_ - List of outputs from transaction:
+      - _amount_ - Amount of transaction output (if coinbase output, otherwise 0), in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+      - _target_ - Output destination information:
+        - _tagged_key_ 
+          - _key_ - The stealth public key of the receiver. Whoever owns the private key associated with this key controls this transaction output.
+          - _view_tag_ - The 1st byte of a shared secret (used for reducing synchronization time).
+    - _extra_ - Usually called the "payment ID" but can be used to include any random 32 bytes.
+    - _rct_signatures_ - List of signatures used in ring signature to hide the true origin of the transaction.
+      - _ecdhInfo_ - array of Diffie Helman Elipctic curves structures as follows:
+        - _mask_ - String;
+        - _amount_ - String;
+      - _outPk_ - List
+      - _txnFee_ -
+      - _type_ -
+    - _rctsig_prunable_ -
+      - _CLSAGs_ - List
+        - _D_ -
+        - _c1_ -
+        - _s_ - List
+      - _bpp_ - List
+        - _A_ -
+        - _A1_ -
+        - _B_ -
+        - _L_ - List
+        - _R_ - List
+        - _d1_ -
+        - _r1_ -
+        - _s1_ -
+      - _npb_ -
+      - _pseudoOuts_ -
+  - _block_height_ - unsigned int; block height including the transaction
+  - _block_timestamp_ - unsigned int; Unix time at chich the block has been added to the blockchain
+  - _double_spend_seen_ - boolean; States if the transaction is a double-spend (`true`) or not (`false`)
+  - _in_pool_ - boolean; States if the transaction is in pool (`true`) or included in a block (`false`)
+  - _output_indices_ - array of unsigned int; transaction indexes
+  - _prunable_as_hex_ - string; Prunable block encoded as a hex string.
+  - _prunable_hash_ - string; Keccak-256 hash of the prunable portion of the block.
+  - _pruned_as_hex_ - string; Pruned block encoded as hex string.
+  - _tx_hash_ - string; transaction hash
+- _txs_as_hex_ - string; Full transaction information as a hex string (old compatibility parameter)
+- _txs_as_json_ - json string; (Optional - returned if set in inputs. Old compatibility parameter) List of transaction as in _as_json_ above:
 
 Example 1: Return transaction information in binary format.
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408"]}' -H 'Content-Type: application/json'
 
 {
@@ -2041,7 +2047,7 @@ $ curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["d6e4815847284
 
 Example 2: Decode returned transaction information in JSON format. Note: the "vin", "vout", "rct_signatures", "rctsig_prunable" list have been truncated in the displayed return for space considerations.
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["a9c71fe27ccf978a56ef96e50b680a3d569754cd4d070e51d10fa9f6f658b8e3"],"decode_as_json":true}' -H 'Content-Type: application/json'
 
 {
@@ -2070,8 +2076,8 @@ $ curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["a9c71fe27ccf9
 
 Example 3: Returned a missed (unexisting) transaction.
 
-```
-curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090409"]}' -H 'Content-Type: application/json'
+```Bash
+$ curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090409"]}' -H 'Content-Type: application/json'
 
 {
   "credits": 0,
@@ -2087,21 +2093,21 @@ curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["d6e48158472848e
 
 Get the known blocks hashes which are not on the main chain.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*
+Inputs: _None_ 
 
 Outputs:
 
-* *blks_hashes* - array of strings; list of alternative blocks hashes to main chain
-* *credits* - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *top_hash* - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _blks_hashes_ - array of strings; list of alternative blocks hashes to main chain
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/get_alt_blocks_hashes -H 'Content-Type: application/json'
 
 {
@@ -2118,23 +2124,23 @@ $ curl http://127.0.0.1:18081/get_alt_blocks_hashes -H 'Content-Type: applicatio
 
 Check if outputs have been spent using the key image associated with the output.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *key_images* - string list; List of key image hex strings to check.
+- _key_images_ - string list; List of key image hex strings to check.
 
 Outputs:
 
-* *credits* - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-* *spent_status* - unsigned int list; List of statuses for each image checked. Statuses are follows: 0 = unspent, 1 = spent in blockchain, 2 = spent in transaction pool
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *top_hash* - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+- _spent_status_ - unsigned int list; List of statuses for each image checked. Statuses are follows: 0 = unspent, 1 = spent in blockchain, 2 = spent in transaction pool
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/is_key_image_spent -d '{"key_images":["8d1bd8181bf7d857bdb281e0153d84cd55a3fcaa57c3e570f4a49f935850b5e3","7319134bfc50668251f5b899c66b005805ee255c136f0e1cecbb0f3a912e09d4"]}' -H 'Content-Type: application/json'
 
 {
@@ -2151,33 +2157,33 @@ $ curl http://127.0.0.1:18081/is_key_image_spent -d '{"key_images":["8d1bd8181bf
 
 Broadcast a raw transaction to the network.
 
-Alias: */sendrawtransaction*.
+Alias: _/sendrawtransaction_ .
 
 Inputs:
 
-* *tx_as_hex* - string; Full transaction information as hexadecimal string.
-* *do_not_relay* - boolean; Stop relaying transaction to other nodes (default is `false`).
+- _tx_as_hex_ - string; Full transaction information as hexadecimal string.
+- _do_not_relay_ - boolean; Stop relaying transaction to other nodes (default is `false`).
 
 Outputs:
 
-* *double_spend* - boolean;  Transaction is a double spend (`true`) or not (`false`).
-* *fee_too_low* - boolean; Fee is too low (`true`) or OK (`false`).
-* *invalid_input* - boolean; Input is invalid (`true`) or valid (`false`).
-* *invalid_output* - boolean; Output is invalid (`true`) or valid (`false`).
-* *low_mixin* - boolean; Mixin count is too low (`true`) or OK (`false`).
-* *not_rct* - boolean; Transaction is a standard ring transaction (`true`) or a ring confidential transaction (`false`).
-* *not_relayed* - boolean; Transaction was not relayed (`true`) or relayed (`false`).
-* *overspend* - boolean; Transaction uses more money than available (`true`) or not (`false`).
-* *reason* - string; Additional information. Currently empty or "Not relayed" if transaction was accepted but not relayed.
-* *status* - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
-* *too_big* - boolean; Transaction size is too big (`true`) or OK (`false`).
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _double_spend_ - boolean;  Transaction is a double spend (`true`) or not (`false`).
+- _fee_too_low_ - boolean; Fee is too low (`true`) or OK (`false`).
+- _invalid_input_ - boolean; Input is invalid (`true`) or valid (`false`).
+- _invalid_output_ - boolean; Output is invalid (`true`) or valid (`false`).
+- _low_mixin_ - boolean; Mixin count is too low (`true`) or OK (`false`).
+- _not_rct_ - boolean; Transaction is a standard ring transaction (`true`) or a ring confidential transaction (`false`).
+- _not_relayed_ - boolean; Transaction was not relayed (`true`) or relayed (`false`).
+- _overspend_ - boolean; Transaction uses more money than available (`true`) or not (`false`).
+- _reason_ - string; Additional information. Currently empty or "Not relayed" if transaction was accepted but not relayed.
+- _status_ - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
+- _too_big_ - boolean; Transaction size is too big (`true`) or OK (`false`).
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 
 Example (No return information included here.):
 
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/send_raw_transaction -d '{"tx_as_hex":"de6a3...", "do_not_relay":false}' -H 'Content-Type: application/json'
 ```
 
@@ -2186,23 +2192,23 @@ $ curl http://127.0.0.1:18081/send_raw_transaction -d '{"tx_as_hex":"de6a3...", 
 
 Start mining on the daemon.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *do_background_mining* - boolean; States if the mining should run in background (`true`) or foreground (`false`).
-* *ignore_battery* - boolean; States if battery state (on laptop) should be ignored (`true`) or not (`false`).
-* *miner_address* - string; Account address to mine to.
-* *threads_count* - unsigned int; Number of mining thread to run.
+- _do_background_mining_ - boolean; States if the mining should run in background (`true`) or foreground (`false`).
+- _ignore_battery_ - boolean; States if battery state (on laptop) should be ignored (`true`) or not (`false`).
+- _miner_address_ - string; Account address to mine to.
+- _threads_count_ - unsigned int; Number of mining thread to run.
 
 Outputs:
 
-* *status* - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _status_ - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/start_mining -d '{"do_background_mining":false,"ignore_battery":true,"miner_address":"47xu3gQpF569au9C2ajo5SSMrWji6xnoE5vhr94EzFRaKAGw6hEGFXYAwVADKuRpzsjiU1PtmaVgcjUJF89ghGPhUXkndHc","threads_count":1}' -H 'Content-Type: application/json'
 
 {
@@ -2216,18 +2222,18 @@ $ curl http://127.0.0.1:18081/start_mining -d '{"do_background_mining":false,"ig
 
 Stop mining on the daemon.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *status* - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _status_ - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/stop_mining -H 'Content-Type: application/json'
 
 {
@@ -2241,33 +2247,33 @@ $ curl http://127.0.0.1:18081/stop_mining -H 'Content-Type: application/json'
 
 Get the mining status of the daemon.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *active* - boolean; States if mining is enabled (`true`) or disabled (`false`).
-* *address* - string; Account address daemon is mining to. Empty if not mining.
-* *bg_idle_threshold* - int; Minimum average idle percentage over lookback interval.
-* *bg_ignore_battery* - boolean; If false, the device will stop mining when battery is low.
-* *bg_min_idle_seconds* - int; Minimum lookback interval in seconds for determining whether the device is idle or not.
-* *bg_target* - int; Maximum percentage cpu use by miner.
-* *block_reward* - int; Base block reward for the next block to be mined.
-* *block_target* - int; The target number of seconds between blocks.
-* *difficulty* - unsigned int; Network difficulty (analogous to the strength of the network)
-* *difficulty_top64* - unsigned int; Most-significant 64 bits of the 128-bit network difficulty.
-* *is_background_mining_enabled* - boolean; States if the mining is running in background (`true`) or foreground (`false`).
-* *pow_algorithm* - string; The name of the proof-of-work algorithm currently being used by the miner.
-* *speed* - unsigned int; Mining power in hashes per seconds.
-* *status* - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
-* *threads_count* - unsigned int; Number of running mining threads.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
-* *wide_difficulty* - string; Network difficulty (analogous to the strength of the network) as a hexadecimal string representing a 128-bit number.
+- _active_ - boolean; States if mining is enabled (`true`) or disabled (`false`).
+- _address_ - string; Account address daemon is mining to. Empty if not mining.
+- _bg_idle_threshold_ - int; Minimum average idle percentage over lookback interval.
+- _bg_ignore_battery_ - boolean; If false, the device will stop mining when battery is low.
+- _bg_min_idle_seconds_ - int; Minimum lookback interval in seconds for determining whether the device is idle or not.
+- _bg_target_ - int; Maximum percentage cpu use by miner.
+- _block_reward_ - int; Base block reward for the next block to be mined.
+- _block_target_ - int; The target number of seconds between blocks.
+- _difficulty_ - unsigned int; Network difficulty (analogous to the strength of the network)
+- _difficulty_top64_ - unsigned int; Most-significant 64 bits of the 128-bit network difficulty.
+- _is_background_mining_enabled_ - boolean; States if the mining is running in background (`true`) or foreground (`false`).
+- _pow_algorithm_ - string; The name of the proof-of-work algorithm currently being used by the miner.
+- _speed_ - unsigned int; Mining power in hashes per seconds.
+- _status_ - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
+- _threads_count_ - unsigned int; Number of running mining threads.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _wide_difficulty_ - string; Network difficulty (analogous to the strength of the network) as a hexadecimal string representing a 128-bit number.
 
 Example while mining:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/mining_status -H 'Content-Type: application/json'
 
 {
@@ -2293,7 +2299,7 @@ $ curl http://127.0.0.1:18081/mining_status -H 'Content-Type: application/json'
 
 Example while not mining:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/mining_status -H 'Content-Type: application/json'
 
 {
@@ -2322,18 +2328,18 @@ $ curl http://127.0.0.1:18081/mining_status -H 'Content-Type: application/json'
 
 Save the blockchain. The blockchain does not need saving and is always saved when modified, however it does a sync to flush the filesystem cache onto the disk for safety purposes against Operating System or Hardware crashes.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *status* - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _status_ - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/save_bc -H 'Content-Type: application/json'
 
 {
@@ -2347,24 +2353,24 @@ $ curl http://127.0.0.1:18081/save_bc -H 'Content-Type: application/json'
 
 Get the known peers list.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *gray_list* - array of offline *peer* structure as follows:
-  * *host* - unsigned int; IP address in integer format
-  * *id* - string; Peer id
-  * *ip* - unsigned int; IP address in integer format
-  * *last_seen* - unsigned int; unix time at which the peer has been seen for the last time
-  * *port* - unsigned int; TCP port the peer is using to connect to monero network.
-* *status* - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
-* *white_list* - array of online *peer* structure, as above.
+- _gray_list_ - array of offline _peer_ structure as follows:
+  - _host_ - unsigned int; IP address in integer format
+  - _id_ - string; Peer id
+  - _ip_ - unsigned int; IP address in integer format
+  - _last_seen_ - unsigned int; unix time at which the peer has been seen for the last time
+  - _port_ - unsigned int; TCP port the peer is using to connect to monero network.
+- _status_ - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
+- _white_list_ - array of online _peer_ structure, as above.
 
 Example (truncated lists):
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/get_peer_list -H 'Content-Type: application/json'
 
 {
@@ -2405,20 +2411,20 @@ $ curl http://127.0.0.1:18081/get_peer_list -H 'Content-Type: application/json'
 
 Set the log hash rate display mode.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *visible* - boolean; States if hash rate logs should be visible (`true`) or hidden (`false`)
+- _visible_ - boolean; States if hash rate logs should be visible (`true`) or hidden (`false`)
 
 Outputs:
 
-* *status* - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _status_ - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example while mining:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/set_log_hash_rate -d '{"visible":true}' -H 'Content-Type: application/json'
 
 {
@@ -2429,7 +2435,7 @@ $ curl http://127.0.0.1:18081/set_log_hash_rate -d '{"visible":true}' -H 'Conten
 
 Error while not mining:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/set_log_hash_rate -d '{"visible":true}' -H 'Content-Type: application/json'
 
 {
@@ -2444,20 +2450,20 @@ $ curl http://127.0.0.1:18081/set_log_hash_rate -d '{"visible":true}' -H 'Conten
 Set the daemon log level.
 By default, log level is set to `0`.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *level* - integer; daemon log level to set from `0` (less verbose) to `4` (most verbose)
+- _level_ - integer; daemon log level to set from `0` (less verbose) to `4` (most verbose)
 
 Outputs:
 
-* *status* - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _status_ - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/set_log_level -d '{"level":1}' -H 'Content-Type: application/json'
 
 {
@@ -2470,74 +2476,74 @@ $ curl http://127.0.0.1:18081/set_log_level -d '{"level":1}' -H 'Content-Type: a
 
 Set the daemon log categories.
 Categories are represented as a comma separated list of `<Category>:<level>` (similarly to syslog standard `<Facility>:<Severity-level>`), where:
-* *Category*  is one of the following:
-  * *\** - All facilities
-  * *default*
-  * *net*
-  * *net.http*
-  * *net.p2p*
-  * *logging*
-  * *net.throttle*
-  * *blockchain.db*
-  * *blockchain.db.lmdb*
-  * *bcutil*
-  * *checkpoints*
-  * *net.dns*
-  * *net.dl*
-  * *i18n*
-  * *perf*
-  * *stacktrace*
-  * *updates*
-  * *account*
-  * *cn*
-  * *difficulty*
-  * *hardfork*
-  * *miner*
-  * *blockchain*
-  * *txpool*
-  * *cn.block_queue*
-  * *net.cn*
-  * *daemon*
-  * *debugtools.deserialize*
-  * *debugtools.objectsizes*
-  * *device.ledger*
-  * *wallet.gen_multisig*
-  * *multisig*
-  * *bulletproofs*
-  * *ringct*
-  * *daemon.rpc*
-  * *wallet.simplewallet*
-  * *WalletAPI*
-  * *wallet.ringdb*
-  * *wallet.wallet2*
-  * *wallet.rpc*
-  * *tests.core*
-* *Level* is one of the following:
-  * *FATAL* - higher level
-  * *ERROR*
-  * *WARNING*
-  * *INFO*
-  * *DEBUG*
-  * *TRACE* - lower level
+- _Category_  is one of the following:
+  - _\_ * - All facilities
+  - _default_ 
+  - _net_ 
+  -  _net.http_ 
+  -  _net.p2p_ 
+  -  _logging_ 
+  -  _net.throttle_ 
+  -  _blockchain.db_ 
+  -  _blockchain.db.lmdb_ 
+  -  _bcutil_ 
+  -  _checkpoints_ 
+  -  _net.dns_ 
+  -  _net.dl_ 
+  -  _i18n_ 
+  -  _perf_ 
+  -  _stacktrace_ 
+  -  _updates_ 
+  -  _account_ 
+  -  _cn_ 
+  -  _difficulty_ 
+  -  _hardfork_ 
+  -  _miner_ 
+  -  _blockchain_ 
+  -  _txpool_ 
+  -  _cn.block_queue_ 
+  -  _net.cn_ 
+  -  _daemon_ 
+  -  _debugtools.deserialize_ 
+  -  _debugtools.objectsizes_ 
+  -  _device.ledger_ 
+  -  _wallet.gen_multisig_ 
+  -  _multisig_ 
+  -  _bulletproofs_ 
+  - _ringct_ 
+  - _daemon.rpc_ 
+  - _wallet.simplewallet_ 
+  - _WalletAPI_ 
+  - _wallet.ringdb_ 
+  - _wallet.wallet2_ 
+  - _wallet.rpc_ 
+  - _tests.core_ 
+- _Level_ is one of the following:
+  - _FATAL_ - higher level
+  - _ERROR_ 
+  - _WARNING_ 
+  - _INFO_ 
+  - _DEBUG_ 
+  - _TRACE_ - lower level
 A level automatically includes higher level.
 By default, categories are set to `*:WARNING,net:FATAL,net.p2p:FATAL,net.cn:FATAL,global:INFO,verify:FATAL,stacktrace:INFO,logging:INFO,msgwriter:INFO`.
 Setting the categories to "" prevents any logs from being outputted.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *categories* - string; Optional, daemon log categories to enable
+- _categories_ - string; Optional, daemon log categories to enable
 
 Outputs:
 
-* *categories* - string; daemon log enabled categories
-* *status* - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _categories_ - string; daemon log enabled categories
+- _status_ - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example to set all facilities to Security Level `Info`:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/set_log_categories -d '{"categories": "*:INFO"}' -H 'Content-Type: application/json'
 
 {
@@ -2549,7 +2555,7 @@ $ curl http://127.0.0.1:18081/set_log_categories -d '{"categories": "*:INFO"}' -
 
 Example without input to set the default categories:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/set_log_categories -H 'Content-Type: application/json'
 
 {
@@ -2564,24 +2570,24 @@ $ curl http://127.0.0.1:18081/set_log_categories -H 'Content-Type: application/j
 
 Give immediate usability to wallets while syncing by proxying RPC requests.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *address* - string; host:port
-* *username* - string;
-* *password* - string;
-* *proxy* - string; 
+- _address_ - string; host:port
+- _username_ - string;
+- _password_ - string;
+- _proxy_ - string; 
 
 Outputs:
 
-* *status* - string; General RPC error code. "OK" means everything looks good.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
 
 Example:
 
 Once set, the address will appear in `get_info` as `bootstrap_daemon_address`
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/set_bootstrap_daemon -d '{"address": "http://getmonero.org:18081"}' -H 'Content-Type: application/json'
 
 {
@@ -2594,75 +2600,75 @@ $ curl http://127.0.0.1:18081/set_bootstrap_daemon -d '{"address": "http://getmo
 
 Show information about valid transactions seen by the node but not yet mined into a block, as well as spent key image information for the txpool in the node's memory.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *credits* - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-* *spent_key_images* - List of spent output key images:
-  * *id_hash* - string; Key image.
-  * *txs_hashes* - string list; tx hashes of the txes (usually one) spending that key image.
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *transactions* - List of transactions in the mempool are not in a block on the main chain at the moment:
-  * *blob_size* - unsigned int; The size of the full transaction blob.
-  * *do_not_relay*; boolean; States if this transaction should not be relayed
-  * *double_spend_seen* - boolean; States if this transaction has been seen as double spend.
-  * *fee* - unsigned int; The amount of the mining fee included in the transaction, in @atomic-units.
-  * *id_hash* - string; The transaction ID hash.
-  * *kept_by_block* - boolean; States if the tx was included in a block at least once (`true`) or not (`false`).
-  * *last_failed_height* - unsigned int; If the transaction validation has previously failed, this tells at what height that occurred.
-  * *last_failed_id_hash* - string; Like the previous, this tells the previous transaction ID hash.
-  * *last_relayed_time* - unsigned int; Last unix time at which the transaction has been relayed.
-  * *max_used_block_height* - unsigned int; Tells the height of the most recent block with an output used in this transaction.
-  * *max_used_block_id_hash* - string; Tells the hash of the most recent block with an output used in this transaction.
-  * *receive_time* - unsigned int; The Unix time that the transaction was first seen on the network by the node.
-  * *relayed* - boolean; States if this transaction has been relayed
-  * *tx_blob* - unsigned int; Hexadecimal blob representing the transaction.
-  * *tx_json* - json string; JSON structure of all information in the transaction:
-    * *version* - Transaction version
-    * *unlock_time* - If not 0, this tells when a transaction output is spendable.
-    * *vin* - List of inputs into transaction:
-      * *key* - The public key of the previous output spent in this transaction.
-        * *amount* - The amount of the input, in @atomic-units.
-        * *key_offsets* - A list of integer offsets to the input.
-        * *k_image* - The key image for the given input
-    * *vout* - List of outputs from transaction:
-      * *amount* - Amount of transaction output (if coinbase output, otherwise 0), in @atomic-units.
-      * *target* - Output destination information:
-        * *tagged_key*
-          * *key* - The stealth public key of the receiver. Whoever owns the private key associated with this key controls this transaction output.
-          * *view_tag* - The 1st byte of a shared secret (used for reducing synchronization time).
-    * *extra* - Usually called the "transaction ID" but can be used to include any random 32 bytes.
-    * *rct_signatures* - List of signatures used in ring signature to hide the true origin of the transaction.
-      * *ecdhInfo* - array of Diffie Helman Elipctic curves structures as follows:
-        * *mask* - String;
-        * *amount* - String;
-      * *outPk* - List
-      * *txnFee* -
-      * *type* -
-    * *rctsig_prunable* -
-      * *CLSAGs* - List
-        * *D* -
-        * *c1* -
-        * *s* - List
-      * *bpp* - List
-        * *A* -
-        * *A1* -
-        * *B* -
-        * *L* - List
-        * *R* - List
-        * *d1* -
-        * *r1* -
-        * *s1* -
-      * *npb* -
-      * *pseudoOuts* -
-  * *weight* -
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+- _spent_key_images_ - List of spent output key images:
+  - _id_hash_ - string; Key image.
+  - _txs_hashes_ - string list; tx hashes of the txes (usually one) spending that key image.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _transactions_ - List of transactions in the mempool are not in a block on the main chain at the moment:
+  - _blob_size_ - unsigned int; The size of the full transaction blob.
+  - _do_not_relay_ ; boolean; States if this transaction should not be relayed
+  - _double_spend_seen_ - boolean; States if this transaction has been seen as double spend.
+  - _fee_ - unsigned int; The amount of the mining fee included in the transaction, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+  - _id_hash_ - string; The transaction ID hash.
+  - _kept_by_block_ - boolean; States if the tx was included in a block at least once (`true`) or not (`false`).
+  - _last_failed_height_ - unsigned int; If the transaction validation has previously failed, this tells at what height that occurred.
+  - _last_failed_id_hash_ - string; Like the previous, this tells the previous transaction ID hash.
+  - _last_relayed_time_ - unsigned int; Last unix time at which the transaction has been relayed.
+  - _max_used_block_height_ - unsigned int; Tells the height of the most recent block with an output used in this transaction.
+  - _max_used_block_id_hash_ - string; Tells the hash of the most recent block with an output used in this transaction.
+  - _receive_time_ - unsigned int; The Unix time that the transaction was first seen on the network by the node.
+  - _relayed_ - boolean; States if this transaction has been relayed
+  - _tx_blob_ - unsigned int; Hexadecimal blob representing the transaction.
+  - _tx_json_ - json string; JSON structure of all information in the transaction:
+    - _version_ - Transaction version
+    - _unlock_time_ - If not 0, this tells when a transaction output is spendable.
+    - _vin_ - List of inputs into transaction:
+      - _key_ - The public key of the previous output spent in this transaction.
+        - _amount_ - The amount of the input, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+        - _key_offsets_ - A list of integer offsets to the input.
+        - _k_image_ - The key image for the given input
+    - _vout_ - List of outputs from transaction:
+      - _amount_ - Amount of transaction output (if coinbase output, otherwise 0), in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+      - _target_ - Output destination information:
+        - _tagged_key_ 
+          - _key_ - The stealth public key of the receiver. Whoever owns the private key associated with this key controls this transaction output.
+          - _view_tag_ - The 1st byte of a shared secret (used for reducing synchronization time).
+    - _extra_ - Usually called the "transaction ID" but can be used to include any random 32 bytes.
+    - _rct_signatures_ - List of signatures used in ring signature to hide the true origin of the transaction.
+      - _ecdhInfo_ - array of Diffie Helman Elipctic curves structures as follows:
+        - _mask_ - String;
+        - _amount_ - String;
+      - _outPk_ - List
+      - _txnFee_ -
+      - _type_ -
+    - _rctsig_prunable_ -
+      - _CLSAGs_ - List
+        - _D_ -
+        - _c1_ -
+        - _s_ - List
+      - _bpp_ - List
+        - _A_ -
+        - _A1_ -
+        - _B_ -
+        - _L_ - List
+        - _R_ - List
+        - _d1_ -
+        - _r1_ -
+        - _s1_ -
+      - _npb_ -
+      - _pseudoOuts_ -
+  - _weight_ -
 
 Example (Note: Some lists in the returned information have been truncated for display reasons):
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/get_transaction_pool -H 'Content-Type: application/json'
 
 {
@@ -2702,19 +2708,19 @@ $ curl http://127.0.0.1:18081/get_transaction_pool -H 'Content-Type: application
 
 Get hashes from transaction pool. Binary request.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *tx_hashes* - binary array of transaction hashes.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _tx_hashes_ - binary array of transaction hashes.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/get_transaction_pool_hashes.bin -H 'Content-Type: application/json'
 
 {
@@ -2729,36 +2735,36 @@ $ curl http://127.0.0.1:18081/get_transaction_pool_hashes.bin -H 'Content-Type: 
 
 Get the transaction pool statistics.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *credits* - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-* *pool_stats* - Structure as follows:
-  * *bytes_max* - unsigned int; Max transaction size in pool
-  * *bytes_med* - unsigned int; Median transaction size in pool
-  * *bytes_min* - unsigned int; Min transaction size in pool
-  * *bytes_total* - unsigned int; total size of all transactions in pool
-  * *fee_total* - unsigned int; The sum of the fees for all transactions currently in the transaction pool @atomic-units.
-  * *histo* - structure *txpool_histo* as follows:
-    * *txs* - unsigned int; number of transactions
-    * *bytes* - unsigned int; size in bytes.
-  * *histo_98pc* unsigned int; the time 98% of txes are "younger" than
-  * *num_10m* unsigned int; number of transactions in pool for more than 10 minutes
-  * *num_double_spends* unsigned int; number of double spend transactions
-  * *num_failing* unsigned int; number of failing transactions
-  * *num_not_relayed* unsigned int; number of non-relayed transactions
-  * *oldest* unsigned int; unix time of the oldest transaction in the pool
-  * *txs_total* unsigned int; total number of transactions.
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *top_hash* - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+- _pool_stats_ - Structure as follows:
+  - _bytes_max_ - unsigned int; Max transaction size in pool
+  - _bytes_med_ - unsigned int; Median transaction size in pool
+  - _bytes_min_ - unsigned int; Min transaction size in pool
+  - _bytes_total_ - unsigned int; total size of all transactions in pool
+  - _fee_total_ - unsigned int; The sum of the fees for all transactions currently in the transaction pool [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+  - _histo_ - structure _txpool_histo_ as follows:
+    - _txs_ - unsigned int; number of transactions
+    - _bytes_ - unsigned int; size in bytes.
+  - _histo_98pc_ unsigned int; the time 98% of txes are "younger" than
+  - _num_10m_ unsigned int; number of transactions in pool for more than 10 minutes
+  - _num_double_spends_ unsigned int; number of double spend transactions
+  - _num_failing_ unsigned int; number of failing transactions
+  - _num_not_relayed_ unsigned int; number of non-relayed transactions
+  - _oldest_ unsigned int; unix time of the oldest transaction in the pool
+  - _txs_total_ unsigned int; total number of transactions.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/get_transaction_pool_stats -H 'Content-Type: application/json'
 
 {
@@ -2791,17 +2797,17 @@ $ curl http://127.0.0.1:18081/get_transaction_pool_stats -H 'Content-Type: appli
 
 Send a command to the daemon to safely disconnect and shut down.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *status* - string; General RPC error code. "OK" means everything looks good.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/stop_daemon -H 'Content-Type: application/json'
 
 {
@@ -2816,28 +2822,28 @@ This method is a convenient backward support and should not be used anymore. See
 
 Alias:
 
-* */getinfo*
-* *get_info*
+- _/getinfo_ 
+- _get_info_ 
 
 
 ### **/get_limit**
 
 Get daemon bandwidth limits.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *limit_down* - unsigned int; Download limit in kBytes per second
-* *limit_up* - unsigned int; Upload limit in kBytes per second
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _limit_down_ - unsigned int; Download limit in kBytes per second
+- _limit_up_ - unsigned int; Upload limit in kBytes per second
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/get_limit -H 'Content-Type: application/json'
 
 {
@@ -2853,23 +2859,23 @@ $ curl http://127.0.0.1:18081/get_limit -H 'Content-Type: application/json'
 
 Set daemon bandwidth limits.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *limit_down* - signed int; Download limit in kBytes per second (-1 reset to default, 0 don't change the current limit)
-* *limit_up* - signed int; Upload limit in kBytes per second (-1 reset to default, 0 don't change the current limit)
+- _limit_down_ - signed int; Download limit in kBytes per second (-1 reset to default, 0 don't change the current limit)
+- _limit_up_ - signed int; Upload limit in kBytes per second (-1 reset to default, 0 don't change the current limit)
 
 Outputs:
 
-* *limit_down* - unsigned int; Download limit in kBytes per second
-* *limit_up* - unsigned int; Upload limit in kBytes per second
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _limit_down_ - unsigned int; Download limit in kBytes per second
+- _limit_up_ - unsigned int; Upload limit in kBytes per second
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/set_limit -d '{"limit_down": 1024}' -H 'Content-Type: application/json'
 
 {
@@ -2885,21 +2891,21 @@ $ curl http://127.0.0.1:18081/set_limit -d '{"limit_down": 1024}' -H 'Content-Ty
 
 Limit number of Outgoing peers.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *out_peers* - unsigned int; Max number of outgoing peers
+- _out_peers_ - unsigned int; Max number of outgoing peers
 
 Outputs:
 
-* *out_peers* - unsigned int; Max number of outgoing peers
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _out_peers_ - unsigned int; Max number of outgoing peers
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/out_peers -d '{"out_peers": 3232235535}' -H 'Content-Type: application/json'
 
 {
@@ -2914,21 +2920,21 @@ $ curl http://127.0.0.1:18081/out_peers -d '{"out_peers": 3232235535}' -H 'Conte
 
 Limit number of Incoming peers.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *in_peers* - unsigned int; Max number of incoming peers
+- _in_peers_ - unsigned int; Max number of incoming peers
 
 Outputs:
 
-* *in_peers* - unsigned int; Max number of incoming peers
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _in_peers_ - unsigned int; Max number of incoming peers
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/in_peers -d '{"in_peers": 3232235535}' -H 'Content-Type: application/json'
 
 {
@@ -2941,23 +2947,23 @@ $ curl http://127.0.0.1:18081/in_peers -d '{"in_peers": 3232235535}' -H 'Content
 
 ### **/get_net_stats**
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *start_time* - unsigned int; Unix start time.
-* *total_packets_in* - unsigned int;
-* *total_bytes_in* - unsigned int;
-* *total_packets_out* - unsigned int;
-* *total_bytes_out* - unsigned int;
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`).
+- _start_time_ - unsigned int; Unix start time.
+- _total_packets_in_ - unsigned int;
+- _total_bytes_in_ - unsigned int;
+- _total_packets_out_ - unsigned int;
+- _total_bytes_out_ - unsigned int;
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`).
 
 Example: 
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/get_net_stats -H 'Content-Type: application/json'
 
 {
@@ -2976,17 +2982,17 @@ $ curl http://127.0.0.1:18081/get_net_stats -H 'Content-Type: application/json'
 
 Obsolete. Conserved here for reference.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *status* - string; General RPC error code. "OK" means everything looks good.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/start_save_graph -H 'Content-Type: application/json'
 
 {
@@ -2999,17 +3005,17 @@ $ curl http://127.0.0.1:18081/start_save_graph -H 'Content-Type: application/jso
 
 Obsolete. Conserved here for reference.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *status* - string; General RPC error code. "OK" means everything looks good.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/stop_save_graph -H 'Content-Type: application/json'
 
 {
@@ -3022,52 +3028,52 @@ $ curl http://127.0.0.1:18081/stop_save_graph -H 'Content-Type: application/json
 
 Get outputs.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *outputs* array of *get_outputs_out* structure as follows:
-  * *amount* - unsigned int;
-  * *index* - unsigned int;
-* *get_txid* - boolean; If `true`, a *txid* will included for each output in the response.
+- _outputs_ array of _get_outputs_out_ structure as follows:
+  - _amount_ - unsigned int;
+  - _index_ - unsigned int;
+- _get_txid_ - boolean; If `true`, a _txid_ will included for each output in the response.
 
 Outputs:
 
-* *outs* - array of structure *outkey* as follows:
-  * *height* - unsigned int; block height of the output
-  * *key* - String; the public key of the output
-  * *mask* - String
-  * *txid* - String; transaction id
-  * *unlocked* - boolean; States if output is locked (`false`) or not (`true`)
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _outs_ - array of structure _outkey_ as follows:
+  - _height_ - unsigned int; block height of the output
+  - _key_ - String; the public key of the output
+  - _mask_ - String
+  - _txid_ - String; transaction id
+  - _unlocked_ - boolean; States if output is locked (`false`) or not (`true`)
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 
 ### **/update**
 
 Update daemon.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *command* - String; command to use, either `check` or `download`
-* *path* - String; Optional, path where to download the update.
+- _command_ - String; command to use, either `check` or `download`
+- _path_ - String; Optional, path where to download the update.
 
 Outputs:
 
-* *auto_uri* - string;
-* *hash* - string;
-* *path* - String; path to download the update
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
-* *update* - boolean; States if an update is available to download (`true`) or not (`false`)
-* *user_uri* - string;
-* *version* - string; Version available for download.
+- _auto_uri_ - string;
+- _hash_ - string;
+- _path_ - String; path to download the update
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _update_ - boolean; States if an update is available to download (`true`) or not (`false`)
+- _user_uri_ - string;
+- _version_ - string; Version available for download.
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/update -d '{"command":"check"}' -H 'Content-Type: application/json'
 
 {
@@ -3085,21 +3091,21 @@ $ curl http://127.0.0.1:18081/update -d '{"command":"check"}' -H 'Content-Type: 
 
 ### **/pop_blocks**
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *nblocks* - unsigned int;
+- _nblocks_ - unsigned int;
 
 Outputs:
 
-* *height* - unsigned int; New blockheight after popping blocks
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _height_ - unsigned int; New blockheight after popping blocks
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/pop_blocks -d '{"nblocks":6}' -H 'Content-Type: application/json''
 
 {
@@ -3114,21 +3120,21 @@ $ curl http://127.0.0.1:18081/pop_blocks -d '{"nblocks":6}' -H 'Content-Type: ap
 
 Get hashes from transaction pool.
 
-Alias: *None*.
+Alias: _None_ .
 
-Inputs: *None*.
+Inputs: _None_ .
 
 Outputs:
 
-* *credits* - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *top_hash* - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-* *tx_hashes* - array of strings; This is an array of transaction hashes in hexadecimal string form.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _tx_hashes_ - array of strings; This is an array of transaction hashes in hexadecimal string form.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/get_transaction_pool_hashes -H 'Content-Type: application/json'
 
 {
@@ -3145,28 +3151,28 @@ $ curl http://127.0.0.1:18081/get_transaction_pool_hashes -H 'Content-Type: appl
 
 Get public peer information.
 
-Alias: *None*.
+Alias: _None_ .
 
 Inputs:
 
-* *gray* - boolean; (Optional; defaults to `false`) Include gray peers.
-* *white* - boolean; (Optional; defaults to `true`) Include white peers.
-* *include_blocked* - boolean; (Optional; defaults to `false`) Include blocked peers.
+- _gray_ - boolean; (Optional; defaults to `false`) Include gray peers.
+- _white_ - boolean; (Optional; defaults to `true`) Include white peers.
+- _include_blocked_ - boolean; (Optional; defaults to `false`) Include blocked peers.
 
 Outputs:
 
-* *status* - string; General RPC error code. "OK" means everything looks good.
-* *whites* - array of `public_node` structures defined as follows:
-  * *host* - string; The node's IP address. This includes IPv4, IPv6, Onion, and i2p addresses.
-  * *last_seen* - unsigned int; UNIX timestamp of the last time the node was seen.
-  * *rpc_credits_per_hash* - unsigned int; If payment for RPC is enabled, the number of credits the node is requesting per hash. Otherwise, 0.
-  * *rpc_port* - unsigned int; RPC port number of the node.
-* *gray* - array of `public_node` structures; This is an array structures containing node information on gray peers. See *white* above.
-* *untrusted* - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _whites_ - array of `public_node` structures defined as follows:
+  - _host_ - string; The node's IP address. This includes IPv4, IPv6, Onion, and i2p addresses.
+  - _last_seen_ - unsigned int; UNIX timestamp of the last time the node was seen.
+  - _rpc_credits_per_hash_ - unsigned int; If payment for RPC is enabled, the number of credits the node is requesting per hash. Otherwise, 0.
+  - _rpc_port_ - unsigned int; RPC port number of the node.
+- _gray_ - array of `public_node` structures; This is an array structures containing node information on gray peers. See _white_ above.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example:
 
-```
+```Bash
 $ curl http://127.0.0.1:18081/get_public_nodes -d '{"gray":true}' -H 'Content-Type: application/json'
 
 {
@@ -3201,3 +3207,7 @@ $ curl http://127.0.0.1:18081/get_public_nodes -d '{"gray":true}' -H 'Content-Ty
   }]
 }
 ```
+
+## Sources:
+
+Reworked from [monero-site](https://github.com/monero-project/monero-site/commit/297e34008744e5af1bd1f0cd2ca1edda802fe895)
