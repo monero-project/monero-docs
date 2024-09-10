@@ -221,3 +221,12 @@ plugins:
         - locale: nb
           name: Norsk Bokmål
           build: false
+  - monero-metrics:
+      endpoints:
+        - "http://127.0.0.1:9123/metrics"
+      time_format: '%Y-%m-%d %H:%M UTC'
+      defaults:
+        monero_main_file_size: "203.24 GB"
+        monero_main_file_last_update: "2024-09-09 11:51:28"
+        monero_main_block_height: 3233846
+        monero_main_block_timestamp: "2024-09-09 11:50:21"

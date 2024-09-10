@@ -47,7 +47,7 @@ title: Monero Technical Specification
 ## Current blockchain size
 
 * Pruned node: ~ 57GB as of Jan 2023
-* Complete chain without any pruning: ~138GB as of Jan 2023
+* Complete chain without any pruning: {{ monero_main_file_size }} as of {{ monero_main_file_last_update }} (Height {{ monero_main_block_height }})
 
 ## Emission curve
 
