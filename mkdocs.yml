@@ -22,7 +22,6 @@ nav:
     - Setup Guide:
 #      - I2P: 'running-node/open-node-tor-onion.md' TODO
       - Tor: 'running-node/open-node-tor-onion.md'
-#      - Tor onion seed nodes: 'infrastructure/tor-onion-p2p-seed-nodes.md'
     - Sample Configs:
       - VPS: 'interacting/monero-config-file.md'
 #      - Home: 'interacting/moneord-tori2p.md' # TODO
