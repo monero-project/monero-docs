@@ -1,5 +1,7 @@
 ---
 title: Monero Docs
+hide:
+  - navigation
 ---
 # Monero Documentation
 
