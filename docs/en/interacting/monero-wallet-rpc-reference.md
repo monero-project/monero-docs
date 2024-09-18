@@ -75,11 +75,11 @@ The API is based on [JSON-RPC standard](https://en.wikipedia.org/wiki/JSON-RPC) 
 
 All `monero-wallet-rpc` method calls use the same JSON-RPC interface.
 
-Assuming your `monero-wallet-rpc` is running on 127.0.0.1:18082, you would call it like this:
+Assuming your `monero-wallet-rpc` is running on 127.0.0.1:18088, you would call it like this:
 
 ```Bash
 IP=127.0.0.1
-PORT=18082
+PORT=18088
 METHOD="make_integrated_address"
 PARAMS="{\"payment_id\":\"1234567890123456789012345678900012345678901234567890123456789000\"}"
 curl \
