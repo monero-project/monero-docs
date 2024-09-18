@@ -16,7 +16,7 @@ CLI is a commandline desktop wallet.
 
 If you need more guidance check [download Monero](https://getmonero.org/downloads) section on Monero website.
 
-It is critical to [verify the signature](/interacting/verify-monero-binaries) of downloaded archive.
+It is critical to [verify the signature](../interacting/verify-monero-binaries.md) of downloaded archive.
 
 ## Which version to download?
 

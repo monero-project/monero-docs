@@ -6,7 +6,7 @@ title: Public Keys in Monero
 !!! note
     Author is nowhere close to being a cryptographer. Be sceptical on accuracy.
 
-Public key is deterministically derived from private key based on [edwards25519 curve](/cryptography/asymmetric/edwards25519) with a little Monero-specific twist.
+Public key is deterministically derived from private key based on [edwards25519 curve](../../cryptography/asymmetric/edwards25519.md) with a little Monero-specific twist.
 
 Public key is meant to be shared. Assuming correct implementation, it is not practically possible to recover private key from public key. 
 
@@ -23,7 +23,7 @@ Say:
 
 * P is a public key
 * x is a private key
-* G is a "base point"; this is simply a constant specific to [edwards25519](/cryptography/asymmetric/edwards25519); this point lies on the elliptic curve
+* G is a "base point"; this is simply a constant specific to [edwards25519](../../cryptography/asymmetric/edwards25519.md); this point lies on the elliptic curve
  
 Then:
 
@@ -39,5 +39,5 @@ For example, G + G is another point on the curve.
 
 ## Use cases
 
-[Monero address](/public-address/standard-address) is composed of public spend key and public view key.
+[Monero address](../../public-address/standard-address.md) is composed of public spend key and public view key.
 These keys are used to build stealth addresses to receive payments.  

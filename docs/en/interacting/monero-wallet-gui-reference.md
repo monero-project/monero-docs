@@ -16,7 +16,7 @@ However, wallet does not store the blockchain and does not directly participate 
 
 ### Depends on the full node 
 
-Wallet connects to a [full node](/interacting/monerod-reference) to scan the blockchain for your transaction outputs and to send your transactions out to the network.   
+Wallet connects to a [full node](../interacting/monerod-reference.md) to scan the blockchain for your transaction outputs and to send your transactions out to the network.   
 
 The full node can be either local (same computer) or remote.
 

@@ -36,7 +36,7 @@ Their names follow the `command_name` pattern.
 
 Go to directory where you unpacked Monero.
 
-The [stagenet](/infrastructure/networks) is what you should be using for learning and experimentation.
+The [stagenet](../infrastructure/networks.md#stagenet) is what you should be using for learning and experimentation.
 
 ```
 ./monerod --stagenet --detach                # run as a daemon in background
@@ -44,7 +44,7 @@ tail -f ~/.bitmonero/stagenet/bitmonero.log  # watch the logs
 ./monerod --stagenet exit                    # ask daemon to exit gracefully
 ```
 
-The [mainnet](/infrastructure/networks) is when you want to deal with the real XMR.
+The [mainnet](../infrastructure/networks.md#mainnet) is when you want to deal with the real XMR.
 
 ```
 ./monerod --detach                           # run as a daemon in background
@@ -71,9 +71,9 @@ The following groups are only to make reference easier to follow. The daemon its
 
 | Option           | Description
 |------------------|------------------------------------------------------------------------------------------------
-| (missing)        | By default monerod assumes [mainnet](/infrastructure/networks).
-| `--stagenet`     | Run on [stagenet](/infrastructure/networks). Remember to run your wallet with `--stagenet` as well.
-| `--testnet`      | Run on [testnet](/infrastructure/networks). Remember to run your wallet with `--testnet` as well.
+| (missing)        | By default monerod assumes [mainnet](../infrastructure/networks.md#mainnet).
+| `--stagenet`     | Run on [stagenet](../infrastructure/networks.md#stagenet). Remember to run your wallet with `--stagenet` as well.
+| `--testnet`      | Run on [testnet](../infrastructure/networks.md#testnet). Remember to run your wallet with `--testnet` as well.
 
 #### Logging
 
@@ -92,16 +92,16 @@ The following options will be helpful if you intend to have an always running no
 
 | Option              | Description
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `--config-file`     | Full path to the [configuration file](/interacting/monero-config-file). By default `monerod` looks for `bitmonero.conf` in Monero [data directory](/interacting/overview/#data-directory).
-| `--data-dir`        | Full path to data directory. This is where the blockchain, log files, and p2p network memory are stored. For defaults and details see [data directory](/interacting/overview/#data-directory).
+| `--config-file`     | Full path to the [configuration file](../interacting/monero-config-file.md). By default `monerod` looks for `bitmonero.conf` in Monero [data directory](../interacting/overview.md#data-directory).
+| `--data-dir`        | Full path to data directory. This is where the blockchain, log files, and p2p network memory are stored. For defaults and details see [data directory](../interacting/overview.md#data-directory).
 | `--pidfile`         | Full path to the PID file. Works only with `--detach`. Example: <br>`./monerod --detach --pidfile=/run/monero/monerod.pid`
 | `--detach`          | Go to background (decouple from the terminal). This is useful for long-running / server scenarios. Typically, you will also want to manage `monerod` daemon with systemd or similar. By default `monerod` runs in a foreground.
 | `--non-interactive` | Do not require tty in a foreground mode. Helpful when running in a container. By default `monerod` runs in a foreground and opens stdin for reading. This breaks containerization because no tty gets assigned and `monerod` process crashes. You can make it run in a background with `--detach` but this is inconvenient in a containerized environment because the canonical usage is that the container waits on the main process to exist (forking makes things more complicated).
 | `--no-zmq`          | Disable ZMQ RPC server. You **should** use this option to limit attack surface and number of unnecessarily open ports (the ZMQ server is unfinished thing and you are unlikely to ever use it).
 | `--no-igd`          | Disable UPnP port mapping on the router ("Internet Gateway Device"). Add this option to improve security if you are **not** behind a NAT (you can bind directly to public IP or you run through Tor).
 | `--max-txpool-weight`         | Set maximum transactions pool size in bytes. By default 648000000 (~618MB). These are transactions pending for confirmations (not included in any block).
-| `--enforce-dns-checkpointing` | The emergency checkpoints set by [MoneroPulse](/infrastructure/monero-pulse) operators will be enforced. It is probably a good idea to set enforcing for unattended nodes. <br><br>If encountered block hash does not match corresponding checkpoint, the local blockchain will be rolled back a few blocks, effectively blocking following what MoneroPulse operators consider invalid fork. The log entry will be produced:  `ERROR` `Local blockchain failed to pass a checkpoint, rolling back!` Eventually, the alternative ("fixed") fork will get heavier and the node will follow it, leaving the "invalid" fork behind.<br><br>By default checkpointing only notifies about discrepancy by producing the following log entry: `ERROR` `WARNING: local blockchain failed to pass a MoneroPulse checkpoint, and you could be on a fork. You should either sync up from scratch, OR download a fresh blockchain bootstrap, OR enable checkpoint enforcing with the --enforce-dns-checkpointing command-line option`.<br><br>Reference: [source code](https://github.com/monero-project/monero/blob/22a6591a70151840381e327f1b41dc27cbdb2ee6/src/cryptonote_core/blockchain.cpp#L3614).
-| `--disable-dns-checkpoints`   | The [MoneroPulse](/infrastructure/monero-pulse) checkpoints set by core developers will be discarded. The checkpoints are apparently still fetched though.
+| `--enforce-dns-checkpointing` | The emergency checkpoints set by [MoneroPulse](../infrastructure/monero-pulse.md) operators will be enforced. It is probably a good idea to set enforcing for unattended nodes. <br><br>If encountered block hash does not match corresponding checkpoint, the local blockchain will be rolled back a few blocks, effectively blocking following what MoneroPulse operators consider invalid fork. The log entry will be produced:  `ERROR` `Local blockchain failed to pass a checkpoint, rolling back!` Eventually, the alternative ("fixed") fork will get heavier and the node will follow it, leaving the "invalid" fork behind.<br><br>By default checkpointing only notifies about discrepancy by producing the following log entry: `ERROR` `WARNING: local blockchain failed to pass a MoneroPulse checkpoint, and you could be on a fork. You should either sync up from scratch, OR download a fresh blockchain bootstrap, OR enable checkpoint enforcing with the --enforce-dns-checkpointing command-line option`.<br><br>Reference: [source code](https://github.com/monero-project/monero/blob/22a6591a70151840381e327f1b41dc27cbdb2ee6/src/cryptonote_core/blockchain.cpp#L3614).
+| `--disable-dns-checkpoints`   | The [MoneroPulse](../infrastructure/monero-pulse.md) checkpoints set by core developers will be discarded. The checkpoints are apparently still fetched though.
 
 #### P2P network
 
@@ -141,7 +141,7 @@ This is experimental. It may be best to start with this [guide](https://github.c
 | Option                 | Description
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------
 | `--tx-proxy`           | Send out your local transactions through SOCKS5 proxy (Tor or I2P). Format:<br>`<network-type>,<socks-ip:port>[,max_connections][,disable_noise]` <br><br>Example:<br>`./monerod --tx-proxy "tx-proxy=tor,127.0.0.1:9050,16"`<br><br>This was introduced to make publishing transactions over Tor easier (no need for torsocks) while allowing clearnet for blocks at the same time (while torsocks affected everything).<br><br>Adding `,disable_noise`: If the user disables "noise" (i.e. `--tx-proxy=tor,127.0.0.1:9050,disable_noise`), then the tx is "fluffed" to outbound Onion and I2P peers, and the receiving hidden service will immediately fluff the transaction to ipv4/6 peers. This will speed up tx broadcast. [more info](https://github.com/monero-project/monero/pull/6354#pullrequestreview-399554356)<br><br>Note that forwarded transactions (those not originating from the connected wallet(s)) will still be relayed over clearnet.<br>See this [guide](https://github.com/monero-project/monero/blob/master/docs/ANONYMITY_NETWORKS.md#p2p-commands) and [commit](https://github.com/monero-project/monero/pull/6021).
-| `--anonymous-inbound`  | Allow anonymous incoming connections to your onionized P2P interface. Format: <br>`<hidden-service-address>,<[bind-ip:]port>[,max_connections]`<br><br>Example:<br>`./monerod --anonymous-inbound "rveahdfho7wo4b2m.onion:18083,127.0.0.1:18083,100"`.<br><br>Obviously, You first need to setup the hidden service in your Tor config. See the [guide](https://github.com/monero-project/monero/blob/master/ANONYMITY_NETWORKS.md#p2p-commands).
+| `--anonymous-inbound`  | Allow anonymous incoming connections to your onionized P2P interface. Format: <br>`<hidden-service-address>,<[bind-ip:]port>[,max_connections]`<br><br>Example:<br>`./monerod --anonymous-inbound "rveahdfho7wo4b2m.onion:18083,127.0.0.1:18083,100"`.<br><br>Obviously, you first need to setup the hidden service in your Tor config. See the [guide](https://github.com/monero-project/monero/blob/master/ANONYMITY_NETWORKS.md#p2p-commands).
 | `--pad-transactions`   | Pad relayed transactions to next 1024 bytes to help defend against traffic volume analysis. This only makes sense if you are behind Tor or I2P. See [commit](https://github.com/monero-project/monero/pull/4787).
 | `--proxy`              | Network communication through proxy. Works with any service that supports SOCKS4, including Tor, i2p, and commercial VPN/proxy services. SOCKS5 support is anticipated in the future. Enabling this setting sends all traffic through this proxy. Can be used in conjunction with `--tx-proxy`, in which case transaction broadcasts originating from the connected wallet(s) will be sent through Tor or i2p as specified in `--tx-proxy`, and all other traffic will be sent through the SOCKS proxy. Format:<br>`<socks-ip:port>`
 
@@ -218,7 +218,7 @@ These are advanced options that allow you to optimize performance of your `moner
 
 The following options configure **solo mining** using **CPU** with the standard software stack `monerod`. This is mostly useful for:
 
-* generating your [stagenet](/infrastructure/networks#stagenet) or [testnet](/infrastructure/networks#testnet) coins
+* generating your [stagenet](../infrastructure/networks.md#stagenet) or [testnet](../infrastructure/networks.md#testnet) coins
 * experimentation and learning
 * if you have access to vast CPU resources
 
@@ -226,7 +226,7 @@ Be advised though that real mining happens **in pools** like p2pool, and with de
 
 | Option                             | Description
 |------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `--start-mining`                   | Specify wallet address to mining for. **This must be a [standard address](/public-address/standard-address)!** It can be neither a subaddres nor integrated address.
+| `--start-mining`                   | Specify wallet address to mining for. **This must be a [standard address](../public-address/standard-address.md)!** It can be neither a subaddres nor integrated address.
 | `--mining-threads`                 | Specify mining threads count. By default ony one thread will be used. For best results, set it to number of your physical cores.
 | `--extra-messages-file`            | Specify file for extra messages to include into coinbase transactions.
 | `--bg-mining-enable`               | Enable unobtrusive mining. In this mode mining will use a small percentage of your system resources to never noticeably slow down your computer. This is intended to encourage people to mine to improve decentralization. That being said chances of finding a block are diminishingly small with solo CPU mining, and even lesser with its unobtrusive version. You can tweak the unobtrusivness / power trade-offs with the further `--bg-*` options below.
@@ -328,7 +328,7 @@ You can also type commands directly in the console of the running `monerod` (if 
 | `print_bc <begin_height> [<end_height>]`                   | Show blocks in range `<begin_height>`..`<end_height>`. The information will include block id, height, timestamp, version, size, weight, number of non-coinbase transactions, difficulty, nonce, and reward.
 | `print_block <block_hash> | <block_height>`                | Show detailed data of specified block.
 | `hard_fork_info`                                           | Show current consensus version and future hard fork block height, if any.
-| `is_key_image_spent <key_image>`                           | Check if specified [key image](/cryptography/asymmetric/key-image/) is spent. Key image is a hash.
+| `is_key_image_spent <key_image>`                           | Check if specified [key image](../cryptography/asymmetric/key-image.md) is spent. Key image is a hash.
 
 #### Manage daemon
 

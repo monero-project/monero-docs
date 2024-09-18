@@ -53,7 +53,7 @@ Index       | Size in bytes    | Description
 ------------|------------------|-------------------------------------------------------------
 0           | 1                | identifies the network and address type; [42](https://github.com/monero-project/monero/blob/31bdf7bd113c2576fe579ef3a25a2d8fef419ffc/src/cryptonote_config.h#L171) - mainnet; [36](https://github.com/monero-project/monero/blob/31bdf7bd113c2576fe579ef3a25a2d8fef419ffc/src/cryptonote_config.h#L200) - stagenet; [63](https://github.com/monero-project/monero/blob/31bdf7bd113c2576fe579ef3a25a2d8fef419ffc/src/cryptonote_config.h#L185) - testnet
 
-Otherwise the data structure is the same as for the [standard address](/public-address/standard-address/#data-structure).
+Otherwise the data structure is the same as for the [standard address](../public-address/standard-address.md#data-structure).
 
 ## Generating
 
@@ -94,7 +94,7 @@ Where:
 
 * `B` is standard address public spend key
 * `m` is a per-subaddress scalar that is derived from the private spend key
-* `G` is the "base point"; this is simply a constant specific to [edwards25519](/cryptography/asymmetric/edwards25519)
+* `G` is the "base point"; this is simply a constant specific to [edwards25519](../cryptography/asymmetric/edwards25519.md)
 
 ### Public view key
 
@@ -109,12 +109,12 @@ Where:
 
 ### Special case for (0, 0)
 
-The subaddress #0 on the account #0 is the [standard address](/public-address/standard-address).
+The subaddress #0 on the account #0 is the [standard address](../public-address/standard-address.md).
 As standard address has different generation rules, this is simply implemented via an `if` statement.
 
 ### Building the address string
 
-The procedure is the same as for the [standard address](/public-address/standard-address).
+The procedure is the same as for the [standard address](../public-address/standard-address.md).
 
 ## Caveats
 
