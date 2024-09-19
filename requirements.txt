@@ -30,6 +30,6 @@ pyyaml_env_tag==0.1
 regex==2024.7.24
 requests==2.32.3
 six==1.16.0
-urllib3==2.2.2
+urllib3==2.2.3
 watchdog==4.0.1
 mkdocs-macros-plugin==1.2.0
