@@ -35,7 +35,7 @@ The `P` comes from this:
 
     P = xG
 
-Where `G` is the [edwards25519](/cryptography/asymmetric/edwards25519) base point. 
+Where `G` is the [edwards25519](../../cryptography/asymmetric/edwards25519.md) base point. 
 
 Substitute `P` with `xG` and we get:
 

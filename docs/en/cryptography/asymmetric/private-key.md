@@ -6,7 +6,7 @@ title: Private Keys in Monero
 !!! note
     Author is nowhere close to being a cryptographer. Be sceptical on accuracy.
 
-In Monero, the root private key is generated [randomly](/cryptography/prng). Other private keys are derived deterministically from the root private key.
+In Monero, the root private key is generated [randomly](../../cryptography/prng.md). Other private keys are derived deterministically from the root private key.
 
 Private key must be kept secret.
 
@@ -31,7 +31,7 @@ See this [this guide](https://blog.cloudflare.com/a-relatively-easy-to-understan
 ### Key strength
 
 Before deriving the public key, private key is subject to modulo `l`,
-where `l` is the maximum scalar allowed by the [edwards25519 curve](/cryptography/asymmetric/edwards25519).
+where `l` is the maximum scalar allowed by the [edwards25519 curve](../../cryptography/asymmetric/edwards25519.md).
 
 The `l` is on the order of 2^252, so the effective key strength is technically 252 bits, not 256 bits.
 This is standard for EC cryptography and is more of a cosmetic nuance than any concern.

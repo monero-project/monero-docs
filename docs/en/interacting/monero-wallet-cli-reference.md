@@ -6,7 +6,7 @@ title: monero-wallet-cli - Reference
 !!! note
     Get yourself comfortable with a friendly Monero CLI wallet.
     It is the most reliable and most complete wallet for Monero.
-    Use [stagenet](/infrastructure/networks) for learning.
+    Use [stagenet](../infrastructure/networks.md#stagenet) for learning.
 
 ## Overview
 
@@ -23,7 +23,7 @@ The CLI wallet is the most reliable and most feature complete wallet for Monero.
 
 ### Depends on the full node
 
-Wallet connects to a [full node](/interacting/monerod-reference) to scan the blockchain for your transaction outputs and to send your transactions out to the network.
+Wallet connects to a [full node](../interacting/monerod-reference.md) to scan the blockchain for your transaction outputs and to send your transactions out to the network.
 
 The full node can be either local (same computer) or remote.
 
@@ -69,9 +69,9 @@ In a separate terminal window, run the wallet:
 
 | Option           | Description
 |------------------|------------------------------------------------------------------------------------------------
-| (missing)        | By default wallet assumes [mainnet](/infrastructure/networks).
-| `--stagenet`     | Run on [stagenet](/infrastructure/networks). Remember to run your daemon with `--stagenet` as well.
-| `--testnet`      | Run on [testnet](/infrastructure/networks). Remember to run your daemon with `--testnet` as well.
+| (missing)        | By default wallet assumes [mainnet](../infrastructure/networks.md).
+| `--stagenet`     | Run on [stagenet](../infrastructure/networks.md). Remember to run your daemon with `--stagenet` as well.
+| `--testnet`      | Run on [testnet](../infrastructure/networks.md). Remember to run your daemon with `--testnet` as well.
 
 #### Logging
 
@@ -84,7 +84,7 @@ In a separate terminal window, run the wallet:
 
 #### Full node connection
 
-Wallet depends on a full node for all non-local operations. The following options define how to connect to [`monerod`](/interacting/monerod-reference):
+Wallet depends on a full node for all non-local operations. The following options define how to connect to [`monerod`](../interacting/monerod-reference.md):
 
 | Option                   | Description
 |--------------------------|--------------------------------------------------------------------------------------------------------------------------------------
@@ -133,7 +133,7 @@ Wallet depends on a full node for all non-local operations. The following option
 
 | Option                   | Description
 |--------------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `--config-file <arg>`    | Full path to the [configuration file](/interacting/monero-config-file). Note this should be a separate config than `monerod` uses because these tools accept different set of options.
+| `--config-file <arg>`    | Full path to the [configuration file](../interacting/monero-config-file.md). Note this should be a separate config than `monerod` uses because these tools accept different set of options.
 
 #### Performance
 

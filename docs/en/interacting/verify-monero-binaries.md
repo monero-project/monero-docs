@@ -48,7 +48,7 @@ By this step we checked that published hashes were not tampered with.
 
 The last step is to compare published hash with downloaded archive SHA-256 hash.
 
-[Download Monero](/interacting/download-monero-binaries) if you didn't already (but do not unpack).
+[Download Monero](../interacting/download-monero-binaries.md) if you didn't already (but do not unpack).
 
 Replace the example file name with actual one:
 

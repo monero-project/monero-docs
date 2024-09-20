@@ -21,7 +21,7 @@ Efficient CryptoNight ASIC was developed in 2017 by Bitmain.
 
 Monero inherited CryptoNight as its proof of work in 2014.
 Since then Monero slightly evolved the algorithm to intentionally break compatibility with released ASIC-s. Three used variants existed: Cryptonightv1, Cryptonightv2 and [Cryptonight-R](https://github.com/SChernykh/CryptonightR).
-**Monero no longer uses CryptoNight or any variant. Monero changed its mining algorithm to [RandomX](/proof-of-work/random-x) in November 2019.**
+**Monero no longer uses CryptoNight or any variant. Monero changed its mining algorithm to [RandomX](../proof-of-work/random-x.md) in November 2019.**
 
 ## The goal is to find small-enough hash
 
@@ -143,7 +143,7 @@ See the [rationale](https://github.com/monero-project/monero/pull/5126) and the 
 
 ## Critique
 
-* CryptoNight hash is relatively expensive to verify. This poses a risk of DoS-ing nodes with incorrect proofs to process. See [strong asymmetry](/proof-of-work/what-is-pow/#strong-asymmetry) requirement. 
+* CryptoNight hash is relatively expensive to verify. This poses a risk of DoS-ing nodes with incorrect proofs to process. See [strong asymmetry](../proof-of-work/what-is-pow.md#strong-asymmetry) requirement. 
 * The hash function was designed from scratch with limited peer review. While CryptoNight is composed of proven and peer-reviewed primitives, combining secure primitives doesn't necessarily result in a secure cryptosystem.
 * CryptoNight ultimately failed to prevent ASIC-s.
 * Complexity of CryptoNight kills competition in ASIC manufacturing.
