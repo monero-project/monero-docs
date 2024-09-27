@@ -1,4 +1,4 @@
-FROM python:3.9-slim AS builder
+FROM python:3.12.6-slim@sha256:15bad989b293be1dd5eb26a87ecacadaee1559f98e29f02bf6d00c8d86129f39 AS builder
 
 WORKDIR /monero-docs
 
@@ -8,7 +8,7 @@ RUN pip install -r requirements.txt
 
 RUN mkdocs build
 
-FROM nginx:alpine
+FROM nginx:alpine@sha256:a5127daff3d6f4606be3100a252419bfa84fd6ee5cd74d0feaca1a5068f97dcf
 
 COPY --from=builder /monero-docs/public /usr/share/nginx/html
 
