@@ -41,9 +41,9 @@ nav:
 #    - Solo Mining: 'mining/overview/solo.md' # TODO
 #    - Pool Mining: 'mining/overview/pool.md' # TODO
 #    - P2Pool Mining: 'mining/overview/p2pool.md' # TODO
-#  - Mining Guides:
-#    - Solo:
-#      - Monero GUI: 'mining/guides/gui-solo.md' # TODO
+  - Mining Guides:
+    - Solo:
+      - Monero GUI: 'mining/solo/solo_mine_GUI.md' # TODO
 #      - Monerod: 'mining/guides/monerod-solo.md' # TODO
 #      - XMRig: 'mining/guides/xmrig-solo.md' # TODO
     - P2Pool:
