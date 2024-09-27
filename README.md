@@ -15,7 +15,7 @@ Monero Docs intends to be a Knowledge Base and User Guide for interacting with M
 
 Contributions are both encouraged and greatly appreciated.
 
-To contribute content, fork this repo and make a pull request to the test branch including your changes.
+To contribute content, fork this repo and make a pull request to the **`master`** branch including your changes.
 
 1. On GitHub, fork the [monero-docs](https://github.com/monero-project/moneo-docs) repo
 2. Clone your newly created repo. (Note: replace `your-username` with your GitHub username)
@@ -34,7 +34,7 @@ cd monero-docs
 git checkout -b foobar
 ```
 4. After making modifications, commit and push your changes to your topic branch
-5. Open a PR against the monero-docs `master` branch
+5. Open a PR against the monero-docs **`master`** branch
 
 # Run the documentation server locally
 
@@ -45,7 +45,6 @@ Note: You may need to first install `python3-venv` or the equivalent for your di
 1. Navigate to your `monero-docs` repo
 2. Create the python virtual environment
 ```bash
-mkdir .monero-docs-venv
 python3 -m venv .monero-docs-venv
 . .monero-docs-venv/bin/activate
 ```

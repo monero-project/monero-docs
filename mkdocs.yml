@@ -152,7 +152,7 @@ extra:
 repo_name: 'monero-project/monero-docs'
 repo_url: 'https://github.com/monero-project/monero-docs'
 # todo: change to master branch
-edit_uri: blob/test/docs/
+edit_uri: blob/master/docs/
 
 markdown_extensions:
   # https://squidfunk.github.io/mkdocs-material/extensions/admonition/
