@@ -3,73 +3,153 @@ title: Mainnet, Stagenet, Testnet
 ---
 # Networks
 
-Monero offers three separate networks and blockchains: **mainnet**, **stagenet** and **testnet**. Every blockchain has its own genesis block and is entirely seperate from others. Also, corresponding p2p networks are separate.
+!!! note ""
+    Monero offers three distinct networks and blockchains:
+
+    [**mainnet**](#mainnet)    
+    [**stagenet**](#stagenet)    
+    [**testnet**](#testnet)    
+
+     Every network has its own genesis block and is entirely seperate from others.
+
+## Nodes & Explorers
+
+!!! danger "Spy Nodes and Explorers"
+    Be cautious when using **_any_** remote node or block explorer.
+
+    Malicious service providers may log and associate your IP address, TXIDs, and more.
+    If you must use Untrusted Nodes, use them over Onion or I2P.
+
+
+### Nodes
+
+- Nodes - Self-Hosted
+    - Run your own [node](../interacting/download-monero-binaries.md)
+    - Use a node which is controlled by somebody you trust
+
+- Nodes - Remote (Use an Onion or I2P node)
+    - Onion and I2P nodes @ [monero.fail](https://monero.fail/)
+    - Onion nodes @ [ditatompel.com](https://xmr.ditatompel.com/remote-nodes/)
+
+### Block Explorers - Self-Hosted
+
+- [Onion Monero Blockchain Explorer](https://github.com/moneroexamples/onion-monero-blockchain-explorer/)
+- [MoneroBlock](https://github.com/duggavo/MoneroBlock/)
+
 
 ## Mainnet
 
-Mainnet is the "production" network and blockchain.
+!!! info ""
+    Mainnet is the "production" network and blockchain.
 
-Mainnet is the only blockchain where XMR units have value.
+    Mainnet is the only blockchain where XMR units have value.
 
-Mainnet is what people mean by default.
+    Mainnet is the default network.
 
-Default TCP ports (listening):
+??? tip "Mainnet Block Explorers [Onion]"
+    - [P2Pool.io](http://yucmgsbw7nknw7oi3bkuwudvc657g2xcqahhbjyewazusyytapqo4xid.onion/explorer/)
 
-* 18080 - p2p network
-* 18081 - JSON-RPC server
-* 18082 - ZMQ server
+??? danger "Mainnet Block Explorers [Clearnet]"
+    - [P2Pool.io](https://p2pool.io/explorer/)
+    - [XMRChain.net](https://xmrchain.net/)
+    - [Localmonero.co](https://localmonero.co/blocks/)
+    - [ExploreMonero.com](https://www.exploremonero.com/)
+
+??? failure "Mainnet Faucets"
+    - None. Don't fall for scams
+
+??? abstract "Mainnet TCP ports"
+
+    - 18080 - [Default] P2P Network
+    - 18081 - [Default] Unrestricted [JSON-RPC](../rpc-library/monerod-rpc.md)
+    - 18082 - [Default] ZMQ RPC
+    - 18083 - ZMQ Pub
+    - 18084 - Tor P2P
+    - 18085 - I2P P2P
+    - 18086 - Unused
+    - 18087 - Unused
+    - 18088 - [Wallet RPC](../interacting/monero-wallet-rpc-reference.md)
+    - 18089 - Restricted [JSON-RPC](../rpc-library/monerod-rpc.md)
 
 ## Stagenet
 
-Stagenet is what you need to learn Monero safely.
+!!! info ""
+    Stagenet is available for users and developers to learn and build on Monero safely.
 
-Stagenet is technically equivalent to mainnet, both in terms of features and consensus rules. Similar to mainnet, use the [latest official Monero release](https://getmonero.org/downloads/) to be compatible with stagenet.
+    Stagenet is technically equivalent to mainnet, both in terms of features and consensus rules. Similar to mainnet, you'll use the [latest official Monero release](https://getmonero.org/downloads/) to be compatible with stagenet.
 
-To get started:
+Some resources to get started:
 
-* Connect your GUI or CLI to stagenet open node **monero-stagenet.exan.tech:38081**
-* Get free stagenet XMR from [stagenet faucet](https://melo.tools/faucet/stagenet/) or [stagenet faucet 2](https://stagenet-faucet.xmr-tw.org/)
-* Check the [stagenet block explorer 1](https://stagenet.xmrchain.net/) or [stagenet block explorer 2](https://melo.tools/explorer/stagenet/)
+??? tip "Stagenet  Block Explorers [Onion]"
+    - [Monerodevs.org](http://bhqzadcvfcuwwnvf5hws5zwzjgvfuarqbah5ruhyxuxhaoklsy35wdqd.onion/)
 
-Default TCP ports (listening):
+??? danger "Stagenet Block Explorers [Clearnet]"
+    - N/A
 
-* 38080 - p2p network
-* 38081 - JSON-RPC server
-* 38082 - ZMQ server
+??? abstract "Stagenet Faucets [Clearnet]"
+    - [Rino.io](https://tools.rino.io/faucet/stagenet/)
+    - [XMR-TW.org](https://stagenet-faucet.xmr-tw.org/)
 
-Stagenet was introduced in March 2018 as part of Monero 0.12.0.0.
+??? abstract "Stagenet TCP ports"
+
+    - 38080 - [Default] P2P Network
+    - 38081 - [Default] Unrestricted [JSON-RPC](../rpc-library/monerod-rpc.md)
+    - 38082 - [Default] ZMQ RPC
+    - 38083 - ZMQ Pub
+    - 38084 - Tor P2P
+    - 38085 - I2P P2P
+    - 38086 - Unused
+    - 38087 - Unused
+    - 38088 - [Wallet RPC](../interacting/monero-wallet-rpc-reference.md)
+    - 38089 - Resticted [JSON-RPC](../rpc-library/monerod-rpc.md)
+
+Stagenet was introduced in March 2018 as part of Monero v0.12.0.0
 
 ## Testnet
 
-As a normal user, use [stagenet](#stagenet) instead. Testnet is for developers.
+!!! info ""
+    If you're a normal user or a developer building an application, you should use [Stagenet](#stagenet).
 
-Testnet is the "experimental" network and blockchain where things get released long before mainnet.
+    Testnet is the "experimental" network and blockchain where things get tested long before mainnet.
 
-Testnet forks early and often. Most of the time you need to compile Monero from source to be compatible with testnet. Otherwise you will get stuck on the old not-forked version.
+    Testnet forks earlier and more often than Mainnet. To avoid being stuck on an old fork of testnet, you should keep your sources up to date and compile often.
 
-To get started:
+Some resources to get started:
 
-* Build Monero from [source](https://github.com/monero-project/monero)
-* Connect your GUI or CLI to testnet open node **monero-testnet.exan.tech:28081**
-* Get free XMR from [testnet faucet](https://melo.tools/faucet/testnet/)
-* Check the [testnet block explorer 1](https://testnet.xmrchain.net/) or [testnet block explorer 2](https://melo.tools/explorer/testnet/)
+- Build Monero from source following a guide from [Monero Examples](https://github.com/moneroexamples/monero-compilation/)
 
-Default TCP ports (listening):
+??? tip "Testnet Block Explorers [Onion]"
+    - [Monerodevs.org](http://ol7qm5adjeugpwkbrcnnnshsihmkhidaaoim35duhfdmj4gihaiapkid.onion/)
 
-* 28080 - p2p network
-* 28081 - JSON-RPC server
-* 28082 - ZMQ server
+??? danger "Testnet Block Explorers [Clearnet]"
+    - N/A
 
-## Private Testnet
+??? abstract "Testnet Faucets [Clearnet]"
+    - [Rino.io](https://tools.rino.io/faucet/testnet/)
 
-You can also create your private version of the testnet.
+??? abstract "Testnet TCP ports"
 
-Private testnet gives more flexibility to arange for specific situations for developers.
+    - 28080 - [Default] P2P Network
+    - 28081 - [Default] Unrestricted [JSON-RPC](../rpc-library/monerod-rpc.md)
+    - 28082 - [Default] ZMQ RPC
+    - 28083 - ZMQ Pub
+    - 28084 - Tor P2P
+    - 28085 - I2P P2P
+    - 28086 - Unused
+    - 28087 - Unused
+    - 28088 - [Wallet RPC](../interacting/monero-wallet-rpc-reference.md)
+    - 28089 - Restricted [JSON-RPC](../rpc-library/monerod-rpc.md)
 
-Check the [private testnet guide](https://github.com/moneroexamples/private-testnet).
+### Private Testnet
+??? info "Run a Private Testnet"
 
-## Why stagenet and testnet coins have no value?
+    You can create a private version of the Testnet.    
+    A private testnet gives developers flexibility and control over the network.
 
-If mainnet and stagenet are technically equivalent then why only mainnet coins have value?
+    To learn how to run a private testnet, follow the guide from [Monero Examples](https://github.com/moneroexamples/private-testnet/)
 
-This is simply the convention community embraced. Value only comes from a shared believe that mainnet coins will be accepted by other people in the future.
+## FAQ
+
+??? question "Why do stagenet and testnet coins have no value?"
+
+    A: This is simply the convention community embraced. Value only comes from a shared belief that mainnet coins will be accepted by other people in the future.
