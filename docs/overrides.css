@@ -10,24 +10,81 @@ article .md-typeset__table {
 }
 
 :root {
-    --md-primary-fg-color: #121212;
 }
 
 [data-md-color-scheme="default"] {
-    --md-typeset-a-color:  #4051b5;
+
+    --md-primary-fg-color: #ffffff; /* header */
+    --md-default-bg-color: #ffffff; /* background color */
+
+    /* imported from white theme */
+    --md-primary-fg-color--light: hsla(var(--md-hue),0%,100%,0.7);
+    --md-primary-fg-color--dark: hsla(var(--md-hue),0%,0%,0.07); /* shade on repo into */
+
+    --md-primary-bg-color: hsla(var(--md-hue),0%,0%,0.87); /* header text */
+    --md-primary-bg-color--light: hsla(var(--md-hue),0%,0%,0.54);
+    /* ------------------------- */
+
+    --md-typeset-a-color: #ff6600;  /* links */
+
+    --md-accent-fg-color: #ff6600;  /* accent/buttons color */
+    --md-accent-bg-color: #ffffff;  /* accent/buttons text */
+
+    --md-footer-bg-color: var(--md-default-bg-color);  /* forward/back panel */
+    --md-footer-bg-color--dark: #181818; /* bottom footer */
+    --md-footer-fg-color: #000000;  /* footer text */
 }
 
 
 [data-md-color-scheme="slate"] {
     --md-hue: 232;
-    --md-default-bg-color: #121212;
-    --md-footer-bg-color: #181818;
-    --md-footer-bg-color--dark: #181818;
-    --md-typeset-a-color:  #FF6600;
-    --md-code-bg-color: #191919;
+
+    --md-primary-fg-color: #141414; /* header */
+    --md-default-bg-color: #191919; /* background color */
+
+    /* imported from black theme */
+    --md-primary-fg-color--light: hsla(var(--md-hue),15%,9%,0.54);
+    --md-primary-fg-color--dark: hsla(var(--md-hue),15%,9%,1); /* shade on repo into */
+
+    --md-primary-bg-color: hsla(var(--md-hue),15%,100%,1); /* header text */
+    --md-primary-bg-color--light: hsla(var(--md-hue),15%,100%,0.7);
+    /* ------------------------- */
+
+    --md-typeset-a-color: #ff6600;  /* links */
+
+    --md-accent-fg-color: #ff6600;  /* accent/buttons color */
+    --md-accent-bg-color: #ffffff;  /* accent/buttons text */
+
+    --md-footer-bg-color: var(--md-default-bg-color);  /* forward/back panel */
+    --md-footer-bg-color--dark: #141414; /* bottom footer */
+    --md-footer-fg-color: #ffffff; /* footer text */
+
+    --md-code-bg-color: #1f1f1f; /* code boxes */
 }
 
 [role=tooltip]>.md-tooltip2__inner {
     font-size: 0.9rem;
 }
 
+/* nav icons */
+[dir="ltr"] .md-nav--primary .md-nav__icon {
+    color: #ff6600;
+}
+
+/* back to top */
+.md-top {
+    background-color: var(--md-primary-bg-color);
+    color: var(--md-primary-fg-color);
+}
+
+/* buttons */
+.md-typeset .md-button {
+    background-color: #181818;
+    color: var(--md-accent-bg-color);
+    border-color:var(--md-accent-fg-color);
+}
+
+/* links */
+.md-typeset a {
+    color: var(--md-primary-bg-color);
+}
