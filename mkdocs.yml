@@ -20,11 +20,10 @@ nav:
   - Monerod:
     - Flags: 'interacting/monerod-reference.md'
     - Setup Guide:
-#      - I2P: 'running-node/open-node-tor-onion.md' TODO
-      - Tor: 'running-node/open-node-tor-onion.md'
+      - Systemd: 'running-node/open-node-tor-onion.md'
+      - Tor & I2P: 'running-node/monerod-tori2p.md'
     - Sample Configs:
-      - VPS: 'interacting/monero-config-file.md'
-#      - Home: 'interacting/moneord-tori2p.md' # TODO
+      - Home: 'interacting/monero-config-file.md'
   - Wallets:
     - monero-wallet-gui: 'interacting/monero-wallet-gui-reference.md'
     - monero-wallet-cli: 'interacting/monero-wallet-cli-reference.md'
@@ -172,6 +171,8 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.superfences         # nest code blocks inside codeblocks
   - pymdownx.snippets            # insert content from other files
+  - pymdownx.tabbed:
+      alternate_style: true
   - tables
 
 plugins:
