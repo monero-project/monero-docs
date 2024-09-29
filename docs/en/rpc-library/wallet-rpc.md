@@ -2686,6 +2686,7 @@ Inputs:
 -   _ssl_allow_any_cert_  - boolean; (Optional; Default: false) If false, the certificate must be signed by a trusted certificate authority.
 -   _username_  - string; (Optional) 
 -   _password_  - string; (Optional)
+-   _proxy_ - string: (Optional); Set a daemon specific proxy address. Syntax: `<HOST:PORT>`
 
 Outputs: _None_.
 
