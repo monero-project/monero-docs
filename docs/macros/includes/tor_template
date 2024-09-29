@@ -4,12 +4,11 @@
         * yourlongv3onionaddress.onion:18084 - onion P2P service (for other onion nodes)
         * yourlongv3onionaddress.onion:18089 - onion RPC service (for wallets connecting over Tor)
 
-        **Tor onion for P2P network** is useful for other full node users as it allows them to broadcast transactions over Tor (using `--tx-proxy` option).
+        **Onion service for P2P network** is useful for other full node users as it allows them to broadcast transactions over Tor (using `--tx-proxy` option).
 
-        **Tor onion for wallet interface** is useful for wallet users connecting over Tor because it mitigates Clearnet and Tor exit node MiTM risks (which are very real). By connecting wallet to an onion service, no MiTM attack is realistic because onion connections are end-to-end encrypted.
+        **Onion service for wallet interface** is useful for wallet users connecting over Tor because it mitigates Clearnet and Tor exit node MiTM risks (which are very real). By connecting wallet to an onion service, no MiTM attack is realistic because onion connections are end-to-end encrypted.
 
-    ??? info "P2P ports"
-        Q: Why different P2P ports for clearnet and onion?
+    ??? info "Why different P2P ports for clearnet and onion?"
         A: The data served by the Onion p2p port differs from clearnet P2P. A different port is required
 
     1. Elevate to root:
@@ -36,7 +35,7 @@
     6. Copy the result into your Monero [**config file** :link:{ title="Monerod Config" }]{{ config }}, enabling these options:
         ``` ini
         anonymous-inbound=yourlongv3onionaddress.onion,127.0.0.1:18084
-        tx-proxy=i2p,127.0.0.1:9050,disable_noise
+        tx-proxy=tor,127.0.0.1:9050,disable_noise
         ```
         Replace `yourlongv3onionaddress.onion` with your onion address.
     7. The node is now available on Tor. You can check that the service is working by using curl:

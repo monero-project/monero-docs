@@ -4,13 +4,12 @@
         * yourlongb32i2paddress.b32.i2p:18085 - i2p P2P service (for other i2p nodes)
         * yourlongb32i2paddress.b32.i2p:18089 - i2p RPC service (for wallets connecting over i2p)
 
-        **Tor onion for P2P network** is useful for other full node users as it allows them to broadcast transactions over Tor (using `--tx-proxy` option).
+        **I2P service for P2P network** is useful for other full node users as it allows them to broadcast transactions over I2P (using `--tx-proxy` option).
 
-        **Tor onion for wallet interface** is useful for wallet users connecting over Tor because it mitigates Clearnet and Tor exit node MiTM risks (which are very real). By connecting wallet to an onion service, no MiTM attack is realistic because onion connections are end-to-end encrypted.
+        **I2P service for wallet interface** is useful for wallet users connecting over I2P because it mitigates Clearnet and Tor exit node MiTM risks (which are very real). By connecting wallet to an I2P service, no MiTM attack is realistic because I2P connections are end-to-end encrypted.
 
-    ??? info "P2P ports"
-        Q: Why different P2P ports for clearnet and i2p?
-       A: The data served by the i2p p2p port differs from clearnet P2P. A different port is required
+    ??? question "Why different P2P ports for clearnet and i2p?"
+        A: The data served by the i2p p2p port differs from clearnet P2P. A different port is required
 
     1. Elevate to root:
         ``` Bash
