@@ -8,8 +8,8 @@
 
         **Onion service for wallet interface** is useful for wallet users connecting over Tor because it mitigates Clearnet and Tor exit node MiTM risks (which are very real). By connecting wallet to an onion service, no MiTM attack is realistic because onion connections are end-to-end encrypted.
 
-    ??? info "Why different P2P ports for clearnet and onion?"
-        A: The data served by the Onion p2p port differs from clearnet P2P. A different port is required
+    ??? question "Why different P2P ports for clearnet and onion?"
+        A: The data served by the Onion p2p port differs from clearnet P2P. A different port is required.
 
     1. Elevate to root:
         ``` Bash
