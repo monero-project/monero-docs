@@ -1463,6 +1463,10 @@ Show information about a transfer to/from this address.
     Verify that the transfer has a sane `unlock_time` otherwise the funds might be inaccessible.
     Note: Since [v18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
 
+!!! note "Warning"
+
+    The `destinations` fields are only available when this wallet cache was the one to construct the transaction. If you restore your wallet from scratch, you will lose this information.
+
 Alias:  _None_.
 
 Inputs:
@@ -1654,6 +1658,10 @@ Returns a list of transfers.
     Verify that the transfer has a sane `unlock_time` otherwise the funds might be inaccessible.
     Note: Since [v18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
 
+!!! note "Warning"
+
+     The `destinations` fields are only available when this wallet cache was the one to construct the transaction. If you restore your wallet from scratch, you will lose this information.
+
 Alias:  _None_.
 
 Inputs:
@@ -1681,9 +1689,9 @@ Outputs:
     -   _fee_  - unsigned int; Transaction fee for this transfer.
     -   _height_  - unsigned int; Height of the first block that confirmed this transfer (0 if not mined yet).
     -   _note_  - string; Note about this transfer.
-    -   _destinations_  - array;
-    -  amount_  - unsigned int;
-    -  address_  - string;
+    -   _destinations_ - array of JSON objects containing transfer destinations: (only for outgoing transactions)
+        -   _amount_ - unsigned int; Amount transferred to this destination.
+        -   _address_ - string; Address for this destination. Base58 representation of the public keys.
     -   _payment_id_  - string; Payment ID for this transfer.
     -   _subaddr_index_  - JSON object containing the major & minor subaddress index:
         -   _major_  - unsigned int; Account index for the subaddress.
