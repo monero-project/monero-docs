@@ -899,7 +899,8 @@ Inputs: _None_ .
 Outputs:
 
 - _connections_ - List of all connections and their info:
-  - _address_ - string; The peer's address, actually IPv4 & port
+  - _address_ - string; The peer's address, actually IPv4 & port.
+  - _address_type_ - unsigned int; 0 = invalid, 1 = ipv4 and 2 = ipv6.
   - _avg_download_ - unsigned int; Average bytes of data downloaded by node.
   - _avg_upload_ - unsigned int; Average bytes of data uploaded by node.
   - _connection_id_ - string; The connection ID
@@ -916,6 +917,8 @@ Outputs:
   - _port_ - string; The port that the node is using to connect to the network.
   - _recv_count_ - unsigned int
   - _recv_idle_time_ - unsigned int
+  - _rpc_credits_per_hash_ - unsigned int; clients will be awarded credits/difficulty credits for every hash they calculate.
+  - _rpc_port_ - unsigned int
   - _send_count_ - unsigned int
   - _send_idle_time_ - unsigned int
   - _state_ - string
