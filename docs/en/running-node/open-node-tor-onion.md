@@ -1,5 +1,5 @@
 ---
-title: Running Monero Open Node with Tor Onion Support
+title: Running a Monero Node via Systemd
 
 config: (#monerod-config)
 
