@@ -1271,15 +1271,18 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 ### **get_output_distribution**
 
 
+Get the number of transaction outputs per-block for given cleartext amounts (0 meaning RingCT) within a specified range.
+
+If the distribution is "cumulative", then each value in the array represents the number of transaction outputs in that block plus all total outputs of that amount before that block.
 
 Alias: _None_ .
 
 Inputs:
 
-- _amounts_ - array of unsigned int; amounts to look for
-- _cumulative_ - boolean; (optional, default is `false`) States if the result should be cumulative (`true`) or not (`false`)
-- _from_height_ - unsigned int; (optional, default is 0) starting height to check from
-- _to_height_ - unsigned int; (optional, default is 0) ending height to check up to
+- _amounts_ - array of unsigned int; cleartext amounts to look for (0 gets all RingCT outputs).
+- _cumulative_ - boolean; (optional, default is `false`) States if the result should be cumulative (`true`) or not (`false`).
+- _from_height_ - unsigned int; (optional, default is 0) Starting height to check from, inclusive.
+- _to_height_ - unsigned int; (optional, default is 0) Ending height to check up to, inclusive. Set to 0 to get entire chain after _from_height_.
 - _binary_ - boolean; for disabling epee encoding
 - _compress_ - boolean; ignored if `binary` set to `false`
 
@@ -1287,9 +1290,9 @@ Outputs:
 
 - _distributions_ - array of structure distribution as follows:
   - _amount_ - unsigned int
-  - _base_ - unsigned int
+  - _base_ - unsigned int; The total number of outputs of *amount* in the chain before, not including, the block at _start_height_.
   - _distribution_ - array of unsigned int
-  - _start_height_ - unsigned int
+  - _start_height_ - unsigned int; Note that this is not necessarily equal to *from_height*, especially for *amount*=`0` where *start_height* will be no less than the height of the v4 hardfork.
 - _status_ - string; General RPC error code. "OK" means everything looks good.
 
 Example:
