@@ -32,7 +32,6 @@ Some commands assume Ubuntu but you can trivially translate them to your distrib
 
 ### Node Configuration
 === "Tor"
-
 {% include 'tor_template' %}
 
 === "I2P"

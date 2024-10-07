@@ -17,6 +17,9 @@
         ```
     2. Install i2pd:
         ``` Bash
+        apt install apt-transport-https
+        wget -q -O - https://repo.i2pd.xyz/.help/add_repo | bash -s -
+        apt update
         apt install i2pd
         ```
     3. Create a server tunnel for the Monero P2P and RPC ports:
