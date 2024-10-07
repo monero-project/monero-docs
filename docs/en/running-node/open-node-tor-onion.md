@@ -1,24 +1,28 @@
 ---
-title: Running Monero Open Node with Tor Onion Support
----
-# Running Monero Open Node + Tor Onion
+title: Running a Monero Node via Systemd
 
+config: (#monerod-config)
+
+configfile: "/etc/monero/monerod.conf"
+datadir: "/var/lib/monero/bitmonero"
+logfile: "log-file=/var/log/monero/monero.log"
+maxlogsize: "max-log-file-size=2147483648   # Set to 2GB to mitigate log trimming by monerod; configure logrotate instead"
+txproxyi2p:
+txproxytor:
+publicnode: "public-node=1                  # Advertise to other users they can use this node for connecting their wallets"
+
+---
+# Running Monerod via Systemd
 !!! success "The end goal"
     You will publicly offer the following services, where xxx.yyy.zzz.vvv is your server IP address.
 
     * xxx.yyy.zzz.vvv:18080 - clearnet P2P service (for other nodes)
     * xxx.yyy.zzz.vvv:18089 - clearnet RPC service (for wallets)
-    * yourlongv3onionaddress.onion:18084 - onion P2P service (for other onion nodes)
-    * yourlongv3onionaddress.onion:18089 - onion RPC service (for wallets connecting over Tor)
 
-??? info "P2P ports"
-    Q: Why different P2P ports for clearnet and onion?    
-    A: The data served by the Onion differs from clearnet P2P. A different port is required
-
-??? warning "May be resource intensive"
+??? warning "Public RPC may be resource intensive"
     Providing a Public RPC may use a sizeable amount of resources on your PC.
 
-    If you have concerns about data/bandwidth, CPU or RAM usage, you may disable the `public-node` setting by commenting [#] or deleting the line from the [config](#config) 
+    If you have concerns about data/bandwidth, CPU or RAM usage, you may disable the `public-node` setting by commenting [#] or deleting the line from the [config](#monerod-config)
 
 ## Why run this specific setup?
 
@@ -27,15 +31,8 @@ in a secure and private way over Tor.
 
 **Running as a systemd service** will allow your node to always remain synced, as opposed to intermittently running node.
 
-**Serving blocks and transactions** in Monero P2P network helps new users to bootstrap and sync up their nodes.
-It also strenghtens Monero P2P network against DDoS attacks and network partitioning.
-
 **Open wallet inteface** - The `public-node` config option allows anyone to connect their wallets to Monero network through your node.
 This is useful to users who don't run their own nodes.
-
-**Tor onion for wallet interface** is useful for wallet users connecting over Tor because it mitigates Clearnet and Tor exit node MiTM risks (which are very real). By connecting wallet to an onion service, no MiTM attack is realistic because onion connections are end-to-end encrypted.
-
-**Tor onion for P2P network** is useful for other full node users as it allows them to broadcast transactions over Tor (using `--tx-proxy` option).
 
 ## Assumptions
 
@@ -46,7 +43,7 @@ You possess:
 - _Recommended_ 4 GB+ RAM
 - _Recommended_ available SSD storage of
     - **{{ multiply(lmdb_size_full, 2.5) }} GB+** for the full node
-    - **{{ multiply(lmdb_size_pruned, 2.5) }} GB+** for the pruned.
+    - **{{ multiply(lmdb_size_pruned, 2.5) }} GB+** for the pruned
 
 !!! note "Current blockchain size as of {{ lmdb_size_updated }}"
     The current blockchain sizes are approximately:    
@@ -54,56 +51,6 @@ You possess:
     Pruned node: **{{ lmdb_size_pruned }} GB**
 
 Some commands assume Ubuntu but you will easily translate them to your distribution.
-
-## Install Tor
-
-1. [Install Tor](https://support.torproject.org/apt)
-
-2. Elevate to root:
-
-    ``` Bash
-    sudo su -
-    ```
-
-3. Add the following lines to `/etc/tor/torrc`:
-
-    ``` ApacheConf
-    HiddenServiceDir /var/lib/tor/monerod
-    HiddenServicePort 18089 127.0.0.1:18089    # interface for wallet ("RPC")
-    HiddenServicePort 18084 127.0.0.1:18084    # interface for P2P network
-    ```
-
-4. Enable tor service:
-
-    ``` Bash
-    systemctl enable tor
-    systemctl restart tor
-    ```
-
-5. Verify the Tor is running:
-
-    ``` Bash
-    systemctl status tor@default
-    ```
-
-6. View/Copy your new Onion Address: 
-
-    ``` Bash
-    cat /var/lib/tor/monerod/hostname
-    ```
-
-??? info "Backup Onion keys"
-    You may want to backup your keys folder (`/var/lib/tor/monerod`) to secure control over your onion address.
-
-??? info "How Tor onion services work?"
-
-    A fresh onion address and corresponding key pair were created for you in /var/lib/tor/monero/.
-
-    This happens on restart whenever you add a new `HiddenServiceDir` to the `/etc/tor/torrc` config file.
-
-    The tor daemon will forward traffic from a virtual onion port to an actual localhost port, where some service is listening (in our case, this will be `monerod`).
-
-    A single onion address can offer multiple services at various virtual ports.
 
 ## Install Monero
 
@@ -142,78 +89,13 @@ Some commands assume Ubuntu but you will easily translate them to your distribut
     chown monero:monero /usr/local/bin/monero*
     ```
 
-    ### **Monerod Config**
+### Monerod Config
 
-6. Create `/etc/monero/monerod.conf` as shown below and **replace `PASTE_YOUR_ONION_HOSTNAME` with your Onion address**.
+6. Create `/etc/monero/monerod.conf` as shown below:
 
-    ``` YAML
-    # /etc/monero/monerod.conf
-    #
-    # Configuration file for monerod. For all available options see the MoneroDocs:
-    # https://docs.getmonero.org/interacting/monerod-reference/
+{% include 'monerod_template' %}
 
-    # Data directory (blockchain db and indices)
-    data-dir=/var/lib/monero/bitmonero
-
-    # Optional pruning
-    #prune-blockchain=1           # Pruning saves 2/3 of disk space w/o degrading functionality but contributes less to the network
-    #sync-pruned-blocks=1         # Allow downloading pruned blocks instead of prunning them yourself
-
-    # Centralized services
-    check-updates=disabled         # Do not check DNS TXT records for a new version
-    enable-dns-blocklist           # Block known malicious nodes
-
-    # Log file
-    log-file=/var/log/monero/monero.log
-    log-level=0                    # Minimal logs, WILL NOT log peers or wallets connecting
-    max-log-file-size=2147483648   # Set to 2GB to mitigate log trimming by monerod; configure logrotate instead
-
-    # P2P full node
-    #p2p-bind-ip=0.0.0.0            # Bind to all interfaces (the default)
-    #p2p-bind-port=18080            # Bind to default port
-    #no-igd=1                       # Disable UPnP port mapping
-
-    # RPC open node
-    public-node=1                  # Advertise to other users they can use this node for connecting their wallets
-    rpc-restricted-bind-ip=0.0.0.0 # Bind to all interfaces (the Open Node)
-    rpc-restricted-bind-port=18089 # Bind to a new RESTICTED port (the Open Node)
-
-    # RPC TLS
-    rpc-ssl=autodetect             # Use TLS if client wallet supports it (Default); A new certificate will be regenerated every restart
-
-    # ZMQ
-    #zmq-rpc-bind-ip=127.0.0.1      # Default 127.0.0.1
-    #zmq-rpc-bind-port=18082        # Default 18082
-    zmq-pub=tcp://127.0.0.1:18083  # ZMQ pub
-    #no-zmq=1                       # Disable ZMQ RPC server
-
-    # Mempool size
-    max-txpool-weight=2684354560   # Maximum unconfirmed transactions pool size in bytes (here ~2.5GB, default ~618MB)
-
-    # Database sync mode
-    #db-sync-mode=safe:sync	       # Slow but reliable db writes
-
-    # Network limits
-    out-peers=24              # This will enable much faster sync and tx awareness; the default 8 is suboptimal nowadays
-    in-peers=48               # The default is unlimited; we prefer to put a cap on this
-
-    limit-rate-up=1048576     # 1048576 kB/s == 1GB/s; a raise from default 2048 kB/s; contribute more to p2p network
-    limit-rate-down=1048576   # 1048576 kB/s == 1GB/s; a raise from default 8192 kB/s; allow for faster initial sync
-
-    # Tor/I2P: broadcast transactions originating from connected wallets over Tor/I2P (does not concern relayed transactions)
-    tx-proxy=tor,127.0.0.1:9050,16,disable_noise  # Tor
-    #tx-proxy=i2p,127.0.0.1:4447,16.disable_noise  # I2P
-
-    # Tor/I2P: tell monerod your onion address so it can be advertised on P2P network
-    anonymous-inbound=PASTE_YOUR_ONION_HOSTNAME:18084,127.0.0.1:18084,64
-    #anonymous-inbound=PASTE_YOUR_I2P_HOSTNAME,127.0.0.1:18085,64
-
-    # Tor: be forgiving to connecting wallets; suggested by http://xmrguide42y34onq.onion/remote_nodes
-    disable-rpc-ban=1
-    ```
-
-
-    ### Systemd
+### Systemd
 
 7. Create `/etc/systemd/system/monerod.service` as shown below.
 
@@ -266,9 +148,9 @@ Some commands assume Ubuntu but you will easily translate them to your distribut
 
 
 
-## Open firewall ports
+### Open firewall ports
 
-If you use a firewall (and you should), open `18080` and `18089` ports for incoming TCP connections.    
+If you use a firewall (and you should), open `18080` and `18089` ports for incoming TCP connections.
 These are for the incoming **clearnet** connections, P2P and RPC respectively.
 
 You **do not** need to open any ports for Tor.
@@ -293,62 +175,75 @@ To                         Action      From
 18089/tcp (v6)             ALLOW       Anywhere (v6)
 ```
 
+## Tor & I2P
+??? "Tor Setup"
+{% include 'tor_template' %}
 
-## Testing
+??? "I2P Setup"
+{% include 'i2pd_template' %}
 
-### On server
+### Testing
 
-List all services listening on ports and make sure it is what you expect:
+??? "Testing"
 
-``` Bash
-sudo netstat -lntpu
-```
+    **On server**
 
-The output should include these (in any order); obviously the PID values will differ.
+    List all services listening on ports and make sure it is what you expect:
 
-```
-Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
-...
-tcp        0      0 0.0.0.0:18080           0.0.0.0:*               LISTEN      259255/monerod
-tcp        0      0 0.0.0.0:18089           0.0.0.0:*               LISTEN      259255/monerod
-tcp        0      0 127.0.0.1:18084         0.0.0.0:*               LISTEN      259255/monerod
-tcp        0      0 127.0.0.1:9050          0.0.0.0:*               LISTEN      258786/tor
-```
+    ``` Bash
+    sudo netstat -lntpu
+    ```
 
-### On client machine
+    The output should include these (in any order); obviously the PID values will differ.
 
-Finally, we want to test connections from your client machine.
+    ```
+    Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+    ...
+    tcp        0      0 0.0.0.0:18080           0.0.0.0:*               LISTEN      259255/monerod
+    tcp        0      0 0.0.0.0:18089           0.0.0.0:*               LISTEN      259255/monerod
+    tcp        0      0 127.0.0.1:18084         0.0.0.0:*               LISTEN      259255/monerod
+    tcp        0      0 127.0.0.1:9050          0.0.0.0:*               LISTEN      258786/tor
+    ```
 
-Install `tor` and `torsocks` on your laptop, you will want them anyway for Monero wallet.
+    **On client machine**
 
-Just for testing, you will also need `nmap` and `proxychains`.
+    Finally, we want to test connections from your client machine.
 
-Test **clearnet P2P** connection:
+    Install `tor` and `torsocks` on your laptop, you will want them anyway for Monero wallet.
 
-`nmap -Pn -p 18080 YOUR_IP_ADDRESS_HERE`
+    Just for testing, you will also need `nmap` and `proxychains`.
 
-Test **clearnet RPC** connection:
+    Test **clearnet P2P** connection:
 
-`curl --digest -X POST http://YOUR_IP_ADDRESS_HERE:18089/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_info"}' -H 'Content-Type: application/json'`
+    `nmap -Pn -p 18080 YOUR_IP_ADDRESS_HERE`
 
-Test **onion P2P** connection (skip if you don't have proxychains):
+    Test **clearnet RPC** connection:
 
-`proxychains nmap -Pn -p 18084 YOUR_ONION_ADDRESS_HERE.onion`
+    ``` Bash
+    curl --digest -X POST http://YOUR_IP_ADDRESS_HERE:18089/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_info"}' -H 'Content-Type: application/json'
+    ```
 
-Test **onion RPC** connection:
+    Test **onion P2P** connection (skip if you don't have proxychains):
 
-`curl -x socks5h://127.0.0.1:9050 --digest -X POST http://YOUR_ONION_ADDRESS_HERE.onion:18089/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_info"}' -H 'Content-Type: application/json'`
+    ``` Bash
+    proxychains nmap -Pn -p 18084 YOUR_ONION_ADDRESS_HERE.onion
+    ```
 
+    Test **onion RPC** connection:
 
-## Debugging
+    ``` Bash
+    curl -x socks5h://127.0.0.1:9050 --digest -X POST http://YOUR_ONION_ADDRESS_HERE.onion:18089/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_info"}' -H 'Content-Type: application/json'`
+    ```
 
-Tor:
+### Debugging
+??? Debugging
+    Tor:
 
-  * Status: `systemctl status tor@default`
-  * Logs: `journalctl -xe --unit tor@default`
+    - Status: `systemctl status tor@default`
+    - Logs: `journalctl -xe --unit tor@default`
 
-Monerod:
+    Monerod:
 
-  * Status: `systemctl status monero`
-  * Logs: `tail -n100 /var/log/monero/monero.log`
-  * Logs more info: change `log-level=0` to `log-level=1` in `monero.conf` (remember to revert once solved)
+    - Status: `systemctl status monero`
+    - Logs: `tail -n100 /var/log/monero/monero.log`
+    - Logs more info: change `log-level=0` to `log-level=1` in `monero.conf` (remember to revert once solved)
