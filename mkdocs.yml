@@ -56,7 +56,7 @@ nav:
     - Subaddress: 'public-address/subaddress.md'
     - Integrated: 'public-address/integrated-address.md'
   - Mnemonics:
-    - Overview: 'mnemonics/overview.md'
+    - 'mnemonics/index.md'
     - Legacy: 'mnemonics/legacy.md'
     - MyMonero: 'mnemonics/mymonero.md'
     - Polyseed: 'mnemonics/polyseed.md'
