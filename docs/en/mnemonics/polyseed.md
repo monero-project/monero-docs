@@ -4,9 +4,9 @@ title: Polyseed Mnemonic Scheme
 
 > **Note**: Details and the original README can be found in the [Polyseed repository](https://github.com/tevador/polyseed)
 
-The polyseed mnemonic scheme is a relatively new mnemonic scheme in the Monero ecosystem. It was initally designed for the Seraphis + Jamtis update, but it's been adopted by the community more sooner because of its efficiency, simplicity and security. The scheme embeds the wallet birthday for removing the need of storing the wallet creation date separately. It also has a strong checksum mechanism based on polynomial code.
+The polyseed mnemonic scheme is a relatively new mnemonic scheme in the Monero ecosystem. It was initally designed for the Seraphis + Jamtis update, but it's been adopted by the community sooner because of its efficiency, simplicity and security. The scheme embeds the wallet birthday for removing the need of storing the wallet creation date separately. It also has a strong checksum mechanism based on polynomial code.
 
-The polyseed mechanism works differently from the legacy mnemonic scheme, where you can not choose the words from a wordlist. Instead, the words are generated from the seed, feature bits and birthday bits. The seed is the 150-bit private key, the feature bits are the bits that are used to determine the wallet features and the birthday bits are the bits that are used to determine the wallet birthday.
+Unlike the legacy mnemonic scheme, the polyseed mechanism does not allow you to choose the words from a wordlist. Instead, the words are generated from the seed, feature bits and birthday bits. The seed is the 150-bit private key, the feature bits are the bits that are used to determine the wallet features and the birthday bits are the bits that are used to determine the wallet birthday.
 
 ### Encoding
 
