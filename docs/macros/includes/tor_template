@@ -1,0 +1,52 @@
+    !!! success "The end goal"
+        To enable the following services:
+
+        * yourlongv3onionaddress.onion:18084 - onion P2P service (for other onion nodes)
+        * yourlongv3onionaddress.onion:18089 - onion RPC service (for wallets connecting over Tor)
+
+        **Onion service for P2P network** is useful for other full node users as it allows them to broadcast transactions over Tor (using `--tx-proxy` option).
+
+        **Onion service for wallet interface** is useful for wallet users connecting over Tor because it mitigates Clearnet and Tor exit node MiTM risks (which are very real). By connecting wallet to an onion service, no MiTM attack is realistic because onion connections are end-to-end encrypted.
+
+    ??? question "Why different P2P ports for clearnet and onion?"
+        A: The data served by the Onion p2p port differs from clearnet P2P. A different port is required.
+
+    1. Elevate to root:
+        ``` Bash
+        sudo su -
+        ```
+    2. [:link: Install Tor](https://support.torproject.org/apt/#apt_tor-deb-repo)
+
+    3. Add the following lines to `/etc/tor/torrc`:
+        ``` ApacheConf
+        HiddenServiceDir /var/lib/tor/monerod
+        HiddenServicePort 18089 127.0.0.1:18089    # interface for wallet ("RPC")
+        HiddenServicePort 18084 127.0.0.1:18084    # interface for P2P network
+        ```
+    4. Enable Tor service:
+        ``` Bash
+        systemctl enable tor
+        systemctl restart tor
+        ```
+    5. View/Copy your new Onion Address:
+        ``` Bash
+        cat /var/lib/tor/monerod/hostname
+        ```
+    6. Copy the result into your Monero [**config file** :link:{ title="Monerod Config" }]{{ config }}, enabling these options:
+        ``` ini
+        anonymous-inbound=yourlongv3onionaddress.onion,127.0.0.1:18084
+        tx-proxy=tor,127.0.0.1:9050,disable_noise
+        ```
+        Replace `yourlongv3onionaddress.onion` with your onion address.
+    7. The node is now available on Tor. You can check that the service is working by using curl:
+        ``` Bash
+        curl -x socks5h://127.0.0.1:9050 http://yourlongv3onionaddress.onion:18089/get_info
+        ```
+    ??? info "Backup Onion keys"
+        You may want to backup your keys folder (`/var/lib/tor/monerod`) to secure control over your onion address.
+    ??? info "How Tor onion services work?"
+
+        A fresh onion address and corresponding key pair were created for you in /var/lib/tor/monero/.    
+        This happens on restart whenever you add a new `HiddenServiceDir` to the `/etc/tor/torrc` config file.    
+        The tor daemon will forward traffic from a virtual   onion port to an actual localhost port, where some service is listening (in our case, this will be `monerod`).    
+        A single onion address can offer multiple services at various virtual ports.
