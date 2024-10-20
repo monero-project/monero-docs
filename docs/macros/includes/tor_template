@@ -34,7 +34,7 @@
         ```
     6. Copy the result into your Monero [**config file** :link:{ title="Monerod Config" }]{{ config }}, enabling these options:
         ``` ini
-        anonymous-inbound=yourlongv3onionaddress.onion,127.0.0.1:18084
+        anonymous-inbound=yourlongv3onionaddress.onion:18084,127.0.0.1:18084
         tx-proxy=tor,127.0.0.1:9050,disable_noise
         ```
         Replace `yourlongv3onionaddress.onion` with your onion address.
