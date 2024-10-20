@@ -1,0 +1,70 @@
+    !!! success "The end goal"
+        To enable the following services:
+
+        * yourlongb32i2paddress.b32.i2p:18085 - i2p P2P service (for other i2p nodes)
+        * yourlongb32i2paddress.b32.i2p:18089 - i2p RPC service (for wallets connecting over i2p)
+
+        **I2P service for P2P network** is useful for other full node users as it allows them to broadcast transactions over I2P (using `--tx-proxy` option).
+
+        **I2P service for wallet interface** is useful for wallet users connecting over I2P because it mitigates Clearnet and Tor exit node MiTM risks (which are very real). By connecting wallet to an I2P service, no MiTM attack is realistic because I2P connections are end-to-end encrypted.
+
+    ??? question "Why different P2P ports for clearnet and i2p?"
+        A: The data served by the i2p p2p port differs from clearnet P2P. A different port is required
+
+    1. Elevate to root:
+        ``` Bash
+        sudo su -
+        ```
+    2. Install i2pd:
+        ``` Bash
+        apt install apt-transport-https
+        wget -q -O - https://repo.i2pd.xyz/.help/add_repo | bash -s -
+        apt update
+        apt install i2pd
+        ```
+    3. Create a server tunnel for the Monero P2P and RPC ports:
+        ``` ini
+        cat << EOF > /etc/i2pd/tunnels.conf.d/monero-mainnet.conf
+        [monero-node]
+        type = server
+        host = 127.0.0.1
+        # Anonymous inbound port
+        port = 18085
+        inport = 0
+        keys = monero-mainnet.dat
+
+        [monero-rpc]
+        type = server
+        host = 127.0.0.1
+        # Restricted RPC port
+        port = 18089
+        keys = monero-mainnet.dat
+        EOF
+        ```
+    4. Restart i2pd:
+        ``` Bash
+        systemctl restart i2pd
+        ```
+    5. Find the new b32 address of the node:
+
+        === "Terminal"
+            ``` Bash
+            curl -s http://127.0.0.1:7070/?page=i2p_tunnels | grep -Eo "[a-zA-Z0-9./?=_%:-]*" | grep "18085"`
+            ```
+        === "Web console"
+            Go to the web console at 127.0.0.1:7070 -> [I2P tunnels page](http://127.0.0.1:7070/?page=i2p_tunnels).    
+            Look for Server tunnels and you will see an address like **_`yourlongb32i2paddress.b32.i2p`_** next to **`monero-node`**.
+
+    6. Copy the result into your Monero [**config file** :link:{ title="Monerod Config" }]{{ config }}, enabling these options:
+
+        ``` ini
+        anonymous-inbound=yourlongb32i2paddress.b32.i2p,127.0.0.1:18085
+        tx-proxy=i2p,127.0.0.1:4447,disable_noise
+        ```
+
+        Replace `yourlongb32i2paddress.b32.i2p` with your b32 address.
+    7. The node is now available on i2p. You can check that the service is working by using curl:
+        ``` Bash
+        curl -x socks5h://127.0.0.1:4447 http://yourlongb32i2paddress.b32.i2p:18089/get_info
+        ```
+    !!! note "(Optional) Register short and memorable .i2p domain on [reg.i2p](http://reg.i2p)"

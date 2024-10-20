@@ -20,11 +20,10 @@ nav:
   - Monerod:
     - Flags: 'interacting/monerod-reference.md'
     - Setup Guide:
-#      - I2P: 'running-node/open-node-tor-onion.md' TODO
-      - Tor: 'running-node/open-node-tor-onion.md'
+      - Systemd: 'running-node/open-node-tor-onion.md'
+      - Tor & I2P: 'running-node/monerod-tori2p.md'
     - Sample Configs:
-      - VPS: 'interacting/monero-config-file.md'
-#      - Home: 'interacting/moneord-tori2p.md' # TODO
+      - Home: 'interacting/monero-config-file.md'
   - Wallets:
     - monero-wallet-gui: 'interacting/monero-wallet-gui-reference.md'
     - monero-wallet-cli: 'interacting/monero-wallet-cli-reference.md'
@@ -56,6 +55,11 @@ nav:
     - Standard: 'public-address/standard-address.md'
     - Subaddress: 'public-address/subaddress.md'
     - Integrated: 'public-address/integrated-address.md'
+  - Mnemonics:
+    - 'mnemonics/index.md'
+    - Legacy: 'mnemonics/legacy.md'
+    - MyMonero: 'mnemonics/mymonero.md'
+    - Polyseed: 'mnemonics/polyseed.md'
   - Proof of Work: # This section needs improvement
     - What is PoW?: 'proof-of-work/what-is-pow.md'
     - PoW in Cryptocurrencies: 'proof-of-work/pow-in-cryptocurrencies.md'
@@ -85,10 +89,11 @@ theme:
     # - navigation.instant
     # - navigation.instant.prefetch
     # - navigation.instant.progress
+    # - navigation.path
     # - navigation.prune
-    - navigation.sections
+    # - navigation.sections
     - navigation.tabs
-    # - navigation.tabs.sticky
+    - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
     - search.highlight
@@ -103,15 +108,13 @@ theme:
         name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: white
-      accent: deep-orange
+      primary: custom
       toggle:
         icon: material/toggle-switch
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: black
-      accent: deep-orange
+      primary: custom
       toggle:
         icon: material/toggle-switch-off
         name: Switch to system preference
@@ -173,6 +176,8 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.superfences         # nest code blocks inside codeblocks
   - pymdownx.snippets            # insert content from other files
+  - pymdownx.tabbed:
+      alternate_style: true
   - tables
 
 plugins:

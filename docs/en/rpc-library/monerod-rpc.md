@@ -899,7 +899,8 @@ Inputs: _None_ .
 Outputs:
 
 - _connections_ - List of all connections and their info:
-  - _address_ - string; The peer's address, actually IPv4 & port
+  - _address_ - string; The peer's address, actually IPv4 & port.
+  - _address_type_ - unsigned int; 0 = invalid, 1 = ipv4 and 2 = ipv6.
   - _avg_download_ - unsigned int; Average bytes of data downloaded by node.
   - _avg_upload_ - unsigned int; Average bytes of data uploaded by node.
   - _connection_id_ - string; The connection ID
@@ -916,6 +917,8 @@ Outputs:
   - _port_ - string; The port that the node is using to connect to the network.
   - _recv_count_ - unsigned int
   - _recv_idle_time_ - unsigned int
+  - _rpc_credits_per_hash_ - unsigned int; clients will be awarded credits/difficulty credits for every hash they calculate.
+  - _rpc_port_ - unsigned int
   - _send_count_ - unsigned int
   - _send_idle_time_ - unsigned int
   - _state_ - string
@@ -1268,23 +1271,28 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 ### **get_output_distribution**
 
 
+Get the number of transaction outputs per-block for given cleartext amounts (0 meaning RingCT) within a specified range.
+
+If the distribution is "cumulative", then each value in the array represents the number of transaction outputs in that block plus all total outputs of that amount before that block.
 
 Alias: _None_ .
 
 Inputs:
 
-- _amounts_ - array of unsigned int; amounts to look for
-- _cumulative_ - boolean; (optional, default is `false`) States if the result should be cumulative (`true`) or not (`false`)
-- _from_height_ - unsigned int; (optional, default is 0) starting height to check from
-- _to_height_ - unsigned int; (optional, default is 0) ending height to check up to
+- _amounts_ - array of unsigned int; cleartext amounts to look for (0 gets all RingCT outputs).
+- _cumulative_ - boolean; (optional, default is `false`) States if the result should be cumulative (`true`) or not (`false`).
+- _from_height_ - unsigned int; (optional, default is 0) Starting height to check from, inclusive.
+- _to_height_ - unsigned int; (optional, default is 0) Ending height to check up to, inclusive. Set to 0 to get entire chain after _from_height_.
+- _binary_ - boolean; for disabling epee encoding
+- _compress_ - boolean; ignored if `binary` set to `false`
 
 Outputs:
 
 - _distributions_ - array of structure distribution as follows:
   - _amount_ - unsigned int
-  - _base_ - unsigned int
+  - _base_ - unsigned int; The total number of outputs of *amount* in the chain before, not including, the block at _start_height_.
   - _distribution_ - array of unsigned int
-  - _start_height_ - unsigned int
+  - _start_height_ - unsigned int; Note that this is not necessarily equal to *from_height*, especially for *amount*=`0` where *start_height* will be no less than the height of the v4 hardfork.
 - _status_ - string; General RPC error code. "OK" means everything looks good.
 
 Example:
@@ -1299,7 +1307,7 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
     "distributions": [{
       "amount": 2628780000,
       "base": 0,
-      "distribution": "",
+      "distribution": [ ... ],
       "start_height": 1462078
     }],
     "status": "OK"
@@ -1404,6 +1412,10 @@ Inputs: _None_ .
 
 Outputs:
 
+- _current_height_ - unsigned int; blockheight.
+- _hard_forks_ - array of unsigned int.
+  - _height_ - unsigned int;
+  - _hf_version_ - unsigned int; hard fork version.
 - _release_ - boolean; States if the daemon software version corresponds to an official tagged release (`true`), or not (`false`)
 - _status_ - string; General RPC error code. "OK" means everything looks good.
 - _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
@@ -1418,11 +1430,20 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
   "id": "0",
   "jsonrpc": "2.0",
   "result": {
+    "current_height": 3019446,
+    "hard_forks": [{
+      "height": 1,
+      "hf_version": 1
+    } ... {
+      "height": 2689608,
+      "hf_version": 16
+    }],
     "release": true,
     "status": "OK",
     "untrusted": false,
     "version": 196613
   }
+}  
 ```
 
 
