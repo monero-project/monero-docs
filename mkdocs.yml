@@ -55,6 +55,11 @@ nav:
     - Standard: 'public-address/standard-address.md'
     - Subaddress: 'public-address/subaddress.md'
     - Integrated: 'public-address/integrated-address.md'
+  - Mnemonics:
+    - 'mnemonics/index.md'
+    - Legacy: 'mnemonics/legacy.md'
+    - MyMonero: 'mnemonics/mymonero.md'
+    - Polyseed: 'mnemonics/polyseed.md'
   - Proof of Work: # This section needs improvement
     - What is PoW?: 'proof-of-work/what-is-pow.md'
     - PoW in Cryptocurrencies: 'proof-of-work/pow-in-cryptocurrencies.md'
