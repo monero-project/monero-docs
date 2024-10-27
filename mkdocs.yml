@@ -20,7 +20,7 @@ nav:
   - Monerod:
     - Flags: 'interacting/monerod-reference.md'
     - Setup Guide:
-      - Systemd: 'running-node/open-node-tor-onion.md'
+      - Systemd: 'running-node/monerod-systemd.md'
       - Tor & I2P: 'running-node/monerod-tori2p.md'
     - Sample Configs:
       - Home: 'interacting/monero-config-file.md'
