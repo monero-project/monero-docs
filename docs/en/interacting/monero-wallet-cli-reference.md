@@ -254,6 +254,9 @@ Use `help command_name` to learn more.
 
 ### Proofs
 
+!!! warning
+    Transaction proofs (check_tx_key(), InProofs/OutProofs) do not guarantee that funds associated with a proof are spendable. They could be permanently time locked, already spent, or burnt due to duplication of one-time addresses. See [here :link:{title=GitHub}](https://github.com/monero-project/monero/issues/8819#issue-1656289739)
+
 `get_reserve_proof` -> `check_reserve_proof` - prove the balance
 
 `get_spend_proof` -> `check_spend_proof` - prove you made the payment

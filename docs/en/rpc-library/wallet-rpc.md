@@ -359,6 +359,9 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 Prove a transaction by checking its signature.
 
+!!! warning
+    Transaction proofs (check_tx_key(), InProofs/OutProofs) do not guarantee that funds associated with a proof are spendable. They could be permanently time locked, already spent, or burnt due to duplication of one-time addresses. See [here :link:{title=GitHub}](https://github.com/monero-project/monero/issues/8819#issue-1656289739)
+
 Alias:  _None_.
 
 Inputs:
