@@ -445,7 +445,7 @@ Outputs:
           - _key_ - the public key of the output
           - _view_tag_ - The 1st byte of a shared secret (used for reducing synchronization time)
     - _extra_ - Usually called the "transaction ID" but can be used to include any random 32 byte/64 character hex string.
-    - _rct_signatures_ - Contain signatures of tx signers. Coinbased txs do not have signatures.
+    - _rct_signatures_ - Contain signatures of tx signers. Coinbase txs do not have signatures.
   - _tx_hashes_ - List of hashes of non-coinbase transactions in the block. If there are no other transactions, this will be an empty list.
 - _status_ - string; General RPC error code. "OK" means everything looks good.
 - _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
@@ -791,7 +791,7 @@ Alias: _getblocktemplate_ .
 
 Inputs:
 
-- _wallet_address_ - string; Address of wallet to receive coinbase transactions if block is successfully mined.
+- _wallet_address_ - string; Address of wallet to receive coinbase transaction if block is successfully mined.
 - _reserve_size_ - unsigned int; Reserve size.
 
 Outputs:
@@ -1063,7 +1063,7 @@ Outputs:
 - _testnet_ - boolean; States if the node is on the testnet (`true`) or not (`false`).
 - _top_block_hash_ - string; Hash of the highest block in the chain.
 - _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-- _tx_count_ - unsigned int; Total number of non-coinbase transaction in the chain.
+- _tx_count_ - unsigned int; Total number of non-coinbase transactions in the chain.
 - _tx_pool_size_ - unsigned int; Number of transactions that have been broadcast but not included in a block.
 - _$1_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 - _update_available_ - boolean; States if a newer Monero software version is available.
