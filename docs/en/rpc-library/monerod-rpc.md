@@ -1161,7 +1161,7 @@ Outputs:
   - _orphan_status_ - boolean; Usually `false`. If `true`, this block is not part of the longest chain.
   - _pow_hash_ - string; The hash, as a hexadecimal string, calculated from the block as proof-of-work.
   - _prev_hash_ - string; The hash of the block immediately preceding this block in the chain.
-  - _reward_ - unsigned int; The amount of new [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.") generated in this block and rewarded to the miner. Note: 1 XMR = 1e12 [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+  - _reward_ - unsigned int; The amount of [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.") rewarded to the miner. The reward is the sum of new coins created (the emission) and fees paid by transactions in this block. Note: 1 XMR = 1e12 [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
   - _timestamp_ - unsigned int; The unix time at which the block was recorded into the blockchain.
   - _wide_cumulative_difficulty_ - Cumulative difficulty of all blocks in the blockchain as a hexadecimal string representing a 128-bit number.
   - _wide_difficulty_ - string; Network difficulty (analogous to the strength of the network) as a hexadecimal string representing a 128-bit number.
