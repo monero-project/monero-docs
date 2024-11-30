@@ -49,7 +49,7 @@
 
         === "Terminal"
             ``` Bash
-            curl -s http://127.0.0.1:7070/?page=i2p_tunnels | grep -Eo "[a-zA-Z0-9./?=_%:-]*" | grep "18085"`
+            curl -s http://127.0.0.1:7070/?page=i2p_tunnels | grep -Eo "[a-zA-Z0-9./?=_%:-]*" | grep "18089"
             ```
         === "Web console"
             Go to the web console at 127.0.0.1:7070 -> [I2P tunnels page](http://127.0.0.1:7070/?page=i2p_tunnels).    
