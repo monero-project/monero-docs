@@ -40,8 +40,14 @@ nav:
   - Node RPC: 'rpc-library/monerod-rpc.md'
   - Wallet RPC: 'rpc-library/wallet-rpc.md'
 - R&D:
+  - 'development/index.md'
+  - Address Types:
+    - 'public-address/index.md'
+    - Standard: 'public-address/standard-address.md'
+    - Subaddress: 'public-address/subaddress.md'
+    - Integrated: 'public-address/integrated-address.md'
   - Cryptography:
-    - Introduction: 'cryptography/introduction.md'
+    - 'cryptography/index.md'
     - Asymmetric: # Needs clarity
       - Introduction: 'cryptography/asymmetric/introduction.md'
       - Private keys: 'cryptography/asymmetric/private-key.md'
@@ -51,17 +57,13 @@ nav:
     - Base58: 'cryptography/base58.md'
     - Keccak-256: 'cryptography/keccak-256.md'
     - PRNG: 'cryptography/prng.md'
-  - Address Types:
-    - Standard: 'public-address/standard-address.md'
-    - Subaddress: 'public-address/subaddress.md'
-    - Integrated: 'public-address/integrated-address.md'
   - Mnemonics:
     - 'mnemonics/index.md'
     - Legacy: 'mnemonics/legacy.md'
     - MyMonero: 'mnemonics/mymonero.md'
     - Polyseed: 'mnemonics/polyseed.md'
   - Proof of Work: # This section needs improvement
-    - What is PoW?: 'proof-of-work/what-is-pow.md'
+    - 'proof-of-work/index.md'
     - PoW in Cryptocurrencies: 'proof-of-work/pow-in-cryptocurrencies.md'
     - CryptoNight: 'proof-of-work/cryptonight.md'
     - RandomX: 'proof-of-work/random-x.md'
