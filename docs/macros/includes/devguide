@@ -1,0 +1,15 @@
+- [Address Types](../public-address/index.md)
+- [Cryptography](../cryptography/index.md)
+- [Mnemonics](../mnemonics/index.md)
+- [Proof of Work](../proof-of-work/index.md)
+
+## External resources
+
+#### [Moneroexamples](https://github.com/moneroexamples)
+Rich list of examples and docs related to Monero development.
+
+#### [Monero Ecosystem project](https://github.com/monero-ecosystem)
+Community of Monero developers. Contains libraries and resources and guides of some Monero Workgroups, like the Localization Workgroup and the Outreach Workgroup.
+
+#### [Monero StackExchange](https://monero.stackexchange.com)
+One of the most complete resources for both users and developers.

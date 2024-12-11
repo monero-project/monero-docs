@@ -1,35 +1,20 @@
 ---
 title: Standard Address
 ---
-# Address
+# Standard address
 
-Monero public address is what you publish to get paid.
-
-An address can be generated offline and for free. It boils down to generating a large random number representing your private spending key.
-
-Publishing your Monero address does __not__ endanger your privacy. That's because in Monero transactions go to stealth addresses which are decoupled from your public address.
-
-There are a few **types of public addresses** in Monero:
-
-* Standard address - basic type of an address, also referred to as raw address
-* Subaddress - what you should be using by default
-* Integrated address - relevant for exchanges, merchants, and other businesses accepting Monero in a fully automated way
-
-## Standard address
-
-Historically, raw address was the only available option. For that reason it is the most widely adopted and supported address type.
+Historically, the Main address was the only available option. For that reason it is the most widely supported address type.
 
 Its strength is simplicity. However, these days users should prefer receiving to subaddresses instead.
 
-Technically, raw address is also a basis for creating subaddresses and integrated addresses.
+Technically, main address is also a basis for creating subaddresses and integrated addresses.
 
-Raw address is **still useful for**:
+Main address is **still useful for**:
 
 * accepting block reward in a solo-mining scenario as other addresses are not supported
-* accepting from senders who batch payouts (like mining pools); in this scenario the sender is paying multiple parties using a single transaction; such transaction has multiple outputs; subaddresses do not work in this scenario
 * accepting from senders who use legacy wallets (can't send to subaddress)
 
-Monero raw address is composed of two public keys:
+Monero main address is composed of two public keys:
 
 * public spend key
 * public view key

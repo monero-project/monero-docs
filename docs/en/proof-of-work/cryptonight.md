@@ -143,7 +143,7 @@ See the [rationale](https://github.com/monero-project/monero/pull/5126) and the 
 
 ## Critique
 
-* CryptoNight hash is relatively expensive to verify. This poses a risk of DoS-ing nodes with incorrect proofs to process. See [strong asymmetry](../proof-of-work/what-is-pow.md#strong-asymmetry) requirement. 
+* CryptoNight hash is relatively expensive to verify. This poses a risk of DoS-ing nodes with incorrect proofs to process. See [strong asymmetry](../proof-of-work/index.md#strong-asymmetry) requirement.
 * The hash function was designed from scratch with limited peer review. While CryptoNight is composed of proven and peer-reviewed primitives, combining secure primitives doesn't necessarily result in a secure cryptosystem.
 * CryptoNight ultimately failed to prevent ASIC-s.
 * Complexity of CryptoNight kills competition in ASIC manufacturing.
