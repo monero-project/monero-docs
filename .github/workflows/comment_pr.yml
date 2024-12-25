@@ -5,6 +5,8 @@ on:
 jobs:
   comment-on-pr:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
     - name: Comment coolify preview URL.
       uses: actions/github-script@v6
