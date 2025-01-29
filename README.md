@@ -1,5 +1,5 @@
 # Monero Docs
-
+ignore
 This repository contains the source files to Monero Community documentation hosted at [docs.getmonero.org](https://docs.getmonero.org)
 
 - [About](#about)
