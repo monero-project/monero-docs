@@ -87,7 +87,6 @@ Some resources to get started:
     - N/A
 
 ??? abstract "Stagenet Faucets [Clearnet]"
-    - [Rino.io](https://tools.rino.io/faucet/stagenet/)
     - [XMR-TW.org](https://stagenet-faucet.xmr-tw.org/)
 
 ??? abstract "Stagenet TCP ports"
@@ -101,7 +100,7 @@ Some resources to get started:
     - 38086 - Unused
     - 38087 - Unused
     - 38088 - [Wallet RPC](../interacting/monero-wallet-rpc-reference.md)
-    - 38089 - Resticted [JSON-RPC](../rpc-library/monerod-rpc.md)
+    - 38089 - Restricted [JSON-RPC](../rpc-library/monerod-rpc.md)
 
 Stagenet was introduced in March 2018 as part of Monero v0.12.0.0
 
@@ -125,7 +124,7 @@ Some resources to get started:
     - N/A
 
 ??? abstract "Testnet Faucets [Clearnet]"
-    - [Rino.io](https://tools.rino.io/faucet/testnet/)
+    - None. Please contact us on [Matrix](https://matrix.to/#/%23monero-docs:monero.social) or [IRC](irc://irc.libera.chat/#monero-docs) if you know of a replacement.
 
 ??? abstract "Testnet TCP ports"
 
