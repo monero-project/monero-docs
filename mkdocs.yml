@@ -18,22 +18,22 @@ nav:
     - Download: 'interacting/download-monero-binaries.md'
     - Verify: 'interacting/verify-monero-binaries.md'
   - Mining:
-    - 'mining/index.md'
-#      - Solo Mining: 'mining/overview/solo.md' # TODO
-#      - Pool Mining: 'mining/overview/pool.md' # TODO
-#      - P2Pool Mining: 'mining/overview/p2pool.md' # TODO
+    - 'interacting/mining/index.md'
+#      - Solo Mining: 'interacting/mining/overview/solo.md' # TODO
+#      - Pool Mining: 'interacting/mining/overview/pool.md' # TODO
+#      - P2Pool Mining: 'interacting/mining/overview/p2pool.md' # TODO
     - Guides:
       - Solo:
-        - 'mining/guides/solo/index.md'
-        - Monero GUI: 'mining/solo/solo_mine_GUI.md' # TODO
-#        - Monerod: 'mining/guides/monerod-solo.md' # TODO
-#        - XMRig: 'mining/guides/xmrig-solo.md' # TODO
-#        - Gupax: 'mining/guides/gupax.md' # TODO
-#        - Monero GUI: 'mining/guides/gui-p2pool.md' # TODO
-#        - XMRig: 'mining/guides/xmrig-p2pool.md' # TODO
-      - Pool: 'mining/guides/pool/xmrig-pool.md'
-      - P2Pool: 'mining/guides/p2pool/xmrig-p2pool.md'
-      - Help: 'mining/guides/help.md'
+        - 'interacting/mining/guides/solo/index.md'
+        - Monero GUI: 'interacting/mining/solo/solo_mine_GUI.md' # TODO
+#        - Monerod: 'interacting/mining/guides/monerod-solo.md' # TODO
+        - XMRig: 'interacting/mining/guides/xmrig-solo.md' # TODO
+#        - Gupax: 'interacting/mining/guides/gupax.md' # TODO
+#        - Monero GUI: 'interacting/mining/guides/gui-p2pool.md' # TODO
+#        - XMRig: 'interacting/mining/guides/xmrig-p2pool.md' # TODO
+      - Pool: 'interacting/mining/guides/pool/xmrig-pool.md'
+      - P2Pool: 'interacting/mining/guides/p2pool/xmrig-p2pool.md'
+      - Help: 'interacting/mining/guides/help.md'
   - Monerod:
     - Flags: 'interacting/monerod-reference.md'
     - Setup Guide:
