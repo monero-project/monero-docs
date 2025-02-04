@@ -35,18 +35,7 @@ Start the miner using the parameters shown to you by the Pool's website.
 If you see green messages saying that shares have been accepted,
 congratulations, everything is working!
 
-## Efficiency
-
-You may want to check your efficiency before you start mining. This is based on your power costs vs the hashrates that your hardware is able to produce.    
-You can check your estimated hashrates at [xmrig.com/benchmark](https://xmrig.com/benchmark/).    
-There are many sites, such as [CryptoCompare](https://www.cryptocompare.com/mining/calculator/xmr/) that allow you to enter your hashrate, power draw and power costs to calculate your efficiency.
-
-## Getting Help
-
-There is an active Monero mining community on Reddit at [/r/MoneroSupport](https://www.reddit.com/r/MoneroSupport/). You can
-also join #monero-pools on [Libera](https://web.libera.chat/?channel=#monero-pools) or [Matrix](https://matrix.to/#/%23monero-pools:monero.social).
-
-Also see our [**troubleshooting**](../help.md) page.
+{% include 'mining_footer' %}
 
 ## Going Further
 
@@ -58,4 +47,4 @@ Also see our [**troubleshooting**](../help.md) page.
   activity from your ISP, and prevents the pool from knowing who you
   are.
 
-Adapted from [monero-site](https://github.com/monero-project/monero-site/commit/ee03c625e6257f25ac8f1d2d2ba57ec2891f48d2)
+Adapted from [monero-site](https://github.com/monero-project/monero-site/blob/ee03c625e6257f25ac8f1d2d2ba57ec2891f48d2/_i18n/en/resources/user-guides/mine-to-pool.md)

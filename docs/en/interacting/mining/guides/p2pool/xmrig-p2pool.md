@@ -66,18 +66,7 @@ For higher hashrates on Windows, you'll need to edit properties to run as admini
 
 See the [official docs](https://xmrig.com/docs/miner/config) if youd prefer to use a config file.
 
-## Efficiency
+{% include 'mining_footer' %}
 
-You may want to check your efficiency before you start mining. This is based on your power costs vs the hashrates that your hardware is able to produce.
-You can check your estimated hashrates at [xmrig.com/benchmark](https://xmrig.com/benchmark/).
-There are many sites, such as [CryptoCompare](https://www.cryptocompare.com/mining/calculator/xmr/) that allow you to enter your hashrate, power draw and power costs to calculate your efficiency.
-
-## Getting Help
-
-There is an active Monero mining community on Reddit at [/r/MoneroSupport](https://www.reddit.com/r/MoneroSupport/). You can
-also join #monero-mining on [Libera](https://web.libera.chat/?channel=#monero-mining) or [Matrix](https://matrix.to/#/%23xmrmine:matrix.org).
-
-Also see our [**troubleshooting**](../help.md) page.
-
-Adapted from [monero-site](https://github.com/monero-project/monero-site/commit/ee03c625e6257f25ac8f1d2d2ba57ec2891f48d2)
+Adapted from [monero-site](https://github.com/monero-project/monero-site/blob/ee03c625e6257f25ac8f1d2d2ba57ec2891f48d2/_i18n/en/resources/user-guides/mine-to-pool.md)
 
