@@ -46,11 +46,11 @@ Note: You may need to first install `python3-venv` or the equivalent for your di
 2. Create the python virtual environment
 ```bash
 python3 -m venv .monero-docs-venv
-. .monero-docs-venv/bin/activate
+source .monero-docs-venv/bin/activate
 ```
 3. Install mkdocs dependencies to the venv
 ```bash
-pip install -r requirements.txt
+pip install --require-hashes -r requirements.txt
 ```
 4. Run the documentation server locally
 ```bash
