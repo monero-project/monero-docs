@@ -194,6 +194,7 @@ plugins:
       include_dir: docs/macros/includes
       include_yaml:
         - docs/macros/monerod.yml
+        - docs/macros/i18n/en.yml
   - i18n:
       docs_structure: folder
       languages:
@@ -203,10 +204,10 @@ plugins:
           build: true
         - locale: fr
           name: Français
-          build: false
+          build: true
         - locale: es
           name: Español
-          build: false
+          build: true
         - locale: it
           name: Italiano
           build: false
