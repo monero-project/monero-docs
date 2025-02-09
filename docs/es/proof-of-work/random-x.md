@@ -2,9 +2,9 @@
 title: "RandomX"
 filename: "randomx.md"
 folder: "proof-of-work"
-lang: "en"
+lang: "es"
 
-translated: "no"
+translated: "yes"
 translationOutdated: "yes"
 
 contentOutdated: "no"
