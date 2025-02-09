@@ -5,7 +5,7 @@ folder: "proof-of-work"
 lang: "en"
 
 translated: "no"
-translationOutdated: "yes"
+translationOutdated: "no"
 
 contentOutdated: "no"
 ---
