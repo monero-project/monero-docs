@@ -172,6 +172,10 @@ The following options define how the API behaves.
 | `--rpc-restricted-bind-ipv6-address` | IPv6 to listen on with the limited version of API. The limited API can be made public to create an Open Node. By default `::1` (localhost). Set it to `::` to listen on all interfaces.
 | `--confirm-external-bind`       | Confirm you consciously set `--rpc-bind-ip` to non-localhost IP and you understand the consequences.
 | `--restricted-rpc`              | Restrict API to view only commands and do not return privacy sensitive data. Note this does not make sense with `--rpc-restricted-bind-port` because you would end up with two restricted APIs.
+| `--rpc-max-connections <arg>`   | Maximum number of RPC connections.<br><br>(=100)
+| `--rpc-max-connections-per-public-ip <arg>`  | Maximum number of RPC connections from the same public IP address.<br><br>(=3)
+| `--rpc-max-connections-per-private-ip <arg>` | Maximum number of RPC connections from the same private IP address.<br><br>(=25)
+| `--rpc-response-soft-limit <arg>` | Maximum response bytes that can be queued, enforced at next response attempt.<br><br>(=26214400)
 | `--rpc-ssl`                     | Enable TLS on RPC connections. One of: `enabled` \| `disabled` \| `autodetect` (`=autodetect` by default). You **should** enable this if you connect a remote wallet.
 | `--rpc-ssl-private-key`         | Path to server's private key in PEM format. Generate it with `monero-gen-ssl-cert` tool. This is to facilitate server authentication to client.
 | `--rpc-ssl-certificate`         | Path to server's certificate in PEM format. Generate it with `monero-gen-ssl-cert` tool. This is to facilitate server authentication to client.
