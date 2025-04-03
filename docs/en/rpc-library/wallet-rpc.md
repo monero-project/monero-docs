@@ -1295,6 +1295,31 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 }
 ```
 
+### **get_default_fee_priority**
+
+Returns the adjusted fee priority(1-4) that the auto/default(0) tier will be mapped to.
+
+Alias:  _None_.
+
+Inputs:  _None_.
+
+Outputs:
+
+-   _priority_  - unsigned int; The adjusted fee priority(1-4) that the auto/default(0) tier will be mapped to.
+
+Example:
+
+```Bash
+$ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_default_fee_priority"}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "priority": 2
+  }
+}
+```
+
 ### **get_height**
 
 Returns the wallet's current block height.
