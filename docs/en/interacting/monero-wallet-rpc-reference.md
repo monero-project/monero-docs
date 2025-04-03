@@ -162,6 +162,10 @@ The **atomic unit** used by the API is the smallest fraction of 1 XMR according 
 |  `--rpc-login <arg>`                            | Specify username\[:password] required for RPC server
 |  `--confirm-external-bind`                      | Confirm rpc-bind-ip value is NOT a loopback (local) IP
 |  `--rpc-access-control-origins <arg>`           | Specify a comma separated list of origins to allow cross origin resource sharing
+|  `--rpc-max-connections <arg>`                  | Maximum number of RPC connections.<br><br>(=100)
+|  `--rpc-max-connections-per-public-ip <arg>`    | Maximum number of RPC connections from the same public IP address.<br><br>(=3)
+|  `--rpc-max-connections-per-private-ip <arg>`   | Maximum number of RPC connections from the same private IP address.<br><br>(=25)
+|  `--rpc-response-soft-limit <arg>`              | Maximum response bytes that can be queued, enforced at next response attempt.<br><br>(=26214400)
 |  `--rpc-ssl <arg=autodetect>`                   | Enable SSL on RPC connections: enabled\|disabled\|autodetect
 |  `--rpc-ssl-private-key <arg>`                  | Path to a PEM format private key
 |  `--rpc-ssl-certificate <arg>`                  | Path to a PEM format certificate
