@@ -1,10 +1,13 @@
 name: PR Comment Workflow
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
 jobs:
   comment-on-pr:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      issues: write
     steps:
     - name: Comment coolify preview URL.
       uses: actions/github-script@v6
