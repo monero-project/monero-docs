@@ -121,15 +121,15 @@ The **atomic unit** used by the API is the smallest fraction of 1 XMR according 
 
 | Option                                     | Description
 |--------------------------------------------|-----
-|  `--daemon-address <arg>`                  | Use daemon instance at \<host>:\<port>
-|  `--daemon-host <arg>`                     | Use daemon instance at host \<arg> instead of localhost
-|  `--proxy <arg>`                           | \[\<ip>:]\<port> socks proxy to use for daemon connections
+|  `--daemon-address <arg>`                  | Use daemon instance at `<host>:<port>`
+|  `--daemon-host <arg>`                     | Use daemon instance at host `<arg>` instead of localhost
+|  `--proxy <arg>`                           | `[<ip>:]<port>` socks proxy to use for daemon connections
 |  `--trusted-daemon`                        | Enable commands which rely on a trusted daemon
 |  `--untrusted-daemon`                      | Disable commands which rely on a trusted daemon
 |  `--password <arg>`                        | Wallet password (escape/quote as \| needed)
 |  `--password-file <arg>`                   | Wallet password file
-|  `--daemon-port <arg>`                     | Use daemon instance at port \<arg> instead of 18081
-|  `--daemon-login <arg>`                    | Specify username\[:password] for daemon RPC client
+|  `--daemon-port <arg>`                     | Use daemon instance at port `<arg>` instead of 18081
+|  `--daemon-login <arg>`                    | Specify username[:password] for daemon RPC client
 |  `--daemon-ssl <arg>`                      | Enable SSL on daemon RPC connections: enabled\|disabled\|autodetect<br><br>(=autodetect)
 |  `--daemon-ssl-private-key <arg>`          | Path to a PEM format private key
 |  `--daemon-ssl-certificate <arg>`          | Path to a PEM format certificate
@@ -159,7 +159,7 @@ The **atomic unit** used by the API is the smallest fraction of 1 XMR according 
 |  `--rpc-restricted-bind-ipv6-address <arg>`     | Specify IPv6 address to bind restricted RPC server<br><br>(=::1)
 |  `--rpc-use-ipv6`                               | Allow IPv6 for RPC
 |  `--rpc-ignore-ipv4`                            | Ignore unsuccessful IPv4 bind for RPC
-|  `--rpc-login <arg>`                            | Specify username\[:password] required for RPC server
+|  `--rpc-login <arg>`                            | Specify username[:password] required for RPC server
 |  `--confirm-external-bind`                      | Confirm rpc-bind-ip value is NOT a loopback (local) IP
 |  `--rpc-access-control-origins <arg>`           | Specify a comma separated list of origins to allow cross origin resource sharing
 |  `--rpc-max-connections <arg>`                  | Maximum number of RPC connections.<br><br>(=100)
@@ -211,5 +211,5 @@ The **atomic unit** used by the API is the smallest fraction of 1 XMR according 
 | `--shared-ringdb-dir <arg>`                         | Set shared ring database path<br>Windows: C:\ProgramData\.shared-ringdb<br>Linux: $HOME/.shared-ringdb
 | `--no-dns`                                          | Do not use DNS
 | `--offline`                                         | Do not connect to a daemon, nor use DNS
-| `--bitmessage-address <arg=http://localhost:8442/>` | Use PyBitmessage instance at URL \<arg>
-| `--bitmessage-login <arg>`                          | Specify \<arg> as `username:password` for PyBitmessage API
+| `--bitmessage-address <arg=http://localhost:8442/>` | Use PyBitmessage instance at URL `<arg>`
+| `--bitmessage-login <arg>`                          | Specify `<arg>` as `username:password` for PyBitmessage API
