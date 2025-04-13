@@ -10,9 +10,9 @@ title: monero-wallet-rpc - Reference
 !!! note
     Use [stagenet](../infrastructure/networks.md) for learning and development on top of `monero-wallet-rpc`.
 
-## RPC Command library
+## JSON-RPC interface
 
-[Wallet RPC commands](../rpc-library/wallet-rpc.md)
+For a list of `monero-wallet-rpc` calls, their inputs, outputs, and examples, visit the wallet-rpc [library](../rpc-library/wallet-rpc.md)
 
 ## Overview
 
@@ -68,29 +68,6 @@ Make sure you are running a locally synced `monerod` or point to a remote daemon
 If the expected RPC URL, say [http://127.0.0.1:28088/json_rpc](http://127.0.0.1:28088/json_rpc), is unavailabe, or there is no terminal output saying that the server has been started, `monero-wallet-rpc` might be trying to synchronize the wallet. In that case, you should use the GUI or CLI to sync that wallet file because using the GUI/CLI results in faster and measurable syncing.
 
 The suggested way is to have two wallet files for the same keys. One that is used manually (synced often), and one that is used by `monero-wallet-rpc`. Whenever you decide to use `monero-wallet-rpc` and encounter the unresponsive issue, simply copy the files of the GUI/CLI wallet and replace the ones that were being used by `monero-wallet-rpc`. This problem should only occur on the development system where `monerod` or `monero-wallet-rpc` might not have been running for weeks. In production, `monerod` and `monero-wallet-rpc` should have minimal downtimes, ensuring that the wallet is always synchronized.
-
-## API conventions
-
-The API is based on [JSON-RPC standard](https://en.wikipedia.org/wiki/JSON-RPC) version 2.0.
-
-All `monero-wallet-rpc` method calls use the same JSON-RPC interface.
-
-Assuming your `monero-wallet-rpc` is running on 127.0.0.1:18088, you would call it like this:
-
-```Bash
-IP=127.0.0.1
-PORT=18088
-METHOD="make_integrated_address"
-PARAMS="{\"payment_id\":\"1234567890123456789012345678900012345678901234567890123456789000\"}"
-curl \
-    -u username:password --digest \
-    -X POST http://$IP:$PORT/json_rpc \
-    -d '{"jsonrpc":"2.0","id":"0","method":"'$METHOD'","params":'"$PARAMS"'}' \
-    -H 'Content-Type: application/json'
-```
-
-The **atomic unit** used by the API is the smallest fraction of 1 XMR according to the monerod implementation.
-1 XMR = 1e12 atomic units.
 
 ## Options
 

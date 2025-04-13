@@ -9,26 +9,32 @@ title: "Wallet RPC documentation"
 ## Introduction
 
 This is a list of the monero-wallet-rpc calls, their inputs and outputs, and examples of each. The program monero-wallet-rpc replaced the rpc interface that was in simplewallet and then monero-wallet-cli.    
-All monero-wallet-rpc methods use the same JSON RPC interface. For example:
 
-```Bash
+## JSON-RPC Example
+The API is based on [JSON-RPC standard](https://en.wikipedia.org/wiki/JSON-RPC) version 2.0.
+
+All `monero-wallet-rpc` calls use the same JSON-RPC interface.
+
+Assuming your `monero-wallet-rpc` is running on 127.0.0.1:18088, you would call it like this:
+
+```json
 IP=127.0.0.1
 PORT=18088
-METHOD="make_integrated_address"
-PARAMS="{\"payment_id\":\"1234567890123456\"}"
+METHOD="open_wallet"
+PARAMS='{"filename":"monero","password":"pass1234"}'
 curl \
     http://$IP:$PORT/json_rpc \
     -d '{"jsonrpc":"2.0","id":"0","method":"'$METHOD'","params":'"$PARAMS"'}' \
     -H 'Content-Type: application/json'
 ```
 
-If the monero-wallet-rpc was executed with the `--rpc-login` argument as `username:password`, then follow this example:
+If `monero-wallet-rpc` was executed with the `--rpc-login` argument as `username:password`, then follow this example:
 
-```Bash
+```json
 IP=127.0.0.1
 PORT=18088
-METHOD="make_integrated_address"
-PARAMS="{\"payment_id\":\"1234567890123456\"}"
+METHOD="open_wallet"
+PARAMS='{"filename":"monero","password":"pass1234"}'
 curl \
     -u username:password --digest \
     http://$IP:$PORT/json_rpc \
