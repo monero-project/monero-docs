@@ -8,12 +8,46 @@ title: "Daemon RPC documentation"
 
 ## Introduction
 
-This is a list of the monerod daemon RPC calls, their inputs and outputs, and examples of each.    
-Many RPC calls use the daemon's JSON RPC interface while others use their own interfaces, as demonstrated below.
+This is a list of the monerod daemon RPC calls, their inputs and outputs, and examples of each.
 
 Note: "[atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")" refer to the smallest fraction of 1 XMR according to the monerod implementation. **1 XMR = 1e12 [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").**
 
-### [JSON RPC Methods](#json-rpc-methods):
+## JSON-RPC example
+
+The API is based on [JSON-RPC standard](https://en.wikipedia.org/wiki/JSON-RPC) version 2.0.
+
+Many `monerod` RPC calls use the daemon's JSON RPC interface while others use their own interfaces, as demonstrated [below](#other-daemon-rpc-methods).
+
+Assuming `monerod` is running on 127.0.0.1:18081, you would call it like this:
+
+```json
+IP=127.0.0.1
+PORT=18081
+METHOD='get_block_header_by_height'
+PARAMS='{"height":912345}'
+curl \
+    http://$IP:$PORT/json_rpc \
+    -d '{"jsonrpc":"2.0","id":"0","method":"'$METHOD'","params":'$PARAMS'}' \
+    -H 'Content-Type: application/json'
+```
+
+If `monerod` was executed with the `--rpc-login` argument as `username:password`, then follow this example:
+
+```json
+IP=127.0.0.1
+PORT=18081
+METHOD='get_block_header_by_height'
+PARAMS='{"height":912345}'
+curl \
+    http://$IP:$PORT/json_rpc \
+    -u username:password --digest \
+    -d '{"jsonrpc":"2.0","id":"0","method":"'$METHOD'","params":'$PARAMS'}' \
+    -H 'Content-Type: application/json'
+```
+
+Some methods include parameters, while others do not. Examples of each JSON RPC method follow.
+
+### [JSON RPC Methods](#json-rpc-example):
 
 - [add_aux_pow](#add_aux_pow)
 - [banned](#banned)
@@ -90,24 +124,6 @@ Note: "[atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-uni
 
 ---
 
-## JSON RPC Methods
-
-The majority of monerod RPC calls use the daemon's `json_rpc` interface to request various bits of information. These methods all follow a similar structure, for example:
-
-```Bash
-IP=127.0.0.1
-PORT=18081
-METHOD='get_block_header_by_height'
-ALIAS='getblockheaderbyheight'
-PARAMS='{"height":912345}'
-curl \
-    http://$IP:$PORT/json_rpc \
-    -d '{"jsonrpc":"2.0","id":"0","method":"'$METHOD'","params":'$PARAMS'}' \
-    -H 'Content-Type: application/json'
-```
-
-Some methods include parameters, while others do not. Examples of each JSON RPC method follow.
-
 ### **add_aux_pow**
 
 Easily enable merge mining with Monero without requiring software that manually alters the extra field in the coinbase tx to include the merkle root of the aux blocks.
@@ -133,7 +149,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"add_aux_pow","params":{"blocktemplate_blob":" ... ","aux_pow":[{"id":"3200b4ea97c3b2081cd4190b58e49572b2319fed00d030ad51809dff06b5d8c8","hash":"7b35762de164b20885e15dbe656b1138db06bb402fa1796f5765a23933d8859a"}]}}' -H 'Content-Type: application/json''
 
 {
@@ -175,7 +191,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"banned","params":{"address":"95.216.203.255"}}' -H 'Content-Type: application/json'
 
 {
@@ -209,7 +225,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"calc_pow","params":{"major_version":14,"height":2286447,"block_blob":"0e0ed286da8006ecdc1aab3033cf1716c52f13f9d8ae0051615a2453643de94643b550d543becd0000000002abc78b0101ffefc68b0101fcfcf0d4b422025014bb4a1eade6622fd781cb1063381cad396efa69719b41aa28b4fce8c7ad4b5f019ce1dc670456b24a5e03c2d9058a2df10fec779e2579753b1847b74ee644f16b023c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000051399a1bc46a846474f5b33db24eae173a26393b976054ee14f9feefe99925233802867097564c9db7a36af5bb5ed33ab46e63092bd8d32cef121608c3258edd55562812e21cc7e3ac73045745a72f7d74581d9a0849d6f30e8b2923171253e864f4e9ddea3acb5bc755f1c4a878130a70c26297540bc0b7a57affb6b35c1f03d8dbd54ece8457531f8cba15bb74516779c01193e212050423020e45aa2c15dcb","seed_hash":"d432f499205150873b2572b5f033c9c6e4b7c6f3394bd2dd93822cd7085e7307"}}' -H 'Content-Type: application/json'
 
 {
@@ -239,7 +255,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"flush_cache","params":{"bad_txs":true,"bad_blocks":true}}' -H 'Content-Type: application/json'
 
 {
@@ -270,7 +286,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"flush_txpool","params":{"txids":["dc16fa8eaffe1484ca9014ea050e13131d3acf23b419f33bb4cc0b32b6c49308",""]}}' -H 'Content-Type: application/json'
 
 {
@@ -301,7 +317,7 @@ Outputs:
 
 The example below uses monerod with the start flags `--regtest --offline --fixed-difficulty 1`. `--offline` ensures that the node does not connect to the main network and learn of its latest chaintip and `--fixed-difficulty` keeps the difficulty constant, allowing a large number of blocks to be generated quickly.
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"generateblocks","params":{"amount_of_blocks":1,"wallet_address":"44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A","starting_nonce": 0}' -H 'Content-Type: application/json'
 
 {
@@ -341,7 +357,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_alternate_chains"}' -H 'Content-Type: application/json'
 
 {
@@ -385,7 +401,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_bans"}' -H 'Content-Type: application/json'
 
 {
@@ -455,7 +471,7 @@ Outputs:
 
 In the following example, block 2751506 is looked up by its height. Note that block 2751506 does not have any non-coinbase transactions. (See the next example for a block with extra transactions):
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block","params":{"height":2751506}}' -H 'Content-Type: application/json'
 
 {
@@ -501,7 +517,7 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 In the following example, block 2751210 is looked up by its hash. Note that block 2751210 has 2 non-coinbase transactions:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block","params":{"hash":"86d421322b700166dde2d7eba1cc8600925ef640abf6c0a2cc8ce0d6dd90abfd"}' -H 'Content-Type: application/json'
 
 {
@@ -562,7 +578,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_count"}' -H 'Content-Type: application/json'  
 
 {  
@@ -597,7 +613,7 @@ Outputs:
 
 In this example, block 912345 is looked up by its hash:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_header_by_hash","params":{"hash":"e22cf75f39ae720e8b71b3d120a5ac03f0db50bba6379e2850975b4859190bc6"}}' -H 'Content-Type: application/json'
 
 {
@@ -657,7 +673,7 @@ Outputs:
 
 In this example, block 912345 is looked up by its height (notice that the returned information is the same as in the previous example):
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_header_by_height","params":{"height":912345}}' -H 'Content-Type: application/json'
 
 {
@@ -719,7 +735,7 @@ Outputs:
 
 In this example, blocks range from height 1545999 to 1546000 is looked up (notice that the returned information are ascending order and that it is at the April 2018 network upgrade time):
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_headers_range","params":{"start_height":1545999,"end_height":1546000}}' -H 'Content-Type: application/json'
 
 {
@@ -813,7 +829,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_template","params":{"wallet_address":"44GBHzv6ZyQdJkjqZje6KLZ3xSyN1hBSFAnLP6EAqJtCRVzMzZmeXTC2AHKDS9aEDTRKmo6a6o9r9j86pYfhCWDkKjbtcns","reserve_size":60}}' -H 'Content-Type: application/json'
 
 {
@@ -865,7 +881,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_coinbase_tx_sum","params":{"height":1563078,"count":2}}' -H 'Content-Type: application/json'
 
 {
@@ -928,7 +944,7 @@ Outputs:
 
 Following is an example of `get_connections` and it's return:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_connections"}' -H 'Content-Type: application/json'
 
 {
@@ -995,7 +1011,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_fee_estimate"}' -H 'Content-Type: application/json'
 
 {
@@ -1075,7 +1091,7 @@ Outputs:
 
 Following is an example `get_info` call and its return:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_info"}' -H 'Content-Type: application/json'
 
 {
@@ -1172,7 +1188,7 @@ Outputs:
 
 In this example, the most recent block (1562023 at the time) is returned:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_last_block_header"}' -H 'Content-Type: application/json'
 
 {
@@ -1237,7 +1253,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_miner_data"}' -H 'Content-Type: application/json'
 
 {
@@ -1297,7 +1313,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_output_distribution","params":{"amounts":[628780000],"from_height":1462078}}' -H 'Content-Type: application/json'
 
 {
@@ -1344,7 +1360,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_output_histogram","params":{"amounts":[20000000000]}}' -H 'Content-Type: application/json'
 
 {
@@ -1386,7 +1402,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_txpool_backlog"}' -H 'Content-Type: application/json'
 
 {
@@ -1423,7 +1439,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_version"}' -H 'Content-Type: application/json'
 
 {
@@ -1473,7 +1489,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"hard_fork_info"}' -H 'Content-Type: application/json'
 
 {
@@ -1514,7 +1530,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"on_get_block_hash","params":[912345]}' -H 'Content-Type: application/json'
 
 {
@@ -1543,7 +1559,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"prune_blockchain","params":{"check":true}}' -H 'Content-Type: application/json'
 
 {
@@ -1576,7 +1592,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"relay_tx","params":{"txids":["9fd75c429cbe52da9a52f2ffc5fbd107fe7fd2099c0d8de274dc8a67e0c98613"]}}' -H 'Content-Type: application/json'
 
 {
@@ -1614,7 +1630,7 @@ Examples:
 
 In the following example, host is banned with its IP address string-formatted as A.B.C.D:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_bans","params":{"bans":[{"host":"192.168.1.51","ban":true,"seconds":30}]}}' -H  'Content-Type: application/json'
 
 {
@@ -1631,7 +1647,7 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"s
 
 In the following example, integer-formatted IP is banned:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_bans","params":{"bans":[{"ip":838969536,"ban":true,"seconds":30}]}}' -H  'Content-Type: application/json'
 
 {
@@ -1661,7 +1677,7 @@ Outputs:
 
 In this example, a block blob which has not been mined is submitted:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"submit_block","params":["0707e6bdfedc053771512f1bc27c62731ae9e8f2443db64ce742f4e57f5cf8d393de28551e441a0000000002fb830a01ffbf830a018cfe88bee283060274c0aae2ef5730e680308d9c00b6da59187ad0352efe3c71d36eeeb28782f29f2501bd56b952c3ddc3e350c2631d3a5086cac172c56893831228b17de296ff4669de020200000000"]}' -H 'Content-Type: application/json'
 
 {
@@ -1704,7 +1720,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sync_info"}' -H 'Content-Type: application/json'
 
 {
@@ -1771,17 +1787,6 @@ Not all daemon RPC calls use the JSON_RPC interface. This section gives examples
 
 The data structure for these calls is different than the JSON RPC calls. Whereas the JSON RPC methods were called using the `/json_rpc` extension and specifying a method, these methods are called at their own extensions. For example:
 
-```Bash
-    IP=127.0.0.1
-    PORT=18081
-    METHOD='gettransactions'
-  PARAMS='{"txs_hashes":["d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408"]}'
-  curl \
-    http://$IP:$PORT/$METHOD \
-    -d $PARAMS \
-    -H 'Content-Type: application/json'
-```
-
 Note: It is recommended to use JSON RPC where such alternatives exist, rather than the following methods. For example, the recommended way to get a node's height is via the JSON RPC methods [get_info](#get_info) or [get_last_block_header](#get_last_block_header), rather than [get_height](#get_height) below.
 
 For calls that end with **.bin**, the data is exchanged in the form of binary, serialized objects, as defined in the [Core RPC Server](https://github.com/monero-project/monero/blob/master/src/rpc/core_rpc_server_commands_defs.h).
@@ -1805,7 +1810,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/get_alt_blocks_hashes -H 'Content-Type: application/json'
 
 {
@@ -1849,7 +1854,7 @@ Outputs:
 <!-- Cannot get this working
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/get_blocks.bin -d '{"block_ids":["d109a406528a7b44fef8bc03e75eaabb0f919f852884b43b550b8b3be80a49e7"],"start_height":1562062}' -H 'Content-Type: application/json'
 
 ```
@@ -1907,7 +1912,7 @@ Outputs:
 <!-- Cannot get this working
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/get_hashes.bin -d '{"block_ids":["d109a406528a7b44fef8bc03e75eaabb0f919f852884b43b550b8b3be80a49e7"],"start_height":1562062}' -H 'Content-Type: application/json'
 
 ```
@@ -1930,7 +1935,7 @@ Outputs:
 - _status_ - string; General RPC error code. "OK" means everything looks good.
 - _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/get_height -H 'Content-Type: application/json'
 
 {
@@ -1972,7 +1977,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/get_limit -H 'Content-Type: application/json'
 
 {
@@ -2003,7 +2008,7 @@ Outputs:
 
 Example: 
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/get_net_stats -H 'Content-Type: application/json'
 
 {
@@ -2162,7 +2167,7 @@ Outputs:
 
 Example (truncated lists):
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/get_peer_list -H 'Content-Type: application/json'
 
 {
@@ -2225,7 +2230,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/get_public_nodes -d '{"gray":true}' -H 'Content-Type: application/json'
 
 {
@@ -2332,7 +2337,7 @@ Outputs:
 
 Example (Note: Some lists in the returned information have been truncated for display reasons):
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/get_transaction_pool -H 'Content-Type: application/json'
 
 {
@@ -2387,7 +2392,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/get_transaction_pool_hashes -H 'Content-Type: application/json'
 
 {
@@ -2417,7 +2422,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/get_transaction_pool_hashes.bin -H 'Content-Type: application/json'
 
 {
@@ -2462,7 +2467,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/get_transaction_pool_stats -H 'Content-Type: application/json'
 
 {
@@ -2564,7 +2569,7 @@ Outputs:
 
 Example 1: Return transaction information in binary format.
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408"]}' -H 'Content-Type: application/json'
 
 {
@@ -2592,7 +2597,7 @@ $ curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["d6e4815847284
 
 Example 2: Decode returned transaction information in JSON format. Note: the "vin", "vout", "rct_signatures", "rctsig_prunable" list have been truncated in the displayed return for space considerations.
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["a9c71fe27ccf978a56ef96e50b680a3d569754cd4d070e51d10fa9f6f658b8e3"],"decode_as_json":true}' -H 'Content-Type: application/json'
 
 {
@@ -2621,7 +2626,7 @@ $ curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["a9c71fe27ccf9
 
 Example 3: Returned a missed (unexisting) transaction.
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090409"]}' -H 'Content-Type: application/json'
 
 {
@@ -2653,7 +2658,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/in_peers -d '{"in_peers": 3232235535}' -H 'Content-Type: application/json'
 
 {
@@ -2685,7 +2690,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/is_key_image_spent -d '{"key_images":["8d1bd8181bf7d857bdb281e0153d84cd55a3fcaa57c3e570f4a49f935850b5e3","7319134bfc50668251f5b899c66b005805ee255c136f0e1cecbb0f3a912e09d4"]}' -H 'Content-Type: application/json'
 
 {
@@ -2729,7 +2734,7 @@ Outputs:
 
 Example while mining:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/mining_status -H 'Content-Type: application/json'
 
 {
@@ -2755,7 +2760,7 @@ $ curl http://127.0.0.1:18081/mining_status -H 'Content-Type: application/json'
 
 Example while not mining:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/mining_status -H 'Content-Type: application/json'
 
 {
@@ -2799,7 +2804,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/out_peers -d '{"out_peers": 3232235535}' -H 'Content-Type: application/json'
 
 {
@@ -2827,7 +2832,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/pop_blocks -d '{"nblocks":6}' -H 'Content-Type: application/json''
 
 {
@@ -2854,7 +2859,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/save_bc -H 'Content-Type: application/json'
 
 {
@@ -2895,7 +2900,7 @@ Outputs:
 Example (No return information included here.):
 
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/send_raw_transaction -d '{"tx_as_hex":"de6a3...", "do_not_relay":false}' -H 'Content-Type: application/json'
 ```
 
@@ -2922,7 +2927,7 @@ Example:
 
 Once set, the address will appear in `get_info` as `bootstrap_daemon_address`
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/set_bootstrap_daemon -d '{"address": "http://getmonero.org:18081"}' -H 'Content-Type: application/json'
 
 {
@@ -2952,7 +2957,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/set_limit -d '{"limit_down": 1024}' -H 'Content-Type: application/json'
 
 {
@@ -3036,7 +3041,7 @@ Outputs:
 
 Example to set all facilities to Security Level `Info`:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/set_log_categories -d '{"categories": "*:INFO"}' -H 'Content-Type: application/json'
 
 {
@@ -3048,7 +3053,7 @@ $ curl http://127.0.0.1:18081/set_log_categories -d '{"categories": "*:INFO"}' -
 
 Example without input to set the default categories:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/set_log_categories -H 'Content-Type: application/json'
 
 {
@@ -3077,7 +3082,7 @@ Outputs:
 
 Example while mining:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/set_log_hash_rate -d '{"visible":true}' -H 'Content-Type: application/json'
 
 {
@@ -3088,7 +3093,7 @@ $ curl http://127.0.0.1:18081/set_log_hash_rate -d '{"visible":true}' -H 'Conten
 
 Error while not mining:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/set_log_hash_rate -d '{"visible":true}' -H 'Content-Type: application/json'
 
 {
@@ -3117,7 +3122,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/set_log_level -d '{"level":1}' -H 'Content-Type: application/json'
 
 {
@@ -3147,7 +3152,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/start_mining -d '{"do_background_mining":false,"ignore_battery":true,"miner_address":"47xu3gQpF569au9C2ajo5SSMrWji6xnoE5vhr94EzFRaKAGw6hEGFXYAwVADKuRpzsjiU1PtmaVgcjUJF89ghGPhUXkndHc","threads_count":1}' -H 'Content-Type: application/json'
 
 {
@@ -3172,7 +3177,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/start_save_graph -H 'Content-Type: application/json'
 
 {
@@ -3196,7 +3201,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/stop_daemon -H 'Content-Type: application/json'
 
 {
@@ -3221,7 +3226,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/stop_mining -H 'Content-Type: application/json'
 
 {
@@ -3246,7 +3251,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/stop_save_graph -H 'Content-Type: application/json'
 
 {
@@ -3280,7 +3285,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl http://127.0.0.1:18081/update -d '{"command":"check"}' -H 'Content-Type: application/json'
 
 {
