@@ -152,7 +152,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"add_address_book","params":{"address":"78P16M3XmFRGcWFCcsgt1WcTntA1jzcq31seQX1Eg92j8VQ99NPivmdKam4J5CKNAD7KuNWcq5xUPgoWczChzdba5WLwQ4j","description":"Third account"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -177,7 +177,7 @@ Outputs:  _none_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"auto_refresh","params":{"enable":true, "period":10}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -204,7 +204,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"change_wallet_password","params":{"old_password":"theCurrentSecretPassPhrase","new_password":"theNewSecretPassPhrase"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -236,7 +236,7 @@ Outputs:
 
 In the example below, the reserve has been proven:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"check_reserve_proof","params":{"address":"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt","signature":"ReserveProofV11BZ23sBt9sZJeGccf84mzyAmNCP3KzYbE1111112VKmH111118NfCYJQjZ6c46gT2kXgcHCaSSZeL8sRdzqjqx7i1e7FQfQGu2o113UYFVdwzHQi3iENDPa76Kn1BvywbKz3bMkXdZkBEEhBSF4kjjGaiMJ1ucKb6wvMVC4A8sA4nZEdL2Mk3wBucJCYTZwKqA8i1M113kqakDkG25FrjiDqdQTCYz2wDBmfKxF3eQiV5FWzZ6HmAyxnqTWUiMWukP9A3Edy3ZXqjP1b23dhz7Mbj39bBxe3ZeDNu9HnTSqYvHNRyqCkeUMJpHyQweqjGUJ1DSfFYr33J1E7MkhMnEi1o7trqWjVix32XLetYfePG73yvHbS24837L7Q64i5n1LSpd9yMiQZ3Dyaysi5y6jPx7TpAvnSqBFtuCciKoNzaXoA3dqt9cuVFZTXzdXKqdt3cXcVJMNxY8RvKPVQHhUur94Lpo1nSpxf7BN5a5rHrbZFqoZszsZmiWikYPkLX72XUdw6NWjLrTBxSy7KuPYH86c6udPEXLo2xgN6XHMBMBJzt8FqqK7EcpNUBkuHm2AtpGkf9CABY3oSjDQoRF5n4vNLd3qUaxNsG4XJ12L9gJ7GrK273BxkfEA8fDdxPrb1gpespbgEnCTuZHqj1A"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -252,7 +252,7 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 In the example below, all wallet reserve has been proven:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"check_reserve_proof","params":{"address":"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt","message":"I have 10 at least","signature":"...signature..."}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -268,7 +268,7 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 In the example below, the wrong message is used, avoiding the reserve to be proved:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"check_spend_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","message":"wrong message","signature":"SpendProofV1aSh8Todhk54736iXgV6vJAFP7egxByuMWZeyNDaN2JY737S95X5zz5mNMQSuCNSLjjhi5HJCsndpNWSNVsuThxwv285qy1KkUrLFRkxMSCjfL6bbycYN33ScZ5UB4Fzseceo1ndpL393T1q638VmcU3a56dhNHF1RPZFiGPS61FA78nXFSqE9uoKCCoHkEz83M1dQVhxZV5CEPF2P6VioGTKgprLCH9vvj9k1ivd4SX19L2VSMc3zD1u3mkR24ioETvxBoLeBSpxMoikyZ6inhuPm8yYo9YWyFtQK4XYfAV9mJ9knz5fUPXR8vvh7KJCAg4dqeJXTVb4mbMzYtsSZXHd6ouWoyCd6qMALdW8pKhgMCHcVYMWp9X9WHZuCo9rsRjRpg15sJUw7oJg1JoGiVgj8P4JeGDjnZHnmLVa5bpJhVCbMhyM7JLXNQJzFWTGC27TQBbthxCfQaKdusYnvZnKPDJWSeceYEFzepUnsWhQtyhbb73FzqgWC4eKEFKAZJqT2LuuSoxmihJ9acnFK7Ze23KTVYgDyMKY61VXADxmSrBvwUtxCaW4nQtnbMxiPMNnDMzeixqsFMBtN72j5UqhiLRY99k6SE7Qf5f29haNSBNSXCFFHChPKNTwJrehkofBdKUhh2VGPqZDNoefWUwfudeu83t85bmjv8Q3LrQSkFgFjRT5tLo8TMawNXoZCrQpyZrEvnodMDDUUNf3NL7rxyv3gM1KrTWjYaWXFU2RAsFee2Q2MTwUW7hR25cJvSFuB1BX2bfkoCbiMk923tHZGU2g7rSKF1GDDkXAc1EvFFD4iGbh1Q5t6hPRhBV8PEncdcCWGq5uAL5D4Bjr6VXG8uNeCy5oYWNgbZ5JRSfm7QEhPv8Fy9AKMgmCxDGMF9dVEaU6tw2BAnJavQdfrxChbDBeQXzCbCfep6oei6n2LZdE5Q84wp7eoQFE5Cwuo23tHkbJCaw2njFi3WGBbA7uGZaGHJPyB2rofTWBiSUXZnP2hiE9bjJghAcDm1M4LVLfWvhZmFEnyeru3VWMETnetz1BYLUC5MJGFXuhnHwWh7F6r74FDyhdswYop4eWPbyrXMXmUQEccTGd2NaT8g2VHADZ76gMC6BjWESvcnz2D4n8XwdmM7ZQ1jFwhuXrBfrb1dwRasyXxxHMGAC2onatNiExyeQ9G1W5LwqNLAh9hvcaNTGaYKYXoceVzLkgm6e5WMkLsCwuZXvB"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -299,7 +299,7 @@ Outputs:
 
 In the example below, the spend has been proven:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"check_spend_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","message":"this is my transaction","signature":"SpendProofV1aSh8Todhk54736iXgV6vJAFP7egxByuMWZeyNDaN2JY737S95X5zz5mNMQSuCNSLjjhi5HJCsndpNWSNVsuThxwv285qy1KkUrLFRkxMSCjfL6bbycYN33ScZ5UB4Fzseceo1ndpL393T1q638VmcU3a56dhNHF1RPZFiGPS61FA78nXFSqE9uoKCCoHkEz83M1dQVhxZV5CEPF2P6VioGTKgprLCH9vvj9k1ivd4SX19L2VSMc3zD1u3mkR24ioETvxBoLeBSpxMoikyZ6inhuPm8yYo9YWyFtQK4XYfAV9mJ9knz5fUPXR8vvh7KJCAg4dqeJXTVb4mbMzYtsSZXHd6ouWoyCd6qMALdW8pKhgMCHcVYMWp9X9WHZuCo9rsRjRpg15sJUw7oJg1JoGiVgj8P4JeGDjnZHnmLVa5bpJhVCbMhyM7JLXNQJzFWTGC27TQBbthxCfQaKdusYnvZnKPDJWSeceYEFzepUnsWhQtyhbb73FzqgWC4eKEFKAZJqT2LuuSoxmihJ9acnFK7Ze23KTVYgDyMKY61VXADxmSrBvwUtxCaW4nQtnbMxiPMNnDMzeixqsFMBtN72j5UqhiLRY99k6SE7Qf5f29haNSBNSXCFFHChPKNTwJrehkofBdKUhh2VGPqZDNoefWUwfudeu83t85bmjv8Q3LrQSkFgFjRT5tLo8TMawNXoZCrQpyZrEvnodMDDUUNf3NL7rxyv3gM1KrTWjYaWXFU2RAsFee2Q2MTwUW7hR25cJvSFuB1BX2bfkoCbiMk923tHZGU2g7rSKF1GDDkXAc1EvFFD4iGbh1Q5t6hPRhBV8PEncdcCWGq5uAL5D4Bjr6VXG8uNeCy5oYWNgbZ5JRSfm7QEhPv8Fy9AKMgmCxDGMF9dVEaU6tw2BAnJavQdfrxChbDBeQXzCbCfep6oei6n2LZdE5Q84wp7eoQFE5Cwuo23tHkbJCaw2njFi3WGBbA7uGZaGHJPyB2rofTWBiSUXZnP2hiE9bjJghAcDm1M4LVLfWvhZmFEnyeru3VWMETnetz1BYLUC5MJGFXuhnHwWh7F6r74FDyhdswYop4eWPbyrXMXmUQEccTGd2NaT8g2VHADZ76gMC6BjWESvcnz2D4n8XwdmM7ZQ1jFwhuXrBfrb1dwRasyXxxHMGAC2onatNiExyeQ9G1W5LwqNLAh9hvcaNTGaYKYXoceVzLkgm6e5WMkLsCwuZXvB"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -313,7 +313,7 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 In the example below, the wrong message is used, avoiding the spend to be proved:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"check_spend_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","message":"wrong message","signature":"SpendProofV1aSh8Todhk54736iXgV6vJAFP7egxByuMWZeyNDaN2JY737S95X5zz5mNMQSuCNSLjjhi5HJCsndpNWSNVsuThxwv285qy1KkUrLFRkxMSCjfL6bbycYN33ScZ5UB4Fzseceo1ndpL393T1q638VmcU3a56dhNHF1RPZFiGPS61FA78nXFSqE9uoKCCoHkEz83M1dQVhxZV5CEPF2P6VioGTKgprLCH9vvj9k1ivd4SX19L2VSMc3zD1u3mkR24ioETvxBoLeBSpxMoikyZ6inhuPm8yYo9YWyFtQK4XYfAV9mJ9knz5fUPXR8vvh7KJCAg4dqeJXTVb4mbMzYtsSZXHd6ouWoyCd6qMALdW8pKhgMCHcVYMWp9X9WHZuCo9rsRjRpg15sJUw7oJg1JoGiVgj8P4JeGDjnZHnmLVa5bpJhVCbMhyM7JLXNQJzFWTGC27TQBbthxCfQaKdusYnvZnKPDJWSeceYEFzepUnsWhQtyhbb73FzqgWC4eKEFKAZJqT2LuuSoxmihJ9acnFK7Ze23KTVYgDyMKY61VXADxmSrBvwUtxCaW4nQtnbMxiPMNnDMzeixqsFMBtN72j5UqhiLRY99k6SE7Qf5f29haNSBNSXCFFHChPKNTwJrehkofBdKUhh2VGPqZDNoefWUwfudeu83t85bmjv8Q3LrQSkFgFjRT5tLo8TMawNXoZCrQpyZrEvnodMDDUUNf3NL7rxyv3gM1KrTWjYaWXFU2RAsFee2Q2MTwUW7hR25cJvSFuB1BX2bfkoCbiMk923tHZGU2g7rSKF1GDDkXAc1EvFFD4iGbh1Q5t6hPRhBV8PEncdcCWGq5uAL5D4Bjr6VXG8uNeCy5oYWNgbZ5JRSfm7QEhPv8Fy9AKMgmCxDGMF9dVEaU6tw2BAnJavQdfrxChbDBeQXzCbCfep6oei6n2LZdE5Q84wp7eoQFE5Cwuo23tHkbJCaw2njFi3WGBbA7uGZaGHJPyB2rofTWBiSUXZnP2hiE9bjJghAcDm1M4LVLfWvhZmFEnyeru3VWMETnetz1BYLUC5MJGFXuhnHwWh7F6r74FDyhdswYop4eWPbyrXMXmUQEccTGd2NaT8g2VHADZ76gMC6BjWESvcnz2D4n8XwdmM7ZQ1jFwhuXrBfrb1dwRasyXxxHMGAC2onatNiExyeQ9G1W5LwqNLAh9hvcaNTGaYKYXoceVzLkgm6e5WMkLsCwuZXvB"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -346,7 +346,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"check_tx_key","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","tx_key":"feba662cf8fb6d0d0da18fc9b70ab28e01cc76311278fdd7fe7ab16360762b06","address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -386,7 +386,7 @@ Outputs:
 
 In the example below, the transaction has been proven:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"check_tx_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o","message":"this is my transaction","signature":"InProofV13vqBCT6dpSAXkypZmSEMPGVnNRFDX2vscUYeVS4WnSVnV5BwLs31T9q6Etfj9Wts6tAxSAS4gkMeSYzzLS7Gt4vvCSQRh9niGJMUDJsB5hTzb2XJiCkUzWkkcjLFBBRVD5QZ"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -403,7 +403,7 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 In the example below, the wrong message is used, avoiding the transaction to be proved:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"check_tx_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o","message":"wrong message","signature":"InProofV13vqBCT6dpSAXkypZmSEMPGVnNRFDX2vscUYeVS4WnSVnV5BwLs31T9q6Etfj9Wts6tAxSAS4gkMeSYzzLS7Gt4vvCSQRh9niGJMUDJsB5hTzb2XJiCkUzWkkcjLFBBRVD5QZ"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -431,7 +431,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"close_wallet"}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -460,7 +460,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"create_account","params":{"label":"Secondary account"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -495,7 +495,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"create_address","params":{"account_index":0,"label":"new-subs","count":2}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -528,7 +528,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"create_wallet","params":{"filename":"mytestwallet","password":"mytestpassword","language":"English"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -554,7 +554,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"delete_address_book","params":{"index":1}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -606,7 +606,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"describe_transfer","params":{"unsigned_txset":"...long hex..."}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -653,7 +653,7 @@ Outputs:  _none_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"edit_address_book","params":{"index":0, "set_address":true, "address":"0b057f69acc1552014cb157138e5c4dd495347d333f68ff0af70494b979aed10", "set_payment_id":true, "payment_id":"60900e5603bf96e3", "set_description":true, "description":"Example description."}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -682,7 +682,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"estimate_tx_size_and_weight","params":{"n_inputs":1,"n_outputs":2,"ring_size":16,"rct":true}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -714,7 +714,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"exchange_multisig_keys","params":{"password":"","multisig_info":"MultisigxV2R1hSyd7Zdx5A92zWF7E9487XQg8zZRDYM6c9aNfEShmCKoUx9ftccXZvH9cRcadd5veh6mwk9sXuGzWZRo57MdvSkJi3ABLt8wZPv8FTkBqVDVcgUdXm4tS81HdJ5WQXboQJJQQd5JKoySKJ4S9xHGojL2i3VUvbWAyduaWGjMK4hrLQA1"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -747,7 +747,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"export_key_images"}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -780,7 +780,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"export_multisig_info"}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -809,7 +809,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"export_outputs"}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -839,7 +839,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"finalize_multisig","params":{"multisig_info":["MultisigxV1JNC6Ja2oBt5Sqea9LN2YEF7WYZCpHqr2EKvPG89Trf3X4E8RWkLaGRf29fJ3stU471MELKxwufNYeigP7LoE4tn2McPr4SbL9q15xNvZT5uwC9YRr7UwjXqSZHmTWN9PBuZEKVAQ4HPPyQciSCdNjgwsuFRBzrskMdMUwNMgKst1debYfm37i6PSzDoS2tk4kYTYj83kkAdR7kdshet1axQPd6HQ","MultisigxV1Unma7Ko4zdd8Ps3Af4oZwtj2JdWKzwNfP6s2G9ZvXhMoSscwn5g7PyCfcBc1V4ffRHY3Kxqq6VocSCUTncpVeUskMcPr4SbL9q15xNvZT5uwC9YRr7UwjXqSZHmTWN9PBuZE1LTpWxLoC3vPMSrqVVcjnmL9LYfdCZz3fECjNZbCEDq3PHDiUuY5jurQTcNoGhDTio5WM9xaAdim9YByiS5KyqF4"]}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -865,7 +865,7 @@ Outputs: _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"freeze","params":{"key_image":"d0071ab34ab7f567f9b54303ed684de6cd5ed969a6b6c4bf352d25242f0b3da9"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -892,7 +892,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"frozen","params":{"key_image":"d0071ab34ab7f567f9b54303ed684de6cd5ed969a6b6c4bf352d25242f0b3da9"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -925,7 +925,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"generate_from_keys", "params":{"restore_height":0,"filename":"wallet_name","address":"42gt8cXJSHAL4up8XoZh7fikVuswDU7itAoaCjSQyo6fFoeTQpAcAwrQ1cs8KvFynLFSBdabhmk7HEe3HS7UsAz4LYnVPYM","spendkey":"11d3fd247672c4cb29b6e38791dcf07629cd2d68d868f0b78811ce584a6b0d01","viewkey":"97cf64f2cd6c930242e9bed5f14f8f16a33047229aca3eababf4af7e8d113209","password":"pass","autosave_current":true}},' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -954,7 +954,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_account_tags","params":""}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -995,7 +995,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_accounts","params":{"tag":"myTag"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1046,7 +1046,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_address","params":{"account_index":0,"address_index":[0,1,4]}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1095,7 +1095,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_address_book","params":{"entries":[0,1]}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1136,7 +1136,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_address_index","params":{"address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1166,7 +1166,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_attribute","params":{"key":"my_attribute"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1211,7 +1211,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_balance","params":{"account_index":0,"address_indices":[0,1]}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1279,7 +1279,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_bulk_payments","params":{"payment_ids":["60900e5603bf96e3"],"min_block_height":"120000"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1315,7 +1315,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_default_fee_priority"}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1340,7 +1340,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_height"}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1365,7 +1365,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_languages"}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1407,7 +1407,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_payments","params":{"payment_id":"60900e5603bf96e3"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1449,7 +1449,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_reserve_proof","params":{"all":false,"account_index":0,"amount":100000000000}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1477,7 +1477,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_spend_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","message":"this is my transaction"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1536,7 +1536,7 @@ Outputs:
 
 In the example below, a single output was received at 1 address (note how it is duplicated in `transfers`:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_transfer_by_txid","params":{"txid":"765f7124d01bd2eb2d4e7e59aa44a28c24339a41e4009f463955b087017b0ca3"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1599,7 +1599,7 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 In the example below, 2 outputs where sent to 2 addresses in the same transaction. Note that `transfer` contains only one of them, but `transfers` contains both. If the length of transfers is != 1 then we have received multiple outputs in one transaction and must loop the `transfers` list accordingly.
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_transfer_by_txid","params":{"txid":"c36258a276018c3a4bc1f195a7fb530f50cd63a4fa765fb7c6f7f49fc051762a"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1747,7 +1747,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_transfers","params":{"in":true,"account_index":1}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1798,7 +1798,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_tx_key","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1825,7 +1825,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_tx_notes","params":{"txids":["3292e83ad28fc1cc7bc26dbd38862308f4588680fbf93eae3e803cddd1bd614f"]}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1854,7 +1854,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_tx_proof","params":{"txid":"19d5089f9469db3d90aca9024dfcb17ce94b948300101c8345a5e9f7257353be","address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o","message":"this is my transaction"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1879,7 +1879,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_version"}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1911,7 +1911,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"import_key_images", "params":{"signed_key_images":[{"key_image":"cd35239b72a35e26a57ed17400c0b66944a55de9d5bda0f21190fed17f8ea876","signature":"c9d736869355da2538ab4af188279f84138c958edbae3c5caf388a63cd8e780b8c5a1aed850bd79657df659422c463608ea4e0c730ba9b662c906ae933816d00"},{"key_image":"65158a8ee5a3b32009b85a307d85b375175870e560e08de313531c7dbbe6fc19","signature":"c96e40d09dfc45cfc5ed0b76bfd7ca793469588bb0cf2b4d7b45ef23d40fd4036057b397828062e31700dc0c2da364f50cd142295a8405b9fe97418b4b745d0c"}]}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1940,7 +1940,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"import_multisig_info","params":{"info":["...multisig_info..."]}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -1967,7 +1967,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"import_outputs","params":{"outputs_data_hex":"...outputs..."}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2006,7 +2006,7 @@ Outputs:
 
 Example, get all transfers:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"incoming_transfers","params":{"transfer_type":"all","account_index":0,"subaddr_indices":[3]}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2062,7 +2062,7 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 Example, get available transfers:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"incoming_transfers","params":{"transfer_type":"available","account_index":0,"subaddr_indices":[3]}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2091,7 +2091,7 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 Example, get unavailable transfers:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"incoming_transfers","params":{"transfer_type":"unavailable","account_index":0,"subaddr_indices":[3]}}' -H 'Content-Type: application/json'
 {
 "id": "0",
@@ -2127,7 +2127,7 @@ Outputs:
 
 Example for a non-multisig wallet:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"is_multisig"}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2143,7 +2143,7 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 Example for a multisig wallet:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"is_multisig"}' -H 'Content-Type: application/json'                  {
   "id": "0",
   "jsonrpc": "2.0",
@@ -2171,7 +2171,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"label_account","params":{"account_index":0,"label":"Primary account"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2203,7 +2203,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"label_address","params":{"index":{"major":0,"minor":5},"label":"myLabel"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2233,7 +2233,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"validate_address","params":{"address":"42go2d3XqA9Mx4HjZoqr93BHspcMxwAUBivs3yJKV1FyTycEcbgjNyEaGNEcgnUE9DDDAXNanzB16YgMt88Sa8cFSm2QcHK","any_net_type":true,"allow_openalias":true},' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2267,7 +2267,7 @@ Outputs:
 
 Example (Payment ID is empty, use a random ID):
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"make_integrated_address","params":{"standard_address":"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2298,7 +2298,7 @@ Outputs:
 
 Example for 2/2 Multisig Wallet:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"make_multisig","params":{"multisig_info":["MultisigV1K4tGGe8QirZdHgTYoBZMumSug97fdDyM3Z63M3ZY5VXvAdoZvx16HJzPCP4Rp2ABMKUqLD2a74ugMdBfrVpKt4BwD8qCL5aZLrsYWoHiA7JJwDESuhsC3eF8QC9UMvxLXEMsMVh16o98GnKRYz1HCKXrAEWfcrCHyz3bLW1Pdggyowop"],"threshold":2}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2312,7 +2312,7 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 Example for 2/3 Multisig Wallet:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"make_multisig","params":{"multisig_info":["MultisigV1MTVm4DZAdJw1PyVutpSy8Q4WisZBCFRAaZY7hhQnMwr5AZ4swzThyaSiVVQM5FHj1JQi3zPKhQ4k81BZkPSEaFjwRJtbfqfJcVvCqRnmBVcWVxhnihX5s8fZWBCjKrzT3CS95spG4dzNzJSUcjheAkLzCpVmSzGtgwMhAS3Vuz9Pas24","MultisigV1TEx58ycKCd6ADCfxF8hALpcdSRAkhZTi1bu4Rs6FdRC98EdB1LY7TAkMxasM55khFgcxrSXivaSr5FCMyJGHmojm1eE4HpGWPeZKv6cgCTThRzC4u6bkkSoFQdbzWN92yn1XEjuP2XQrGHk81mG2LMeyB51MWKJAVF99Pg9mX2BpmYFj"],"threshold":2}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2344,7 +2344,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"make_uri","params":{"address":"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt","amount":10,"payment_id":"420fa29b2d9a49f5","tx_description":"Testing out the make_uri function.","recipient_name":"el00ruobuob Stagenet wallet"}}'  -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2370,7 +2370,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"open_wallet","params":{"filename":"mytestwallet","password":"mytestpassword"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2401,7 +2401,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"parse_uri","params":{"uri":"monero:55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt?tx_payment_id=420fa29b2d9a49f5&tx_amount=0.000000000010&recipient_name=el00ruobuob%20Stagenet%20wallet&tx_description=Testing%20out%20the%20make_uri%20function."}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2432,7 +2432,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"prepare_multisig"}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2459,7 +2459,7 @@ Outputs:
 
 Example (Query view key):
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"query_key","params":{"key_type":"view_key"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2472,7 +2472,7 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 Example (Query mnemonic key):
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"query_key","params":{"key_type":"mnemonic"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2500,7 +2500,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"refresh","params":{"start_height":100000}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2529,7 +2529,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"relay_tx","params":{"hex":"...tx_metadata..."}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2553,7 +2553,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"rescan_blockchain"}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2575,7 +2575,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"rescan_spent"}' -H 'Content-Type: application/json'
 
 {
@@ -2612,7 +2612,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:38088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"restore_deterministic_wallet","params":{"filename":"My Wallet","password":"mypassword123","seed":"awkward vogue odometer amply bagpipe kisses poker aspire slug eluded hydrogen selfish later toolbox enigma wolf tweezers eluded gnome soprano ladder broken jukebox lordship aspire","restore_height":0, "language":"English","seed_offset":"","autosave_current":true}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2641,7 +2641,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"scan_tx","params":{"txids":["7313fb7f9d26454866abacc98d17662bea468421178ec577661610003bf0193e"]}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2654,7 +2654,7 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 Logfile output:
 
-```Bash
+```json
 2022-10-13 15:23:24.065 W Received money: 4.900000000000, with tx: <7313fb7f9d26454866abacc98d17662bea468421178ec577661610003bf0193e>
 ```
 
@@ -2673,7 +2673,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_account_tag_description","params":{"tag":"myTag","description":"Test tag"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2699,7 +2699,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_attribute","params":{"key":"my_attribute","value":"my_value"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2734,7 +2734,7 @@ Outputs: _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_daemon","params": {"address":"http://localhost:18081","trusted":true,"ssl_support":"enabled","ssl_private_key_path":"path/to/ssl/key","ssl_certificate_path":"path/to/ssl/certificate","ssl_ca_file":"path/to/ssl/ca/file","ssl_allowed_fingerprints":["85:A7:68:29:BE:73:49:80:84:91:7A:BB:1F:F1:AD:7E:43:FE:CC:B8"],"ssl_allow_any_cert":true}},' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2760,7 +2760,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_tx_notes","params":{"txids":["3292e83ad28fc1cc7bc26dbd38862308f4588680fbf93eae3e803cddd1bd614f"],"notes":["This is an example"]}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2787,7 +2787,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sign","params":{"data":"This is sample data to be signed"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2816,7 +2816,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sign_multisig","params":{"tx_data_hex":"...multisig_txset..."}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2852,7 +2852,7 @@ In the example below, we first generate an unsigned_txset on a read only wallet 
 
 Generate unsigned_txset using the above "transfer" method on read-only wallet:
 
-```Bash
+```json
 curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"transfer","params":{"destinations":[{"amount":1000000000000,"address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o"}],"account_index":0,"subaddr_indices":[0],"priority":0,"do_not_relay":true,"get_tx_hex":true}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2873,7 +2873,7 @@ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","meth
 
 Sign tx using the previously generated unsigned_txset
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sign_transfer","params":{"unsigned_txset":...long_hex..."}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2904,7 +2904,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"split_integrated_address","params":{"integrated_address": "5F38Rw9HKeaLQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZXCkbHUXdPHyiUeRyokn"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2934,7 +2934,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"start_mining","params":{"threads_count":1,"do_background_mining":true,"ignore_battery":false}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2957,7 +2957,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"stop_mining"}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -2980,7 +2980,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"stop_wallet"}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -3004,7 +3004,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"store"}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -3032,7 +3032,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"submit_multisig","params":{"tx_data_hex":"...tx_data_hex..."}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -3061,7 +3061,7 @@ Outputs:
 
 In the example below, we submit the transfer using the signed_txset generated above:
 
-```Bash
+```json
 curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"submit_transfer","params":{"tx_data_hex":...long_hex..."}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -3113,7 +3113,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sweep_all","params":{"address":"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt","subaddr_indices":[4],"get_tx_keys":true}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -3167,7 +3167,7 @@ Outputs:
 Example (In this example, `sweep_dust` returns nothing because there are no funds to sweep):
 
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sweep_dust","params":{"get_tx_keys":true}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -3216,7 +3216,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sweep_single","params":{"address":"74Jsocx8xbpTBEjm3ncKE5LBQbiJouyCDaGhgSiebpvNDXZnTAbW2CmUR5SsBeae2pNk9WMVuz6jegkC4krUyqRjA6VjoLD","key_image":"a7834459ef795d2efb6f665d2fd758c8d9288989d8d4c712a68f8023f7804a5e","get_tx_key":true}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -3255,7 +3255,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"tag_accounts","params":{"tag":"myTag","accounts":[0,1]}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -3282,7 +3282,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"thaw","params":{"key_image":"d0071ab34ab7f567f9b54303ed684de6cd5ed969a6b6c4bf352d25242f0b3da9"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -3330,7 +3330,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"transfer","params":{"destinations":[{"amount":100000000000,"address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o"},{"amount":200000000000,"address":"75sNpRwUtekcJGejMuLSGA71QFuK1qcCVLZnYRTfQLgFU5nJ7xiAHtR5ihioS53KMe8pBhH61moraZHyLoG4G7fMER8xkNv"}],"account_index":0,"subaddr_indices":[0],"priority":0,"ring_size":7,"get_tx_key": true}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -3350,7 +3350,7 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 ```
 In the example below, we use `subtract_fee_from_outputs` to deduct the transaction fee from the 1st and 2nd destinations.
 
-``` Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"transfer","params":{"destinations":[{"amount":10000000000,"address":"5AVBTfFcsVjfxN4VqGqykY69M2bDd6a8F6ZMt27qFbAHJX6VKzkcH5XW9d6VGQVk7mD4H11q6GDeA3v8aRdzGZrnBqdMxpB"},{"amount":30000000000,"address":"73a4nWuvkYoYoksGurDjKZQcZkmaxLaKbbeiKzHnMmqKivrCzq5Q2JtJG1UZNZFqLPbQ3MiXCk2Q5bdwdUNSr7X9QrPubkn"}],"subtract_fee_from_outputs":[0,1]}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -3412,7 +3412,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"transfer_split","params":{"destinations":[{"amount":1000000000000,"address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o"},{"amount":2000000000000,"address":"75sNpRwUtekcJGejMuLSGA71QFuK1qcCVLZnYRTfQLgFU5nJ7xiAHtR5ihioS53KMe8pBhH61moraZHyLoG4G7fMER8xkNv"}],"account_index":0,"subaddr_indices":[0],"priority":0,"ring_size":7,"get_tx_keys": true}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -3448,7 +3448,7 @@ Outputs:  _None_.
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"untag_accounts","params":{"accounts":[1]}}' -H 'Content-Type: application/json'
 {
   "id": "0",
@@ -3478,7 +3478,7 @@ Outputs:
 
 Example:
 
-```Bash
+```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"verify","params":{"data":"This is sample data to be signed","address":"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt","signature":"SigV14K6G151gycjiGxjQ74tKX6A2LwwghvuHjcDeuRFQio5LS6Gb27BNxjYQY1dPuUvXkEbGQUkiHSVLPj4nJAHRrrw3"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
