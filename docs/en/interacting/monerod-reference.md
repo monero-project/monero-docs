@@ -32,6 +32,11 @@ Options define how the daemon should be working. Their names follow the `--optio
 Commands give access to specific services provided by the daemon. Commands are executed against the running daemon.
 Their names follow the `command_name` pattern.
 
+## RPC interface
+
+For a list of the monerod RPC calls, their inputs, outputs, and examples, visit the monerod RPC [library](../rpc-library/monerod-rpc.md).    
+Many RPC calls use the daemon's [JSON RPC interface](../rpc-library/monerod-rpc.md#json-rpc-example) while others use their [own interfaces](../rpc-library/monerod-rpc.md#other-daemon-rpc-calls).
+
 ## Running
 
 Go to directory where you unpacked Monero.

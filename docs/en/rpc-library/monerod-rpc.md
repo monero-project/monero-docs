@@ -8,12 +8,46 @@ title: "Daemon RPC documentation"
 
 ## Introduction
 
-This is a list of the monerod daemon RPC calls, their inputs and outputs, and examples of each.    
-Many RPC calls use the daemon's JSON RPC interface while others use their own interfaces, as demonstrated below.
+This is a list of the monerod daemon RPC calls, their inputs and outputs, and examples of each.
 
 Note: "[atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")" refer to the smallest fraction of 1 XMR according to the monerod implementation. **1 XMR = 1e12 [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").**
 
-### [JSON RPC Methods](#json-rpc-methods):
+## JSON-RPC example
+
+The API is based on [JSON-RPC standard](https://en.wikipedia.org/wiki/JSON-RPC) version 2.0.
+
+Many `monerod` RPC calls use the daemon's JSON RPC interface while others use their own interfaces, as demonstrated [below](#other-daemon-rpc-methods).
+
+Assuming `monerod` is running on 127.0.0.1:18081, you would call it like this:
+
+```json
+IP=127.0.0.1
+PORT=18081
+METHOD='get_block_header_by_height'
+PARAMS='{"height":912345}'
+curl \
+    http://$IP:$PORT/json_rpc \
+    -d '{"jsonrpc":"2.0","id":"0","method":"'$METHOD'","params":'$PARAMS'}' \
+    -H 'Content-Type: application/json'
+```
+
+If `monerod` was executed with the `--rpc-login` argument as `username:password`, then follow this example:
+
+```json
+IP=127.0.0.1
+PORT=18081
+METHOD='get_block_header_by_height'
+PARAMS='{"height":912345}'
+curl \
+    http://$IP:$PORT/json_rpc \
+    -u username:password --digest \
+    -d '{"jsonrpc":"2.0","id":"0","method":"'$METHOD'","params":'$PARAMS'}' \
+    -H 'Content-Type: application/json'
+```
+
+Some methods include parameters, while others do not. Examples of each JSON RPC method follow.
+
+### [JSON RPC Methods](#json-rpc-example):
 
 - [add_aux_pow](#add_aux_pow)
 - [banned](#banned)
@@ -89,24 +123,6 @@ Note: "[atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-uni
 
 
 ---
-
-## JSON RPC Methods
-
-The majority of monerod RPC calls use the daemon's `json_rpc` interface to request various bits of information. These methods all follow a similar structure, for example:
-
-```Bash
-IP=127.0.0.1
-PORT=18081
-METHOD='get_block_header_by_height'
-ALIAS='getblockheaderbyheight'
-PARAMS='{"height":912345}'
-curl \
-    http://$IP:$PORT/json_rpc \
-    -d '{"jsonrpc":"2.0","id":"0","method":"'$METHOD'","params":'$PARAMS'}' \
-    -H 'Content-Type: application/json'
-```
-
-Some methods include parameters, while others do not. Examples of each JSON RPC method follow.
 
 ### **add_aux_pow**
 
@@ -1770,17 +1786,6 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"s
 Not all daemon RPC calls use the JSON_RPC interface. This section gives examples of these calls.
 
 The data structure for these calls is different than the JSON RPC calls. Whereas the JSON RPC methods were called using the `/json_rpc` extension and specifying a method, these methods are called at their own extensions. For example:
-
-```Bash
-    IP=127.0.0.1
-    PORT=18081
-    METHOD='gettransactions'
-  PARAMS='{"txs_hashes":["d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408"]}'
-  curl \
-    http://$IP:$PORT/$METHOD \
-    -d $PARAMS \
-    -H 'Content-Type: application/json'
-```
 
 Note: It is recommended to use JSON RPC where such alternatives exist, rather than the following methods. For example, the recommended way to get a node's height is via the JSON RPC methods [get_info](#get_info) or [get_last_block_header](#get_last_block_header), rather than [get_height](#get_height) below.
 
