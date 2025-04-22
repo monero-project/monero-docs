@@ -209,11 +209,11 @@ To                         Action      From
 
     Install `tor` and `torsocks` on your laptop, you will want them anyway for Monero wallet.
 
-    Just for testing, you will also need `nmap` and `proxychains`.
+    Just for testing, you will also need `proxychains`.
 
     Test **clearnet P2P** connection:
 
-    `nmap -Pn -p 18080 YOUR_IP_ADDRESS_HERE`
+    `nc -zv YOUR_IP_ADDRESS_HERE 18080`
 
     Test **clearnet RPC** connection:
 
@@ -224,13 +224,13 @@ To                         Action      From
     Test **onion P2P** connection (skip if you don't have proxychains):
 
     ``` Bash
-    proxychains nmap -Pn -p 18084 YOUR_ONION_ADDRESS_HERE.onion
+    proxychains nc -zv YOUR_IP_ADDRESS_HERE 18084
     ```
 
     Test **onion RPC** connection:
 
     ``` Bash
-    curl -x socks5h://127.0.0.1:9050 --digest -X POST http://YOUR_ONION_ADDRESS_HERE.onion:18089/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_info"}' -H 'Content-Type: application/json'`
+    curl -x socks5h://127.0.0.1:9050 --digest -X POST http://YOUR_ONION_ADDRESS_HERE.onion:18089/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_info"}' -H 'Content-Type: application/json'
     ```
 
 ### Debugging
