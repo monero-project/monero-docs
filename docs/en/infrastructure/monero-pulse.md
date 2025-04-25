@@ -19,7 +19,7 @@ Summing up, MoneroPulse is emergency checkpointing mechanism. It is opt-in for t
 
 ## MoneroPulse is DNS based
 
-The ckeckpoints are stored as DNS TXT records for domains owned by MoneroPulse operators.
+The checkpoints are stored as DNS TXT records for domains owned by MoneroPulse operators.
 
 To get the idea you can access the checkpoints manually with any DNS client:
 

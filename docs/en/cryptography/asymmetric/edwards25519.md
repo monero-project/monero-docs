@@ -46,7 +46,7 @@ That's because the specific x can be calculated from the curve equation.
 
 ### Prime order of the base point: `l`
 
-In layment terms, the "canvas" where the curve is drawn is assumed
+In laymen terms, the "canvas" where the curve is drawn is assumed
 to have a finite "resolution", so point coordinates must "wrap around"
 at some point. This is achieved by modulo the `l` value (lowercase L).
 In other words, the `l` defines the maximum scalar we can use.
