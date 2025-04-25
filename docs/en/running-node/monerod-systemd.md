@@ -224,7 +224,7 @@ To                         Action      From
     Test **onion P2P** connection (skip if you don't have proxychains):
 
     ``` Bash
-    proxychains nc -zv YOUR_IP_ADDRESS_HERE 18080
+    proxychains nc -zv YOUR_IP_ADDRESS_HERE 18084
     ```
 
     Test **onion RPC** connection:
