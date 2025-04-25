@@ -54,7 +54,7 @@
     limit-rate-down=1048576   # 1048576 kB/s == 1GB/s; a raise from default 8192 kB/s; allow for faster initial sync
 
     # Tor/I2P: broadcast transactions originating from connected wallets over Tor/I2P (does not concern relayed transactions)
-    #tx-proxy=i2p,127.0.0.1:4447,16.disable_noise  # I2P
+    #tx-proxy=i2p,127.0.0.1:4447,16,disable_noise  # I2P
     #tx-proxy=tor,127.0.0.1:9050,16,disable_noise  # Tor
 
     # Tor/I2P: tell monerod your onion address so it can be advertised on P2P network
