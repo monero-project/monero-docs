@@ -9,12 +9,12 @@ Subaddress is what you should be using by default to receive Monero.
 
 By providing a unique subaddress for each anticipated payment you will know for what you are being paid.
 
-This use case overlaps with integrated addresses. Subaddresses are generally prefered for reasons outlined below.
+This use case overlaps with integrated addresses. Subaddresses are generally preferred for reasons outlined below.
 
 ## Prevent payer from linking your payouts together
 
 To prevent the payer from linking your payouts together simply generate a new subaddress for each payout.
-This way specific service (like anonymous exchange) that sends you Monero won't (easilly) know it is you again receving Monero.
+This way specific service (like anonymous exchange) that sends you Monero won't (easily) know it is you again receiving Monero.
 
 The exception to this is when a service (or group of colluding services) decides to actively attack you, one address at the time, with the so-called [Janus attack](https://web.getmonero.org/2019/10/18/subaddress-janus.html), which risks them losing funds. If you need perfect unlinkability of your receivables, the only solution remains to use a separate seed (separate Monero wallet).
 
