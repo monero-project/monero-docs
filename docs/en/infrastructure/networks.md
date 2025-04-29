@@ -84,7 +84,7 @@ Some resources to get started:
     - [Monerodevs.org](http://bhqzadcvfcuwwnvf5hws5zwzjgvfuarqbah5ruhyxuxhaoklsy35wdqd.onion/)
 
 ??? danger "Stagenet Block Explorers [Clearnet]"
-    - N/A
+    - [XMRChain.net](https://stagenet.xmrchain.net/)
 
 ??? abstract "Stagenet Faucets [Clearnet]"
     - [XMR-TW.org](https://stagenet-faucet.xmr-tw.org/)
@@ -121,7 +121,7 @@ Some resources to get started:
     - [Monerodevs.org](http://ol7qm5adjeugpwkbrcnnnshsihmkhidaaoim35duhfdmj4gihaiapkid.onion/)
 
 ??? danger "Testnet Block Explorers [Clearnet]"
-    - N/A
+    - [XMRChain.net](https://testnet.xmrchain.net/)
 
 ??? abstract "Testnet Faucets [Clearnet]"
     - None. Please contact us on [Matrix](https://matrix.to/#/%23monero-docs:monero.social) or [IRC](irc://irc.libera.chat/#monero-docs) if you know of a replacement.
