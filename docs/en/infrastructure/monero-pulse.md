@@ -11,7 +11,7 @@ It aims to mitigate chain-splits resulting from consensus bugs (like [this one f
 
 Effectively, MoneroPulse operators can publish which fork they consider the valid one. Technically, the "checkpoint" they publish is a block hash and the block height.
 
-By default, Monero full node will simply warn users when MoneroPulse checkpoint does not match the fork it is on. The error will be present in the log and on the console in red. Users are free to discard it. Ideally though, users should consult community on what is going on, and make educated decission on whether to follow the checkpoint-compatible fork or the default fork.
+By default, Monero full node will simply warn users when MoneroPulse checkpoint does not match the fork it is on. The error will be present in the log and on the console in red. Users are free to discard it. Ideally though, users should consult community on what is going on, and make educated decision on whether to follow the checkpoint-compatible fork or the default fork.
 
 Users can also set auto-enforcing the checkpoints via `--enforce-dns-checkpointing` option to `monerod`. In case of mismatch, `monerod` will rollback the local blockchain by a few blocks. Eventually, the alternative ("fixed") fork will get heavier and the node will follow it, leaving the "invalid" fork behind. This option is recommended for unattended full nodes.
 
@@ -19,7 +19,7 @@ Summing up, MoneroPulse is emergency checkpointing mechanism. It is opt-in for t
 
 ## MoneroPulse is DNS based
 
-The ckeckpoints are stored as DNS TXT records for domains owned by MoneroPulse operators.
+The checkpoints are stored as DNS TXT records for domains owned by MoneroPulse operators.
 
 To get the idea you can access the checkpoints manually with any DNS client:
 

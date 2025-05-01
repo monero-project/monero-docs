@@ -4,7 +4,7 @@ title: Polyseed Mnemonic Scheme
 
 > **Note**: Adapted for monero-docs. The expanded original README is available on Tevador's [Polyseed repository](https://github.com/tevador/polyseed)
 
-The polyseed mnemonic scheme was initally intended for implementation alongside Seraphis and Jamtis, though it was adopted by the community ahead of schedule due to its efficiency, simplicity and security. One such UX improvement is the embedding of the [wallet birthday (restore height)](#wallet-birthday-restore-height), which removes the need for users to store the info manually.
+The polyseed mnemonic scheme was initially intended for implementation alongside Seraphis and Jamtis, though it was adopted by the community ahead of schedule due to its efficiency, simplicity and security. One such UX improvement is the embedding of the [wallet birthday (restore height)](#wallet-birthday-restore-height), which removes the need for users to store the info manually.
 
 Unlike the legacy mnemonic scheme, the polyseed mechanism does not allow you to choose the words from a wordlist. Instead, the words are generated from the [secret seed](#secret-seed), feature bits and birthday bits. The feature bits are used to determine the wallet features and the birthday bits are used to determine the [wallet birthday](#wallet-birthday-restore-height).
 
