@@ -32,6 +32,11 @@ Options define how the daemon should be working. Their names follow the `--optio
 Commands give access to specific services provided by the daemon. Commands are executed against the running daemon.
 Their names follow the `command_name` pattern.
 
+## RPC interface
+
+For a list of the monerod RPC calls, their inputs, outputs, and examples, visit the monerod RPC [library](../rpc-library/monerod-rpc.md).    
+Many RPC calls use the daemon's [JSON RPC interface](../rpc-library/monerod-rpc.md#json-rpc-example) while others use their [own interfaces](../rpc-library/monerod-rpc.md#other-daemon-rpc-calls).
+
 ## Running
 
 Go to directory where you unpacked Monero.
@@ -60,12 +65,12 @@ The following groups are only to make reference easier to follow. The daemon its
 
 #### Help and version
 
-| Option              | Description
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `--help`            | Enlist available options.
-| `--version`         | Show `monerod` version to stdout. Example output: <br>`Monero 'Oxygen Orion' (v0.17.1.8-release)`
-| `--os-version`      | Show build timestamp and target operating system. Example output:<br>`OS: Linux #65-Ubuntu SMP Thu Dec 10 12:01:51 UTC 2020 5.4.0-59-generic`.
-| `--check-updates`   | One of: `disabled` \| `notify` \| `download` (=`notify` by default). Check for new versions of Monero and optionally download it. You should probably prefer your OS package manager to do the update, if possible. There is also unimplemented `update` option shown by the help system.
+| Option                    | Description
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------
+| `--help`                  | Enlist available options.
+| `--version`               | Show `monerod` version to stdout. Example output: <br>`Monero 'Oxygen Orion' (v0.17.1.8-release)`
+| `--os-version`            | Show build timestamp and target operating system. Example output:<br>`OS: Linux #65-Ubuntu SMP Thu Dec 10 12:01:51 UTC 2020 5.4.0-59-generic`.
+| `--check-updates <arg>`   | One of: `disabled` \| `notify` \| `download`. Check for new versions of Monero and optionally download it. You should probably prefer your OS package manager to do the update, if possible. There is also unimplemented `update` option shown by the help system.<br><br>(=notify)
 
 #### Pick Monero network (blockchain)
 
@@ -77,12 +82,12 @@ The following groups are only to make reference easier to follow. The daemon its
 
 #### Logging
 
-| Option                | Description
-|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------
-| `--log-file`          | Full path to the log file. Example (mind file permissions): <br/>`./monerod --log-file=/var/log/monero/mainnet/monerod.log`
-| `--log-level`         | `0-4` with `0` being minimal logging and `4` being full tracing. Defaults to `0`. These are general presets and do not directly map to severity levels. For example, even with minimal `0`, you may see some most important `INFO` entries. Temporarily changing to `1` allows for much better understanding of how the full node operates. Example: <br>`./monerod --log-level=1`
-| `--max-log-file-size` | Soft limit in bytes for the log file (=104850000 by default, which is just under 100MB). Once log file grows past that limit, `monerod` creates the next log file with a UTC timestamp postfix `-YYYY-MM-DD-HH-MM-SS`.<br><br>In production deployments, you would probably prefer to use established solutions like logrotate instead. In that case, set `--max-log-file-size=0` to prevent monerod from managing the log files.
-| `--max-log-files`     | Limit on the number of log files (=50 by default). The oldest log files are removed. In production deployments, you would probably prefer to use established solutions like logrotate instead.
+| Option                      | Description
+|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------
+| `--log-file <arg>`          | Full path to the log file.<br>By default `monerod` creates a `bitmonero.log` in the Monero [data directory](../interacting/overview.md#data-directory)
+| `--log-level <arg>`         | `0-4` with `0` being minimal logging and `4` being full tracing. Defaults to `0`. These are general presets and do not directly map to severity levels. For example, even with minimal `0`, you may see some most important `INFO` entries. Temporarily changing to `1` allows for much better understanding of how the full node operates.<br><br>(=0)
+| `--max-log-file-size <arg>` | Soft limit in bytes for the log file. Once log file grows past that limit, `monerod` creates the next log file with a UTC timestamp postfix `-YYYY-MM-DD-HH-MM-SS`.<br><br>In production deployments, you would probably prefer to use established solutions like logrotate instead. In that case, set `--max-log-file-size=0` to prevent monerod from managing the log files.<br><br>(=104850000)
+| `--max-log-files <arg>`     | Limit on the number of log files. The oldest log files are removed. In production deployments, you would probably prefer to use established solutions like logrotate instead.<br><br>(=10)
 
 #### Server
 
@@ -90,17 +95,17 @@ The following groups are only to make reference easier to follow. The daemon its
 
 The following options will be helpful if you intend to have an always running node &mdash; most likely on a remote server or your own separate PC.
 
-| Option              | Description
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `--config-file`     | Full path to the [configuration file](../interacting/monero-config-file.md). By default `monerod` looks for `bitmonero.conf` in Monero [data directory](../interacting/overview.md#data-directory).
-| `--data-dir`        | Full path to data directory. This is where the blockchain, log files, and p2p network memory are stored. For defaults and details see [data directory](../interacting/overview.md#data-directory).
-| `--pidfile`         | Full path to the PID file. Works only with `--detach`. Example: <br>`./monerod --detach --pidfile=/run/monero/monerod.pid`
-| `--detach`          | Go to background (decouple from the terminal). This is useful for long-running / server scenarios. Typically, you will also want to manage `monerod` daemon with systemd or similar. By default `monerod` runs in a foreground.
-| `--non-interactive` | Do not require tty in a foreground mode. Helpful when running in a container. By default `monerod` runs in a foreground and opens stdin for reading. This breaks containerization because no tty gets assigned and `monerod` process crashes. You can make it run in a background with `--detach` but this is inconvenient in a containerized environment because the canonical usage is that the container waits on the main process to exist (forking makes things more complicated).
-| `--max-txpool-weight`         | Set maximum transactions pool size in bytes. By default 648000000 (~618MB). These are transactions pending for confirmations (not included in any block).
+| Option                        | Description
+|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------
+| `--config-file <arg>`         | Full path to the [configuration file](../interacting/monero-config-file.md). By default `monerod` looks for `bitmonero.conf` in the Monero [data directory](../interacting/overview.md#data-directory).
+| `--data-dir <arg>`            | Full path to data directory. This is where the blockchain, log files, and p2p network memory are stored. For defaults and details see [data directory](../interacting/overview.md#data-directory).
+| `--pidfile <arg>`             | Full path to the PID file. Works only with `--detach`. Example: <br>`./monerod --detach --pidfile=/run/monero/monerod.pid`
+| `--detach`                    | Go to background (decouple from the terminal). This is useful for long-running / server scenarios. Typically, you will also want to manage `monerod` daemon with systemd or similar. By default `monerod` runs in a foreground.
+| `--non-interactive`           | Do not require tty in a foreground mode. Helpful when running in a container. By default `monerod` runs in a foreground and opens stdin for reading. This breaks containerization because no tty gets assigned and `monerod` process crashes. You can make it run in a background with `--detach` but this is inconvenient in a containerized environment because the canonical usage is that the container waits on the main process to exist (forking makes things more complicated).
+| `--max-txpool-weight <arg>`   | Set maximum transactions pool size in bytes. These are transactions pending for confirmations (not included in any block).<br><br>(=648000000)
 | `--enforce-dns-checkpointing` | The emergency checkpoints set by [MoneroPulse](../infrastructure/monero-pulse.md) operators will be enforced. It is probably a good idea to set enforcing for unattended nodes. <br><br>If encountered block hash does not match corresponding checkpoint, the local blockchain will be rolled back a few blocks, effectively blocking following what MoneroPulse operators consider invalid fork. The log entry will be produced:  `ERROR` `Local blockchain failed to pass a checkpoint, rolling back!` Eventually, the alternative ("fixed") fork will get heavier and the node will follow it, leaving the "invalid" fork behind.<br><br>By default checkpointing only notifies about discrepancy by producing the following log entry: `ERROR` `WARNING: local blockchain failed to pass a MoneroPulse checkpoint, and you could be on a fork. You should either sync up from scratch, OR download a fresh blockchain bootstrap, OR enable checkpoint enforcing with the --enforce-dns-checkpointing command-line option`.<br><br>Reference: [source code](https://github.com/monero-project/monero/blob/22a6591a70151840381e327f1b41dc27cbdb2ee6/src/cryptonote_core/blockchain.cpp#L3614).
 | `--disable-dns-checkpoints`   | The [MoneroPulse](../infrastructure/monero-pulse.md) checkpoints set by core developers will be discarded. The checkpoints are apparently still fetched though.
-| `--ban-list`                  | Specify ban list file, one IP address per line. This was introduced as an emergency measure to deal with large DDoS attacks on Monero p2p network in Dec 2020 / Jan 2021. Example: <br>`./monerod --ban-list=block.txt`. Here is the popular [block.txt](https://gui.xmr.pm/files/block.txt) file.<br><br>It is **not recommended** to statically ban any IP addresses unless you absolutely need to. Banning IPs often excludes the most vulnerable users who are forced to operate entirely behind Tor or other anonymity networks.
+| `--ban-list <arg>`            | Specify ban list file, one IP address per line. This was introduced as an emergency measure to deal with large DDoS attacks on Monero p2p network in Dec 2020 / Jan 2021. Example: <br>`./monerod --ban-list=block.txt`. Here is the popular [block.txt](https://gui.xmr.pm/files/block.txt) file.<br><br>It is **not recommended** to statically ban any IP addresses unless you absolutely need to. Banning IPs often excludes the most vulnerable users who are forced to operate entirely behind Tor or other anonymity networks.
 | `--enable-dns-blocklist`      | Similar to `--ban-list` but instead of a static file uses dynamic IP blocklist available as DNS TXT entries. The DNS blocklist is centrally managed by Monero contributors.
 
 #### P2P network
@@ -110,41 +115,41 @@ This is for node-to-node communication. The following options do **not** affect 
 
 The node and peer words are used interchangeably.
 
-| Option                 | Description
-|------------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `--p2p-bind-ip`        | IPv4 network interface to bind to for p2p network protocol. Default value `0.0.0.0` binds to all network interfaces. This is typically what you want. <br><br>You must change this if you want to constrain binding, for example to force working through Tor via torsocks: <br>`DNS_PUBLIC=tcp://1.1.1.1 TORSOCKS_ALLOW_INBOUND=1 torsocks ./monerod --p2p-bind-ip 127.0.0.1  --no-igd  --hide-my-port`
-| `--p2p-bind-port`      | TCP port to listen for p2p network connections. Defaults to `18080` for mainnet, `28080` for testnet, and `38080` for stagenet. You normally wouldn't change that. This is helpful to run several nodes on your machine to simulate private Monero p2p network (likely using private Testnet). Example: <br/>`./monerod --p2p-bind-port=48080`
-| `--p2p-external-port`  | TCP port to listen for p2p network connections on your router. Relevant if you are behind a NAT and still want to accept incoming connections. You must then set this to relevant port on your router. This is to let `monerod` know what to advertise on the network. Default is `0`.
-| `--p2p-use-ipv6`       | Enable IPv6 for p2p (disabled by default).
-| `--p2p-bind-ipv6-address` | IPv6 network interface to bind to for p2p network protocol. Default value `::` binds to all network interfaces.
-| `--p2p-bind-port-ipv6` | TCP port to listen for p2p network connections. By default same as IPv4 port for given nettype.
-| `--p2p-ignore-ipv4`    | Ignore unsuccessful IPv4 bind for p2p. Useful if you only want to use IPv6.
-| `--no-igd`             | Disable UPnP port mapping on the router ("Internet Gateway Device"). Add this option to improve security if you are **not** behind a NAT (you can bind directly to public IP or you run through Tor).
-| `--igd`                | Set UPnP port mapping on the router ("Internet Gateway Device"). One of: `disabled` \| `enabled` \| `delayed` (=`delayed` by default). Relevant if you are behind NAT and want to accept incoming P2P network connections. The `delayed` value means it will wait for incoming connections in hope UPnP may not be necessary. After a while w/o incoming connections found it will attempt to map ports with UPnP. If you know you need UPnP change it to `enabled` to fast track the process.
-| `--hide-my-port`       | `monerod` will still open and listen on the p2p port. However, it will not announce itself as a peer list candidate. Technically, it will return port `0` in a response to p2p handshake (`node_data.my_port = 0` in `get_local_node_data` function). In effect nodes you connect to won't spread your IP to other nodes. To sum up, it is not really hiding, it is more like "do not advertise".
-| `--seed-node`          | Connect to a node to retrieve other nodes' addresses, and disconnect. If not specified, `monerod` will use hardcoded seed nodes on the first run, and peers cached on disk on subsequent runs.
-| `--add-peer`           | Manually add node to local peer list, `host:port`. Syntax supports IP addresses, domain names, onion and i2p hosts.
-| `--add-priority-node`  | Specify list of nodes to connect to and then attempt to keep the connection open. <br><br>To add multiple nodes use the option several times. Example: <br>`./monerod --add-priority-node=178.128.192.138:18080 --add-priority-node=144.76.202.167:18080`
-| `--add-exclusive-node` | Specify list of nodes to connect to only. If this option is given the options `--add-priority-node` and `--seed-node` are ignored. <br><br>To add multiple nodes use the option several times. Example: <br>`./monerod --add-exclusive-node=178.128.192.138:18080 --add-exclusive-node=144.76.202.167:18080`
-| `--out-peers`          | Set max number of outgoing connections to other nodes. By default 12. Value `-1` represents the code default.
-| `--in-peers`           | Set max number of incoming connections (nodes actively connecting to you). By default unlimited. Value `-1` represents the code default.
-| `--limit-rate-up`      | Set outgoing data transfer limit [kB/s]. By default 2048 kB/s. Value `-1` represents the code default.
-| `--limit-rate-down`    | Set incoming data transfer limit [kB/s]. By default 8192 kB/s. Value `-1` represents the code default.
-| `--limit-rate`         | Set the same limit value for incoming and outgoing data transfer. By default (`-1`) the individual up/down default limits will be used. It is better to use `--limit-rate-up` and `--limit-rate-down` instead to avoid confusion.
-| `--offline`            | Do not listen for peers, nor connect to any. Useful for working with a local, archival blockchain.
-| `--allow-local-ip`     | Allow adding local IP to peer list. Useful mostly for debug purposes when you may want to have multiple nodes on a single machine.
-| `--max-connections-per-ip` | Maximum number of connections allowed from the same IP address.
+| Option                       | Description
+|------------------------------|--------------------------------------------------------------------------------------------------------------------------------------
+| `--p2p-bind-ip <arg>`        | IPv4 network interface to bind to for p2p network protocol. Default value `0.0.0.0` binds to all network interfaces. This is typically what you want. <br><br>You must change this if you want to constrain binding, for example to force working through Tor: <br>`DNS_PUBLIC=tcp://9.9.9.9 ./monerod --p2p-bind-ip 127.0.0.1 --proxy 127.0.0.1:9050 --no-igd  --hide-my-port`<br><br>(=0.0.0.0)
+| `--p2p-bind-port <arg>`      | TCP port to listen for p2p network connections. Defaults to `18080` for mainnet, `28080` for testnet, and `38080` for stagenet. You normally wouldn't change that. This is helpful to run several nodes on your machine to simulate private Monero p2p network (likely using private Testnet). Example: <br/>`./monerod --p2p-bind-port=48080`
+| `--p2p-external-port <arg>`  | TCP port to listen for p2p network connections on your router. Relevant if you are behind a NAT and still want to accept incoming connections. You must then set this to relevant port on your router. This is to let `monerod` know what to advertise on the network. Default is same p2p-bind-port.
+| `--p2p-use-ipv6`             | Enable IPv6 for p2p (disabled by default).
+| `--p2p-bind-ipv6-address <arg>` | IPv6 network interface to bind to for p2p network protocol. Default value `::` binds to all network interfaces.<br><br>(=::)
+| `--p2p-bind-port-ipv6 <arg>` | TCP port to listen for p2p network connections. By default same as IPv4 port for given nettype.
+| `--p2p-ignore-ipv4`          | Ignore unsuccessful IPv4 bind for p2p. Useful if you only want to use IPv6.
+| `--no-igd`                   | Disable UPnP port mapping on the router ("Internet Gateway Device"). Add this option to improve security if you are **not** behind a NAT (you can bind directly to public IP or you run through Tor).
+| `--igd <arg>`                | Set UPnP port mapping on the router ("Internet Gateway Device"). One of: `disabled` \| `enabled` \| `delayed`. Relevant if you are behind NAT and want to accept incoming P2P network connections. The `delayed` value means it will wait for incoming connections in hope UPnP may not be necessary. After a while w/o incoming connections found it will attempt to map ports with UPnP. If you know you need UPnP change it to `enabled` to fast track the process.<br><br>(=delayed)
+| `--hide-my-port`             | `monerod` will still open and listen on the p2p port. However, it will not announce itself as a peer list candidate. Technically, it will return port `0` in a response to p2p handshake (`node_data.my_port = 0` in `get_local_node_data` function). In effect nodes you connect to won't spread your IP to other nodes. To sum up, it is not really hiding, it is more like "do not advertise".
+| `--seed-node <arg>`          | Connect to a node to retrieve other nodes' addresses, and disconnect. If not specified, `monerod` will use hardcoded seed nodes on the first run, and peers cached on disk on subsequent runs.
+| `--add-peer <arg>`           | Manually add node to local peer list, `host:port`. Syntax supports IP addresses, domain names, onion and i2p hosts.
+| `--add-priority-node <arg>`  | Specify list of nodes to connect to and then attempt to keep the connection open. <br><br>To add multiple nodes use the option several times. Example: <br>`./monerod --add-priority-node=178.128.192.138:18080 --add-priority-node=144.76.202.167:18080`
+| `--add-exclusive-node <arg>` | Specify list of nodes to connect to only. If this option is given the options `--add-priority-node` and `--seed-node` are ignored. <br><br>To add multiple nodes use the option several times. Example: <br>`./monerod --add-exclusive-node=178.128.192.138:18080 --add-exclusive-node=144.76.202.167:18080`
+| `--out-peers <arg>`          | Set max number of outgoing connections to other nodes. By default 12. Value `-1` represents the code default.<br><br>(=12)
+| `--in-peers <arg>`           | Set max number of incoming connections (nodes actively connecting to you). By default unlimited. Value `-1` represents the code default.<br><br>(=-1)
+| `--limit-rate-up <arg>`      | Set upload data transfer limit [kB/s]. Value `-1` represents the code default.<br><br>(=8192)
+| `--limit-rate-down <arg>`    | Set download data transfer limit [kB/s]. Value `-1` represents the code default.<br><br>(=32768)
+| `--limit-rate <arg>`         | Set the same limit value for incoming and outgoing data transfer. By default (`-1`) the individual up/down default limits will be used.
+| `--offline`                  | Do not listen for peers, nor connect to any. Useful for working with a local, archival blockchain.
+| `--allow-local-ip`           | Allow adding local IP to peer list. Useful mostly for debug purposes when you may want to have multiple nodes on a single machine.
+| `--max-connections-per-ip <arg>` | Maximum number of connections allowed from the same IP address.<br><br>(=1)
 
 #### Tor/I2P and proxies
 
 This is experimental. It may be best to start with this [guide](https://github.com/monero-project/monero/blob/master/docs/ANONYMITY_NETWORKS.md#p2p-commands).
 
-| Option                 | Description
-|------------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `--tx-proxy`           | Send out your local transactions through SOCKS5 proxy (Tor or I2P). Format:<br>`<network-type>,<socks-ip:port>[,max_connections][,disable_noise]` <br><br>Example:<br>`./monerod --tx-proxy=tor,127.0.0.1:9050,16`<br><br>This was introduced to make publishing transactions over Tor easier (no need for torsocks) while allowing clearnet for blocks at the same time (while torsocks affected everything).<br><br>Adding `,disable_noise`: If the user disables "noise" (i.e. `--tx-proxy=tor,127.0.0.1:9050,disable_noise`), then the tx is "fluffed" to outbound Onion and I2P peers, and the receiving hidden service will immediately fluff the transaction to ipv4/6 peers. This will speed up tx broadcast. [more info](https://github.com/monero-project/monero/pull/6354#pullrequestreview-399554356)<br><br>Note that forwarded transactions (those not originating from the connected wallet(s)) will still be relayed over clearnet.<br>See this [guide](https://github.com/monero-project/monero/blob/master/docs/ANONYMITY_NETWORKS.md#p2p-commands) and [commit](https://github.com/monero-project/monero/pull/6021).
-| `--anonymous-inbound`  | Allow anonymous incoming connections to your Onion or I2P hidden service's P2P interface. Format: <br>`<hidden-service-address>,<[bind-ip:]port>[,max_connections]`<br><br>Example:<br>`./monerod --anonymous-inbound yourlongv3onionaddress.onion:18084,127.0.0.1:18084,100`.<br><br>Note: You'll also need to setup a hidden service in the respective Tor or I2P config. See the setup guide [here](../running-node/monerod-tori2p.md).
-| `--pad-transactions`   | Pad relayed transactions to next 1024 bytes to help defend against traffic volume analysis. This only makes sense if you are behind Tor or I2P. See [commit](https://github.com/monero-project/monero/pull/4787).
-| `--proxy`              | Network communication through proxy. Works with any service that supports SOCKS4, including Tor, i2p (outproxy), and commercial VPN/proxy services. SOCKS5 support is anticipated in the future. Enabling this setting sends all traffic through this proxy. Can be used in conjunction with `--tx-proxy`, in which case transaction broadcasts originating from the connected wallet(s) will be sent through Tor or i2p as specified in `--tx-proxy`, and all other traffic will be sent through the SOCKS proxy configured with `--proxy`. Format:<br>`<socks-ip:port>`
+| Option                       | Description
+|------------------------------|--------------------------------------------------------------------------------------------------------------------------------------
+| `--tx-proxy <arg>`           | Send out your local transactions through SOCKS5 proxy (Tor or I2P). Format:<br>`<network-type>,<socks-ip:port>[,max_connections][,disable_noise]` <br><br>Example:<br>`./monerod --tx-proxy=tor,127.0.0.1:9050,16`<br><br>This was introduced to make publishing transactions over Tor easier (no need for torsocks) while allowing clearnet for blocks at the same time (while torsocks affected everything).<br><br>Adding `,disable_noise`: If the user disables "noise" (i.e. `--tx-proxy=tor,127.0.0.1:9050,disable_noise`), then the tx is "fluffed" to outbound Onion and I2P peers, and the receiving hidden service will immediately fluff the transaction to ipv4/6 peers. This will speed up tx broadcast. [more info](https://github.com/monero-project/monero/pull/6354#pullrequestreview-399554356)<br><br>Note that forwarded transactions (those not originating from the connected wallet(s)) will still be relayed over clearnet.<br>See this [guide](https://github.com/monero-project/monero/blob/master/docs/ANONYMITY_NETWORKS.md#p2p-commands) and [commit](https://github.com/monero-project/monero/pull/6021).
+| `--anonymous-inbound <arg>`  | Allow anonymous incoming connections to your Onion or I2P hidden service's P2P interface. Format: <br>`<hidden-service-address>,<[bind-ip:]port>[,max_connections]`<br><br>Example:<br>`./monerod --anonymous-inbound yourlongv3onionaddress.onion:18084,127.0.0.1:18084,100`.<br><br>Note: You'll also need to setup a hidden service in the respective Tor or I2P config. See the setup guide [here](../running-node/monerod-tori2p.md).
+| `--pad-transactions`         | Pad relayed transactions to next 1024 bytes to help defend against traffic volume analysis. This only makes sense if you are behind Tor or I2P. See [commit](https://github.com/monero-project/monero/pull/4787).
+| `--proxy <arg>`              | Network communication through proxy. Works with any service that supports SOCKS4, including Tor, i2p (outproxy), and commercial VPN/proxy services. SOCKS5 support is anticipated in the future. Enabling this setting sends all traffic through this proxy. Can be used in conjunction with `--tx-proxy`, in which case transaction broadcasts originating from the connected wallet(s) will be sent through Tor or i2p as specified in `--tx-proxy`, and all other traffic will be sent through the SOCKS proxy configured with `--proxy`. Format:<br>`<socks-ip:port>`
 
 #### Node RPC API
 
@@ -159,41 +164,41 @@ This API is typically referred to as "RPC" because it is mostly based on JSON/RP
 The following options define how the API behaves.
 
 
-| Option                          | Description
-|---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `--public-node`                 | Advertise to other users they can use this node as a remote one for connecting their wallets. Requires `--restricted-rpc`, `--rpc-bind-ip` and `--confirm-external-bind`. Without `--public-node` the node can still be public (assuming other relevant options are set) but won't be advertised as such on the P2P network. This option will allow wallets to auto-discover public nodes (instead of requiring user to manually find one).
-| `--rpc-bind-ip`                 | IP to listen on. By default `127.0.0.1` because API gives full administrative capabilities over the node. Set it to `0.0.0.0` to listen on all interfaces - but only in connection with one of `*-restricted-*` options **and**  `--confirm-external-bind`.
-| `--rpc-bind-port`               | TCP port to listen on. By default `18081` (mainnet), `28081` (testnet), `38081` (stagenet).
-| `--rpc-bind-ipv6-address`       | IPv6 to listen on. By default `::1` (localhost). All remarks for `--rpc-bind-ip` are applicable here as well.
-| `--rpc-use-ipv6`                | Enable IPv6 for RPC server (disabled by default).
-| `--rpc-ignore-ipv4`             | Ignore unsuccessful IPv4 bind for RPC. Useful if you only want to use IPv6.
-| `--rpc-restricted-bind-ip`      | IP to listen on with the limited version of API. The limited API can be made public to create an Open Node. By default `127.0.0.1`, set it to `0.0.0.0` to listen on all interfaces.
-| `--rpc-restricted-bind-port`    | TCP port to listen on with the limited version of API. To be used in combination with `--rpc-restricted-bind-ip`.
-| `--rpc-restricted-bind-ipv6-address` | IPv6 to listen on with the limited version of API. The limited API can be made public to create an Open Node. By default `::1` (localhost). Set it to `::` to listen on all interfaces.
-| `--confirm-external-bind`       | Confirm you consciously set `--rpc-bind-ip` to non-localhost IP and you understand the consequences.
-| `--restricted-rpc`              | Restrict API to view only commands and do not return privacy sensitive data. Note this does not make sense with `--rpc-restricted-bind-port` because you would end up with two restricted APIs.
-| `--rpc-max-connections <arg>`   | Maximum number of RPC connections.<br><br>(=100)
+| Option                                | Description
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------
+| `--public-node`                       | Advertise to other users they can use this node as a remote one for connecting their wallets. Requires `--restricted-rpc`, `--rpc-bind-ip` and `--confirm-external-bind`. Without `--public-node` the node can still be public (assuming other relevant options are set) but won't be advertised as such on the P2P network. This option will allow wallets to auto-discover public nodes (instead of requiring user to manually find one).
+| `--rpc-bind-ip <arg>`                 | IP to listen on. By default `127.0.0.1` because API gives full administrative capabilities over the node. Set it to `0.0.0.0` to listen on all interfaces - but only in connection with one of `restricted-rpc` options **and** `--confirm-external-bind`.<br><br>(=127.0.0.1)
+| `--rpc-bind-port <arg>`               | TCP port to listen on. Unrestricted. By default `18081` (mainnet), `28081` (testnet), `38081` (stagenet).
+| `--rpc-bind-ipv6-address <arg>`       | IPv6 to listen on. By default `::1` (localhost). All remarks for `--rpc-bind-ip` are applicable here as well.<br><br>(=::1)
+| `--rpc-use-ipv6`                      | Enable IPv6 for RPC server (disabled by default).
+| `--rpc-ignore-ipv4`                   | Ignore unsuccessful IPv4 bind for RPC. Useful if you only want to use IPv6.
+| `--rpc-restricted-bind-ip <arg>`      | IP to listen on with the limited version of API. The limited API can be made public to create an Open Node. By default `127.0.0.1`, set it to `0.0.0.0` to listen on all interfaces.
+| `--rpc-restricted-bind-port <arg>`    | TCP port to listen on with the limited version of API. To be used in combination with `--rpc-restricted-bind-ip`.
+| `--rpc-restricted-bind-ipv6-address <arg>`   | IPv6 to listen on with the limited version of API. The limited API can be made public to create an Open Node. By default `::1` (localhost). Set it to `::` to listen on all interfaces.
+| `--confirm-external-bind`             | Confirm you consciously set `--rpc-bind-ip` to non-localhost IP and you understand the consequences.
+| `--restricted-rpc`                    | Restrict the rpc-bind-port API to view only commands and do not return privacy sensitive data. Note this does not make sense with `--rpc-restricted-bind-port` because you would end up with two restricted APIs.
+| `--rpc-max-connections <arg>`         | Maximum number of RPC connections.<br><br>(=100)
 | `--rpc-max-connections-per-public-ip <arg>`  | Maximum number of RPC connections from the same public IP address.<br><br>(=3)
 | `--rpc-max-connections-per-private-ip <arg>` | Maximum number of RPC connections from the same private IP address.<br><br>(=25)
-| `--rpc-response-soft-limit <arg>` | Maximum response bytes that can be queued, enforced at next response attempt.<br><br>(=26214400)
-| `--rpc-ssl`                     | Enable TLS on RPC connections. One of: `enabled` \| `disabled` \| `autodetect` (`=autodetect` by default). You **should** enable this if you connect a remote wallet.
-| `--rpc-ssl-private-key`         | Path to server's private key in PEM format. Generate it with `monero-gen-ssl-cert` tool. This is to facilitate server authentication to client.
-| `--rpc-ssl-certificate`         | Path to server's certificate in PEM format. Generate it with `monero-gen-ssl-cert` tool. This is to facilitate server authentication to client.
-| `--rpc-ssl-allowed-fingerprints`  | List of certificate fingerprints to accept. This is a way to authenticate clients.
-| `--rpc-ssl-allow-any-cert`      | Allow any certificate of connecting client.
-| `--rpc-ssl-ca-certificates`     | Path to file containing concatenated PEM format certificate(s) to replace system CA(s).
-| `--rpc-ssl-allow-chained`       | Allow user chained certificates. This is only applicable if user has a "real" CA issued certificate.
-| `--rpc-login`                   | Specify `username[:password]` required to connect to API.
-| `--rpc-access-control-origins`  | Specify a comma separated list of origins to allow cross origin resource sharing. This is useful if you want to use `monerod` API directly from a web browser via JavaScript (say in a pure-fronted web appp scenario). With this option `monerod` will put proper HTTP CORS headers to its responses. You will also need to set `--rpc-login` if you use this option. Normally though, the API is used by backend app and this option isn't necessary.
-| `--disable-rpc-ban`             | Do not ban hosts on RPC errors. May help to prevent monerod from banning traffic originating from the Tor daemon.
-| `--rpc-payment-address`         | Restrict RPC to clients sending micropayment to this address.
-| `--rpc-payment-difficulty`      | Restrict RPC to clients sending micropayment at this difficulty in thousands.
-| `--rpc-payment-credits`         | Restrict RPC to clients sending micropayment, yields that many credits per payment in hundreds.
-| `--rpc-payment-allow-free-loopback` | Allow free access from the loopback address (ie, the local host).
-| `--zmq-rpc-bind-ip`             | IP for ZMQ RPC server to listen on. By default `127.0.0.1`. This is not yet widely used as ZMQ interface currently does not provide meaningful advantage over classic JSON-RPC interface.
-| `--zmq-rpc-bind-port`           | Port for ZMQ RPC server to listen on. By default `18082` for mainnet, `38082` for stagenet, and `28082` for testnet.
-| `--zmq-pub`                     | Address for ZMQ pub - `tcp://ip:port` or `ipc://path`
-| `--no-zmq`                      | Disable ZMQ RPC server. You **should** use this option to limit attack surface and number of unnecessarily open ports (the ZMQ server is unfinished thing and you are unlikely to ever use it).
+| `--rpc-response-soft-limit <arg>`     | Maximum response bytes that can be queued, enforced at next response attempt.<br><br>(=26214400)
+| `--rpc-ssl <arg>`                     | Enable TLS on RPC connections. One of: `enabled` \| `disabled` \| `autodetect`. You **should** enable this if you connect a remote wallet.<br><br>(=autodetect)
+| `--rpc-ssl-private-key <arg>`         | Path to server's private key in PEM format. Generate it with `monero-gen-ssl-cert` tool. This is to facilitate server authentication to client.
+| `--rpc-ssl-certificate <arg>`         | Path to server's certificate in PEM format. Generate it with `monero-gen-ssl-cert` tool. This is to facilitate server authentication to client.
+| `--rpc-ssl-allowed-fingerprints <arg>`| List of certificate fingerprints to accept. This is a way to authenticate clients.
+| `--rpc-ssl-allow-any-cert`            | Allow any certificate of connecting client.
+| `--rpc-ssl-ca-certificates <arg>`     | Path to file containing concatenated PEM format certificate(s) to replace system CA(s).
+| `--rpc-ssl-allow-chained`             | Allow user chained certificates. This is only applicable if user has a "real" CA issued certificate.
+| `--rpc-login <arg>`                   | Specify `username[:password]` required to connect to API.
+| `--rpc-access-control-origins <arg>`  | Specify a comma separated list of origins to allow cross origin resource sharing. This is useful if you want to use `monerod` API directly from a web browser via JavaScript (say in a pure-fronted web appp scenario). With this option `monerod` will put proper HTTP CORS headers to its responses. You will also need to set `--rpc-login` if you use this option. Normally though, the API is used by backend app and this option isn't necessary.
+| `--disable-rpc-ban`                   | Do not ban hosts on RPC errors. May help to prevent monerod from banning traffic originating from the Tor daemon.
+| `--rpc-payment-address <arg>`         | Restrict RPC to clients sending micropayment to this address.
+| `--rpc-payment-difficulty <arg>`      | Restrict RPC to clients sending micropayment at this difficulty in thousands.
+| `--rpc-payment-credits <arg>`         | Restrict RPC to clients sending micropayment, yields that many credits per payment in hundreds.
+| `--rpc-payment-allow-free-loopback`   | Allow free access from the loopback address (ie, the local host).
+| `--zmq-rpc-bind-ip <arg>`             | IP for ZMQ RPC server to listen on. This is not yet widely used as ZMQ interface currently does not provide meaningful advantage over classic JSON-RPC interface.<br><br>(=127.0.0.1)
+| `--zmq-rpc-bind-port <arg>`           | Port for ZMQ RPC server to listen on. <br<br> By default `18082` for mainnet, `38082` for stagenet, and `28082` for testnet.
+| `--zmq-pub <arg>`                     | Address for ZMQ pub - `tcp://ip:port` or `ipc://path`
+| `--no-zmq`                            | Disable ZMQ RPC server. You **should** use this option to limit attack surface and number of unnecessarily open ports (the ZMQ server is unfinished thing and you are unlikely to ever use it).
 
 
 #### Accepting Monero
@@ -214,13 +219,13 @@ These are advanced options that allow you to optimize performance of your `moner
 |---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------
 | `--prune-blockchain`            | Pruning saves 2/3 of disk space w/o degrading functionality. For maximum effect this should be used already **on the first sync**. If you add this option later the past data will only be pruned logically w/o shrinking the file size and the gain will be delayed. <br><br>If you already have unpruned blockchain, see the `monero-blockchain-prune` tool. <br><br>The drawback is that you will contribute less to Monero P2P network in terms of helping new nodes to sync up (up to 1/8 of normal contribution). You will still be useful regarding relaying new transactions and blocks though.
 | `--sync-pruned-blocks`          | Accept pruned blocks instead of pruning yourself. It should save network transfer when used with `--prune-blockchain`. See the [commit](https://github.com/monero-project/monero/commit/8330e772f1ed680a54833d25c4d17d09a99ab8d6) and [comments](https://web.getmonero.org/2019/09/08/logs-for-the-dev-meeting-held-on-2019-09-08.html).
-| `--db-sync-mode`                | Specify sync option, using format:<br>`[safe|fast|fastest]:[sync|async]:[<nblocks_per_sync>[blocks]|<nbytes_per_sync>[bytes]]`<br><br>The default is `fast:async:250000000bytes`.<br><br>The `fast:async:*` can corrupt blockchain database in case of a system crash. It should not corrupt if just `monerod` crashes. If you are concerned with system crashes use `safe:sync`.
-| `--max-concurrency`             | Max number of threads to use for parallel jobs. The default value `0` uses the number of CPU threads.
-| `--prep-blocks-threads`         | Max number of threads to use when computing block hashes (PoW) in groups. Defaults to 4. Decrease this if you don't want `monerod` hog your computer when syncing.
-| `--fast-block-sync`             | Sync up most of the way by using embedded, "known" block hashes. Pass `1` to turn on and `0` to turn off. This is on (`1`) by default. Normally, for every block the full node must calculate the block hash to verify miner's proof of work. Because the RandomX PoW used in Monero is very expensive (even for verification), `monerod` offers skipping these calculations for old blocks. In other words, it's a mechanism to trust `monerod` binary regarding old blocks' PoW validity, to sync up faster.
-| `--block-sync-size`             | How many blocks are processed in a single batch during chain synchronization. By default this is 20 blocks for newer history and 100 blocks for older history ("pre v4"). Default behavior is represented by value `0`. Intuitively, the more resources you have, the bigger batch size you may want to try out. Example:<br>`./monerod --block-sync-size=50`
-| `--bootstrap-daemon-address`    | The host:port of a "bootstrap" remote open node that the connected wallets can use while this node is still not fully synced. Example:<br/>`./monerod --bootstrap-daemon-address=opennode.xmr-tw.org:18089`. The node will forward selected RPC calls to the bootstrap node. The wallet will handle this automatically and transparently. Obviously, such bootstraping phase has privacy implications similar to directly using a remote node.
-| `--bootstrap-daemon-login`      | Specify username:password for the bootstrap daemon login (if required). This considers the RPC interface used by the wallet. Normally, open nodes do not require any credentials.
+| `--db-sync-mode <arg>`          | Specify sync option, using format:<br>`[safe|fast|fastest]:[sync|async]:[<nblocks_per_sync>[blocks]|<nbytes_per_sync>[bytes]]`<br><br>In the event of a system crash or power failure, the (default) `fast:async:*` mode can result in a corrupted blockchain. It should not corrupt if just `monerod` crashes. If you are concerned with system crashes, use `safe:sync`.<br><br>(=fast:async:250000000bytes)
+| `--max-concurrency <arg>`       | Max number of threads to use for parallel jobs. The default value `0` uses the number of CPU threads.<br><br>(=0)
+| `--prep-blocks-threads <arg>`   | Max number of threads to use when computing block hashes (PoW) in groups. Defaults to 4. Decrease this if you don't want `monerod` hog your computer when syncing.<br><br>(=4)
+| `--fast-block-sync <arg>`       | Sync up most of the way by using embedded, "known" block hashes. Pass `1` to turn on and `0` to turn off. This is on (`1`) by default. Normally, for every block the full node must calculate the block hash to verify miner's proof of work. Because the RandomX PoW used in Monero is very expensive (even for verification), `monerod` offers skipping these calculations for old blocks. In other words, it's a mechanism to trust `monerod` binary regarding old blocks' PoW validity, to sync up faster.<br><br>(=1)
+| `--block-sync-size <arg>`       | How many blocks are processed in a single batch during chain synchronization. By default this is 20 blocks for newer history and 100 blocks for older history ("pre v4"). Default behavior is represented by value `0`. Example:<br>`./monerod --block-sync-size=50`
+| `--bootstrap-daemon-address <arg>` | The host:port of a "bootstrap" remote open node that the connected wallets can use while this node is still not fully synced. Example:<br/>`./monerod --bootstrap-daemon-address=opennode.xmr-tw.org:18089`. The node will forward selected RPC calls to the bootstrap node. The wallet will handle this automatically and transparently. Obviously, such bootstrapping phase has privacy implications similar to directly using a remote node.
+| `--bootstrap-daemon-login <arg>`   | Specify username:password for the bootstrap daemon login (if required). This considers the RPC interface used by the wallet. Normally, open nodes do not require any credentials.
 | `--no-sync`                     | Do not sync up. Continue using bootstrap daemon instead (if set). See [commit](https://github.com/monero-project/monero/pull/5195).
 
 #### Mining
@@ -235,14 +240,14 @@ Be advised though that real mining happens **in pools** like p2pool, and with de
 
 | Option                             | Description
 |------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `--start-mining`                   | Specify wallet address to mining for. **This must be a [standard address](../public-address/standard-address.md)!** It can be neither a subaddres nor integrated address.
-| `--mining-threads`                 | Specify mining threads count. By default ony one thread will be used. For best results, set it to number of your physical cores.
-| `--extra-messages-file`            | Specify file for extra messages to include into coinbase transactions.
+| `--start-mining <arg>`             | Specify wallet address to mining for. **This must be a [primary address](../public-address/standard-address.md)!** It can be neither a subaddress nor integrated address.
+| `--mining-threads <arg>`           | Specify mining threads count. By default ony one thread will be used. For best results, set it to number of your physical cores.
+| `--extra-messages-file <arg>`      | Specify file for extra messages to include into coinbase transactions.
 | `--bg-mining-enable`               | Enable unobtrusive mining. In this mode mining will use a small percentage of your system resources to never noticeably slow down your computer. This is intended to encourage people to mine to improve decentralization. That being said chances of finding a block are diminishingly small with solo CPU mining, and even lesser with its unobtrusive version. You can tweak the unobtrusivness / power trade-offs with the further `--bg-*` options below.
 | `--bg-mining-ignore-battery`       | If true, assumes plugged in when unable to query system power status.
-| `--bg-mining-min-idle-interval`    | Specify min lookback interval in seconds for determining idle state.
-| `--bg-mining-idle-threshold`       | Specify minimum avg idle percentage over lookback interval.
-| `--bg-mining-miner-target`         | Specify maximum percentage cpu use by miner(s).
+| `--bg-mining-min-idle-interval <arg>` | Specify min lookback interval in seconds for determining idle state.
+| `--bg-mining-idle-threshold <arg>` | Specify minimum avg idle percentage over lookback interval.
+| `--bg-mining-miner-target <arg>`   | Specify maximum percentage cpu use by miner(s).
 
 #### Testing Monero itself
 
@@ -252,11 +257,11 @@ These options are useful for Monero project developers and testers. Normal users
 |------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------
 | `--keep-alt-blocks`                | Keep alternative blocks on restart. May help with researching reorgs etc. [Commit](https://github.com/monero-project/monero/pull/5524). Research project by [noncesense research lab](https://noncesense-research-lab.github.io/).
 | `--test-drop-download`             | For net tests: in download, discard ALL blocks instead checking/saving them (very fast).
-| `--test-drop-download-height`      | Like test-drop-download but discards only after around certain height. By default `0`.
+| `--test-drop-download-height <arg>`| Like test-drop-download but discards only after around certain height. By default `0`.
 | `--regtest`                        | Run in a regression testing mode.
 | `--keep-fakechain`                 | Don't delete any existing database when in fakechain mode.
-| `--fixed-difficulty`               | Fixed difficulty used for testing. By default `0`.
-| `--test-dbg-lock-sleep`            | Sleep time in ms, defaults to 0 (off), used to debug before/after locking mutex. Values 100 to 1000 are good for tests.
+| `--fixed-difficulty <arg>`         | Fixed difficulty used for testing. By default `0`.
+| `--test-dbg-lock-sleep <arg>`      | Sleep time in ms, defaults to 0 (off), used to debug before/after locking mutex. Values 100 to 1000 are good for tests.
 | `--save-graph`                     | Save data for dr Monero.
 
 #### Legacy
@@ -293,7 +298,7 @@ You can also type commands directly in the console of the running `monerod` (if 
 
 | Option                             | Description
 |------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `print_pl`                         | Show the full peer list.
+| `print_pl [white | gray | pruned | publicrpc] [<limit>]` | Show the full peer list.
 | `print_pl_stats`                   | Show the full peer list statistics (white vs gray peers). White peers are online and reachable. Grey peers are offline but your `monerod` remembers them from past sessions.
 | `print_cn`                         | Show connected peers with connection initiative (incoming/outgoing) and other stats.
 | `ban <IP> [<seconds>]`             | Ban a given `<IP>` for a given amount of `<seconds>`. By default the ban is for 24h. Example:<br>`./monerod ban 187.63.135.161`.

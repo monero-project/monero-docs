@@ -25,7 +25,7 @@ article .md-typeset__table {
     --md-primary-bg-color--light: hsla(var(--md-hue),0%,0%,0.54);
     /* ------------------------- */
 
-    --md-typeset-a-color: #ff6600;  /* links */
+    --md-typeset-a-color: #eb5e00;  /* links */
 
     --md-accent-fg-color: #ff6600;  /* accent/buttons color */
     --md-accent-bg-color: #ffffff;  /* accent/buttons text */
@@ -50,7 +50,7 @@ article .md-typeset__table {
     --md-primary-bg-color--light: hsla(var(--md-hue),15%,100%,0.7);
     /* ------------------------- */
 
-    --md-typeset-a-color: #ff6600;  /* links */
+    --md-typeset-a-color: var(--md-primary-bg-color);  /* links */
 
     --md-accent-fg-color: #ff6600;  /* accent/buttons color */
     --md-accent-bg-color: #ffffff;  /* accent/buttons text */
@@ -84,7 +84,3 @@ article .md-typeset__table {
     border-color:var(--md-accent-fg-color);
 }
 
-/* links */
-.md-typeset a {
-    color: var(--md-primary-bg-color);
-}
