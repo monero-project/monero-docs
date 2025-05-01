@@ -1,15 +1,15 @@
 name: PR Comment Workflow
 on:
   pull_request:
-    types: [opened]
 jobs:
   comment-on-pr:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
     - name: Comment coolify preview URL.
       uses: actions/github-script@v6
       with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
           github.rest.issues.createComment({
             issue_number: context.issue.number,
