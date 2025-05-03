@@ -14,7 +14,10 @@
 
     # Centralized services
     check-updates=disabled         # Do not check DNS TXT records for a new version
-    enable-dns-blocklist=1           # Block known malicious nodes
+    enable-dns-blocklist=1         # Block known malicious nodes
+
+    # Banlist
+    #ban-list=/path/to/ban.txt      # Local list of peers to ban
 
     # Log file
     {{ logfile }}
@@ -29,10 +32,10 @@
     # RPC open node
     {{ publicnode }}
     rpc-restricted-bind-ip=0.0.0.0 # Bind to all interfaces (the Open Node)
-    rpc-restricted-bind-port=18089 # Bind to a new RESTICTED port (the Open Node)
+    rpc-restricted-bind-port=18089 # Bind to a new RESTRICTED port (the Open Node)
 
     # RPC TLS
-    rpc-ssl=autodetect             # Use TLS if client wallet supports it (Default); A new certificate will be regenerated every restart
+    rpc-ssl=autodetect             # Use TLS if client wallet supports it; [enabled|disabled|(default)autodetect]
 
     # ZMQ
     #zmq-rpc-bind-ip=127.0.0.1      # Default 127.0.0.1
@@ -47,19 +50,19 @@
     #db-sync-mode=safe:sync	       # Slow but reliable db writes
 
     # Network limits
-    out-peers=24              # This will enable much faster sync and tx awareness; the default 8 is suboptimal nowadays
+    out-peers=12              # Default 12
     in-peers=48               # The default is unlimited; we prefer to put a cap on this
 
     limit-rate-up=1048576     # 1048576 kB/s == 1GB/s; a raise from default 2048 kB/s; contribute more to p2p network
     limit-rate-down=1048576   # 1048576 kB/s == 1GB/s; a raise from default 8192 kB/s; allow for faster initial sync
 
     # Tor/I2P: broadcast transactions originating from connected wallets over Tor/I2P (does not concern relayed transactions)
-    #tx-proxy=i2p,127.0.0.1:4447,16,disable_noise  # I2P
-    #tx-proxy=tor,127.0.0.1:9050,16,disable_noise  # Tor
+    #tx-proxy=i2p,127.0.0.1:4447,12,disable_noise  # I2P
+    #tx-proxy=tor,127.0.0.1:9050,12,disable_noise  # Tor
 
     # Tor/I2P: tell monerod your onion address so it can be advertised on P2P network
-    #anonymous-inbound=PASTE_YOUR_I2P_HOSTNAME,127.0.0.1:18085,64         # I2P
-    #anonymous-inbound=PASTE_YOUR_ONION_HOSTNAME:18084,127.0.0.1:18084,64 # Tor
+    #anonymous-inbound=PASTE_YOUR_I2P_HOSTNAME,127.0.0.1:18085,24         # I2P
+    #anonymous-inbound=PASTE_YOUR_ONION_HOSTNAME:18084,127.0.0.1:18084,24 # Tor
 
     # Tor: be forgiving to connecting wallets
     disable-rpc-ban=1
