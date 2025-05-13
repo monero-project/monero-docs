@@ -88,6 +88,7 @@ Some resources to get started:
 
 ??? abstract "Stagenet Faucets [Clearnet]"
     - [XMR-TW.org](https://stagenet-faucet.xmr-tw.org/)
+    - [CypherFaucet.com](https://cypherfaucet.com/xmr-stagenet)
 
 ??? abstract "Stagenet TCP ports"
 
@@ -124,7 +125,7 @@ Some resources to get started:
     - [XMRChain.net](https://testnet.xmrchain.net/)
 
 ??? abstract "Testnet Faucets [Clearnet]"
-    - None. Please contact us on [Matrix](https://matrix.to/#/%23monero-docs:monero.social) or [IRC](irc://irc.libera.chat/#monero-docs) if you know of a replacement.
+    - [CypherFaucet.com](https://cypherfaucet.com/xmr-testnet)
 
 ??? abstract "Testnet TCP ports"
 
