@@ -15,7 +15,7 @@ Monero project nicely decouples network node logic from wallet logic.
 Wallet logic is offered through three independent user interfaces - the GUI, the CLI, and the HTTP API.
 
 ```
-# cd monero-gui-v0.17.1.9
+# cd monero-gui-{{ cli_vers }}
 
 # ---- guide to Monero GUI ----
 
