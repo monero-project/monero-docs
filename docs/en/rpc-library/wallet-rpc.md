@@ -3297,6 +3297,10 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 Send monero to a number of recipients.
 
+!!! note "Note"
+
+    When using the `transfer` RPC method with OpenAlias addresses, the wallet performs DNS resolution to retrieve the associated recipient information. If the specified domain is slow to respond or unreachable, the process may block the wallet for several seconds. To mitigate this, it is recommended that applications validate OpenAlias addresses in advance and implement appropriate rate limiting before invoking the `transfer` method.
+
 Alias:  _None_.
 
 Inputs:
