@@ -196,7 +196,7 @@ The following options define how the API behaves.
 | `--rpc-payment-credits <arg>`         | Restrict RPC to clients sending micropayment, yields that many credits per payment in hundreds.
 | `--rpc-payment-allow-free-loopback`   | Allow free access from the loopback address (ie, the local host).
 | `--zmq-rpc-bind-ip <arg>`             | IP for ZMQ RPC server to listen on. This is not yet widely used as ZMQ interface currently does not provide meaningful advantage over classic JSON-RPC interface.<br><br>(=127.0.0.1)
-| `--zmq-rpc-bind-port <arg>`           | Port for ZMQ RPC server to listen on. <br<br> By default `18082` for mainnet, `38082` for stagenet, and `28082` for testnet.
+| `--zmq-rpc-bind-port <arg>`           | Port for ZMQ RPC server to listen on. <br><br> By default `18082` for mainnet, `38082` for stagenet, and `28082` for testnet.
 | `--zmq-pub <arg>`                     | Address for ZMQ pub - `tcp://ip:port` or `ipc://path`
 | `--no-zmq`                            | Disable ZMQ RPC server. You **should** use this option to limit attack surface and number of unnecessarily open ports (the ZMQ server is unfinished thing and you are unlikely to ever use it).
 
