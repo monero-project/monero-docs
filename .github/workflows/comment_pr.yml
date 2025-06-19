@@ -1,6 +1,7 @@
 name: PR Comment Workflow
 on:
-  pull_request:
+  workflow_dispatch:
+  pull_request_target:
     types: [opened]
 jobs:
   comment-on-pr:
@@ -15,5 +16,5 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: `https://${context.issue.number}.md.monerodevs.org/`
+            body: `|What|Link|\n|:---:|---|\n|🕵️‍♂️ Review|[Files changed](https://github.com/${context.repo.owner}/${context.repo.repo}/pull/${context.issue.number}/files)|\n|🌐 Deploy|[Preview #${context.issue.number}](https://${context.issue.number}.md.monerodevs.org)|`
           })
