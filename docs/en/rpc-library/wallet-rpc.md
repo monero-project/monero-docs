@@ -111,6 +111,7 @@ Note: "[atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-uni
 - [**set_account_tag_description**](#set_account_tag_description)
 - [**set_attribute**](#set_attribute)
 - [**set_daemon**](#set_daemon)
+- [**set_subaddress_lookahead**](#set_subaddress_lookahead)
 - [**set_tx_notes**](#set_tx_notes)
 - [**sign**](#sign)
 - [**sign_multisig**](#sign_multisig)
@@ -2736,6 +2737,33 @@ Example:
 
 ```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_daemon","params": {"address":"http://localhost:18081","trusted":true,"ssl_support":"enabled","ssl_private_key_path":"path/to/ssl/key","ssl_certificate_path":"path/to/ssl/certificate","ssl_ca_file":"path/to/ssl/ca/file","ssl_allowed_fingerprints":["85:A7:68:29:BE:73:49:80:84:91:7A:BB:1F:F1:AD:7E:43:FE:CC:B8"],"ssl_allow_any_cert":true}},' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+  }
+}
+
+```
+
+### **set_subaddress_lookahead**
+
+Modify the wallet's lookahead, also known as a "gap". The number of subaccount and subaddress indexes, -1, to monitor beyond the last confirmed payment.
+
+Alias:  _None_.
+
+Inputs:
+
+-   _major_idx_  - unsigned int; Subaccount lookahead.
+-   _minor_idx_  - unsigned int; Subaddress lookahead.
+-   _password_  - string; (Optional) Wallet password.
+
+Outputs:  _None_.
+
+Example:
+
+```json
+$ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_subaddress_lookahead","params":{"major_idx":1,"minor_idx":10000,"password":"mytestpassword"}}' -H 'Content-Type: application/json'
 {
   "id": "0",
   "jsonrpc": "2.0",
