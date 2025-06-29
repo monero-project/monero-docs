@@ -131,6 +131,9 @@ Note: "[atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-uni
 - [**transfer_split**](#transfer_split)
 - [**untag_accounts**](#untag_accounts)
 - [**verify**](#verify)
+- [**setup_background_sync**](#setup_background_sync)
+- [**start_background_sync**](#start_background_sync)
+- [**stop_background_sync**](#stop_background_sync)
 
 ## JSON-RPC Methods
 
@@ -3493,6 +3496,88 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 }
 
 ```
+
+
+### **setup_background_sync**
+
+Enables syncing in the background with just a view key hot in memory.
+
+
+!!! note "Opening a "background" wallet"
+    If the wallet's filename is my_foo_wallet, call `open_wallet` with filename set to my_foo_wallet.background and password set to the value of `background_cache_password`. This is only possible when using a background sync type of `custom-background-password`.
+
+
+Alias: _None_.
+
+Inputs:
+
+- _background_sync_type_ - string;
+    - _off_;
+    - _reuse-wallet-password_; reuse the wallet password to encrypt the background cache. 
+    - _custom-background-password_; (use a custom background password to encrypt the background cache).
+- _wallet_password_ - string; (Optional)
+- _background_cache_password_ - string; (Optional) Custom background cache password used to encrypt the background cache. This value is only necessary when the background_sync_type is `custom-background-password`.
+
+Outputs: _None_.
+
+Example:
+
+```json
+$ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"setup_background_sync","params":{"background_sync_type":"custom-background-password","wallet_password":"spendPassword","background_cache_password":"viewPassword"}}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+  }
+}
+```
+
+
+### **start_background_sync**
+
+Wipes the wallet's spend key from memory and enables an already open wallet to continue syncing with just the view key hot in memory.
+
+Inputs: _None_.
+
+Outputs: _None_.
+
+Example:
+
+```json
+$ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"start_background_sync"}}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+  }
+}
+```
+
+
+### **stop_background_sync**
+
+A background syncing wallet reloads the spend key back in memory and processes the background cache. After successful execution, the wallet can then continue syncing normally from where the background sync left off.
+
+Inputs:
+
+- _wallet_password_ - string
+- _seed_ - string; (Optional) Mnemonic phrase of the wallet.
+- _seed_offset_ - string; (Optional) Offset used to derive a new seed from the given mnemonic to recover a secret wallet from the mnemonic phrase.
+
+Outputs: _None_.
+
+Example:
+
+```json
+$ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"stop_background_sync","params":{"wallet_password": ""}}}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+  }
+}
+```
+
 
 ## Sources:
 
