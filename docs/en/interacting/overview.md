@@ -56,7 +56,7 @@ extras/monero-blockchain-depth
 | `monero-wallet-gui`        | Wallet logic and __graphical__ user interface. <br />Requires `monerod` running.
 | `monero-wallet-cli`        | Wallet logic and __commandline__ user interface. <br />Requires `monerod` running.
 | `monero-wallet-rpc`        | Wallet logic and __HTTP API__ (JSON-RPC protocol). <br />Requires `monerod` running.
-| `monero-blockchain-prune`  | Prune existing local blockchain. This saves 2/3 of disk space (down to 31GB as of Jan 2021). This is preferable over `monerod --prune-blockchain` which only logically releases space inside the file while the file remains large. The `monero-blockchain-prune` creates a shrinked copy of the blockchain file. See [tutorial1](https://monero.stackexchange.com/questions/11454/how-do-i-utilize-blockchain-pruning-in-the-gui-monero-wallet-gui), [tutorial2](https://www.publish0x.com/solareclipse/howto-prune-shrink-the-database-of-the-monero-blockchain-on-xpgwjx).
+| `monero-blockchain-prune`  | Prune existing local blockchain. This saves 2/3 of disk space (down to {{ lmdb_size_pruned }} GiB  as of {{ lmdb_size_updated }}). This is preferable over `monerod --prune-blockchain` which only logically releases space inside the file while the file remains large. The `monero-blockchain-prune` creates a shrunken copy of the blockchain file. See [tutorial1](https://monero.stackexchange.com/questions/11454/how-do-i-utilize-blockchain-pruning-in-the-gui-monero-wallet-gui), [tutorial2](https://www.publish0x.com/solareclipse/howto-prune-shrink-the-database-of-the-monero-blockchain-on-xpgwjx).
 | `monero-gen-ssl-cert`      | Generate 4096 bit RSA private key and self signed TLS certificate for use with `monerod` RPC interface. Note, Monero daemon automatically generates TLS certificate on each restart. Manual generation with this tool is only useful if you want to pin TLS certificate fingerprint in your monero wallet. See the [pull request](https://github.com/monero-project/monero/pull/5495).
 | `monero-gen-trusted-multisig`          | Tool to generate a set of multisig wallets. <br />See chapter on [multisignatures](../multisignature.md).
 | `monero-blockchain-export` | Tool to export blockchain to `blockchain.raw` file.
@@ -84,7 +84,7 @@ Perhaps the most surprising for newcomers is that `monerod` daemon accepts inter
 Also, please note that HTTP API is split across `monerod` and `monero-wallet-rpc`. You need to run and call both daemons to explore the full API.
 This follows the node-logic vs wallet-logic split mentioned earlier.
 
-All wallet implementations depend on the `monerod` running.
+All wallet implementations depend on a fully synchronized `monerod` running.
 
 | Executable                 | p2p network         | node commands via keyboard | node HTTP API | wallet commands via keyboard | wallet HTTP API | wallet via GUI
 | -------------------------- | ------------------- | -------------------------- | ------------- | ---------------------------- | --------------- | --------------
@@ -105,7 +105,7 @@ By default data directory is at:
 Please mind:
 
 * data directory is hidden as per OS convention
-* the `bitmonero` directory name is historical artefact from before Monero forked away from Bitmonero, about 2000 years Before Christ
+* the `bitmonero` directory name is a historical artifact from before Monero forked away from Bitmonero
 
 Data directory contains:
 

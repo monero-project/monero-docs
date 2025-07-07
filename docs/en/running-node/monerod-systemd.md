@@ -40,13 +40,13 @@ You possess:
 - Root access to a Linux server
 - _Recommended_ 4 GB+ RAM
 - _Recommended_ available SSD storage of
-    - **{{ multiply(lmdb_size_full, 2.5) }} GB+** for the full node
-    - **{{ multiply(lmdb_size_pruned, 2.5) }} GB+** for the pruned
+    - **{{ multiply(lmdb_size_full, 2.5) }} GiB+** for the full node
+    - **{{ multiply(lmdb_size_pruned, 2.5) }} GiB+** for the pruned
 
 !!! note "Current blockchain size as of {{ lmdb_size_updated }}"
     The current blockchain sizes are approximately:    
-    Full node: **{{ lmdb_size_full }} GB**    
-    Pruned node: **{{ lmdb_size_pruned }} GB**
+    Full node: **{{ lmdb_size_full }} GiB**    
+    Pruned node: **{{ lmdb_size_pruned }} GiB**
 
 Some commands assume Ubuntu but you will easily translate them to your distribution.
 
