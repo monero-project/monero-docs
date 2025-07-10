@@ -46,8 +46,8 @@ title: Monero Technical Specification
 
 ## Current blockchain size
 
-* Pruned node: ~{{ lmdb_size_pruned }}GB as of {{ lmdb_size_updated }}
-* Full node: ~{{ lmdb_size_full }}GB as of {{ lmdb_size_updated }}
+* Pruned node: ~{{ lmdb_size_pruned }} GiB as of {{ lmdb_size_updated }}
+* Full node: ~{{ lmdb_size_full }} GiB as of {{ lmdb_size_updated }}
 
 ## Emission curve
 
