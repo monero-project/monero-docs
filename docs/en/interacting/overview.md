@@ -81,17 +81,19 @@ You most likely should not bother with these legacy or very specialized tools.
 There are quite a few ways you can interact with Monero software.
 Perhaps the most surprising for newcomers is that `monerod` daemon accepts interactive keyboard commands while it is running.
 
-Also, please note that HTTP API is split across `monerod` and `monero-wallet-rpc`. You need to run and call both daemons to explore the full API.
-This follows the node-logic vs wallet-logic split mentioned earlier.
+Also, please note that `monerod` and `monero-wallet-rpc` are both accessible via their respective HTTP API / JSON-RPC endpoints.
+
+- [monerod-rpc](../rpc-library/monerod-rpc.md)
+- [wallet-rpc](../rpc-library/wallet-rpc.md)
 
 All wallet implementations depend on a fully synchronized `monerod` running.
 
-| Executable                 | p2p network         | node commands via keyboard | node HTTP API | wallet commands via keyboard | wallet HTTP API | wallet via GUI
-| -------------------------- | ------------------- | -------------------------- | ------------- | ---------------------------- | --------------- | --------------
-| `monerod`                  | ✔                   | ✔                          | ✔             |                              |                 |
-| `monero-wallet-cli`        |                     |                            |               | ✔                            |                 |
-| `monero-wallet-rpc`        |                     |                            |               |                              | ✔               |
-| `monero-wallet-gui`        |                     |                            |               |                              |                 | ✔
+| Executable                                              | p2p network | commands via keyboard                          | HTTP API                           | GUI |
+| ------------------------------------------------------- | :---------: | :--------------------------------------------: | :--------------------------------: | :-: |
+| [`monerod`](./monerod-reference.md)                     | ✔           | [✔](./monerod-reference.md#commands)           | [✔](../rpc-library/monerod-rpc.md) |     |
+| [`monero-wallet-cli`](./monero-wallet-cli-reference.md) |             | [✔](./monero-wallet-cli-reference.md#commands) |                                    |     |
+| [`monero-wallet-rpc`](./monero-wallet-rpc-reference.md) |             |                                                | [✔](../rpc-library/wallet-rpc.md)  |     |
+| [`monero-wallet-gui`](./monero-wallet-gui-reference.md) |             |                                                |                                    | ✔   |
 
 ## Data directory
 
