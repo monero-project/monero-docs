@@ -64,7 +64,7 @@ Characters used in Monero base58: `123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkm
 
 [More about Monero base58](https://docs.getmonero.org/cryptography/base58/).
 
-### Deteministic Wallets
+### Deterministic Wallets
 
 There is no way to regulate how people choose their address keys, it is simply highly suggested that they are chosen at random. The original CryptoNote implementation generated each keypair randomly, independently of each other. Addresses generated this way are called non-deterministic, they have fallen out of popularity.
 

@@ -2489,7 +2489,7 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 ### **refresh**
 
-Refresh a wallet after openning.
+Refresh a wallet after opening.
 
 Alias:  _None_.
 
@@ -2529,7 +2529,7 @@ Inputs:
 
 Outputs:
 
--   _tx_hash_  - String for the publically searchable transaction hash.
+-   _tx_hash_  - String for the publicly searchable transaction hash.
 
 Example:
 
@@ -3358,7 +3358,7 @@ Outputs:
 -   _fee_  - Integer value of the fee charged for the txn.
 -   _multisig_txset_  - Set of multisig transactions in the process of being signed (empty for non-multisig).
 -   _tx_blob_  - Raw transaction represented as hex string, if get_tx_hex is true.
--   _tx_hash_  - String for the publically searchable transaction hash.
+-   _tx_hash_  - String for the publicly searchable transaction hash.
 -   _tx_key_  - String for the transaction key if get_tx_key is true, otherwise, blank string.
 -   _tx_metadata_  - Set of transaction metadata needed to relay this transfer later, if get_tx_metadata is true.
 -   _unsigned_txset_  - String. Set of unsigned tx for cold-signing purposes.

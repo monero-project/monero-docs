@@ -195,7 +195,7 @@ monero-wallet-cli --generate-new-wallet wallet-file --restore-deterministic-wall
 ```
 
 The new offline wallet can't sign new transactions because it doesn't have
-all trasaction outputs that precede a new unsigned transaction. Thus, it first
+all transaction outputs that precede a new unsigned transaction. Thus, it first
 has to import all outputs from a view-only wallet.
 
 On a view-only wallet that was derived from the offline wallet, execute
