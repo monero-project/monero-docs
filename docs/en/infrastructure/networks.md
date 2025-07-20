@@ -10,7 +10,7 @@ title: Mainnet, Stagenet, Testnet
     [**stagenet**](#stagenet)    
     [**testnet**](#testnet)    
 
-     Every network has its own genesis block and is entirely seperate from others.
+     Every network has its own genesis block and is entirely separate from others.
 
 ## Nodes & Explorers
 
