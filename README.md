@@ -17,7 +17,7 @@ Contributions are both encouraged and greatly appreciated.
 
 To contribute content, fork this repo and make a pull request to the **`master`** branch including your changes.
 
-1. On GitHub, fork the [monero-docs](https://github.com/monero-project/moneo-docs) repo
+1. On GitHub, fork the [monero-docs](https://github.com/monero-project/monero-docs) repo
 2. Clone your newly created repo. (Note: replace `your-username` with your GitHub username)
 
 via ssh:
