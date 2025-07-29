@@ -22,11 +22,11 @@ publicnode: "#public-node=1                  # Advertise to other users they can
 ## Why run this specific setup?
 
 You will be able to connect your desktop and mobile Monero wallets to your own trusted Monero node,
-in a secure and private way over Tor.
+securely and privately over Tor.
 
-**Running as a systemd service** will allow your node to always remain synced, as opposed to intermittently running node.
+**Running as a systemd service** will allow your node always to remain synced, as opposed to running node intermittently.
 
-**Public RPC service** - The `public-node` config option will broadcast your RPC port to your peers, providing a service for anyone to use your node to connect their wallets to the Monero network.
+**Public RPC service** - The `public-node` config option broadcasts your RPC port to your peers, providing a service that allows anyone to use your node to connect their wallets to the Monero network.
 This is useful to users who don't run their own nodes. You may enable it by removing the `#` from `#public-node` in the config.
 
 ??? warning "Public RPC may be resource intensive"
@@ -48,7 +48,7 @@ You possess:
     Full node: **{{ lmdb_size_full }} GiB**    
     Pruned node: **{{ lmdb_size_pruned }} GiB**
 
-Some commands assume Ubuntu but you will easily translate them to your distribution.
+Some commands are specific to Ubuntu, but you can easily translate them to your distribution.
 
 ## Install Monero
 
@@ -69,11 +69,11 @@ Some commands assume Ubuntu but you will easily translate them to your distribut
     chown monero:monero /var/log/monero
     ```
 
-    Feel free to adjust above to your preferred conventions, just remember to adjust the paths in the `systemd` and `monerod` config files accordingly.
+    Feel free to adjust the above to your preferred conventions, just remember to adjust the paths in the `systemd` and `monerod` config files accordingly.
 
 3. [Download](../interacting/download-monero-binaries.md) and [verify](../interacting/verify-monero-binaries.md) the archive.
 
-4. Extract the binaries (adjust filename if necessary):
+4. Extract the binaries (adjust the filenames if necessary):
 
     ``` Bash
     tar -xvf monero-linux-x64-{{ cli_vers }}.tar.bz2
@@ -128,8 +128,7 @@ Some commands assume Ubuntu but you will easily translate them to your distribut
 
     ``` Bash
     systemctl daemon-reload
-    systemctl enable monerod
-    systemctl restart monerod
+    systemctl enable --now monerod
     ```
 
 9. Verify it is up:
@@ -138,39 +137,45 @@ Some commands assume Ubuntu but you will easily translate them to your distribut
     systemctl status monerod
     ```
 
-9. Verify it is working as intended:
+10. Verify it is working as intended:
 
     ``` Bash
     tail -n100 /var/log/monero/monero.log
     ```
 
-
-
 ### Open firewall ports
 
-If you use a firewall (and you should), open `18080` and `18089` ports for incoming TCP connections.
-These are for the incoming **clearnet** connections, P2P and RPC respectively.
+If you have a firewall (and you **should**), open ports `18080` and `18089` for incoming TCP connections to monerod, and `22` for sshd.
+
+These are for the incoming **clearnet** connections, P2P and RPC, respectively.
 
 You **do not** need to open any ports for Tor.
 
-For example, for popular ufw firewall, that would be:
+For example, when using the popular ufw firewall, it would be:
 
 ``` Bash
+ufw allow 22/tcp
 ufw allow 18080/tcp
 ufw allow 18089/tcp
 ```
 
-To verify, use `ufw status`. The output should be similar to the following (the `22` being default SSH port, unrelated to Monero):
+To verify, use `ufw status`. The output should be similar to the following (the `22` being the default SSH port, unrelated to Monero):
 
 ```
 To                         Action      From
 --                         ------      ----
-22/tcp                     LIMIT       Anywhere
+22/tcp                     ALLOW       Anywhere
 18080/tcp                  ALLOW       Anywhere
 18089/tcp                  ALLOW       Anywhere
-22/tcp (v6)                LIMIT       Anywhere (v6)
+22/tcp (v6)                ALLOW       Anywhere (v6)
 18080/tcp (v6)             ALLOW       Anywhere (v6)
 18089/tcp (v6)             ALLOW       Anywhere (v6)
+```
+
+To enable ufw and automatically start at boot:
+
+``` Bash
+systemctl enable --now ufw
 ```
 
 ## Tor & I2P
@@ -192,7 +197,7 @@ To                         Action      From
     sudo netstat -lntpu
     ```
 
-    The output should include these (in any order); obviously the PID values will differ.
+    The output should include these (in any order); obviously, the PID values will differ.
 
     ```
     Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
@@ -207,7 +212,7 @@ To                         Action      From
 
     Finally, we want to test connections from your client machine.
 
-    Install `tor` and `torsocks` on your laptop, you will want them anyway for Monero wallet.
+    Install `tor` and `torsocks` on your machine, you will want them anyway for Monero wallet.
 
     Just for testing, you will also need `proxychains`.
 
@@ -242,6 +247,6 @@ To                         Action      From
 
     Monerod:
 
-    - Status: `systemctl status monero`
+    - Status: `systemctl status monerod`
     - Logs: `tail -n100 /var/log/monero/monero.log`
-    - Logs more info: change `log-level=0` to `log-level=1` in `monero.conf` (remember to revert once solved)
+    - Logs more info: change `log-level=0` to `log-level=1` in `monerod.conf` (remember to revert once solved)
