@@ -48,12 +48,17 @@ title: Mainnet, Stagenet, Testnet
 
 ??? tip "Mainnet Block Explorers [Onion]"
     - [P2Pool.io](http://yucmgsbw7nknw7oi3bkuwudvc657g2xcqahhbjyewazusyytapqo4xid.onion/explorer/)
+    - [xmr.mx](http://ravfxexpx76quysu77pbvao4ng5qnyo46gguklfwlafhllrujwdgqtyd.onion/)
+
+??? tip "Mainnet Block Explorers [I2P]"
+    - [xmr.mx](http://ravfxexpucy437tc4slicbf5atir2akrcqanog3tgsc3mcdfmrqq.b32.i2p/)
 
 ??? danger "Mainnet Block Explorers [Clearnet]"
-    - [P2Pool.io](https://p2pool.io/explorer/)
-    - [XMRChain.net](https://xmrchain.net/)
     - [Localmonero.co](https://localmonero.co/blocks/)
-    - [ExploreMonero.com](https://www.exploremonero.com/)
+    - [monerowatch](https://monerowat.ch/)
+    - [P2Pool.io](https://p2pool.io/explorer/)
+    - [xmr.mx](https://explorer.xmr.mx/)
+    - [XMRChain.net](https://xmrchain.net/)
 
 ??? failure "Mainnet Faucets"
     - None. Don't fall for scams
