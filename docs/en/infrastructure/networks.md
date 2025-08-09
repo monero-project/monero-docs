@@ -56,6 +56,7 @@ title: Mainnet, Stagenet, Testnet
 ??? danger "Mainnet Block Explorers [Clearnet]"
     - [ExploreMonero.com](https://www.exploremonero.com/)
     - [Localmonero.co](https://localmonero.co/blocks/)
+    - [monerowatch](https://monerowat.ch/)
     - [P2Pool.io](https://p2pool.io/explorer/)
     - [xmr.mx](https://explorer.xmr.mx/)
     - [XMRChain.net](https://xmrchain.net/)
