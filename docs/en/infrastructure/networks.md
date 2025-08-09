@@ -50,10 +50,10 @@ title: Mainnet, Stagenet, Testnet
     - [P2Pool.io](http://yucmgsbw7nknw7oi3bkuwudvc657g2xcqahhbjyewazusyytapqo4xid.onion/explorer/)
 
 ??? danger "Mainnet Block Explorers [Clearnet]"
+    - [ExploreMonero.com](https://www.exploremonero.com/)
+    - [Localmonero.co](https://localmonero.co/blocks/)
     - [P2Pool.io](https://p2pool.io/explorer/)
     - [XMRChain.net](https://xmrchain.net/)
-    - [Localmonero.co](https://localmonero.co/blocks/)
-    - [ExploreMonero.com](https://www.exploremonero.com/)
 
 ??? failure "Mainnet Faucets"
     - None. Don't fall for scams
