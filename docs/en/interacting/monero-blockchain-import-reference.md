@@ -32,7 +32,7 @@ Example:
 
 Go to directory where you unpacked Monero.
 
-`./monero-blockchain-import --stagenet --output-file=/tmp/blockchain.raw`
+`./monero-blockchain-import --stagenet --input-file=/tmp/blockchain.raw`
 
 
 ## Options
