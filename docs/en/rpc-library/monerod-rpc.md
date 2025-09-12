@@ -348,8 +348,8 @@ Outputs:
   - _block_hashes_ - array of strings; An array of all block hashes in the alternative chain that are not in the main chain.
   - _difficulty_ - unsigned int; Least-significant 64 bits of 128-bit integer for the cumulative difficulty of all blocks in the alternative chain.
   - _difficulty_top64_ - unsigned int; Most-significant 64 bits of the 128-bit network difficulty.
-  - _height_ - unsigned int; the block height of the first diverging block of this alternative chain.
-  - _length_ - unsigned int; the length in blocks of this alternative chain, after divergence.
+  - _height_ - unsigned int; the block height of the last diverging block of this alternative chain.
+  - _length_ - unsigned int; the length in blocks of this alternative chain, including the divergent block.
   - _main_chain_parent_block_ - string; The hash of the greatest height block that is shared between the alternative chain and the main chain.
   - _wide_difficulty_ - string; Network difficulty (analogous to the strength of the network) as a hexadecimal string representing a 128-bit number.
 - _status_ - string; General RPC error code. "OK" means everything looks good.
