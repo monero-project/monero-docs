@@ -602,7 +602,8 @@ Alias: _getblockheaderbyhash_ .
 
 Inputs:
 
-- _hash_ - string; The block's sha256 hash.
+- _hash_ - string; The sha256 hash of the block.
+- _hashes_ - array of strings; The sha256 hashes of the blocks.
 - _fill_pow_hash_ - boolean; (Optional; defaults to `false`) Add PoW hash to block_header response.
 
 Outputs:
