@@ -2,4 +2,4 @@ lmdb_size_full: 230
 lmdb_size_pruned: 95
 lmdb_size_updated: 2025-07-14
 
-cli_vers: v0.18.4.1
+cli_vers: v0.18.4.2
