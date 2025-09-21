@@ -51,10 +51,10 @@ Make sure you are running a locally synced `monerod` or point to a remote daemon
 
 #### Linux (Production Example)
 
-`./monero-wallet-rpc --rpc-bind-port 28088 --wallet-file wallets/main/main --password walletPassword --rpc-login monero:rpcPassword --log-file logs/monero-wallet-rpc.log --max-log-files 2 --trusted-daemon --non-interactive`
+`./monero-wallet-rpc --rpc-bind-port 28088 --wallet-file wallets/main/main --password walletPassword --rpc-login monero:rpcPassword --log-file logs/monero-wallet-rpc.log --max-log-files 2 --trusted-daemon`
 
 - If the RPC is used to retrieve information not dependent on any spending, consider using a view-only to prevent abuse.
-- `--rpc-login` should be used in production to protect against any network attacks. An uncommon password protects against the case where the RPC port is open to the public
+- `--rpc-login` should be used in production to protect against unauthorized access.
 
 #### Windows (Development Example)
 
@@ -120,7 +120,8 @@ The suggested way is to have two wallet files for the same keys. One that is use
 | Option                | Description
 |-----------------------|-----
 | `--tx-notify <arg>`   | Run a program for each new incoming transaction, '%s' will be replaced by the transaction hash
-| `--non-interactive`   | Run non-interactive (useful when input is DEVNULL)
+| `--detach`            | Fork to the background
+| `--pidfile` <arg>     | Store the PID inside of a file. Requires `--detach`
 | `--config-file <arg>` | Config file
 
 ### RPC
@@ -165,7 +166,7 @@ The suggested way is to have two wallet files for the same keys. One that is use
 
 | Option                         | Description
 |--------------------------------|-----
-| `--kdf-rounds <arg>`           | Number of rounds for the key derivation function<br><br>(=1)
+| `--kdf-rounds <arg>`           | (Not recommended) Number of rounds for the key derivation function<br><br>(=1)
 | `--hw-device <arg>`            | HW device to use
 | `--hw-device-deriv-path <arg>` | HW device wallet derivation path (e.g., SLIP-10)
 | `--extra-entropy <arg>`        | File containing extra entropy to initialize the PRNG (any data, aim for 256 bits of entropy to be useful, which typically means more than 256 its of data)
@@ -188,5 +189,6 @@ The suggested way is to have two wallet files for the same keys. One that is use
 | `--shared-ringdb-dir <arg>`                         | Set shared ring database path<br>Windows: C:\ProgramData\.shared-ringdb<br>Linux: $HOME/.shared-ringdb
 | `--no-dns`                                          | Do not use DNS
 | `--offline`                                         | Do not connect to a daemon, nor use DNS
+| `--non-interactive`                                 | monero-wallet-rpc is not interactive, this doesnt _do_ anything. [ref](https://github.com/monero-project/monero/pull/8772#issuecomment-1463097268)
 | `--bitmessage-address <arg=http://localhost:8442/>` | Use PyBitmessage instance at URL `<arg>`
 | `--bitmessage-login <arg>`                          | Specify `<arg>` as `username:password` for PyBitmessage API
