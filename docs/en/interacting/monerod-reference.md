@@ -117,7 +117,7 @@ The node and peer words are used interchangeably.
 
 | Option                       | Description
 |------------------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `--p2p-bind-ip <arg>`        | IPv4 network interface to bind to for p2p network protocol. Default value `0.0.0.0` binds to all network interfaces. This is typically what you want. <br><br>You must change this if you want to constrain binding, for example to force working through Tor: <br>`DNS_PUBLIC=tcp://9.9.9.9 ./monerod --p2p-bind-ip 127.0.0.1 --proxy 127.0.0.1:9050 --no-igd  --hide-my-port`<br><br>(=0.0.0.0)
+| `--p2p-bind-ip <arg>`        | IPv4 network interface to bind to for p2p network protocol. Default value `0.0.0.0` binds to all network interfaces. This is typically what you want. <br><br>You must change this if you want to constrain binding, for example to force working through Tor: <br>`./monerod --p2p-bind-ip 127.0.0.1 --proxy 127.0.0.1:9050 --no-igd  --hide-my-port`<br><br>(=0.0.0.0)
 | `--p2p-bind-port <arg>`      | TCP port to listen for p2p network connections. Defaults to `18080` for mainnet, `28080` for testnet, and `38080` for stagenet. You normally wouldn't change that. This is helpful to run several nodes on your machine to simulate private Monero p2p network (likely using private Testnet). Example: <br/>`./monerod --p2p-bind-port=48080`
 | `--p2p-external-port <arg>`  | TCP port to listen for p2p network connections on your router. Relevant if you are behind a NAT and still want to accept incoming connections. You must then set this to relevant port on your router. This is to let `monerod` know what to advertise on the network. Default is same p2p-bind-port.
 | `--p2p-use-ipv6`             | Enable IPv6 for p2p (disabled by default).
@@ -273,6 +273,16 @@ These options should no longer be necessary. They are still present in `monerod`
 | `--fluffy-blocks`     | Relay compact blocks. Default. Compact block is just a header and a list of transaction IDs.
 | `--no-fluffy-blocks`  | Relay classic full blocks. Classic block contains all transactions.
 | `--show-time-stats`   | Official docs say "Show time-stats when processing blocks/txs and disk synchronization" but it does not seem to produce any output during usual blockchain synchronization.
+
+## Environment Variables
+
+These environment variables can be set to change functions within monerod.
+
+| Option                    | Description                                                                                           |
+|---------------------------|                                                                                                           |
+| `DNS_PUBLIC`              | string; Monerod will use this specified DNS resolver.<br>Example: `DNS_PUBLIC=tcp://1.1.1.1 ./monerod`    |
+| `MONERO_RANDOMX_FULL_MEM` | Bool; if true, instruct monerod to allocate the full dataset.<br>(=false)                                 |
+| `NO_COLOR`                | string; disable color output. note: any non-empty value, including 0, will set to true.<br>(=unset)       |
 
 ## Commands
 
