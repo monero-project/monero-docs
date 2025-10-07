@@ -2749,6 +2749,31 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 ```
 
+### **set_log_level**
+
+Set log level.
+
+Alias:  _None_.
+
+Inputs:
+
+-   _level_  - int; log level {0|1|2|3|4}
+
+Outputs:  _None_.
+
+Example:
+
+```json
+$ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_log_level","params":{"level": 2}}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+  }
+}
+
+```
+
 ### **set_subaddress_lookahead**
 
 Modify the wallet's lookahead, also known as a "gap". The number of subaccount and subaddress indexes, -1, to monitor beyond the last confirmed payment.
