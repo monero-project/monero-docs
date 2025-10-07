@@ -11,9 +11,7 @@ title: monero-blockchain-import - Reference
 The tool imports bootstrap file `blockchain.raw` to your full node.
 
 This could be useful if you want to decouple download from verification for any reason (like testing performance in isolation).
-In this case, you may download the `blockchain.raw` file from [https://downloads.getmonero.org/blockchain.raw](https://downloads.getmonero.org/blockchain.raw).
-
-Ideally though, you should use your own trusted `blockchain.raw` file that you [exported](../interacting/monero-blockchain-export-reference.md) earlier.
+Ideally, you should use your own trusted `blockchain.raw` file that you [exported](../interacting/monero-blockchain-export-reference.md) earlier.
 
 Please note that importing `blockchain.raw` will **not** speed up the process over syncing up from p2p network.
 This is because usual bottlenecks are disk IO and verification, not the download.  

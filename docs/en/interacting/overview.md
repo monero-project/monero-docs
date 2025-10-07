@@ -60,7 +60,7 @@ extras/monero-blockchain-depth
 | `monero-gen-ssl-cert`      | Generate 4096 bit RSA private key and self signed TLS certificate for use with `monerod` RPC interface. Note, Monero daemon automatically generates TLS certificate on each restart. Manual generation with this tool is only useful if you want to pin TLS certificate fingerprint in your monero wallet. See the [pull request](https://github.com/monero-project/monero/pull/5495).
 | `monero-gen-trusted-multisig`          | Tool to generate a set of multisig wallets. <br />See chapter on [multisignatures](../multisignature.md).
 | `monero-blockchain-export` | Tool to export blockchain to `blockchain.raw` file.
-| `monero-blockchain-import` | Tool to import [blockchain.raw](https://downloads.getmonero.org/blockchain.raw) - ideally your own trusted copy.
+| `monero-blockchain-import` | Tool to import a raw blockchain, ideally your own trusted copy.
 
 ## Executables - legacy
 
