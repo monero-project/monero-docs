@@ -3234,7 +3234,7 @@ Inputs:
 
 Outputs:
 
--   _tx_hasht_  - array of: string. The tx hashes of every transaction.
+-   _tx_hash_  - array of: string. The tx hashes of every transaction.
 -   _tx_key_  - array of: string. The transaction keys for every transaction.
 -   _amount_  - array of: integer. The amount transferred for every transaction.
 -   _fee_  - array of: integer. The amount of fees paid for every transaction.
