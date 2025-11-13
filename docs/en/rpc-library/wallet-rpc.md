@@ -111,6 +111,7 @@ Note: "[atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-uni
 - [**set_account_tag_description**](#set_account_tag_description)
 - [**set_attribute**](#set_attribute)
 - [**set_daemon**](#set_daemon)
+- [**set_log_level**](#set_log_level)
 - [**set_subaddress_lookahead**](#set_subaddress_lookahead)
 - [**set_tx_notes**](#set_tx_notes)
 - [**sign**](#sign)
