@@ -18,9 +18,9 @@ backrefs==5.8 \
     --hash=sha256:c67f6638a34a5b8730812f5101376f9d41dc38c43f1fdc35cb54700f6ed4465d \
     --hash=sha256:e3a63b073867dbefd0536425f43db618578528e3896fb77be7141328642a1585
     # via mkdocs-material
-certifi==2025.6.15 \
-    --hash=sha256:2e0c7ce7cb5d8f8634ca55d2ba7e6ec2689a2fd6537d8dec1296a477a4910057 \
-    --hash=sha256:d747aa5a8b9bbbb1bb8c22bb13e22bd1f18e9796defa16bab421f7f7a317323b
+certifi==2025.11.12 \
+    --hash=sha256:97de8790030bbd5c2d96b7ec782fc2f7820ef8dba6db909ccf95449f2d062d4b \
+    --hash=sha256:d8ab5478f2ecd78af242878415affce761ca6bc54a22a27e026d7c25357c3316
     # via
     #   -r requirements.in
     #   requests
