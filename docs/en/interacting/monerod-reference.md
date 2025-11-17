@@ -278,8 +278,8 @@ These options should no longer be necessary. They are still present in `monerod`
 
 These environment variables can be set to change functions within monerod.
 
-| Option                    | Description                                                                                           |
-|---------------------------|                                                                                                           |
+| Option                    | Description                                                                                               |
+|---------------------------|-----------------------------------------------------------------------------------------------------------|
 | `DNS_PUBLIC`              | string; Monerod will use this specified DNS resolver.<br>Example: `DNS_PUBLIC=tcp://1.1.1.1 ./monerod`    |
 | `MONERO_RANDOMX_FULL_MEM` | Bool; if true, instruct monerod to allocate the full dataset.<br>(=false)                                 |
 | `NO_COLOR`                | string; disable color output. note: any non-empty value, including 0, will set to true.<br>(=unset)       |
