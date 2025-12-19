@@ -3,7 +3,7 @@ title: Monero Configuration File
 
 configfile: "~/.bitmonero/bitmonero.conf"
 datadir: "~/.bitmonero"
-logfile: "log-file=~/.bitmonero"
+logfile: "#log-file=~/.bitmonero/bitmonero.log"
 maxlogsize: ""
 publicnode: "#public-node=1                  # Advertise to other users they can use this node for connecting their wallets"
 
