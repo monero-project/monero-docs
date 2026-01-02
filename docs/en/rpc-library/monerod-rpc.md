@@ -1982,7 +1982,7 @@ Example:
 $ curl http://127.0.0.1:18081/get_limit -H 'Content-Type: application/json'
 
 {
-  "limit_down": 8192,
+  "limit_down": 32768,
   "limit_up": 128,
   "status": "OK",
   "untrusted": false

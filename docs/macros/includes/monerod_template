@@ -53,8 +53,8 @@
     out-peers=12              # Default 12
     in-peers=48               # The default is unlimited; we prefer to put a cap on this
 
-    limit-rate-up=1048576     # 1048576 kB/s == 1GB/s; a raise from default 2048 kB/s; contribute more to p2p network
-    limit-rate-down=1048576   # 1048576 kB/s == 1GB/s; a raise from default 8192 kB/s; allow for faster initial sync
+    limit-rate-up=1048576     # 1048576 kB/s == 1GB/s; a raise from default 8192 kB/s; contribute more to p2p network
+    limit-rate-down=1048576   # 1048576 kB/s == 1GB/s; a raise from default 32768 kB/s; allow for faster initial sync
 
     # Tor/I2P: broadcast transactions originating from connected wallets over Tor/I2P (does not concern relayed transactions)
     #tx-proxy=i2p,127.0.0.1:4447,12,disable_noise  # I2P
