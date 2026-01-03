@@ -16,7 +16,7 @@ Note: "[atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-uni
 
 The API is based on [JSON-RPC standard](https://en.wikipedia.org/wiki/JSON-RPC) version 2.0.
 
-Many `monerod` RPC calls use the daemon's JSON RPC interface while others use their own interfaces, as demonstrated [below](#other-daemon-rpc-methods).
+Many `monerod` RPC calls use the daemon's JSON RPC interface while others use their own interfaces, as demonstrated [below](#other-daemon-rpc-calls).
 
 Assuming `monerod` is running on 127.0.0.1:18081, you would call it like this:
 
