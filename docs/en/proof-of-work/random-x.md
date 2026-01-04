@@ -7,11 +7,11 @@ contentOutdated: "no"
 
 <!-- If the English version is outdated, all versions (for all languages) will be outdated. No need to check the state of the translations. -->
 {% if contentOutdated == "yes" %}
-## **{{ notices.outdatedContent }}**
+## **{{ en.notices.outdatedContent }}**
 
 <!-- If page is translated but the English version was updated, the translation is outdated -->
 {% elif translationOutdated == "yes" %}
-## **{{ notices.outdatedTranslation }}**
+## **{{ en.notices.outdatedTranslation }}**
 {% endif %}
 
 <!-- Show the body -->
