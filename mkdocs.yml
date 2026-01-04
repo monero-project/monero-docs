@@ -5,7 +5,7 @@ site_author: "Monero Community"
 site_url: 'https://docs.getmonero.org'
 site_dir: 'public'
 
-copyright: '© 2024 Monero Community under <a href="https://opensource.org/licenses/MIT">MIT</a>'
+copyright: '© 2026 Monero Community under <a href="https://opensource.org/licenses/MIT">MIT</a>'
 
 nav:
 - Home: 'index.md'
@@ -17,6 +17,16 @@ nav:
   - Download & Verify:
     - Download: 'interacting/download-monero-binaries.md'
     - Verify: 'interacting/verify-monero-binaries.md'
+  - Mining:
+    - 'interacting/mining/index.md'
+    - Guides:
+      - Solo:
+        - 'interacting/mining/guides/solo/index.md'
+        - Monero GUI / CLI: 'interacting/mining/guides/solo/wallet-gui-cli.md'
+        - XMRig: 'interacting/mining/guides/solo/xmrig-solo.md'
+      - Pool: 'interacting/mining/guides/pool/xmrig-pool.md'
+      - P2Pool: 'interacting/mining/guides/p2pool/xmrig-p2pool.md'
+      - Help: 'interacting/mining/guides/help.md'
   - Monerod:
     - Flags: 'interacting/monerod-reference.md'
     - Setup Guide:
