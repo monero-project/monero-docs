@@ -1,0 +1,12 @@
+## Efficiency
+
+You may want to check your efficiency before you start mining. This is based on your power costs vs the hashrates that your hardware is able to produce.  
+You can check your estimated hashrates at [xmrig.com/benchmark](https://xmrig.com/benchmark/).  
+There are many sites, such as [CryptoCompare](https://www.cryptocompare.com/mining/calculator/xmr) that allow you to enter your hashrate, power draw and power costs to calculate your efficiency.
+
+## Getting Help
+
+There is an active Monero mining community on Reddit at [/r/MoneroMining](https://www.reddit.com/r/MoneroMining/). You can
+also join on Libera at [#monero-mining](https://web.libera.chat/#monero-mining) or on Matrix at [#xmrmine](https://matrix.to/#/%23xmrmine:matrix.org).
+
+Also see our [**troubleshooting**](../help.md) page.
