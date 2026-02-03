@@ -304,12 +304,14 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"f
 Generate a block and specify the address to receive the coinbase reward.
 
 Inputs:
+
 - _amount_of_blocks_ - unsigned int; number of blocks to be generated.
 - _wallet_address_ - string; address to receive the coinbase reward.
 - _prev_block_ - string;
 - _starting_nonce_ - unsigned int; Increased by miner until it finds a matching result that solves a block.
 
 Outputs:
+
 - _blocks_ - list of string;
 - _height_ - unsigned int;
 - _status_ - string; General RPC error code. "OK" means everything looks good.
