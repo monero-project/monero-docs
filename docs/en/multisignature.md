@@ -356,6 +356,27 @@ You can check its status by using the `show_transfers` command.
 
 The transaction has now been broadcast to the network. If you want to create another one, you will need to go back to the preparation stage and re-sync the partial key images.
 
+### Spending concerns
+
+In a multisig wallet constructed between untrusted parties, it is possible for a single malicious signer to trick other signers into sending a payment twice. **For most uses this is not a concern**; common exempt uses include a single person controlling a multisig, or a 2 of 2 multisig in a decentralized exchange which only has to send all funds once. If you are operating a multisig with other holders for repeat transfer of funds, however, you should be aware of the following issue, illustrated by example (no fees for simplicity):
+
+- A 3 of 3 multisig is created between signers 1, 2, and 3
+- The multisig owns two outputs A and B, both size 1 XMR
+- Signer 1: "I want to withdraw 1 XMR to my address X". 2 and 3 agree
+- Signer 2 is selected to begin signing the transaction. 2 constructs the transaction sending output A -> X
+- Signer 3 signs, the transaction now has 2/3 signatures
+- Signer 1 signs, the transaction has 3/3 signatures and is valid and can be broadcasted to the network
+- Signer 1 does not broadcast the A -> X transaction. 1 lies and says he could not sign. He claims he got the error `This signature was made with stale data`.
+- Signer 1 says "We should do it again, it didn't work"
+- Signer 1 constructs the transaction sending B -> X
+- Signer 2 and 3 sign, 3 broadcasts B -> X
+- Signer 1 broadcasts the withheld A -> X transaction
+- **Signer 1 has drained all the funds!**
+
+The withheld transaction will succeed because it does not conflict with the B -> X transaction as it spends a different input. **As a holder, you should only ever sign for a given transfer once in normal multisig operation. If the signature fails due to the stale data error or any other reason, you must re-check the inputs of the transaction and make sure they are the same, which prevents a hidden transaction being respent.** Viewing the inputs is not currently possible in any user wallet, but can be done with the wallet RPC method [`describe_transfer`](https://docs.getmonero.org/rpc-library/wallet-rpc/#describe_transfer). If the inputs do not match the first transaction, do not sign the second transaction.
+
+This is possible in other crypto-currencies, but is more feasible in Monero because of the stale data error mentioned earlier, which provides an excuse for why the transaction failed. Work is in progress to reduce the chance of encountering the stale data error and remove this excuse. Other crypto-currencies' technical user wallets sometimes display inputs, which can help you examine transactions more easily, but for Monero this is not yet the case, and you have to use the wallet RPC.
+
 ## Mnemonic Seeds
 
 With a regular wallet is it possible to create a mnemonic seed that you can backup, and later use to recreate the wallet.
