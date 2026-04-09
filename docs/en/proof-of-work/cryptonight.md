@@ -93,7 +93,7 @@ The next payload is encryption result of the previous payload.
 
 Each 128-byte payload is actually encrypted 10 times.
 
-The details are a bit more nuanced, see "Scratchpad Initialization" in [CryptoNote Standard](https://cryptonote.org/cns/cns008.txt).  
+The details are a bit more nuanced, see "Scratchpad Initialization" in [CryptoNote Standard](https://web.archive.org/web/20190529132636/https://cryptonote.org/cns/cns008.txt).
 
 ### Step 2: memory-hard loop
 
@@ -152,7 +152,7 @@ CryptoNight proof of work remains one of the most controversial aspect of Monero
 
 ## Reference
 
-* [CryptoNight hash function](https://cryptonote.org/cns/cns008.txt) description in the CryptoNote Standard
+* [CryptoNight hash function](https://web.archive.org/web/20190529132636/https://cryptonote.org/cns/cns008.txt) description in the CryptoNote Standard
 * [CryptoNight v2 source code](https://github.com/monero-project/monero/blob/master/src/crypto/slow-hash.c)
     * The entry point is `cn_slow_hash()` function. Manually removing support and optimizations for multiple architectures should help you understand the actual code. 
 * "Egalitarian Proof of Work" chapter in [CryptoNote whitepaper](https://downloads.getmonero.org/whitepaper_annotated.pdf) 
