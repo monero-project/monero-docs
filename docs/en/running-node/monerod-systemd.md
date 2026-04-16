@@ -103,19 +103,17 @@ Some commands assume Ubuntu but you will easily translate them to your distribut
     [Unit]
     Description=Monero Daemon
     After=network-online.target
+    Requires=network-online.target
 
     [Service]
-    ExecStart=/usr/local/bin/monerod --detach --config-file /etc/monero/monerod.conf --pidfile /run/monero/monerod.pid
-    ExecStartPost=/bin/sleep 0.1
-    PIDFile=/run/monero/monerod.pid
-    Type=forking
+    Type=simple
+    ExecStart=/usr/local/bin/monerod --config-file /etc/monero/monerod.conf --non-interactive
 
     Restart=on-failure
     RestartSec=30
 
     User=monero
     Group=monero
-    RuntimeDirectory=monero
 
     StandardOutput=journal
     StandardError=journal
