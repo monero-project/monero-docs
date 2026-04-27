@@ -163,6 +163,10 @@ extra:
     - icon: simple/liberadotchat
       link: https://web.libera.chat/#monero-docs
       name: IRC via Libera.chat
+  isCoolifyPreview: !ENV [COOLIFY_PREVIEW, ""]
+  sourceCommit:     !ENV [SOURCE_COMMIT, ""]
+  coolifyBranch:    !ENV [COOLIFY_BRANCH, ""]
+  coolifyRepo:      !ENV [COOLIFY_REPO, ""]
 
 repo_name: 'monero-project/monero-docs'
 repo_url: 'https://github.com/monero-project/monero-docs'

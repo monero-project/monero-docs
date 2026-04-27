@@ -84,3 +84,20 @@ article .md-typeset__table {
     border-color:var(--md-accent-fg-color);
 }
 
+/* coolify preview banner */
+.preview-banner {
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+text-align: center;
+z-index: 999;
+}
+
+.preview-banner-style {
+display: inline-block;
+background: black;
+color: white;
+padding: 6px 12px;
+border-radius: 6px;
+}
