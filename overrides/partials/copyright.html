@@ -15,3 +15,13 @@
     </a>
 {% endif %}
 </div>
+
+{% if config.extra.isCoolifyPreview %}
+    <div class="preview-banner">
+        <span class="preview-banner-style">
+            <a href="{{ config.extra.coolifyRepo }}/pull/{{ config.extra.coolifyBranch.split('/')[1] }}/changes/{{ config.extra.sourceCommit }}"
+                >{{ config.extra.sourceCommit[:7]}}</a
+                > Preview powered by <a href="https://coolify.io/">Coolify</a>
+        </span>
+    </div>
+{% endif %}
