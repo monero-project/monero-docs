@@ -65,7 +65,6 @@ Note: "[atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-uni
 - [**export_key_images**](#export_key_images)
 - [**export_multisig_info**](#export_multisig_info)
 - [**export_outputs**](#export_outputs)
-- [**finalize_multisig**](#finalize_multisig)
 - [**freeze**](#freeze)
 - [**frozen**](#frozen)
 - [**generate_from_keys**](#generate_from_keys)
@@ -821,36 +820,6 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
   "jsonrpc": "2.0",
   "result": {
     "outputs_data_hex": "...outputs..."
-  }
-}
-
-```
-
-
-### **finalize_multisig**
-
-Turn this wallet into a multisig wallet, extra step for N-1/N wallets.
-
-Alias:  _None_.
-
-Inputs:
-
--   _multisig_info_  - array of string; List of multisig string from peers.
--   _password_  - string; Wallet password
-
-Outputs:
-
--   _address_  - string; multisig wallet address.
-
-Example:
-
-```json
-$ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"finalize_multisig","params":{"multisig_info":["MultisigxV1JNC6Ja2oBt5Sqea9LN2YEF7WYZCpHqr2EKvPG89Trf3X4E8RWkLaGRf29fJ3stU471MELKxwufNYeigP7LoE4tn2McPr4SbL9q15xNvZT5uwC9YRr7UwjXqSZHmTWN9PBuZEKVAQ4HPPyQciSCdNjgwsuFRBzrskMdMUwNMgKst1debYfm37i6PSzDoS2tk4kYTYj83kkAdR7kdshet1axQPd6HQ","MultisigxV1Unma7Ko4zdd8Ps3Af4oZwtj2JdWKzwNfP6s2G9ZvXhMoSscwn5g7PyCfcBc1V4ffRHY3Kxqq6VocSCUTncpVeUskMcPr4SbL9q15xNvZT5uwC9YRr7UwjXqSZHmTWN9PBuZE1LTpWxLoC3vPMSrqVVcjnmL9LYfdCZz3fECjNZbCEDq3PHDiUuY5jurQTcNoGhDTio5WM9xaAdim9YByiS5KyqF4"]}}' -H 'Content-Type: application/json'
-{
-  "id": "0",
-  "jsonrpc": "2.0",
-  "result": {
-    "address": "5B9gZUTDuHTcGGuY3nL3t8K2tDnEHeRVHSBQgLZUTQxtFYVLnho5JJjWJyFp5YZgZRQ44RiviJi1sPHgLVMbckRsDqDx1gV"
   }
 }
 

@@ -273,8 +273,6 @@ Use `help command_name` to learn more.
 
 `make_multisig`
 
-`finalize_multisig`
-
 #### Update
 
 `export_multisig_info`
