@@ -2826,6 +2826,7 @@ Alias: _None_ .
 Inputs:
 
 - _nblocks_ - unsigned int;
+- _keep_txs_ - boolean; (Optional; default is `true`) Move popped txs into the mempool if `true`. Drop them if `false`.
 
 Outputs:
 
@@ -2836,7 +2837,7 @@ Outputs:
 Example:
 
 ```json
-$ curl http://127.0.0.1:18081/pop_blocks -d '{"nblocks":6}' -H 'Content-Type: application/json''
+$ curl http://127.0.0.1:18081/pop_blocks -d '{"nblocks":6, "keep_txs":false}' -H 'Content-Type: application/json''
 
 {
   "height": 76482,
