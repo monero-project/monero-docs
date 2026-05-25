@@ -2829,6 +2829,12 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 Sign a transaction in multisig.
 
+!!! warning "Confirm transaction details before signing"
+
+    Call `describe_transfer` with this multisig_txset (tx_data_hex) and verify the returned transaction details before signing.
+
+    `sign_multisig` signs the provided transaction data as-is, without prompting for confirmation.
+
 ??? warning "Social engineering"
 
     In a multisig wallet constructed between untrusted parties, it is possible for a single malicious signer to trick other signers into sending a payment twice.
@@ -2864,6 +2870,12 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 ### **sign_transfer**
 
 Sign a transaction created on a read-only wallet (in cold-signing process)
+
+!!! warning "Confirm transaction details before signing"
+
+    Call `describe_transfer` with this unsigned_txset and verify the returned transaction details before signing.
+
+    `sign_transfer` signs the provided transaction data as-is, without prompting for confirmation.
 
 Alias:  _None_.
 
