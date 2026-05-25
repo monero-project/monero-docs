@@ -2829,7 +2829,11 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 Sign a transaction in multisig.
 
-**Caution:** In a multisig wallet constructed between untrusted parties, it is possible for a single malicious signer to trick other signers into sending a payment twice. Read [https://docs.getmonero.org/multisignature/#spending-concerns](https://docs.getmonero.org/multisignature/#spending-concerns)
+??? warning "Social engineering"
+
+    In a multisig wallet constructed between untrusted parties, it is possible for a single malicious signer to trick other signers into sending a payment twice.
+
+    Read [https://docs.getmonero.org/multisignature/#spending-concerns](https://docs.getmonero.org/multisignature/#spending-concerns).
 
 Alias:  _None_.
 
