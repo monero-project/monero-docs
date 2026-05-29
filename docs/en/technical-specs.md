@@ -42,7 +42,7 @@ title: Monero Technical Specification
 
 * dynamic
 * maximum of two times the median size of the last 100 blocks (2 * M100)
-* ~50KB as of June 2020; check [the latest block size](https://bitinfocharts.com/comparison/monero-size.html#3m)
+* ~90KB as of June 2026; check [the latest block size](https://bitinfocharts.com/comparison/monero-size.html#3m)
 
 ## Current blockchain size
 
