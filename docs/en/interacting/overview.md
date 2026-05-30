@@ -3,7 +3,7 @@ title: Interacting with Monero
 ---
 # Interacting with Monero
 
-You can interact with Monero via desktop GUI, commandline interface, and programming API.
+You can interact with Monero via the desktop GUI, command-line interface, and programming API.
 
 On top of that, Monero nodes interact with each other in a peer-to-peer network.
 
@@ -104,7 +104,7 @@ By default data directory is at:
 * `$HOME/.bitmonero/` on Linux and macOS
 * `C:\ProgramData\bitmonero\` on Windows
 
-Please mind:
+Please keep in mind:
 
 * data directory is hidden as per OS convention
 * the `bitmonero` directory name is a historical artifact from before Monero forked away from Bitmonero
