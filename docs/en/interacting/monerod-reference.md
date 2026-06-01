@@ -261,8 +261,6 @@ These options are useful for Monero project developers and testers. Normal users
 | Option                             | Description
 |------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------
 | `--keep-alt-blocks`                | Keep alternative blocks on restart. May help with researching reorgs etc. [Commit](https://github.com/monero-project/monero/pull/5524). Research project by [noncesense research lab](https://noncesense-research-lab.github.io/).
-| `--test-drop-download`             | For net tests: in download, discard ALL blocks instead checking/saving them (very fast).
-| `--test-drop-download-height <arg>`| Like test-drop-download but discards only after around certain height. By default `0`.
 | `--regtest`                        | Run in a regression testing mode.
 | `--keep-fakechain`                 | Don't delete any existing database when in fakechain mode.
 | `--fixed-difficulty <arg>`         | Fixed difficulty used for testing. By default `0`.
