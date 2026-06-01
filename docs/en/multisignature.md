@@ -3,21 +3,21 @@ title: Multisignature
 ---
 # Multisignature
 
-In cryptocurrencies, multisig feature allows to sign a transaction with more than one private key. Funds protected with multisig can only be spent by signing with M-of-N keys.
+In cryptocurrencies, multisig allows one to sign a transaction with more than one private key. Funds protected with multisig can only be spent by signing with M-of-N keys.
 
 Example use cases:
 
 * shared account (1-of-2; both husband and wife individually have full access to their funds)
 * consensus account (2-of-2; both husband and wife must agree to spend their funds)
 * threshold account (2-of-3; an escrow service is involved as an independent 3rd party, to co-sign with either the seller, or with the buyer, if seller and buyer do not agree)
-* secure account (2-of-3; a single owner controls all 3 keys but secures them via a different means to diversify risks)
+* secure account (2-of-3; a single owner controls all 3 keys but secures them via different means to diversify risks)
 * arbitrary threshold account (M-of-N; some cryptocurrencies provide full flexibility on the number of signers)
 
 ## Monero's multisig design
 
 Monero doesn't directly implement multisignatures (at least not in a classical sense). Monero emulates the feature by secret splitting.
 
-Transactions are still signed with a single spend key. The spend key is a sum of all N private keys. The rationale for such design is to decouple multisig from ring signatures.
+Transactions are still signed with a single spend key. The spend key is a sum of all N private keys. The rationale for such a design is to decouple multisig from ring signatures.
 
 Let's consider the 2-of-3 scheme. We have 3 participants. Each participant is granted exactly 2 private keys in a way that pairs do not repeat between participants. This way any 2 participants together have all 3 private keys required to create the private spend key.
 
@@ -53,7 +53,7 @@ Next, **enable** multisig via:
 set enable-multisig-experimental 1
 ```
 
-If you don't set this flag, then try to issue the first command, you will see:
+If you try to issue the first command without first setting this flag, you will see:
 
 ```
 Error: Multisig is disabled.
@@ -375,11 +375,11 @@ In a multisig wallet constructed between untrusted parties, it is possible for a
 
 The withheld transaction will succeed because it does not conflict with the B -> X transaction as it spends a different input. **As a holder, you should only ever sign for a given transfer once in normal multisig operation. If the signature fails due to the stale data error or any other reason, you must re-check the inputs of the transaction and make sure they are the same, which prevents a hidden transaction being respent.** Viewing the inputs is not currently possible in any user wallet, but can be done with the wallet RPC method [`describe_transfer`](https://docs.getmonero.org/rpc-library/wallet-rpc/#describe_transfer). If the inputs do not match the first transaction, do not sign the second transaction.
 
-This is possible in other crypto-currencies, but is more feasible in Monero because of the stale data error mentioned earlier, which provides an excuse for why the transaction failed. Work is in progress to reduce the chance of encountering the stale data error and remove this excuse. Other crypto-currencies' technical user wallets sometimes display inputs, which can help you examine transactions more easily, but for Monero this is not yet the case, and you have to use the wallet RPC.
+This is possible in other cryptocurrencies, but is more feasible in Monero because of the stale data error mentioned earlier, which provides an excuse for why the transaction failed. Work is in progress to reduce the chance of encountering the stale data error and remove this excuse. Other cryptocurrencies' technical user wallets sometimes display inputs, which can help you examine transactions more easily, but for Monero this is not yet the case, and you have to use the wallet RPC.
 
 ## Mnemonic Seeds
 
-With a regular wallet is it possible to create a mnemonic seed that you can backup, and later use to recreate the wallet.
+With a regular wallet is it possible to create a mnemonic seed that you can back up, and later use to recreate the wallet.
 
 Fortunately, multisig wallets have the same feature. The only difference is that the seed is a **long string** of letters and numbers, rather than a set of dictionary words. Unfortunately, it needs to encode too much data to fit neatly into the regular mnemonic seed dictionary output.
 
