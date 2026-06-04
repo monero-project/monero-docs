@@ -943,7 +943,7 @@ Outputs:
   - _state_ - string
   - _support_flags_ - unsigned int
 - _status_ - string; General RPC error code. "OK" means everything looks good.
-- _$1_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Following is an example of `get_connections` and it's return:
 
@@ -1084,7 +1084,7 @@ Outputs:
 - _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
 - _tx_count_ - unsigned int; Total number of non-coinbase transactions in the chain.
 - _tx_pool_size_ - unsigned int; Number of transactions that have been broadcast but not included in a block.
-- _$1_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 - _update_available_ - boolean; States if a newer Monero software version is available.
 - _version_ - string; The version of the Monero software the node is running.
 - _was_bootstrap_ever_used_ - boolean; States if a bootstrap node has ever been used since the daemon started.
@@ -1484,7 +1484,7 @@ Outputs:
 - _status_ - string; General RPC error code. "OK" means everything looks good.
 - _threshold_ - unsigned int; Minimum percent of votes to trigger hard fork. Default is 80.
 - _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-- _$1_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 - _version_ - unsigned int; The major block version for the fork.
 - _votes_ - unsigned int; Number of votes towards hard fork.
 - _voting_ - unsigned int; Hard fork voting status.
