@@ -429,7 +429,9 @@ Close the currently opened wallet, after trying to save it.
 
 Alias:  _None_.
 
-Inputs:  _None_.
+Inputs:
+
+-   _autosave_current_  - boolean; (Optional; Default = true) When true, stores (saves) the currently open wallet via store() before it is closed.
 
 Outputs:  _None_.
 
@@ -607,6 +609,7 @@ Outputs:
     -   _unlock_time_  - unsigned int; The number of blocks before the monero can be spent (0 for no lock).
     -   _dummy_outputs_  - unsigned int; The number of fake outputs added to single-output transactions.  Fake outputs have 0 amount and are sent to a random address.
     -   _extra_  - string; Arbitrary transaction data in hexadecimal format.
+    -   _summary_  - object; A txset_summary aggregating the parsed transaction set, with totals for amount_in, amount_out, change_amount, and fee plus change_address and the list of recipients.
 
 Example:
 
@@ -806,6 +809,8 @@ Alias:  _None_.
 Inputs:
 
 -   _all_  - boolean (optional); If true, export all outputs. Otherwise, export outputs since the last export. (default = false)
+-   _start_  - unsigned int; The index of the first output to begin exporting from; defaults to 0.
+-   _count_  - unsigned int; The number of outputs to export, starting from the start index; defaults to 0xffffffff (all remaining outputs).
 
 Outputs:
 
@@ -891,6 +896,7 @@ Inputs:
 -   _viewkey_  - string; The wallet's private view key.
 -   _password_  - string; The wallet's password.
 -   _autosave_current_  - boolean; (Defaults to true) If true, save the current wallet before generating the new wallet.
+-   _language_  - string; Language used for the wallet's mnemonic seed (for example "English"), applied when the restored wallet's deterministic seed is generated.
 
 Outputs:
 
@@ -1336,6 +1342,7 @@ Inputs:  _None_.
 Outputs:
 
 -   _languages_  - array of string; List of available languages
+-   _languages_local_  - array; The list of available mnemonic seed languages in their local (native) names, obtained from ElectrumWords::get_language_list called with the english flag set to false.
 
 Example:
 
@@ -1850,6 +1857,7 @@ Inputs:  _None_.
 Outputs:
 
 -   _version_  - unsigned int; RPC version, formatted with `Major * 2^16 + Minor` (Major encoded over the first 16 bits, and Minor over the last 16 bits).
+-   _release_  - boolean; A boolean set to MONERO_VERSION_IS_RELEASE indicating whether this wallet RPC build is an official release version.
 
 Example:
 
@@ -1907,6 +1915,7 @@ Alias:  _None_.
 Inputs:
 
 -   _info_  - array of string; List of multisig info in hex format from other participants.
+-   _refresh_after_import_  - boolean; (Optional; Default = true) When true, the wallet refreshes after importing the multisig info.
 
 Outputs:
 
@@ -2339,6 +2348,7 @@ Inputs:
 
 -   _filename_  - string; wallet name stored in --wallet-dir.
 -   _password_  - string; (Optional) only needed if the wallet has a password defined.
+-   _autosave_current_  - boolean; (Optional; Default = true) When true, if a wallet is already open it will be stored (saved) before the requested wallet file is opened.
 
 Outputs:  _None_.
 
@@ -2367,6 +2377,7 @@ Inputs:
 Outputs:
 
 -   _uri_  - JSON object containing payment information:
+-   _unknown_parameters_  - array; Array of URI parameters that the wallet did not recognize while parsing the given uri.
     -   _address_  - string; Wallet address
     -   _amount_  - unsigned int; Integer amount to receive, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.") (0 if not provided)
     -   _payment_id_  - string; (Optional, defaults to a random ID) 16 characters hex encoded.
@@ -2398,7 +2409,9 @@ Prepare a wallet for multisig by generating a multisig string to share with peer
 
 Alias:  _None_.
 
-Inputs:  _None_.
+Inputs:
+
+-   _enable_multisig_experimental_  - boolean; (Optional; Default = false) When true, enables experimental multisig support on the wallet before preparing the multisig info.
 
 Outputs:
 
@@ -2521,7 +2534,9 @@ This includes destination addresses, tx secret keys, tx notes, etc.
 
 Alias:  _None_.
 
-Inputs:  _None_.
+Inputs:
+
+-   _hard_  - boolean; (Optional; Default = false) If true, you will lose any information which can not be recovered from the blockchain.
 
 Outputs:  _None_.
 
@@ -2576,6 +2591,7 @@ Inputs:
 -   _language_  - string; (Optional) Language of the mnemonic phrase in case the old language is invalid.
 -   _seed_offset_  - string; (Optional) Offset used to derive a new seed from the given mnemonic to recover a secret wallet from the mnemonic phrase.
 -   _autosave_current_  - boolean; Whether to save the currently open RPC wallet before closing it (Defaults to true).
+-   _enable_multisig_experimental_  - boolean; (Optional; Default = false) When true, enables experimental multisig support, skipping the Electrum-style word list verification of the seed and disallowing use of a seed_offset.
 
 Outputs: 
 
@@ -2806,6 +2822,9 @@ Alias:  _None_.
 Inputs:
 
 -   _data_  - string; Anything you need to sign.
+-   _account_index_  - unsigned int; (Optional; Default = 0) Index of the account whose key is used to sign the data.
+-   _address_index_  - unsigned int; (Optional; Default = 0) Index of the subaddress (within the given account) whose key is used to sign the data.
+-   _signature_type_  - string; Type of signature to produce; "spend" (or empty) signs with the spend key and "view" signs with the view key, any other value is rejected as invalid.
 
 Outputs:
 
@@ -3146,6 +3165,7 @@ Outputs:
 -   _tx_hash_list_  - array of: string. The tx hashes of every transaction.
 -   _tx_key_list_  - array of: string. The transaction keys for every transaction.
 -   _amount_list_  - array of: integer. The amount transferred for every transaction.
+-   _amounts_by_dest_list_  - array; List with one entry per transaction created by the sweep, giving the per-destination amounts sent in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR."); each entry is an object with an `amounts` array holding one value per destination.
 -   _fee_list_  - array of: integer. The amount of fees paid for every transaction.
 -   _weight_list_  - array of: integer. Metric used for adjusting fee.
 -   _tx_blob_list_  - array of: string. The tx as hex string for every transaction.
@@ -3199,6 +3219,7 @@ Outputs:
 -   _tx_hash_list_  - array of: string. The tx hashes of every transaction.
 -   _tx_key_list_  - array of: string. The transaction keys for every transaction.
 -   _amount_list_  - array of: integer. The amount transferred for every transaction.
+-   _amounts_by_dest_list_  - array; List with one entry per transaction created, giving the per-destination amounts sent in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR."); each entry is an object with an `amounts` array holding one value per destination.
 -   _fee_list_  - array of: integer. The amount of fees paid for every transaction.
 -   _weight_list_  - array of: integer. Metric used to calculate transaction fee.
 -   _tx_blob_list_  - array of: string. The tx as hex string for every transaction.
@@ -3250,6 +3271,7 @@ Outputs:
 -   _tx_hash_  - array of: string. The tx hashes of every transaction.
 -   _tx_key_  - array of: string. The transaction keys for every transaction.
 -   _amount_  - array of: integer. The amount transferred for every transaction.
+-   _amounts_by_dest_  - object; Per-destination amounts sent by the swept transaction in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR."), as an object with an `amounts` array holding one value per destination.
 -   _fee_  - array of: integer. The amount of fees paid for every transaction.
 -   _weight_  - unsigned int; Metric used to calculate transaction fee.
 -   _tx_blob_  - array of: string. The tx as hex string for every transaction.
@@ -3359,6 +3381,7 @@ Inputs:
 -   _mixin_  - unsigned int; Number of outputs from the blockchain to mix with (0 means no mixing).
 -   _ring_size_  - unsigned int; Number of outputs to mix in the transaction (this output + N decoys from the blockchain). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
 -   _unlock_time_  - unsigned int; Number of blocks before the monero can be spent (0 to not add a lock).
+-   _payment_id_  - string; An optional payment ID string passed alongside the destinations to validate_transfer and embedded into the transaction extra for the transfer.
 -   _get_tx_key_  - boolean; (Optional) Return the transaction key after sending.
 -   _do_not_relay_  - boolean; (Optional) If true, the newly created transaction will not be relayed to the monero network. (Defaults to false)
 -   _get_tx_hex_  - boolean; Return the transaction as hex string after sending (Defaults to false)
@@ -3369,12 +3392,14 @@ Outputs:
 -   _amount_  - Amount transferred for the transaction.
 -   _amounts_by_dest_  - Amounts transferred per destination.
 -   _fee_  - Integer value of the fee charged for the txn.
+-   _weight_  - unsigned int; Weight of the transaction as computed by the wallet, used by the fee and relay-size rules.
 -   _multisig_txset_  - Set of multisig transactions in the process of being signed (empty for non-multisig).
 -   _tx_blob_  - Raw transaction represented as hex string, if get_tx_hex is true.
 -   _tx_hash_  - String for the publicly searchable transaction hash.
 -   _tx_key_  - String for the transaction key if get_tx_key is true, otherwise, blank string.
 -   _tx_metadata_  - Set of transaction metadata needed to relay this transfer later, if get_tx_metadata is true.
 -   _unsigned_txset_  - String. Set of unsigned tx for cold-signing purposes.
+-   _spent_key_images_  - object; Key images of the outputs spent by the transaction, as an object with a `key_images` array of hex-encoded key image strings.
 
 Example:
 
@@ -3449,6 +3474,7 @@ Outputs:
 -   _tx_hash_list_  - array of: string. The tx hashes of every transaction.
 -   _tx_key_list_  - array of: string. The transaction keys for every transaction.
 -   _amount_list_  - array of: integer. The amount transferred for every transaction.
+-   _amounts_by_dest_list_  - array; List with one entry per transaction in the split transfer, giving the per-destination amounts sent in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR."); each entry is an object with an `amounts` array holding one value per destination.
 -   _fee_list_  - array of: integer. The amount of fees paid for every transaction.
 -   _weight_list_  - array of: integer. Metric used to calculate transaction fee.
 -   _tx_blob_list_  - array of: string. The tx as hex string for every transaction.
@@ -3523,6 +3549,9 @@ Inputs:
 Outputs:
 
 -   _good_  - boolean;
+-   _version_  - unsigned int; An unsigned integer indicating the version of the signature that was verified.
+-   _old_  - boolean; A boolean indicating whether the supplied signature was produced by an older signing scheme.
+-   _signature_type_  - string; A string describing the key used to produce the signature, set to "spend" for a spend-key signature, "view" for a view-key signature, or "invalid" otherwise.
 
 Example:
 
