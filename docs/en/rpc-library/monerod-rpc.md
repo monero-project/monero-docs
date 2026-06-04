@@ -77,6 +77,12 @@ Some methods include parameters, while others do not. Examples of each JSON RPC 
 - [on_get_block_hash](#on_get_block_hash)
 - [prune_blockchain](#prune_blockchain)
 - [relay_tx](#relay_tx)
+- [rpc_access_account](#rpc_access_account)
+- [rpc_access_data](#rpc_access_data)
+- [rpc_access_info](#rpc_access_info)
+- [rpc_access_pay](#rpc_access_pay)
+- [rpc_access_submit_nonce](#rpc_access_submit_nonce)
+- [rpc_access_tracking](#rpc_access_tracking)
 - [set_bans](#set_bans)
 - [submit_block](#submit_block)
 - [sync_info](#sync_info)
@@ -1608,6 +1614,263 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"r
 ```
 
 
+
+### **rpc_access_account**
+
+Adjusts and returns the RPC payment credit balance for a given client. Requires RPC payments to be enabled; applies delta_balance to the client's balance and returns the resulting credits.
+
+Alias: _None_ .
+
+Inputs:
+
+- _client_ - string; Hex-encoded client public key identifying the account whose balance is queried or adjusted.
+- _delta_balance_ - int; Signed amount to add to the client's credit balance, defaulting to 0.
+
+Outputs:
+
+- _status_ - string; General RPC status; "OK" indicates success.
+- _untrusted_ - boolean; Indicates whether the response was served by an untrusted bootstrap daemon.
+- _credits_ - unsigned int; The client's resulting credit balance after applying delta_balance.
+
+Example:
+
+```json
+$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"rpc_access_account","params":{"client":"0000000000000000000000000000000000000000000000000000000000000000","delta_balance":0}}' -H 'Content-Type: application/json'
+
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "credits": 0,
+    "status": "OK",
+    "untrusted": false
+  }
+}
+```
+
+### **rpc_access_data**
+
+Returns RPC payment access data for the daemon, listing per-client credit and nonce statistics. Requires RPC payments to be enabled, otherwise returns a payments-not-enabled error.
+
+Alias: _None_ .
+
+Inputs: _None_ .
+
+Outputs:
+
+- _status_ - string; General RPC status; "OK" means everything looks good.
+- _untrusted_ - boolean; Whether the response was served by a bootstrap daemon rather than the local trusted daemon.
+- _entries_ - array; List of per-client access records, each containing the client public key, balance, last update time, total and used credits, and good/stale/bad/dupe nonce counts:
+  - _client_ - string
+  - _balance_ - unsigned int
+  - _last_update_time_ - unsigned int
+  - _credits_total_ - unsigned int
+  - _credits_used_ - unsigned int
+  - _nonces_good_ - unsigned int
+  - _nonces_stale_ - unsigned int
+  - _nonces_bad_ - unsigned int
+  - _nonces_dupe_ - unsigned int
+- _hashrate_ - unsigned int; Estimated hashrate computed as the number of hashes over the last 600 seconds divided by 600.
+
+Example:
+
+```json
+$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"rpc_access_data"}' -H 'Content-Type: application/json'
+
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "hashrate": 0,
+    "status": "OK",
+    "untrusted": false
+  }
+}
+```
+
+### **rpc_access_info**
+
+Returns RPC payment information for a client, including the hashing blob and difficulty needed to mine credits via proof-of-work. When RPC payment is disabled, it returns zeroed payment fields; otherwise it verifies the client's payment signature and builds the per-client mining work from the current block template.
+
+Alias: _None_ .
+
+Inputs:
+
+- _client_ - string; Client identifier carrying the RPC payment signature, verified to derive the client public key.
+
+Outputs:
+
+- _status_ - string; General RPC status; "OK" means everything looks good.
+- _untrusted_ - boolean; True if the response was obtained using a bootstrap daemon rather than this trusted node.
+- _credits_ - unsigned int; Number of payment credits the client currently has, set to 0 when RPC payment is disabled.
+- _top_hash_ - string; Hex-encoded hash of the current top block.
+- _hashing_blob_ - string; Hex-encoded blob the client must hash to find a valid proof-of-work for earning credits.
+- _seed_height_ - unsigned int; Height of the block whose hash is used as the RandomX seed, set to 0 when RPC payment is disabled.
+- _seed_hash_ - string; Hex-encoded RandomX seed hash, populated only when the hashing blob's block version is at least the RandomX block version.
+- _next_seed_hash_ - string; Hex-encoded next RandomX seed hash, populated only when it differs from the current seed hash near a seed epoch change.
+- _cookie_ - unsigned int; Opaque cookie identifying this hashing blob, to be returned when submitting found proof-of-work.
+- _diff_ - unsigned int; Difficulty the client's proof-of-work must meet to earn credits, set to 0 when RPC payment is disabled.
+- _credits_per_hash_found_ - unsigned int; Number of credits awarded for each valid proof-of-work hash found, set to 0 when RPC payment is disabled.
+- _height_ - unsigned int; Height at which the next block would be mined (current top block height plus one), set to 0 when RPC payment is disabled.
+
+Example:
+
+```json
+$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"rpc_access_info"}' -H 'Content-Type: application/json'
+
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "cookie": 0,
+    "credits": 0,
+    "credits_per_hash_found": 0,
+    "diff": 0,
+    "hashing_blob": "",
+    "height": 0,
+    "next_seed_hash": "",
+    "seed_hash": "",
+    "seed_height": 0,
+    "status": "OK",
+    "top_hash": "",
+    "untrusted": false
+  }
+}
+```
+
+### **rpc_access_pay**
+
+Pays for an external service identified by paying_for using the signed RPC payment client identifier and the specified credit amount. If RPC payment is not enabled the daemon returns "Payment not necessary"; otherwise the client signature is verified and the payment is applied.
+
+Alias: _None_ .
+
+Inputs:
+
+- _client_ - string; RPC payment client identifier whose signature is verified to authenticate the caller.
+- _paying_for_ - string; Name of the external service the payment is being made for.
+- _payment_ - unsigned int; Amount of credits to pay for the named service.
+
+Outputs:
+
+- _status_ - string; General RPC status string; "OK" on success, or "Payment not necessary" when RPC payment is not enabled.
+- _untrusted_ - boolean; Indicates whether the response was served by an untrusted (bootstrap) daemon.
+- _credits_ - unsigned int; Number of RPC payment credits remaining for the client after the payment.
+- _top_hash_ - string; Hash of the highest block, returned as part of the payment check.
+
+Example:
+
+```json
+$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"rpc_access_pay"}' -H 'Content-Type: application/json'
+
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "credits": 0,
+    "status": "Payment not necessary",
+    "top_hash": "",
+    "untrusted": false
+  }
+}
+```
+
+### **rpc_access_submit_nonce**
+
+Submit a proof-of-work nonce found by an RPC payment client for a previously requested block template, crediting the client and, if the hash meets network difficulty, submitting the solved block to the chain. If RPC payment is not enabled, the method returns a "Payment not necessary" status.
+
+Alias: _None_ .
+
+Inputs:
+
+- _client_ - string; Signed client identifier used to verify the RPC payment signature and resolve the client's public key.
+- _nonce_ - unsigned int; The proof-of-work nonce being submitted for the block template.
+- _cookie_ - unsigned int; Cookie identifying which block template the submitted nonce applies to.
+
+Outputs:
+
+- _status_ - string; General RPC status; set to "OK" on success, or "Payment not necessary" when RPC payment is not enabled.
+- _untrusted_ - boolean; Whether the response came from a bootstrap daemon rather than the local trusted daemon.
+- _credits_ - unsigned int; The number of payment credits associated with the client; set to 0 if the client ID is invalid.
+- _top_hash_ - string; Hex-encoded hash of the current top block of the chain after the nonce was processed.
+
+Example:
+
+```json
+$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"rpc_access_submit_nonce"}' -H 'Content-Type: application/json'
+
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "credits": 0,
+    "status": "Payment not necessary",
+    "top_hash": "",
+    "untrusted": false
+  }
+}
+```
+
+### **rpc_access_tracking**
+
+Retrieve per-method RPC usage tracking data, or clear the accumulated tracking statistics. When the request's clear flag is set, the tracker is reset and no data is returned; otherwise the current tracked entries are returned.
+
+Alias: _None_ .
+
+Inputs:
+
+- _clear_ - boolean; If true, clears the RPC tracking statistics and returns without data; otherwise the tracked data is returned.
+
+Outputs:
+
+- _status_ - string; General RPC status; "OK" means everything looks good.
+- _untrusted_ - boolean; Indicates whether the response came from an untrusted daemon.
+- _data_ - array; Array of per-method tracking entries, each holding the rpc method name, its invocation count, accumulated time, and credits:
+  - _rpc_ - string
+  - _count_ - unsigned int
+  - _time_ - unsigned int
+  - _credits_ - unsigned int
+
+Example:
+
+```json
+$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"rpc_access_tracking"}' -H 'Content-Type: application/json'
+
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "data": [
+      {
+        "count": 2,
+        "credits": 0,
+        "rpc": "get_height",
+        "time": 39833
+      },
+      {
+        "count": 2,
+        "credits": 0,
+        "rpc": "getblockhash",
+        "time": 6207
+      },
+      {
+        "count": 3,
+        "credits": 0,
+        "rpc": "generateblocks",
+        "time": 4082867918
+      },
+      {
+        "count": 4,
+        "credits": 80,
+        "rpc": "get_output_distribution_bin",
+        "time": 220750
+      },
+      ...
+    ],
+    "status": "OK",
+    "untrusted": false
+  }
+}
+```
 
 ### **set_bans**
 
