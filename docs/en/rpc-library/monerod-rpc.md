@@ -1244,7 +1244,7 @@ Outputs:
 - _height_ - unsigned int; current blockheight.
 - _prev_id_ - string; previous block id.
 - _seed_hash_ - string; RandomX seed hash.
-- _difficulty_ - unsigned int; network. difficulty.
+- _difficulty_ - string; network. difficulty.
 - _median_weight_ - unsigned int; median block weight.
 - _already_generated_coins_ - unsigned int; coins mined by the network so far.
 - _status_ - string; General RPC error code. "OK" means everything looks good.
@@ -2223,7 +2223,7 @@ Inputs:
 Outputs:
 
 - _status_ - string; General RPC error code. "OK" means everything looks good.
-- _whites_ - array of `public_node` structures defined as follows:
+- _white_ - array of `public_node` structures defined as follows:
   - _host_ - string; The node's IP address. This includes IPv4, IPv6, Onion, and i2p addresses.
   - _last_seen_ - unsigned int; UNIX timestamp of the last time the node was seen.
   - _rpc_credits_per_hash_ - unsigned int; If payment for RPC is enabled, the number of credits the node is requesting per hash. Otherwise, 0.
