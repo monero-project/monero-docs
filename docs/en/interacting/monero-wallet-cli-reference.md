@@ -160,8 +160,8 @@ These options are either legacy or rarely useful.
 | `--shared-ringdb-dir <arg>`  | Set shared ring database path. [No longer worthwhile](https://www.reddit.com/r/Monero/comments/9rtnpx/are_there_any_updated_blackball_databases/).
 | `--create-address-file`      | Has no effect. The `*.address.txt` file is created regardless of this option.
 | `--electrum-seed <arg>`      | Provide mnemonic seed as a commandline option for `--restore-deterministic-wallet` instead of interactively. This is not recommended b/c the seed will be saved in your command history and also visible in the process list.
-| `--generate-from-json <arg>` | You would run `monero-wallet-rpc` to use this option. It seems exposed in `monero-wallet-cli` by accident.
-| `--tx-notify <arg>`          | You would run `monero-wallet-rpc` to use this option. It seems exposed in `monero-wallet-cli` by accident.
+| `--generate-from-json <arg>` | Generate wallet from JSON format file
+| `--tx-notify <arg>`          | Run a program for each new incoming transaction, '%s' will be replaced by the transaction hash. This feature is better suited for use in conjunction with `monero-wallet-rpc`.
 
 ## Defaults
 
