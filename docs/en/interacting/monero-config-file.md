@@ -76,5 +76,5 @@ daemon-address=YOUR.NODE.IP:38081
 # Log file
 log-file=/tmp/monero-wallet-cli.log
 
-# wallet-file=~/.bitmonero/stagenet/wallets/MoneroExampleStagenetWallet
+# wallet-file=/home/user/.bitmonero/stagenet/wallets/MoneroExampleStagenetWallet
 ```
