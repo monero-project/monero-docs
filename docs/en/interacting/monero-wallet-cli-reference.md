@@ -109,6 +109,7 @@ Wallet depends on a full node for all non-local operations. The following option
 | Option                      | Description
 |-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------
 | `--wallet-file <arg>`       | Open existing wallet. Example: <br/><br/>`./monero-wallet-cli --stagenet --wallet-file $HOME/.bitmonero/stagenet/wallets/MoneroExampleStagenetWallet` <br><br/>This is only for wallet files generated with `monero-wallet-cli`, `monero-wallet-gui`, or `monero-wallet-rpc` tools. If you have other type of wallet then see importing options.
+| `--wallet-dir <arg>`        | Specify a directory for loading and saving wallet files. Must be an absolute path.
 | `--password <arg>`          | Provide wallet password as a parameter instead of interactively. Remember to escape/quote as needed. <br><br>**Not recommended** because the password will remain in your command history and will also be visible in the process table. For automation prefer `--password-file`. <br><br>The option also works in combination with `--generate-new-wallet`.
 | `--password-file <arg>`     | Provide password as a file in stead of interactively. Trailing `\n` are discarded when reading the password file. <br><br>Prefer this over `--password` if you automate wallet access. Make sure the password file is meaningfully separated from the wallet file. Otherwise it provides no security benefit. <br><br>The option also works in combination with `--generate-new-wallet`.
 
@@ -165,7 +166,7 @@ These options are either legacy or rarely useful.
 
 ## Defaults
 
-Wallet files are created and seek in current directory. This is rarely what you want. Use `--wallet-file` and similar options to control this.
+Wallet files are created and seek in current directory. This is rarely what you want. Use `--wallet-file`, `--wallet-dir`, and similar options to control this.
 
 Log files are created in the same directory as `monero-wallet-cli` binary. Use `--log-file` to specify the location.
 
