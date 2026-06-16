@@ -110,6 +110,7 @@ Note: "[atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-uni
 - [**set_account_tag_description**](#set_account_tag_description)
 - [**set_attribute**](#set_attribute)
 - [**set_daemon**](#set_daemon)
+- [**set_log_categories**](#set_log_categories)
 - [**set_log_level**](#set_log_level)
 - [**set_subaddress_lookahead**](#set_subaddress_lookahead)
 - [**set_tx_notes**](#set_tx_notes)
@@ -2717,6 +2718,34 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
   }
 }
 
+```
+
+### **set_log_categories**
+
+Set the log categories for the wallet. Unavailable in restricted mode.
+
+Alias: _None_ .
+
+Inputs:
+
+- _categories_ - string; The log-category spec to apply, passed to mlog_set_log (e.g. `*:WARNING`). Empty leaves the current categories unchanged.
+
+Outputs:
+
+- _categories_ - string; The resulting active log categories after the change, as returned by mlog_get_categories.
+
+Example:
+
+```json
+$ curl http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_log_categories","params":{"categories":"*:WARNING"}}' -H 'Content-Type: application/json'
+
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "categories": "*:WARNING"
+  }
+}
 ```
 
 ### **set_log_level**
