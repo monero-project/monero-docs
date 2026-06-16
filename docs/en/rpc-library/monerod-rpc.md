@@ -245,7 +245,6 @@ Alias: _None_ .
 
 Inputs:
 
-- _bad_txs_ - boolean; Optional (`false` by default).
 - _bad_blocks_ - boolean; Optional (`false` by default).
 
 Outputs:
@@ -2062,8 +2061,6 @@ Alias: _None_ .
 
 Inputs:
 
-- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
 - _amounts_ - array of unsigned int; amounts to look for
 - _cumulative_ - boolean; (optional, default is `false`) States if the result should be cumulative (`true`) or not (`false`)
 - _from_height_ - unsigned int; (optional, default is 0) starting height to check from
@@ -2891,7 +2888,6 @@ Outputs:
 - _invalid_input_ - boolean; Input is invalid (`true`) or valid (`false`).
 - _invalid_output_ - boolean; Output is invalid (`true`) or valid (`false`).
 - _low_mixin_ - boolean; Mixin count is too low (`true`) or OK (`false`).
-- _not_rct_ - boolean; Transaction is a standard ring transaction (`true`) or a ring confidential transaction (`false`).
 - _not_relayed_ - boolean; Transaction was not relayed (`true`) or relayed (`false`).
 - _overspend_ - boolean; Transaction uses more money than available (`true`) or not (`false`).
 - _reason_ - string; Additional information. Currently empty or "Not relayed" if transaction was accepted but not relayed.
