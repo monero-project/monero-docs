@@ -25,7 +25,7 @@ Monero Docs is a Knowledge Base and User Guide for interacting with Monero. Pick
 
     Run `monerod`, then mine solo, in a pool, or via P2Pool.
 
-    [:octicons-arrow-right-24: monerod reference](interacting/monerod-reference.md)
+    [:octicons-arrow-right-24: Run a node](running-node/index.md)
 
     [:octicons-arrow-right-24: Mining guides](interacting/mining/index.md)
 
