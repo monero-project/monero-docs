@@ -115,10 +115,8 @@ Some methods include parameters, while others do not. Examples of each JSON RPC 
 - [/set_log_hash_rate](#set_log_hash_rate)
 - [/set_log_level](#set_log_level)
 - [/start_mining](#start_mining)
-- [/start_save_graph](#start_save_graph)
 - [/stop_daemon](#stop_daemon)
 - [/stop_mining](#stop_mining)
-- [/stop_save_graph](#stop_save_graph)
 - [/update](#update)
 
 
@@ -3162,30 +3160,6 @@ $ curl http://127.0.0.1:18081/start_mining -d '{"do_background_mining":false,"ig
 
 
 
-### **/start_save_graph**
-
-Obsolete. Conserved here for reference.
-
-Alias: _None_ .
-
-Inputs: _None_ .
-
-Outputs:
-
-- _status_ - string; General RPC error code. "OK" means everything looks good.
-
-Example:
-
-```json
-$ curl http://127.0.0.1:18081/start_save_graph -H 'Content-Type: application/json'
-
-{
-  "status": "OK"
-}
-```
-
-
-
 ### **/stop_daemon**
 
 Send a command to the daemon to safely disconnect and shut down.
@@ -3231,30 +3205,6 @@ $ curl http://127.0.0.1:18081/stop_mining -H 'Content-Type: application/json'
 {
   "status": "OK",
   "untrusted": false
-}
-```
-
-
-
-### **/stop_save_graph**
-
-Obsolete. Conserved here for reference.
-
-Alias: _None_ .
-
-Inputs: _None_ .
-
-Outputs:
-
-- _status_ - string; General RPC error code. "OK" means everything looks good.
-
-Example:
-
-```json
-$ curl http://127.0.0.1:18081/stop_save_graph -H 'Content-Type: application/json'
-
-{
-  "status": "OK"
 }
 ```
 

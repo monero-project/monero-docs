@@ -369,13 +369,6 @@ You can also type commands directly in the console of the running `monerod` (if 
 | `start_mining <addr> [<threads>] [do_background_mining] [ignore_battery]`   | Ask `monerod`daemon to start mining. Block reward will go to `<addr>`.
 | `stop_mining`                                              | Ask `monerod` daemon to stop mining.
 
-#### Testing Monero itself
-
-| Option                                                     | Description
-|------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `start_save_graph`                                         | Start saving data for dr Monero.
-| `stop_save_graph`                                          | Stop saving data for dr Monero.
-
 #### Legacy
 
 | Option                                                     | Description
