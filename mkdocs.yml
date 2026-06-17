@@ -179,6 +179,7 @@ markdown_extensions:
   - abbr
   - def_list
   - attr_list
+  - md_in_html         # enables the grid card layout on the landing page
   - footnotes
   - meta
   - toc:
