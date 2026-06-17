@@ -147,7 +147,6 @@ Alias:  _None_.
 Inputs:
 
 -   _address_  - string;
--   _payment_id_  - string; (Optional, defaults to a random ID) 16 characters hex encoded.
 -   _description_  - (optional) string, defaults to "";
 
 Outputs:
@@ -650,15 +649,13 @@ Inputs:
 -   _address_  - string; (Optional) The 95-character public address to set.
 -   _set_description_  - boolean; If true, set the description for this entry to the value of "description".
 -   _description_  - string; (Optional) Human-readable description for this entry.
--   _set_payment_id_  - boolean; If true, set the payment ID for this entry to the value of "payment_id".
--   _payment_id_  - string; (Optional, defaults to a random ID) 16 characters hex encoded.
 
 Outputs:  _none_.
 
 Example:
 
 ```json
-$ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"edit_address_book","params":{"index":0, "set_address":true, "address":"0b057f69acc1552014cb157138e5c4dd495347d333f68ff0af70494b979aed10", "set_payment_id":true, "payment_id":"60900e5603bf96e3", "set_description":true, "description":"Example description."}' -H 'Content-Type: application/json'
+$ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"edit_address_book","params":{"index":0, "set_address":true, "address":"0b057f69acc1552014cb157138e5c4dd495347d333f68ff0af70494b979aed10", "set_description":true, "description":"Example description."}' -H 'Content-Type: application/json'
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1065,7 +1062,6 @@ Outputs:
     -   _address_  - string; Public address of the entry
     -   _description_  - string; Description of this address entry
     -   _index_  - unsigned int;
-    -   _payment_id_  - string;
 
 Example:
 
@@ -1078,13 +1074,11 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
     "entries": [{
       "address": "77Vx9cs1VPicFndSVgYUvTdLCJEZw9h81hXLMYsjBCXSJfUehLa9TDW3Ffh45SQa7xb6dUs18mpNxfUhQGqfwXPSMrvKhVp",
       "description": "Second account",
-      "index": 0,
-      "payment_id": "0000000000000000"
+      "index": 0
     },{
       "address": "78P16M3XmFRGcWFCcsgt1WcTntA1jzcq31seQX1Eg92j8VQ99NPivmdKam4J5CKNAD7KuNWcq5xUPgoWczChzdba5WLwQ4j",
       "description": "Third account",
-      "index": 1,
-      "payment_id": "0000000000000000"
+      "index": 1
     }]
   }
 }
@@ -3356,7 +3350,6 @@ Inputs:
 -   _subaddr_indices_  - array of unsigned int; (Optional) Transfer from this set of subaddresses. (Defaults to empty - all indices)
 -   _subtract_fee_from_outputs_ - array of unsigned int; (Optional) Choose which destinations to fund the tx fee from instead of the change output. The fee will be subtracted evenly from each destination (regardless of amount). Do not use this if recipient requires an exact amount.
 -   _priority_  - unsigned int; Set a priority for the transaction. Accepted Values are: 0-3 for: default, unimportant, normal, elevated, priority.
--   _mixin_  - unsigned int; Number of outputs from the blockchain to mix with (0 means no mixing).
 -   _ring_size_  - unsigned int; Number of outputs to mix in the transaction (this output + N decoys from the blockchain). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
 -   _unlock_time_  - unsigned int; Number of blocks before the monero can be spent (0 to not add a lock).
 -   _get_tx_key_  - boolean; (Optional) Return the transaction key after sending.
