@@ -951,7 +951,7 @@ Alias:  _None_.
 Inputs:
 
 -   _tag_  - string; (Optional) Tag for filtering accounts.
--   _regex_  - boolean; (Optional) allow regular expression filters if set to true (Defaults to false).
+-   _regexp_  - boolean; (Optional) allow regular expression filters if set to true (Defaults to false).
 -   _strict_balances_  - boolean; (Optional) when `true`, balance only considers the blockchain, when `false` it considers both the blockchain and some recent actions, such as a recently created transaction which spent some outputs, which isn't yet mined.
 Outputs:
 
@@ -2966,7 +2966,7 @@ Inputs:
 Outputs:
 
 -   _is_subaddress_  - boolean; States if the address is a subaddress
--   _payment_  - string; hex encoded
+-   _payment_id_  - string; hex encoded
 -   _standard_address_  - string
 
 Example:
