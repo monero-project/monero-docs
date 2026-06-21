@@ -28,6 +28,7 @@ nav:
       - P2Pool: 'interacting/mining/guides/p2pool/xmrig-p2pool.md'
       - Help: 'interacting/mining/guides/help.md'
   - Monerod:
+    - 'running-node/index.md'
     - Flags: 'interacting/monerod-reference.md'
     - Setup Guide:
       - Systemd: 'running-node/monerod-systemd.md'
@@ -179,6 +180,7 @@ markdown_extensions:
   - abbr
   - def_list
   - attr_list
+  - md_in_html         # enables the grid card layout on the landing page
   - footnotes
   - meta
   - toc:
