@@ -2110,8 +2110,8 @@ Alias: _None_ .
 Inputs:
 
 - _outputs_ array of _get_outputs_out_ structure as follows:
-  - _amount_ - unsigned int;
-  - _index_ - unsigned int;
+  - _amount_ - unsigned int; Amount of the output, in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.") (`0` for RingCT outputs).
+  - _index_ - unsigned int; The output's index within its _amount_. For RingCT outputs (amount `0`, the usual case) this is the global output index.
 - _get_txid_ - boolean; If `true`, a _txid_ will included for each output in the response.
 
 Outputs:
@@ -2119,13 +2119,33 @@ Outputs:
 - _outs_ - array of structure _outkey_ as follows:
   - _height_ - unsigned int; block height of the output
   - _key_ - String; the public key of the output
-  - _mask_ - String
+  - _mask_ - String; the output's amount commitment (RingCT Pedersen commitment), hex-encoded.
   - _txid_ - String; transaction id
   - _unlocked_ - boolean; States if output is locked (`false`) or not (`true`)
 - _status_ - string; General RPC error code. "OK" means everything looks good.
 - _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
+Example:
 
+```json
+$ curl http://127.0.0.1:18081/get_outs -d '{"get_txid":true,"outputs":[{"amount":0,"index":0}]}' -H 'Content-Type: application/json'
+
+{
+  "credits": 0,
+  "outs": [
+    {
+      "height": 1,
+      "key": "ee9b2dbc9bcd99028177414f04a0c3d68a1bcf46ba5fb377bc3d62f85d6fae05",
+      "mask": "a1a7a42155f0abff0353a6008eda2a9b16d9ffcf7584a38933cce3e3976987cd",
+      "txid": "2ee026c6674c2ad08f90c690e831c0381a037812c5dd3e0314e167e9453a7f95",
+      "unlocked": true
+    }
+  ],
+  "status": "OK",
+  "top_hash": "",
+  "untrusted": false
+}
+```
 
 ### **/get_outs.bin**
 
