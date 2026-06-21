@@ -352,9 +352,6 @@ but got superseded by `get_spend_proof`.
 
 `sweep_unmixable` - only relevant for very old wallets (<= 2016); send all unmixable outputs to yourself with ring_size 10
 
-`locked_sweep_all` - see
-
-
 `rescan_bc` - rescan the blockchain from scratch, losing any information which can not be recovered from the blockchain itself
 
 TODO: document remaining commands

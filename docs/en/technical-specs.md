@@ -30,7 +30,7 @@ title: Monero Technical Specification
 
 ## Block time
 
-* 2 minutes
+* 2 minutes (was 1 minute before hardfork v1)
 * may change in the future as long as emission curve is preserved
 
 ## Block reward
@@ -93,9 +93,9 @@ title: Monero Technical Specification
 
 For the full node (`monerod`):
 
-* dandelion++
-* assurance: won't protect against ISP/VPN provider, won't protect against the very first remote node in Dandellion++ protocol
-* for the full protection user must manually wrap `monerod` with Tor
+* Dandelion++ makes transaction propagation less traceable over public networks
+* Assurance: won't protect against ISP/VPN provider, won't protect against the very first remote node in Dandelion++ protocol
+* For the full protection user must manually wrap `monerod` with Tor or I2P
 
 For the wallet (`monero-wallet-gui` or `monero-wallet-cli`):
 
