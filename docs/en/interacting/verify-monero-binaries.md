@@ -13,7 +13,7 @@ This is a one time action. Skip this step for subsequent Monero releases.
 
 Monero core developers sign a list of hashes of released binaries.
 
-BinaryFate is Monero core developer who signs the releases.
+binaryFate is a Monero core developer who signs the releases.
 His public key is available on GitHub in the project source code.
 Import binaryFate's public key to your keyring:
 
@@ -26,13 +26,13 @@ Trust binaryFate's public key (fingerprint must be exactly this):
     4
 
 !!! danger
-    If key with this fingerprint was not found then remove imported key immediately (gpg --delete-keys ...).
+    If the key with this fingerprint was not found, then remove the imported key immediately (gpg --delete-keys ...).
     That would mean the key changed (likely was compromised).
 
 ## 2. Verify signature of hash list (hashes.txt)
 
 The list of binaries and their hashes is published on [getmonero.org](https://www.getmonero.org/downloads/hashes.txt) and a few other places like release notes on [r/monero](https://reddit.com/r/monero).
-Please note the publication channel does not matter as long as you properly verify the signature!                                                                        u
+Please note the publication channel does not matter as long as you properly verify the signature!
 
 To verify these are real hashes (not tampered with) run:
 

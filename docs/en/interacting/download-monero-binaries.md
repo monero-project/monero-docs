@@ -12,7 +12,7 @@ We recommend downloading Monero binaries directly from GitHub:
 
 GUI is a graphical desktop wallet.
 
-CLI is a commandline desktop wallet.
+CLI is a command-line desktop wallet.
 
 If you need more guidance check [download Monero](https://getmonero.org/downloads) section on Monero website.
 

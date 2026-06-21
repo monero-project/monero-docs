@@ -109,6 +109,7 @@ Wallet depends on a full node for all non-local operations. The following option
 | Option                      | Description
 |-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------
 | `--wallet-file <arg>`       | Open existing wallet. Example: <br/><br/>`./monero-wallet-cli --stagenet --wallet-file $HOME/.bitmonero/stagenet/wallets/MoneroExampleStagenetWallet` <br><br/>This is only for wallet files generated with `monero-wallet-cli`, `monero-wallet-gui`, or `monero-wallet-rpc` tools. If you have other type of wallet then see importing options.
+| `--wallet-dir <arg>`        | Specify a directory for loading and saving wallet files. Must be an absolute path.
 | `--password <arg>`          | Provide wallet password as a parameter instead of interactively. Remember to escape/quote as needed. <br><br>**Not recommended** because the password will remain in your command history and will also be visible in the process table. For automation prefer `--password-file`. <br><br>The option also works in combination with `--generate-new-wallet`.
 | `--password-file <arg>`     | Provide password as a file in stead of interactively. Trailing `\n` are discarded when reading the password file. <br><br>Prefer this over `--password` if you automate wallet access. Make sure the password file is meaningfully separated from the wallet file. Otherwise it provides no security benefit. <br><br>The option also works in combination with `--generate-new-wallet`.
 
@@ -160,12 +161,12 @@ These options are either legacy or rarely useful.
 | `--shared-ringdb-dir <arg>`  | Set shared ring database path. [No longer worthwhile](https://www.reddit.com/r/Monero/comments/9rtnpx/are_there_any_updated_blackball_databases/).
 | `--create-address-file`      | Has no effect. The `*.address.txt` file is created regardless of this option.
 | `--electrum-seed <arg>`      | Provide mnemonic seed as a commandline option for `--restore-deterministic-wallet` instead of interactively. This is not recommended b/c the seed will be saved in your command history and also visible in the process list.
-| `--generate-from-json <arg>` | You would run `monero-wallet-rpc` to use this option. It seems exposed in `monero-wallet-cli` by accident.
-| `--tx-notify <arg>`          | You would run `monero-wallet-rpc` to use this option. It seems exposed in `monero-wallet-cli` by accident.
+| `--generate-from-json <arg>` | Generate wallet from JSON format file
+| `--tx-notify <arg>`          | Run a program for each new incoming transaction, '%s' will be replaced by the transaction hash. This feature is better suited for use in conjunction with `monero-wallet-rpc`.
 
 ## Defaults
 
-Wallet files are created and seek in current directory. This is rarely what you want. Use `--wallet-file` and similar options to control this.
+Wallet files are created and seek in current directory. This is rarely what you want. Use `--wallet-file`, `--wallet-dir`, and similar options to control this.
 
 Log files are created in the same directory as `monero-wallet-cli` binary. Use `--log-file` to specify the location.
 
@@ -351,9 +352,6 @@ but got superseded by `get_spend_proof`.
 `bc_height` - show blockchain height (superseded with `status`)
 
 `sweep_unmixable` - only relevant for very old wallets (<= 2016); send all unmixable outputs to yourself with ring_size 10
-
-`locked_sweep_all` - see
-
 
 `rescan_bc` - rescan the blockchain from scratch, losing any information which can not be recovered from the blockchain itself
 
