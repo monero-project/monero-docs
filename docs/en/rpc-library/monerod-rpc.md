@@ -440,6 +440,7 @@ Outputs:
 
 - _blob_ - string; Hexadecimal blob of block information.
 - _block_header_ - A structure containing block header information. See [get_last_block_header](#get_last_block_header).
+- _miner_tx_hash_ - string; Hash of the block's miner (coinbase) transaction, copied from the block header's miner_tx_hash.
 - _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
 - _json_ - json string; JSON formatted block details:
   - _major_version_ - Same as in block header.
@@ -608,6 +609,7 @@ Inputs:
 Outputs:
 
 - _block_header_ - A structure containing block header information. See [get_last_block_header](#get_last_block_header).
+- _block_headers_ - array; Array of block header responses, one per hash supplied in the request's hashes array, each filled for the corresponding block.
 - _status_ - string; General RPC error code. "OK" means everything looks good.
 - _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
@@ -808,6 +810,8 @@ Alias: _getblocktemplate_ .
 Inputs:
 
 - _wallet_address_ - string; Address of wallet to receive coinbase transaction if block is successfully mined.
+- _prev_block_ - string; Optional hex-encoded hash of the previous block to build the template on top of; when empty the daemon uses the current top block.
+- _extra_nonce_ - string; Optional hex string (maximum 510 hex chars) parsed into the block's reserve bytes; it cannot be specified together with reserve_size.
 - _reserve_size_ - unsigned int; Reserve size.
 
 Outputs:
@@ -1074,6 +1078,7 @@ Outputs:
 - _start_time_ - unsigned int; Start time of the daemon, as UNIX time.
 - _status_ - string; General RPC error code. "OK" means everything looks good.
 - _synchronized_ - boolean; States if the node is synchronized (`true`) or not (`false`).
+- _restricted_ - boolean; Boolean indicating whether the daemon is running in restricted RPC mode.
 - _target_ - unsigned int; Current target for next proof of work.
 - _target_height_ - unsigned int; The height of the next block in the chain.
 - _testnet_ - boolean; States if the node is on the testnet (`true`) or not (`false`).
@@ -1429,6 +1434,7 @@ Inputs: _None_ .
 Outputs:
 
 - _current_height_ - unsigned int; blockheight.
+- _target_height_ - unsigned int; Target blockchain height the daemon is syncing toward, set to 0 when the daemon is synchronized.
 - _hard_forks_ - array of unsigned int.
   - _height_ - unsigned int;
   - _hf_version_ - unsigned int; hard fork version.
@@ -1470,7 +1476,9 @@ Look up information regarding hard fork voting and readiness.
 
 Alias: _None_ .
 
-Inputs: _None_ .
+Inputs:
+
+- _version_ - unsigned int; The hard fork version number to query; if greater than 0 it is used directly, otherwise the daemon falls back to the next hard fork version (blockchain.get_next_hard_fork_version()).
 
 Outputs:
 
@@ -1674,6 +1682,7 @@ Inputs:
 Outputs:
 
 - _status_ - string; Block submit status.
+- _block_id_ - string; Hex-encoded hash (blk_id) of the submitted block, set after the block is parsed, validated, and accepted.
 
 In this example, a block blob which has not been mined is submitted:
 
@@ -1839,12 +1848,21 @@ Inputs:
 - _block_ids_ - binary array of hashes; first 10 blocks id goes sequential, next goes in pow(2,n) offset, like 2, 4, 8, 16, 32, 64 and so on, and the last one is always genesis block
 - _start_height_ - unsigned int
 - _prune_ - boolean
+- _no_miner_tx_ - boolean; Boolean flag; defaults to false.
+- _pool_info_since_ - unsigned int; Timestamp passed to m_core.get_pool_info() (as time_t) to retrieve transaction pool information since that point; defaults to 0.
+- _max_block_count_ - unsigned int; Maximum number of blocks to return; defaults to 0.
+- _requested_info_ - unsigned int; Selects what to return using the REQUESTED_INFO enum: BLOCKS_ONLY (0) returns blocks only, BLOCKS_AND_POOL (1) returns blocks and pool info, POOL_ONLY (2) returns pool info only; an unrecognized value yields status "Failed, wrong requested info"; defaults to 0.
 
 Outputs:
 
 - _blocks_ - array of block complete entries
 - _current_height_ - unsigned int
 - _output_indices_ - structure as follows:
+- _daemon_time_ - unsigned int; The daemon's current time set from time(NULL), always populated early in the handler.
+- _pool_info_extent_ - unsigned int; Indicates the extent of returned pool info using the POOL_INFO_EXTENT enum: NONE (0), INCREMENTAL (1) when the pool info is incremental, or FULL (2) otherwise.
+- _added_pool_txs_ - array; Array of pool_tx_info entries for transactions added to the pool, each containing tx_hash, tx_blob (serialized, base-only when req.prune is set), and double_spend_seen.
+- _remaining_added_pool_txids_ - array; Array of transaction ids for pool transactions that were added, populated by m_core.get_pool_info().
+- _removed_pool_txids_ - array; Array of transaction ids for pool transactions that were removed, populated by m_core.get_pool_info().
   - _indices_ - array of tx output indices, structure as follows:
     - _indices_ - array of unsigned int
 - _start_height_ - unsigned int
@@ -2118,6 +2136,7 @@ Alias: _None_ .
 Inputs:
 
 - _outputs_ - array of structure _get_outputs_out_ as follows:
+- _get_txid_ - boolean; Boolean controlling whether the transaction id (txid) is included for each output; defaults to true.
   - _amount_ - unsigned int;
   - _index_ - unsigned int;
 
@@ -2150,7 +2169,10 @@ Get the known peers list.
 
 Alias: _None_ .
 
-Inputs: _None_ .
+Inputs:
+
+- _public_only_ - boolean; Boolean selecting which peerlist is retrieved: when true, m_p2p.get_public_peerlist() is used, otherwise m_p2p.get_peerlist() is used; defaults to true.
+- _include_blocked_ - boolean; Boolean controlling whether blocked hosts are included; when false, entries for which m_p2p.is_host_blocked() returns true are skipped in both lists; defaults to false.
 
 Outputs:
 
@@ -2646,7 +2668,8 @@ Alias: _None_ .
 
 Inputs:
 
-- _in_peers_ - unsigned int; Max number of incoming peers
+- _in_peers_ - unsigned int; optional, default `0`. New maximum number of incoming peers (applied when _set_ is `true`). Note: _set_ defaults to `true`, so omitting _in_peers_ sets the limit to `0`.
+- _set_ - boolean; optional, default `true`. When `true` (the default), applies the supplied in_peers value as the new maximum number of incoming public peers via change_max_in_public_peers; when `false`, leaves the current limit unchanged (a read-only query of the current value).
 
 Outputs:
 
@@ -2792,7 +2815,8 @@ Alias: _None_ .
 
 Inputs:
 
-- _out_peers_ - unsigned int; Max number of outgoing peers
+- _out_peers_ - unsigned int; optional, default `0`. New maximum number of outgoing peers (applied when _set_ is `true`). Note: _set_ defaults to `true`, so omitting _out_peers_ sets the limit to `0`.
+- _set_ - boolean; optional, default `true`. When `true` (the default), applies the supplied out_peers value as the new maximum number of outgoing public peers via change_max_out_public_peers; when `false`, leaves the current limit unchanged (a read-only query of the current value).
 
 Outputs:
 
@@ -2878,11 +2902,16 @@ Inputs:
 
 - _tx_as_hex_ - string; Full transaction information as hexadecimal string.
 - _do_not_relay_ - boolean; Stop relaying transaction to other nodes (default is `false`).
+- _do_sanity_checks_ - boolean; When true, runs tx_sanity_check on the decoded transaction blob before processing, causing the request to fail with sanity_check_failed set if the check does not pass.
 
 Outputs:
 
 - _double_spend_ - boolean;  Transaction is a double spend (`true`) or not (`false`).
 - _fee_too_low_ - boolean; Fee is too low (`true`) or OK (`false`).
+- _too_few_outputs_ - boolean; True if the transaction was rejected because it has too few outputs (tvc.m_too_few_outputs).
+- _sanity_check_failed_ - boolean; True if the transaction was rejected because the do_sanity_checks sanity check failed, and false otherwise once that check is performed.
+- _tx_extra_too_big_ - boolean; True if the transaction was rejected because its tx-extra field is too big (tvc.m_tx_extra_too_big).
+- _nonzero_unlock_time_ - boolean; True if the transaction was rejected because its unlock time is not zero (tvc.m_nonzero_unlock_time).
 - _invalid_input_ - boolean; Input is invalid (`true`) or valid (`false`).
 - _invalid_output_ - boolean; Output is invalid (`true`) or valid (`false`).
 - _low_mixin_ - boolean; Mixin count is too low (`true`) or OK (`false`).
