@@ -31,3 +31,9 @@ The wallet birthday has a resolution of 2629746 seconds (1/12 of the average Gre
 Polyseed was designed for the 128-bit security level. This corresponds to the security of the ed25519 elliptic curve, which requires [about 2^126 operations](https://safecurves.cr.yp.to/rho.html) to break a key.
 
 The private key is derived from the 150-bit secret seed using PBKDF2-HMAC-SHA256 with 10000 iterations. The KDF parameters were selected to allow for the key to be derived by hardware wallets.
+
+### Wordlists
+
+Wordlists used in Polyseed are based on [BIP-39](https://github.com/bitcoin/bips/blob/master/bip-0039/bip-0039-wordlists.md) with a few minor changes.
+
+Supported languages include English, Japanese, Korean, Spanish, French, Italian, Czech, Portuguese, Chinese (Simplified), and Chinese (Traditional).

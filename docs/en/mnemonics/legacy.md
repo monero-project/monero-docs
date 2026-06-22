@@ -13,3 +13,15 @@ Example of calculating the checksum word:
 3. Calculate the CRC32 checksum of the concatenated string. In this case, the checksum gives us the decimal number `2248614488`.
 4. Take the checksum index modulo 24. In this case, the modulo gives us `8`.
 5. The 8th index of the wordlist is `strained` (don't forget that the wordlist is 0-indexed). So, the checksum word is `strained`.
+
+### Wordlists
+
+Wordlists used in the legacy mnemonic scheme are unique to Monero and were contributed by the Monero community; one exception is the 'EnglishOld' wordlist, which was originally sourced from the Electrum Bitcoin wallet, and is no longer used by either project.
+
+Supported languages include German, English, Spanish, French, Italian, Dutch, Portuguese, Russian, Japanese, Chinese (simplified), Esperanto, and Lojban.
+
+### Encrypted seeds
+
+The legacy mnemonic scheme supports encrypted seeds, also called seed offsets or seed passphrases. This is different from wallet files, which are symmetrically encrypted on-disk.
+
+Seed encryption works by applying the [CryptoNight hashing function](../proof-of-work/cryptonight.md) to the provided passphrase and adding the result to the wallet's keys. When restoring an encrypted wallet, the hash can again be calculated and subtracted upon being provided by the user.
