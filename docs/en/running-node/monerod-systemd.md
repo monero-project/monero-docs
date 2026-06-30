@@ -103,7 +103,7 @@ Some commands assume Ubuntu but you will easily translate them to your distribut
     [Unit]
     Description=Monero Daemon
     After=network-online.target
-    Requires=network-online.target
+    Wants=network-online.target
 
     [Service]
     Type=simple
