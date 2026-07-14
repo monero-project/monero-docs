@@ -61,10 +61,10 @@ Some commands assume Ubuntu but you will easily translate them to your distribut
 2. Create monero **config**, **data** and **log** directories:
 
     ``` Bash
-    mkdir -p /etc/monero     # config
-    mkdir -p /var/lib/monero # blockchain
-    mkdir -p /var/log/monero # logs
-    chown monero:monero /etc/monero
+    mkdir -pm 750 /etc/monero     # config
+    mkdir -pm 750 /var/lib/monero # blockchain
+    mkdir -pm 750 /var/log/monero # logs
+    chown root:monero /etc/monero
     chown monero:monero /var/lib/monero
     chown monero:monero /var/log/monero
     ```
@@ -84,7 +84,7 @@ Some commands assume Ubuntu but you will easily translate them to your distribut
 
     ``` Bash
     mv monero-x86_64-linux-gnu-{{ cli_vers }}/* /usr/local/bin/.
-    chown monero:monero /usr/local/bin/monero*
+    chown root:root /usr/local/bin/monero*
     ```
 
 ### Monerod Config
@@ -136,7 +136,7 @@ Some commands assume Ubuntu but you will easily translate them to your distribut
     systemctl status monerod
     ```
 
-9. Verify it is working as intended:
+10. Verify it is working as intended:
 
     ``` Bash
     tail -n100 /var/log/monero/monero.log
@@ -240,6 +240,6 @@ To                         Action      From
 
     Monerod:
 
-    - Status: `systemctl status monero`
+    - Status: `systemctl status monerod`
     - Logs: `tail -n100 /var/log/monero/monero.log`
-    - Logs more info: change `log-level=0` to `log-level=1` in `monero.conf` (remember to revert once solved)
+    - Logs more info: change `log-level=0` to `log-level=1` in `monerod.conf` (remember to revert once solved)
