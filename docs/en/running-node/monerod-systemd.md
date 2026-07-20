@@ -109,7 +109,7 @@ Some commands assume Ubuntu but you will easily translate them to your distribut
     Type=simple
     ExecStart=/usr/local/bin/monerod --config-file /etc/monero/monerod.conf --non-interactive
 
-    Restart=on-failure
+    Restart=always
     RestartSec=30
 
     User=monero
