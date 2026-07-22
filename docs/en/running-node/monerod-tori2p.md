@@ -27,12 +27,23 @@ Some commands assume Ubuntu but you can trivially translate them to your distrib
 
     **Onion and I2P for P2P network** is useful for other nodes as it allows them to relay transactions to your node (using `--tx-proxy` option).
 
+??? question "What is the difference between I2P SOCKS and SAM?"
+
+    SOCKS is a one-size-fits-all approach that makes use of i2pd server tunnels and a SOCKS5 proxy; this requires manual configuration of tunnels and may result in some [metadata leakage](https://i2p.net/en/docs/api/socks/).
+
+    SAM (Simple Anonymous Messaging) is a protocol that lets `monerod` manage its own I2P connections directly, with no manual setup required aside from having an I2P router running. This is the recommended way to run the Monero daemon over I2P.
+
+    However, at present, only SOCKS can be used for connecting to remote nodes from wallet software. SAM can still be used in conjunction with a full local node.
+
 ### Node Configuration
 === "Tor"
 {% include 'tor_template' %}
 
-=== "I2P"
+=== "I2P SOCKS"
 {% include 'i2pd_template' %}
+
+=== "I2P SAM"
+{% include 'i2pd_sam_template' %}
 
 !!! note "(Optional) Publish the node on [monero.fail](https://monero.fail)"
 
@@ -53,7 +64,7 @@ To connect Monero nodes, you have to configure the wallet software:
 
         [:link: _Monero CLI_](../interacting/monero-wallet-cli-reference.md)
 
-=== "I2P"
+=== "I2P SOCKS"
     === "Monero GUI"
 
         1. Navigate to: `Settings -> Interface -> Socks5 proxy` and set the values to `IP Address = 127.0.0.1` and `Port = 4447`
@@ -66,3 +77,10 @@ To connect Monero nodes, you have to configure the wallet software:
         Add the flags `--proxy=127.0.0.1:4447 --daemon-address=http://yourlongb32i2paddress.b32.i2p:18089 --trusted-daemon`
 
         [:link: _Monero CLI_](../interacting/monero-wallet-cli-reference.md)
+
+=== "I2P SAM"
+    === "Monero GUI"
+
+        If using a local node managed through the GUI, go to Settings > Networks (in 'Advanced' mode) and ensure the 'I2P' anonymity network option is checked. Upon restarting the daemon, transactions will be forwarded over I2P.
+
+        [:link: _Monero GUI_](../interacting/monero-wallet-gui-reference.md)
