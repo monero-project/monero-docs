@@ -350,6 +350,7 @@ You can also type commands directly in the console of the running `monerod` (if 
 | `print_block <block_hash> | <block_height>`                | Show detailed data of specified block.
 | `hard_fork_info`                                           | Show current consensus version and future hard fork block height, if any.
 | `is_key_image_spent <key_image>`                           | Check if specified [key image](../cryptography/asymmetric/key-image.md) is spent. Key image is a hash.
+| `pop_blocks <num_blocks> [keep_txs|no-keep-txs]`           | Remove blocks from the end of the blockchain. Passing `keep_txs` will move the popped txs back to the mempool, whereas `no_keep_txs` (default) will drop them.
 
 #### Manage daemon
 
