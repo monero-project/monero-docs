@@ -30,9 +30,21 @@ Index       | Size in bytes    | Description
 33          | 32               | public view key
 65          | 4                | checksum ([Keccak-f[1600] hash](https://github.com/monero-project/monero/blob/8f1f43163a221153403a46902d026e3b72f1b3e3/src/common/base58.cpp#L261) of the previous 65 bytes, trimmed to first [4](https://github.com/monero-project/monero/blob/8f1f43163a221153403a46902d026e3b72f1b3e3/src/common/base58.cpp#L53) bytes)
 
-It totals to 69 bytes. The bytes are then encoded ([src](https://github.com/monero-project/monero/blob/8f1f43163a221153403a46902d026e3b72f1b3e3/src/common/base58.cpp#L240)) in [Monero specific Base58](../cryptography/base58.md) format, resulting in a 95 chars long string. Example standard address:
+It totals to 69 bytes. The bytes are then encoded ([src](https://github.com/monero-project/monero/blob/8f1f43163a221153403a46902d026e3b72f1b3e3/src/common/base58.cpp#L240)) in [Monero specific Base58](../cryptography/base58.md) format, resulting in a 95 chars long string.
+
+Example standard address:
 
 `4AdUndXHHZ6cfufTMvppY6JwXNouMBzSkbLYfpAV5Usx3skxNgYeYTRj5UzqtReoS44qo9mtmXCqY45DJ852K5Jv2684Rge`
+
+Which decodes to:
+
+`12eda9fe8dfcdd25d5430ea64229d04f6b41b2e5a1587c29cd499a63eb79d117113076a02b73d130fb904c9e91075fcd16f735c6850dfadb125eb826d96a113f09a57120a3`
+
+Where:
+* Network Type = `0x12` = 18 = Mainnet
+* Public Spend Key = `eda9fe8dfcdd25d5430ea64229d04f6b41b2e5a1587c29cd499a63eb79d11711`
+* Public View Key = `3076a02b73d130fb904c9e91075fcd16f735c6850dfadb125eb826d96a113f09`
+* Checksum = `a57120a3`
 
 See the [source code](https://github.com/monero-project/monero/blob/f7b9f44c1b0d53170fd7f53d37fc67648f3247a2/src/cryptonote_basic/cryptonote_basic_impl.cpp#L159).
 
@@ -74,6 +86,6 @@ Deterministic addresses derive the private view key from the private spend key b
 
 ## Reference
 
-* [StackExchenge answer](https://monero.stackexchange.com/questions/980/what-are-the-public-viewkeys-and-spendkeys)
+* [StackExchange answer](https://monero.stackexchange.com/questions/980/what-are-the-public-viewkeys-and-spendkeys)
 * [https://xmr.llcoins.net/addresstests.html](https://xmr.llcoins.net/addresstests.html)
 * [src/cryptonote_basic/account.cpp account_base::generate](https://github.com/monero-project/monero/blob/dcba757dd283a3396120f0df90fe746e3ec02292/src/cryptonote_basic/account.cpp#L155)
