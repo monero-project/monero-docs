@@ -32,7 +32,11 @@ Some commands assume Ubuntu but you can trivially translate them to your distrib
 {% include 'tor_template' %}
 
 === "I2P"
+    === "i2pd"
 {% include 'i2pd_template' %}
+
+    === "I2P Java"
+{% include 'i2p_java_template' %}
 
 !!! note "(Optional) Publish the node on [monero.fail](https://monero.fail)"
 
