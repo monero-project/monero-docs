@@ -78,6 +78,7 @@ nav:
     - PoW in Cryptocurrencies: 'proof-of-work/pow-in-cryptocurrencies.md'
     - CryptoNight: 'proof-of-work/cryptonight.md'
     - RandomX: 'proof-of-work/random-x.md'
+  - Wallet Files: 'wallet-files/wallet-files.md'
 #- Accepting Monero:
 #    - Overview: 'accepting-monero/overview.md'
 
