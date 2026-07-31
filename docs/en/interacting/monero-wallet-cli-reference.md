@@ -325,6 +325,9 @@ These allow to learn and verify transaction's private key `r`.
 This was useful to create a [proof of payment](https://www.getmonero.org/resources/user-guides/prove-payment.html)
 but got superseded by `get_spend_proof`.
 
+!!! warning
+    A successful `check_tx_key` (or related tx / InProof / OutProof check) shows that an amount was directed to an address in that transaction. It does **not** prove the funds are still spendable by the recipient. Outputs may be time-locked, already spent, or unspendable after one-time address reuse. See [monero#8819](https://github.com/monero-project/monero/issues/8819#issue-1656289739). The same limit applies to the getmonero.org prove-payment guide.
+
 `get_tx_key <txid>`
 
 `check_tx_key <txid> <txkey> <address>`
