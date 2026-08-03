@@ -1,0 +1,8 @@
+        !!! success "The end goal"
+            To enable the following services:
+
+            * yourlongb32i2paddress.b32.i2p:18085 - I2P P2P service (for other I2P nodes)
+            * yourlongb32i2paddress.b32.i2p:18089 - I2P RPC service (for wallets connecting over I2P)
+
+        ??? question "Why different P2P ports for clearnet and I2P?"
+            A: The data served by the I2P P2P port differs from that of clearnet P2P. A different port is required.

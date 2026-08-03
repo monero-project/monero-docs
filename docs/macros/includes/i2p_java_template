@@ -1,0 +1,44 @@
+{% include 'i2p_socks_end_goal_template' %}
+
+        1. Install I2P Java, start router
+
+            Follow [these instructions](https://i2p.net/en/downloads) to install I2P Java on your system, then start the router:
+            ``` Bash
+            sudo systemctl start i2p.service
+            ```
+
+            Alternatively, if you downloaded a binary:
+            ``` Bash
+            ./i2p/i2prouter start
+            ```
+
+        2. Create a SOCKS tunnel
+
+            The SOCKS proxy tunnel is not enabled by default in I2P Java. Open the tunnel manager at `http://127.0.0.1:7657/i2ptunnel/`, click on `Tunnel Wizard`, select a client tunnel, select type `SOCKS 4/4a/5`, and set the port to `4447`.
+
+        3. Create server tunnels for P2P and RPC
+
+            You will need to add two server tunnels to allow for inbound P2P and RPC connections for your node. Use ports 18085 and 18089 respectively.
+
+            From the same tunnel manager, click on `Tunnel Wizard` again, choose a server tunnel of type `Standard`, set the target host to `127.0.0.1`, and the target port to the desired number. Repeat this for both tunnels and save, then start each tunnel.
+
+            This will create hidden service keys under your I2P config directory, usually `~/.i2p/` for a user install or `/var/lib/i2p/i2p-config/` for a system service install; you may want to back these up.
+
+            Get the hostname of your hidden service node from the tunnel list once the tunnel has started, under "I2P Hidden Services" (this can take a couple of minutes on first startup).
+
+        4. Modify the config file
+
+            Copy the result into your Monero [**config file** :link:{ title="Monerod Config" }]{{ config }}, enabling these options:
+            ``` ini
+            anonymous-inbound=yourlongb32i2paddress.b32.i2p,127.0.0.1:18085
+            tx-proxy=i2p,127.0.0.1:4447,disable_noise
+            ```
+
+            Replace `yourlongb32i2paddress.b32.i2p` with your Base32 address.
+
+        5. The node is now available on I2P. You can check that the service is working by using `curl`:
+
+            ``` Bash
+            curl -x socks5h://127.0.0.1:4447 http://yourlongb32i2paddress.b32.i2p:18089/get_info
+            ```
+{% include 'reg_i2p_template' %}
