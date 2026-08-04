@@ -41,6 +41,7 @@ Which decodes to:
 `12eda9fe8dfcdd25d5430ea64229d04f6b41b2e5a1587c29cd499a63eb79d117113076a02b73d130fb904c9e91075fcd16f735c6850dfadb125eb826d96a113f09a57120a3`
 
 Where:
+
 * Network Type = `0x12` = 18 = Mainnet
 * Public Spend Key = `eda9fe8dfcdd25d5430ea64229d04f6b41b2e5a1587c29cd499a63eb79d11711`
 * Public View Key = `3076a02b73d130fb904c9e91075fcd16f735c6850dfadb125eb826d96a113f09`
