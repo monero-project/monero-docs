@@ -334,6 +334,9 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 Check a transaction in the blockchain with its secret key.
 
+!!! warning
+    A matching key proves an amount was paid **to** the given address in that tx. It does **not** mean those funds are still spendable (time lock, already spent, or burnt one-time address). Same caveat as InProofs/OutProofs — see [monero#8819](https://github.com/monero-project/monero/issues/8819#issue-1656289739).
+
 Alias:  _None_.
 
 Inputs:
