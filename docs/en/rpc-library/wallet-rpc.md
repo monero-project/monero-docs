@@ -1672,15 +1672,28 @@ Returns a list of transfers.
 
      The `destinations` fields are only available when this wallet cache was the one to construct the transaction. If you restore your wallet from scratch, you will lose this information.
 
+!!! note "`pending` vs `pool` vs low confirmations"
+
+    | Flag | Direction | Meaning |
+    |------|-----------|---------|
+    | `in` | incoming | Confirmed receives (any confirmation count once mined). |
+    | `out` | outgoing | Confirmed spends. |
+    | `pending` | **outgoing** | Created by this wallet, not yet confirmed. Implemented via `get_unconfirmed_payments_out`. |
+    | `failed` | **outgoing** | Failed unconfirmed spends from the same set. |
+    | `pool` | **incoming** | Seen in the tx pool, not yet mined. |
+
+    Setting `pending: true` does **not** filter or include unconfirmed **incoming** payments. Incoming mempool txs require `pool: true`. Incoming txs with fewer than 10 confirmations still show under `in` when `in` is true (`pending` has no effect on them).
+
+
 Alias:  _None_.
 
 Inputs:
 
--   _in_  - boolean; (defaults to false) Include incoming transfers.
--   _out_  - boolean; (defaults to false) Include outgoing transfers.
--   _pending_  - boolean; (defaults to false) Include pending transfers.
--   _failed_  - boolean; (defaults to false) Include failed transfers.
--   _pool_  - boolean; (defaults to false) Include transfers from the daemon's transaction pool.
+-   _in_  - boolean; (defaults to false) Include **confirmed** incoming transfers.
+-   _out_  - boolean; (defaults to false) Include **confirmed** outgoing transfers.
+-   _pending_  - boolean; (defaults to false) Include **outgoing** transfers that this wallet created but that are not yet confirmed (not mined into a block). Does **not** control incoming transfers: low-confirmation incoming txs still appear under `in` when `in` is true, and unconfirmed incoming txs appear under `pool` when `pool` is true. See note above.
+-   _failed_  - boolean; (defaults to false) Include **outgoing** transfers that failed (from the same unconfirmed-out set as `pending`).
+-   _pool_  - boolean; (defaults to false) Include **incoming** transfers seen in the daemon's transaction pool (not yet mined).
 -   _filter_by_height_  - boolean; (Optional) Filter transfers by block height.
 -   _min_height_  - unsigned int; (Optional) Minimum block height to scan for transfers, if filtering by height is enabled.
 -   _max_height_  - unsigned int; (Optional) Maximum block height to scan for transfers, if filtering by height is enabled (defaults to max block height).
@@ -1716,9 +1729,9 @@ Outputs:
     -   _unlock_time_  - unsigned int; Number of blocks until transfer is safely spendable.
     -   _locked_  - boolean; Is the output spendable.
 -   _out_  - array of transfers (see above).
--   _pending_  - array of transfers (see above).
--   _failed_  - array of transfers (see above).
--   _pool_  - array of transfers (see above).
+-   _pending_  - array of transfers (see above). Entries have `type` `"pending"`. **Outgoing only** (wallet's unconfirmed spends).
+-   _failed_  - array of transfers (see above). Entries have `type` `"failed"`. **Outgoing only**.
+-   _pool_  - array of transfers (see above). Entries have `type` `"pool"`. **Incoming only** (mempool pays-to-us).
 
 
 Example:
