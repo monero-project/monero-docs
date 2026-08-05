@@ -143,11 +143,13 @@ Note: "[atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-uni
 
 Add an entry to the address book.
 
+There is **no separate `payment_id` input**. If you pass an [integrated address](https://www.getmonero.org/resources/moneropedia/integrated-address.html), the wallet parses the embedded payment ID and stores it with the entry. On `get_address_book`, that entry's `address` is returned again as the integrated address (standard address + payment ID combined). Standalone (long/short) payment IDs are not accepted as their own field.
+
 Alias:  _None_.
 
 Inputs:
 
--   _address_  - string;
+-   _address_  - string; Standard address, subaddress, or integrated address (payment ID only via integrated form).
 -   _description_  - (optional) string, defaults to "";
 
 Outputs:
@@ -644,13 +646,15 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 Edit an existing address book entry.
 
+There is **no `set_payment_id` / `payment_id` field**. To change a stored payment ID, set a new integrated address with `set_address` + `address` (same rules as `add_address_book`). Description-only edits keep the existing payment ID association.
+
 Alias:  _None_
 
 Inputs:
 
 -   _index_  - unsigned_int; Index of the address book entry to edit.
 -   _set_address_  - boolean; If true, set the address for this entry to the value of "address".
--   _address_  - string; (Optional) The 95-character public address to set.
+-   _address_  - string; (Optional) Standard address, subaddress, or integrated address to set.
 -   _set_description_  - boolean; If true, set the description for this entry to the value of "description".
 -   _description_  - string; (Optional) Human-readable description for this entry.
 
@@ -1057,16 +1061,18 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 Retrieves entries from the address book.
 
+There is **no separate `payment_id` output field**. If the entry was stored with a payment ID (from an integrated address), `address` is the integrated address string; otherwise it is the standard or subaddress string.
+
 Alias:  _None_.
 
 Inputs:
 
--   _entries_  - array of unsigned int; indices of the requested address book entries
+-   _entries_  - array of unsigned int; indices of the requested address book entries. Empty list returns all entries.
 
 Outputs:
 
 -   _entries_  - array of entries:
-    -   _address_  - string; Public address of the entry
+    -   _address_  - string; Public address of the entry (integrated form when a payment ID is stored)
     -   _description_  - string; Description of this address entry
     -   _index_  - unsigned int;
 
