@@ -2532,6 +2532,7 @@ Alias:  _None_.
 Inputs:
 
 -   _hard_  - boolean; (Optional; Default = false) If true, you will lose any information which can not be recovered from the blockchain.
+-   _keep_key_images_  - boolean; (Optional; Default: false) If false, key images will be recomputed during the scan. Incompatible with `"hard": true`.
 
 Outputs:  _None_.
 
