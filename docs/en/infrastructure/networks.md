@@ -87,9 +87,14 @@ Some resources to get started:
 
 ??? tip "Stagenet  Block Explorers [Onion]"
     - [Monerodevs.org](http://bhqzadcvfcuwwnvf5hws5zwzjgvfuarqbah5ruhyxuxhaoklsy35wdqd.onion/)
+    - [LibreNode.com](http://xmr-stagenet.gw3ennwsaonltfox7z3rhhof6mxcq2fnwhcj2qyp3kxsfldnxix5b4yd.onion/)
 
 ??? danger "Stagenet Block Explorers [Clearnet]"
     - [XMRChain.net](https://stagenet.xmrchain.net/)
+    - [LibreNode.com](https://xmr-stagenet.librenode.com/)
+
+??? tip "Stagenet Faucets [Onion]"
+    - [CypherFaucet.com](https://afhhz7ytxc6en5qbcftugdt2yuxhnzxdhg6dpto67rkv75ofwgjwavid.onion/xmr-stagenet)
 
 ??? abstract "Stagenet Faucets [Clearnet]"
     - [XMR-TW.org](https://stagenet-faucet.xmr-tw.org/)
@@ -125,9 +130,14 @@ Some resources to get started:
 
 ??? tip "Testnet Block Explorers [Onion]"
     - [Monerodevs.org](http://ol7qm5adjeugpwkbrcnnnshsihmkhidaaoim35duhfdmj4gihaiapkid.onion/)
+    - [LibreNode.com](http://xmr-testnet.gw3ennwsaonltfox7z3rhhof6mxcq2fnwhcj2qyp3kxsfldnxix5b4yd.onion/)
 
 ??? danger "Testnet Block Explorers [Clearnet]"
     - [XMRChain.net](https://testnet.xmrchain.net/)
+    - [LibreNode.com](https://xmr-testnet.librenode.com/)
+
+??? tip "Testnet Faucets [Onion]"
+    - [CypherFaucet.com](https://afhhz7ytxc6en5qbcftugdt2yuxhnzxdhg6dpto67rkv75ofwgjwavid.onion/xmr-testnet)
 
 ??? abstract "Testnet Faucets [Clearnet]"
     - [CypherFaucet.com](https://cypherfaucet.com/xmr-testnet)
