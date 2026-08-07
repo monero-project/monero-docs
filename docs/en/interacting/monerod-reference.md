@@ -142,7 +142,7 @@ The node and peer words are used interchangeably.
 | `--limit-rate <arg>`         | Set the same limit value for incoming and outgoing data transfer. By default (`-1`) the individual up/down default limits will be used.
 | `--offline`                  | Do not listen for peers, nor connect to any. Useful for working with a local, archival blockchain.
 | `--allow-local-ip`           | Allow adding local IP to peer list. Useful mostly for debug purposes when you may want to have multiple nodes on a single machine.
-| `--max-connections-per-ip <arg>` | Maximum number of connections allowed from the same IP address.<br><br>(=1)
+| `--max-connections-per-ip <arg>` | Maximum number of connections allowed from the same IPv4 address or IPv6 /64 subnet.<br><br>(=1)
 
 #### Tor/I2P and proxies
 
