@@ -100,7 +100,7 @@ The suggested way is to have two wallet files for the same keys. One that is use
 |--------------------------------------------|-----
 |  `--daemon-address <arg>`                  | Use daemon instance at `<host>:<port>`
 |  `--daemon-host <arg>`                     | Use daemon instance at host `<arg>` instead of localhost
-|  `--proxy <arg>`                           | `[<ip>:]<port>` socks proxy to use for daemon connections
+|  `--proxy <arg>`                           | SOCKS proxy for daemon connections. Format: `[socks5://[user:pass@]]host:port` (bare host:port = SOCKS4a; `socks5://` selects SOCKS5). Examples: `127.0.0.1:9050`, `socks5://127.0.0.1:9050`, `socks5://user:pass@[::1]:9050`. See core [proxies.md](https://github.com/monero-project/monero/blob/master/docs/proxies.md).
 |  `--trusted-daemon`                        | Enable commands which rely on a trusted daemon
 |  `--untrusted-daemon`                      | Disable commands which rely on a trusted daemon
 |  `--password <arg>`                        | Wallet password (escape/quote as \| needed)
