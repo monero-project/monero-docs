@@ -3172,7 +3172,7 @@ Inputs:
 -   _account_index_  - unsigned int; Sweep transactions from this account.
 -   _subaddr_indices_  - array of unsigned int; (Optional) Sweep from this set of subaddresses in the account.
 -   _subaddr_indices_all_  - boolean; (Optional) use outputs in all subaddresses within an account (Defaults to false).
--   _priority_  - unsigned int; (Optional) Priority for sending the sweep transfer, partially determines fee.
+-   _priority_  - unsigned int; (Optional) Priority for sending the sweep transfer, partially determines fee. Accepted values are 0-4 (which map to default, unimportant, normal, elevated, priority).
 -   _outputs_  - unsigned int; specify the number of separate outputs of smaller denomination that will be created by sweep operation.
 -   _ring_size_  - unsigned int; Sets ringsize to n (mixin + 1). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
 -   _unlock_time_  - unsigned int; Number of blocks before the monero can be spent (0 to not add a lock).
@@ -3278,7 +3278,7 @@ Alias:  _None_.
 Inputs:
 
 -   _address_  - string; Destination public address.
--   _priority_  - unsigned int; (Optional) Priority for sending the sweep transfer, partially determines fee.
+-   _priority_  - unsigned int; (Optional) Priority for sending the sweep transfer, partially determines fee. Accepted values are 0-4 (which map to default, unimportant, normal, elevated, priority).
 -   _outputs_  - unsigned int; specify the number of separate outputs of smaller denomination that will be created by sweep operation.
 -   _ring_size_  - unsigned int; Sets ringsize to n (mixin + 1). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
 -   _unlock_time_  - unsigned int; Number of blocks before the monero can be spent (0 to not add a lock).
@@ -3400,7 +3400,7 @@ Inputs:
 -   _account_index_  - unsigned int; (Optional) Transfer from this account index. (Defaults to 0)
 -   _subaddr_indices_  - array of unsigned int; (Optional) Transfer from this set of subaddresses. (Defaults to empty - all indices)
 -   _subtract_fee_from_outputs_ - array of unsigned int; (Optional) Choose which destinations to fund the tx fee from instead of the change output. The fee will be subtracted evenly from each destination (regardless of amount). Do not use this if recipient requires an exact amount.
--   _priority_  - unsigned int; Set a priority for the transaction. Accepted Values are: 0-3 for: default, unimportant, normal, elevated, priority.
+-   _priority_  - unsigned int; Set a priority for the transaction. Accepted values are 0-4 (which map to default, unimportant, normal, elevated, priority).
 -   _ring_size_  - unsigned int; Number of outputs to mix in the transaction (this output + N decoys from the blockchain). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
 -   _unlock_time_  - unsigned int; Number of blocks before the monero can be spent (0 to not add a lock).
 -   _payment_id_  - string; An optional payment ID string passed alongside the destinations to validate_transfer and embedded into the transaction extra for the transfer.
@@ -3486,7 +3486,7 @@ Inputs:
 -   _unlock_time_  - unsigned int; Number of blocks before the monero can be spent (0 to not add a lock).
 -   _payment_id_  - string; (Optional, defaults to a random ID) 16 characters hex encoded.
 -   _get_tx_keys_  - boolean; (Optional) Return the transaction keys after sending.
--   _priority_  - unsigned int; Set a priority for the transactions. Accepted Values are: 0-3 for: default, unimportant, normal, elevated, priority.
+-   _priority_  - unsigned int; Set a priority for the transactions. Accepted values are 0-4 (which map to default, unimportant, normal, elevated, priority).
 -   _do_not_relay_  - boolean; (Optional) If true, the newly created transaction will not be relayed to the monero network. (Defaults to false)
 -   _get_tx_hex_  - boolean; Return the transactions as hex string after sending
 -   _get_tx_metadata_  - boolean; Return list of transaction metadata needed to relay the transfer later.
