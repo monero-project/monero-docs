@@ -33,6 +33,12 @@ title: Monero Technical Specification
 * 2 minutes (was 1 minute before hardfork v1)
 * may change in the future as long as emission curve is preserved
 
+## Transaction finality
+
+* Monero uses probabilistic finality: each new block reduces the probability of a reorganization
+* The Monero project recommends **10 confirmations** (~20 min at the 2-minute block time) before treating a payment as settled — this is the threshold cited in the [`--reorg-notify` option](interacting/monerod-reference.md) of `monerod`
+* For a live cross-chain comparison of settlement times (Monero, Bitcoin, Ethereum, Solana and more), see [OpenChainBench L1 Finality](https://openchainbench.com/benchmarks/l1-finality)
+
 ## Block reward
 
 * smoothly decreasing and subject to penalties for blocks greater than median size of the last 100 blocks (M100)
