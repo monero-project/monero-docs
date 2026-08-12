@@ -35,9 +35,9 @@ title: Monero Technical Specification
 
 ## Transaction finality
 
-* Monero uses probabilistic finality: each new block reduces the probability of a reorganization
-* The Monero project recommends **10 confirmations** (~20 min at the 2-minute block time) before treating a payment as settled — this is the threshold cited in the [`--reorg-notify` option](interacting/monerod-reference.md) of `monerod`
-* For a live cross-chain comparison of settlement times (Monero, Bitcoin, Ethereum, Solana and more), see [OpenChainBench L1 Finality](https://openchainbench.com/benchmarks/l1-finality)
+* Monero enforces a **10-block lock time** at the protocol level since the v0.15 network upgrade (November 2019); funds received in a block are unspendable until 10 blocks (~20 min) have been mined on top
+* This matches the default wallet behavior: incoming transactions show as locked until 10 confirmations, as stated in the [wallet CLI guide](interacting/monero-wallet-cli-reference.md): *"Newly received transactions require 10 confirmations on the blockchain before being unlocked"*
+* For a live cross-chain comparison of settlement times (Monero, Bitcoin, Ethereum, Solana, and more), see [OpenChainBench L1 Finality](https://openchainbench.com/benchmarks/l1-finality)
 
 ## Block reward
 
