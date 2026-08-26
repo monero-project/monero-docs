@@ -1678,7 +1678,7 @@ Inputs:
 
 -   _in_  - boolean; (defaults to false) Include incoming transfers.
 -   _out_  - boolean; (defaults to false) Include outgoing transfers.
--   _pending_  - boolean; (defaults to false) Include pending transfers.
+-   _pending_  - boolean; (defaults to false) Include pending, unconfirmed outgoing transfers.
 -   _failed_  - boolean; (defaults to false) Include failed transfers.
 -   _pool_  - boolean; (defaults to false) Include transfers from the daemon's transaction pool.
 -   _filter_by_height_  - boolean; (Optional) Filter transfers by block height.
