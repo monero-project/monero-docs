@@ -35,10 +35,15 @@
     6. Copy the result into your Monero [**config file** :link:{ title="Monerod Config" }]{{ config }}, enabling these options:
         ``` ini
         anonymous-inbound=yourlongv3onionaddress.onion:18084,127.0.0.1:18084
-        tx-proxy=tor,127.0.0.1:9050,disable_noise
+        tx-proxy=tor,socks5://127.0.0.1:9050,disable_noise
         ```
-        Replace `yourlongv3onionaddress.onion` with your onion address.
-    7. The node is now available on Tor. You can check that the service is working by using curl:
+        Replace `yourlongv3onionaddress.onion` with your onion address. Tor transaction proxies must use an explicit `socks5://` URI without user-provided credentials; `monerod` enables stream isolation for them automatically.
+    7. Optional. For routing outbound clearnet P2P connections through Tor, enable below options. If you are on Whonix always enable them for stream isolation:
+        ``` ini
+        proxy=socks5://127.0.0.1:9050
+        tor-stream-isolation=1
+        ```
+    8. The node is now available on Tor. You can check that the service is working by using curl:
         ``` Bash
         curl -x socks5h://127.0.0.1:9050 http://yourlongv3onionaddress.onion:18089/get_info
         ```
