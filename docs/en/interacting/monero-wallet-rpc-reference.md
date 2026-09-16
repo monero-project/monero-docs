@@ -141,7 +141,7 @@ The suggested way is to have two wallet files for the same keys. One that is use
 |  `--confirm-external-bind`                      | Confirm rpc-bind-ip value is NOT a loopback (local) IP
 |  `--rpc-access-control-origins <arg>`           | Specify a comma separated list of origins to allow cross origin resource sharing
 |  `--rpc-max-connections <arg>`                  | Maximum number of RPC connections.<br><br>(=100)
-|  `--rpc-max-connections-per-public-ip <arg>`    | Maximum number of RPC connections from the same public IP address.<br><br>(=3)
+|  `--rpc-max-connections-per-public-ip <arg>`    | Maximum number of RPC connections from the same public IPv4 address or IPv6 /64 subnet.<br><br>(=3)
 |  `--rpc-max-connections-per-private-ip <arg>`   | Maximum number of RPC connections from the same private IP address.<br><br>(=25)
 |  `--rpc-response-soft-limit <arg>`              | Maximum response bytes that can be queued, enforced at next response attempt.<br><br>(=26214400)
 |  `--rpc-ssl <arg>`                              | Enable SSL on RPC connections: enabled\|disabled\|autodetect<br><br>(=autodetect)
