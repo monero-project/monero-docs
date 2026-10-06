@@ -1,0 +1,54 @@
+notices:
+  outdatedTranslation: "This translation is outdated"
+  outdatedContent: "The source content is outdated"
+  adapted: "Adapted for Monero Docs from"
+
+proof_of_work:
+  randomx:
+    notice_date: "**_Written in 2019_**"
+    notice_text: "Pulled from"
+    arweave: "**Monero and Arweave to Validate the Proof-of-Work Algorithm. - 5th of June, 2019**"
+    what_year_q: "What year is it? It seems like only yesterday they were saying that a privacy coin couldn’t be pruned
+    and that ASICs will win in the end. But here we are — about to prune, and talking about
+    RandomX... wearing our space helmets. RandomX still must go through the process of becoming
+    tried and true, but it’s an exciting part of Monero’s pipeline. This guide gives an
+    overview of its nature and plans, and where you can learn more."
+    what_is_randomx: "_What is RandomX_"
+    what_is_randomx_p1: "RandomX is a new Proof-of-Work (PoW) algorithm that Monero is scheduled
+    to begin using in the next network update. RandomX is designed to be ASIC resistant by
+    using random code execution and memory-hard techniques to prevent specialized mining
+    hardware from dominating the network. Because RandomX is optimized for general-purpose
+    CPUs, the network will become more decentralized and egalitarian in the distribution of
+    block rewards."
+    what_is_randomx_p2: "Visit [github.com/tevador/RandomX](https://github.com/tevador/RandomX)
+    for more details or watch Howard Chu (hyc) speak about [RandomX at Monero Konferenco](https://github.com/monero-ecosystem/outreach-docs/blob/master/monero-outreach-docs%2Fen%2Ftranscriptions%2Fmonero-konferenco-2019%2FASIC-Resistant_Proof_of_Work-Fact_or_Fantasy.md).
+    At the time of writing, RandomX is beginning the auditing process with [Trail Of Bits](https://www.trailofbits.com/),
+    [X41](https://www.x41-dsec.de/), [Quarkslab](https://www.quarkslab.com/) and the
+    [Kudelski Group](https://www.nagra.com/). RandomX is scheduled to go live during the next
+    Monero network update."
+    what_is_randomx_p3: "RandomX has two modes with different memory requirements and
+    performance. _Fast Mode_ requires 2GB of shared memory but has 4x-6x the performance of
+    _Light Mode_ which only requires 256MB of RAM. _Fast mode_ is intended for dedicated
+    miners. _Light mode_ is designed to allow full nodes to validate blocks without requiring
+    the 2+GB of RAM, so that small devices (like ARM single-board computers, e.g. Rock64) can
+    still be used as standalone nodes."
+    randomx_collab: "_RandomX Collaboration_"
+    randomx_collab_p1: "RandomX was developed for Monero by tevador, hyc, vielmetti, antanst
+    and SChernykh. Other organizations are already interested in adopting it. [Arweave](https://www.arweave.org/)
+    (a serverless storage enabler) donated the Trail of Bits audit to the Monero community and
+    will be implementing RandomX ahead of Monero for their unique application. Arweave provides
+    an innovative cryptocurrency-based approach to decentralized, long-term data storage.
+    Mining on Arweave relies on both proof of work and — as a new concept unique to
+    Arweave — proof of access. Arweave miners are incentivized through proof of access to
+    replicate and have quick access to data stored in the network."
+    randomx_collab_p2: "[Wownero](http://wownero.org/) is also launching RandomX in their
+    upcoming v0.6 update and will call it RandomWOW. RandomX code will be updated after the
+    audits are complete, so there will be some code divergence by the time Monero forks in
+    October. Another difference is that RandomWOW will have a smaller scratchpad for hashing,
+    1MB instead of 2MB, smaller number of VM execution iterations, and increased chained VM
+    executions per hash to increase program compilation cost for GPUs."
+    learn_more: "_Learn More_"
+    link_monerokon: "Howard Chu (hyc) at Monero Konferenco"
+    link_press: "Press Release with Arweave"
+    link_monerotalk_1: "MoneroTalk 2019-06-05 - Howard Chu, and Sam Williams of Arweave"
+    link_monerotalk_2: "MoneroTalk 2019-03-27 - Howard Chu, Tevador, and Needmoney90"
