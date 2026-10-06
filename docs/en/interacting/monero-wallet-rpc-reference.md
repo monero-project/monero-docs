@@ -151,6 +151,7 @@ The suggested way is to have two wallet files for the same keys. One that is use
 |  `--rpc-ssl-allowed-fingerprints <arg>`         | List of certificate fingerprints to allow
 |  `--rpc-ssl-allow-chained`                      | Allow user (via --rpc-ssl-certificates) chain certificates
 |  `--disable-rpc-ban`                            | Do not ban hosts on RPC errors
+|  `--disable-md5`                                | Disable the MD5 algorithm for [HTTP Digest Access Authentication](https://datatracker.ietf.org/doc/html/rfc7616). When set, only the SHA-256 algorithm is offered in the `WWW-Authenticate` challenge and accepted in client responses. MD5 is retained by default for backwards compatibility with older clients that only support [RFC 2617](https://datatracker.ietf.org/doc/html/rfc2617). Enable this if you want to harden the RPC interface against the cryptographically broken MD5 hash and all your clients support SHA-256 [RFC 7616](https://datatracker.ietf.org/doc/html/rfc7616).<br><br>(=false)
 |  `--rpc-client-secret-key <arg>`                | Set RPC client secret key for RPC payments
 
 ### Open Existing Wallet

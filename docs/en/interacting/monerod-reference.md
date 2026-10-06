@@ -195,6 +195,7 @@ The following options define how the API behaves.
 | `--rpc-login <arg>`                   | Specify `username[:password]` required to connect to API.
 | `--rpc-access-control-origins <arg>`  | Specify a comma separated list of origins to allow cross origin resource sharing. This is useful if you want to use `monerod` API directly from a web browser via JavaScript (say in a pure-fronted web appp scenario). With this option `monerod` will put proper HTTP CORS headers to its responses. You will also need to set `--rpc-login` if you use this option. Normally though, the API is used by backend app and this option isn't necessary.
 | `--disable-rpc-ban`                   | Do not ban hosts on RPC errors. May help to prevent monerod from banning traffic originating from the Tor daemon.
+| `--disable-md5`                       | Disable the MD5 algorithm for [HTTP Digest Access Authentication](https://datatracker.ietf.org/doc/html/rfc7616). When set, only the SHA-256 algorithm is offered in the `WWW-Authenticate` challenge and accepted in client responses. MD5 is retained by default for backwards compatibility with older clients that only support [RFC 2617](https://datatracker.ietf.org/doc/html/rfc2617). Enable this if you want to harden the RPC interface against the cryptographically broken MD5 hash and all your clients support SHA-256 [RFC 7616](https://datatracker.ietf.org/doc/html/rfc7616).<br><br>(=false)
 | `--rpc-payment-address <arg>`         | Restrict RPC to clients sending micropayment to this address.
 | `--rpc-payment-difficulty <arg>`      | Restrict RPC to clients sending micropayment at this difficulty in thousands.
 | `--rpc-payment-credits <arg>`         | Restrict RPC to clients sending micropayment, yields that many credits per payment in hundreds.
@@ -205,7 +206,6 @@ The following options define how the API behaves.
 | `--restricted-zmq-rpc`                | Restrict ZMQ RPC by disabling some sensitive methods; does not guarantee filtering of sensitive data.
 | `--zmq-pub <arg>`                     | Address for ZMQ pub - `tcp://ip:port` or `ipc://path`
 | `--no-zmq`                            | Disable ZMQ.
-
 
 #### Accepting Monero
 
