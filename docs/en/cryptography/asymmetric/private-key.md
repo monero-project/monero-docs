@@ -26,7 +26,7 @@ Being simply a random integer, private key is not specific to any particular asy
 In context of Monero EC cryptography the private key is a number the base point `G` is multiplied by.
 The result of the multiplication is the public key `P` (another point on the curve).
 Multiplication of a point by a number has a very special definition in EC cryptography.
-See this [this guide](https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/) for details.
+See [this guide](https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/) for details.
 
 ### Key strength
 

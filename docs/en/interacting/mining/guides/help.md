@@ -61,7 +61,7 @@ Most pools (including P2Pool) use <abbr title="Pay Per Last N Shares">PPLNS</abb
 
 - [**Solo Mining**](./solo/index.md): you will only get paid when you mine a block.
 - [**P2Pool**](./p2pool/xmrig-p2pool.md): you will only get paid when a miner on the pool finds a Monero block and you have a share within the PPLNS window.
-- [**Traditional Pool**](./pool/xmrig-pool.md): you will you get paid then you meet the pool's payout threshold.
+- [**Traditional Pool**](./pool/xmrig-pool.md): you will get paid when you meet the pool's payout threshold.
 
 ## Getting Help
 

@@ -101,4 +101,4 @@ For the wallet (`monero-wallet-gui` or `monero-wallet-cli`):
 
 * Typically, the wallet runs on the same machine as a full node so there is no risk
 * If the wallet is using a remote node, there is no IP protection by default
-    * The user must manually the wrap the wallet with Tor or I2P
+    * The user must manually wrap the wallet with Tor or I2P

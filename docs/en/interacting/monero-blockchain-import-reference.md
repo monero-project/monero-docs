@@ -4,7 +4,7 @@ title: monero-blockchain-import - Reference
 # `monero-blockchain-import` - Reference
 
 !!! note
-    Nowadays, there is little usage for raw blockchain export / import. In the past the p2p blockchain download was much slower. Back than blockchain.raw file was used to speed up download process of bootstrapping a node. 
+    Nowadays, there is little usage for raw blockchain export / import. In the past the p2p blockchain download was much slower. Back then blockchain.raw file was used to speed up download process of bootstrapping a node. 
 
 ## Overview
 
@@ -39,7 +39,7 @@ Go to directory where you unpacked Monero.
 
 | Option              | Description
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `--help`            | Enlist available options.
+| `--help`            | List available options.
 
 ### Pick network
 

@@ -3,7 +3,7 @@ title: Keccak-256 Hash Function
 ---
 # Keccak-256 Hash Function
 
-Monero employs Keccak as a hashing function. In most context specifically Keccak-256 is used,
+Monero employs Keccak as a hashing function. In most contexts specifically Keccak-256 is used,
 providing 32-byte hashes.
 
 Keccak is the leading hashing function, designed by non-NSA designers.
@@ -30,7 +30,7 @@ SHA3-256 is Keccak-256, except that NIST changed the padding.
 For this reason, the original Keccak-256 gives a different hash value than NIST SHA3-256.  
 
 Monero uses original Keccak-256.
-The NIST standard was only published on August 2015, while Monero went live on 18 April 2014.  
+The NIST standard was only published in August 2015, while Monero went live on 18 April 2014.  
 
 ## Reference
 

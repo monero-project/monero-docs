@@ -43,7 +43,7 @@ Both types allow you to learn for what you are being paid.
 
 * No shared counter is necessary to generate integrated address. This allows individual services to independently generate integrated addresses w/o synchronizing on a common sequence. In contrast, subaddresses are generated sequentially, and so the sequence (the counter or index) is a coupling point between the wallet and all services that need to generate the address. Back to integrated addresses, note that embedded payment IDs are 64-bit. This means the space is large enough that one can simply generate them randomly and reliably assume uniqueness.
 
-* In very specific scenarios, preparation effort to monitor a very huge number of subaddresses, could became an issue. See [this reddit thread](https://www.reddit.com/r/Monero/comments/9aevri/is_it_fair_to_say_integrated_addresses_are/e4vf47p) for details.
+* In very specific scenarios, preparation effort to monitor a very huge number of subaddresses, could become an issue. See [this reddit thread](https://www.reddit.com/r/Monero/comments/9aevri/is_it_fair_to_say_integrated_addresses_are/e4vf47p) for details.
 
 
 ## Caveats

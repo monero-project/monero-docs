@@ -82,7 +82,7 @@ Testnet:
 
 It is worth noting that MoneroPulse does not produce blocks and cannot split the chain on its own. It only suggests the valid fork.
 
-Should MoneroPulse got entirely compromised, attacker could stop all auto-enforcing nodes from advancing, by feeding them with the fake checkpoint. This is partially mitigated by DNSSEC and by operating multiple domains. Monero expects checkpoints are consistent across domains. Thus, compromising a single domain or registrar should not lead to any disruption.
+Should MoneroPulse get entirely compromised, attacker could stop all auto-enforcing nodes from advancing, by feeding them with the fake checkpoint. This is partially mitigated by DNSSEC and by operating multiple domains. Monero expects checkpoints are consistent across domains. Thus, compromising a single domain or registrar should not lead to any disruption.
 
 MoneroPulse also increases the say of its operators in case of possible contentious hard forks. While well intended, this effectively centralizes more power in hands of core developers, or whomever is at the time running MoneroPulse infrastructure.
 

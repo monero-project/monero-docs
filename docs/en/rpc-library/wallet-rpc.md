@@ -591,7 +591,7 @@ These methods return unsigned transaction sets if the wallet is view-only (i.e. 
 !!! warning
 
     Verify that the transfer has a sane `unlock_time` otherwise the funds might be inaccessible.
-    Note: Since [v18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
+    Note: Since [v0.18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
 
 Inputs:
 
@@ -1114,7 +1114,7 @@ Inputs:
 
 Outputs:
 
--   _index_  - subaddress informations
+-   _index_  - subaddress information
     -   _major_  - unsigned int; Account index.
     -   _minor_  - unsigned int; Address index.
 
@@ -1239,7 +1239,7 @@ Get a list of incoming payments using a given payment id, or a list of payments 
 !!! warning
 
     Verify that the transfer has a sane `unlock_time` otherwise the funds might be inaccessible.
-    Note: Since [v18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
+    Note: Since [v0.18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
 
 Alias:  _None_.
 
@@ -1368,7 +1368,7 @@ Get a list of incoming payments using a given payment id.
 !!! warning
 
     Verify that the transfer has a sane `unlock_time` otherwise the funds might be inaccessible.
-    Note: Since [v18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
+    Note: Since [v0.18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
 
 Alias:  _None_.
 
@@ -1454,7 +1454,7 @@ Alias:  _None_.
 Inputs:
 
 -   _txid_  - string; transaction id.
--   _message_  - string; (Optional) add a message to the signature to further authenticate the prooving process.
+-   _message_  - string; (Optional) add a message to the signature to further authenticate the proving process.
 
 Outputs:
 
@@ -1480,7 +1480,7 @@ Show information about a transfer to/from this address.
 !!! warning
 
     Verify that the transfer has a sane `unlock_time` otherwise the funds might be inaccessible.
-    Note: Since [v18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
+    Note: Since [v0.18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
 
 !!! note "Warning"
 
@@ -1498,7 +1498,7 @@ Outputs:
 -   _transfer_  - JSON object containing payment information:
     -   _address_  - string; Address that transferred the funds. Base58 representation of the public keys.
     -   _amount_  - unsigned int; Amount of this transfer.
-    -   _amounts_  - list; Individual amounts if multiple where received.
+    -   _amounts_  - list; Individual amounts if multiple were received.
     -   _confirmations_  - unsigned int; Number of block mined since the block containing this transaction (or block height at which the transaction should be added to a block if not yet confirmed).
     -   _destinations_  - array of JSON objects containing transfer destinations: (only for outgoing transactions)
         -   _amount_  - unsigned int; Amount transferred to this destination.
@@ -1517,7 +1517,7 @@ Outputs:
     -   _txid_  - string; Transaction ID of this transfer (same as input TXID).
     -   _type_  - string; Type of transfer, one of the following: "in", "out", "pending", "failed", "pool"
     -   _unlock_time_  - unsigned int; Number of blocks until transfer is safely spendable.
--   _transfers_  - list; If the list length is > 1 then multiple outputs where received in this transaction, each of which has its own `transfer` JSON object.
+-   _transfers_  - list; If the list length is > 1 then multiple outputs were received in this transaction, each of which has its own `transfer` JSON object.
 
 In the example below, a single output was received at 1 address (note how it is duplicated in `transfers`:
 
@@ -1582,7 +1582,7 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
 
 ```
 
-In the example below, 2 outputs where sent to 2 addresses in the same transaction. Note that `transfer` contains only one of them, but `transfers` contains both. If the length of transfers is != 1 then we have received multiple outputs in one transaction and must loop the `transfers` list accordingly.
+In the example below, 2 outputs were sent to 2 addresses in the same transaction. Note that `transfer` contains only one of them, but `transfers` contains both. If the length of transfers is != 1 then we have received multiple outputs in one transaction and must loop the `transfers` list accordingly.
 
 ```json
 $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_transfer_by_txid","params":{"txid":"c36258a276018c3a4bc1f195a7fb530f50cd63a4fa765fb7c6f7f49fc051762a"}}' -H 'Content-Type: application/json'
@@ -1675,7 +1675,7 @@ Returns a list of transfers.
 !!! warning
 
     Verify that the transfer has a sane `unlock_time` otherwise the funds might be inaccessible.
-    Note: Since [v18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
+    Note: Since [v0.18.3.4](https://github.com/monero-project/monero/releases/tag/v0.18.3.4) `unlock_time` is enforced at 0 by a transaction relay rule.
 
 !!! note "Warning"
 
@@ -1702,7 +1702,7 @@ Outputs:
 -   _in_  - array of transfers:
     -   _address_  - string; Public address of the transfer.
     -   _amount_  - unsigned int; Amount transferred.
-    -   _amounts_  - array of unsigned int; If multiple amounts where recived they are individually listed.
+    -   _amounts_  - array of unsigned int; If multiple amounts were received they are individually listed.
     -   _confirmations_  - unsigned int; Number of block mined since the block containing this transaction (or block height at which the transaction should be added to a block if not yet confirmed).
     -   _double_spend_seen_  - boolean; True if the key image(s) for the transfer have been seen before.
     -   _fee_  - unsigned int; Transaction fee for this transfer.
@@ -1715,7 +1715,7 @@ Outputs:
     -   _subaddr_index_  - JSON object containing the major & minor subaddress index:
         -   _major_  - unsigned int; Account index for the subaddress.
         -   _minor_  - unsigned int; Index of the subaddress under the account.
-    -   _subaddr_indices_  - array; list of indices if multiple where requested.
+    -   _subaddr_indices_  - array; list of indices if multiple were requested.
         -   _major_  - unsigned int; Account index for the subaddress.
         -   _minor_  - unsigned int; Index of the subaddress under the account.
     -   _suggested_confirmations_threshold_  - unsigned int; Number of confirmations needed for the amount received to be lower than the accumulated block reward (or close to that).
@@ -1831,7 +1831,7 @@ Inputs:
 
 -   _txid_  - string; transaction id.
 -   _address_  - string; destination public address of the transaction.
--   _message_  - string; (Optional) add a message to the signature to further authenticate the prooving process.
+-   _message_  - string; (Optional) add a message to the signature to further authenticate the proving process.
 
 Outputs:
 

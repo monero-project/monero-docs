@@ -62,7 +62,7 @@ There are very few options because everything is set up via a GUI.
 
 | Option              | Description
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `--help`            | Enlists available options.
+| `--help`            | Lists available options.
 | `--log-file`        | Full path to the log file. Example (mind file permissions): <br/>`./monerod --log-file=/var/log/monero/mainnet/monerod.log`
 
 ## Defaults

@@ -148,7 +148,7 @@ See the [rationale](https://github.com/monero-project/monero/pull/5126) and the 
 * CryptoNight ultimately failed to prevent ASIC-s.
 * Complexity of CryptoNight kills competition in ASIC manufacturing.
 
-CryptoNight proof of work remains one of the most controversial aspect of Monero.
+CryptoNight proof of work remains one of the most controversial aspects of Monero.
 
 ## Reference
 

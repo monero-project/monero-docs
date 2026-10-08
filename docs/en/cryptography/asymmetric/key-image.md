@@ -17,7 +17,7 @@ Thus, specific private key image `I` being present on the blockchain means
 that related output was already spent, and subsequent attempts must not be allowed.
 
 This whole scheme is necessary because Monero uses Ring Signatures
-which make it impossible to know whom exactly signed the transaction.
+which make it impossible to know who exactly signed the transaction.
 This is why a simple Bitcoin-like double spending check wouldn't work here. 
 
 ## Definition

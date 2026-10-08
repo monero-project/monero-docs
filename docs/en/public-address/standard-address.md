@@ -57,7 +57,7 @@ As mentioned above, a Monero address encodes two elliptic curve public keys so t
 
 Each private key is represented by a scalar between 1 and 2^252 + 27742317777372353535851937790883648492 inclusive. (Note: 2^252 + 27742317777372353535851937790883648492 + 1 is a prime order of the elliptic curve basepoint, `l`).
 
-To generate a new private key, the convention is to generate a random 256 bit numbers and reduce it modulo 2^252 + 27742317777372353535851937790883648493.
+To generate a new private key, the convention is to generate a random 256 bit number and reduce it modulo 2^252 + 27742317777372353535851937790883648493.
 
 To get the public keys to be encoded in the address, the ed25519 basepoint `G` is multiplied by each key scalar.
 
