@@ -28,7 +28,7 @@ whitepaper and is widely used in Monero literature.
 Note:
 
 * curve is in two dimensions (nothing fancy, like all the curves is high school)
-* curve is mirrored below y axis due to `y^2` part of the equation (not a polynomial)
+* curve is symmetric about the x axis due to `y^2` part of the equation (and about the y axis due to `x^2`)
 
 ### Base point: `G`
  
@@ -48,8 +48,11 @@ That's because the specific x can be calculated from the curve equation.
 
 In laymen terms, the "canvas" where the curve is drawn is assumed
 to have a finite "resolution", so point coordinates must "wrap around"
-at some point. This is achieved by modulo the `l` value (lowercase L).
-In other words, the `l` defines the maximum scalar we can use.
+at some point. This is achieved by working modulo the prime `q` (see below).
+
+The `l` value (lowercase L) is a different number; it is the order of the base point `G`,
+meaning that multiplying `G` by `l` will give back the neutral element of the curve.
+In other words, the `l` defines the maximum scalar usable.
 
     l = 2^252 + 27742317777372353535851937790883648493
     # => 7237005577332262213973186563042994240857116359379907606001950938285454250989
@@ -60,9 +63,12 @@ In practice this is the private key's strength.
 
 ### Total number of points on the curve
 
-The total number of points on the curve is also a prime number:
+Point coordinates are integers modulo the prime number:
 
     q = 2^255 - 19
+
+The total number of points on the curve is not a prime number. It is `8 * l`
+(the curve has a cofactor of 8), and the base point `G` generates the subgroup of `l` points.
 
 In practice not all points are "useful" and so the private key strength is limited to `l` describe above.
 
