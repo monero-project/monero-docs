@@ -23,8 +23,9 @@ Gupax bundles P2Pool and XMRig into a single app with simple setup.
 
 Before starting, you'll need to have a Monero Wallet configured.    
 It's highly recommended to create a new wallet for mining because wallet addresses are public on p2pool.    
-You have to use the Primary wallet address for mining.    
-_Subaddresses and integrated addresses are not supported._
+You can mine to a Primary wallet address or to a subaddress.    
+If you mine to a subaddress, pass both the Primary wallet address and the subaddress from the same wallet using the `--wallet` and `--subaddress` options.    
+_Integrated addresses are not supported._
 
 ### Node
 
@@ -49,11 +50,11 @@ Note that you should update your P2Pool software regularly.
 ## Configuring P2Pool
 
 1. Open port `37889` for P2Pool "Main", `37888` for P2Pool "Mini", or `37890` for P2Pool "Nano" in your firewall to ensure better connectivity (Optional)
-2. Run `./p2pool --host NODE_IP_ADDRESS --rpc-port NODE_RPC_PORT --wallet PRIMARY_WALLET_ADDRESS`.
+2. Run `./p2pool --host NODE_IP_ADDRESS --rpc-port NODE_RPC_PORT --wallet PRIMARY_WALLET_ADDRESS` for a Primary wallet address. To mine to a subaddress, add `--subaddress SUBADDRESS`.
 
     - It's recommended that you use your own node. If that's the case `NODE_IP_ADDRESS` should be `127.0.0.1`.
     - Similarly, the `NODE_RPC_PORT` should be `18081` or `18089`.
-    - `PRIMARY_WALLET_ADDRESS` **must** be your main address. Subaddresses are unsupported. <br>(Main addresses start with `4`, subaddresses start with `8`)
+    - If you mine to a subaddress, `SUBADDRESS` must belong to the same wallet as `PRIMARY_WALLET_ADDRESS`. Main addresses start with `4`, subaddresses start with `8`.
     - Add the flag `--mini` if youd prefer to mine on a lower difficulty P2Pool instance.
 
 3. Wait for P2Pool to synchronize. It should take no more than 5-10 minutes.
