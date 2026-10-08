@@ -19,6 +19,8 @@ Monero Docs is a Knowledge Base and User Guide for interacting with Monero. Pick
 
     [:octicons-arrow-right-24: Download & verify](interacting/download-monero-binaries.md)
 
+    [:octicons-arrow-right-24: CLI wallet guide](interacting/monero-wallet-cli-reference.md)
+
 -   :material-server:{ .lg .middle } **Running a node & mining**
 
     ---
