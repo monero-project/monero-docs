@@ -153,11 +153,13 @@ For example:
 exchange_multisig_keys <data1> <data2>
 ```
 
-It is either run once or twice in total.
+It is run N - M + 1 times in total, where M is the threshold and N is the total number of participants. For example:
 
-Once if your wallet has the same threshold as the total number of participants, e.g. 2 of 2.
+Once for a 2 of 2 (or any N of N).
 
-Twice if you have a different threshold, e.g. 2 of 3.
+Twice for a 2 of 3.
+
+Three times for a 3 of 5.
 
 Continuing our 2/3 multisig example, after inputting the above exchange_multisig_keys command, we would then see:
 
