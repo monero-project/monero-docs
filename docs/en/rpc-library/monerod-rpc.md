@@ -460,7 +460,7 @@ Outputs:
         - _tagged_key_ -
           - _key_ - the public key of the output
           - _view_tag_ - The 1st byte of a shared secret (used for reducing synchronization time)
-    - _extra_ - Usually called the "transaction ID" but can be used to include any random 32 byte/64 character hex string.
+    - _extra_ - Extra data, as a list of bytes. Typically contains the transaction public key, and may contain other fields such as an encrypted payment ID or an extra nonce.
     - _rct_signatures_ - Contain signatures of tx signers. Coinbase txs do not have signatures.
   - _tx_hashes_ - List of hashes of non-coinbase transactions in the block. If there are no other transactions, this will be an empty list.
 - _status_ - string; General RPC error code. "OK" means everything looks good.
@@ -602,8 +602,8 @@ Alias: _getblockheaderbyhash_ .
 
 Inputs:
 
-- _hash_ - string; The sha256 hash of the block.
-- _hashes_ - array of strings; The sha256 hashes of the blocks.
+- _hash_ - string; The block's hash.
+- _hashes_ - array of strings; The blocks' hashes.
 - _fill_pow_hash_ - boolean; (Optional; defaults to `false`) Add PoW hash to block_header response.
 
 Outputs:
@@ -875,7 +875,7 @@ Outputs:
 - _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
 - _emission_amount_ - unsigned int; Least significant 64 bits for 128 bit integer representing the new coins emitted in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR."). (See src/rpc/core_rpc_server.cpp store_128)
 - _emission_amount_top64_ - unsigned it; Most significant 64 bits for 128 bit integer representing the new coins emitted in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")
-- _fee_amount_ - unsigned int; Most significant 64 bits for 128 bit integer representing the sum of fees in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+- _fee_amount_ - unsigned int; Least significant 64 bits for 128 bit integer representing the sum of fees in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
 - _fee_amount_top64_ - unsigned int; Most significant 64 bits for 128 bit integer representing the sum of fees in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
 - _status_ - string; General RPC error code. "OK" means everything looks good.
 - _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
@@ -1561,7 +1561,7 @@ Inputs:
 Outputs:
 
 - _pruned_ - boolean;
-- _pruning_seed_ - unsigned int; Blockheight at which pruning began.
+- _pruning_seed_ - unsigned int; Pruning seed of the node (`0` if the blockchain is not pruned). It encodes which stripe of the blockchain the node keeps; see [`src/common/pruning.h`](https://github.com/monero-project/monero/blob/master/src/common/pruning.h).
 - _status_ - string; General RPC error code. "OK" means everything looks good.
 - _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
@@ -2349,7 +2349,7 @@ Outputs:
         - _tagged_key_ 
           - _key_ - The stealth public key of the receiver. Whoever owns the private key associated with this key controls this transaction output.
           - _view_tag_ - The 1st byte of a shared secret (used for reducing synchronization time).
-    - _extra_ - Usually called the "transaction ID" but can be used to include any random 32 bytes.
+    - _extra_ - Extra data, as a list of bytes. Typically contains the transaction public key, and may contain other fields such as an encrypted payment ID or an extra nonce.
     - _rct_signatures_ - List of signatures used in ring signature to hide the true origin of the transaction.
       - _ecdhInfo_ - array of Diffie Helman Elipctic curves structures as follows:
         - _mask_ - String;
@@ -2571,7 +2571,7 @@ Outputs:
         - _tagged_key_ 
           - _key_ - The stealth public key of the receiver. Whoever owns the private key associated with this key controls this transaction output.
           - _view_tag_ - The 1st byte of a shared secret (used for reducing synchronization time).
-    - _extra_ - Usually called the "payment ID" but can be used to include any random 32 bytes.
+    - _extra_ - Extra data, as a list of bytes. Typically contains the transaction public key, and may contain other fields such as an encrypted payment ID or an extra nonce.
     - _rct_signatures_ - List of signatures used in ring signature to hide the true origin of the transaction.
       - _ecdhInfo_ - array of Diffie Helman Elipctic curves structures as follows:
         - _mask_ - String;

@@ -22,7 +22,7 @@ The full node can be either local (same computer) or remote.
 
 Normally, you run the full node on the same computer as wallet (or within your home network).
 
-Connection happens over HTTP and uses [this API](https://www.getmonero.org/resources/developer-guides/wallet-rpc.html).
+Connection happens over HTTP and uses the [daemon RPC API](../rpc-library/monerod-rpc.md).
 
 Any transaction leaving the wallet is already blinded by all Monero privacy features.
 This means plain text HTTP communication isn't an issue on its own even if you connect to a remote node.
@@ -63,7 +63,7 @@ There are very few options because everything is set up via a GUI.
 | Option              | Description
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------
 | `--help`            | Enlists available options.
-| `--log-file`        | Full path to the log file. Example (mind file permissions): <br/>`./monerod --log-file=/var/log/monero/mainnet/monerod.log`
+| `--log-file`        | Full path to the log file. Example (mind file permissions): <br/>`./monero-wallet-gui --log-file=/var/log/monero/mainnet/monero-wallet-gui.log`
 
 ## Defaults
 
