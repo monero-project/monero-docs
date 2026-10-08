@@ -49,7 +49,7 @@ execute
 
 ```
 monero-wallet-cli --generate-new-wallet /path/to/wallet-file \
----restore-deterministic-wallet
+--restore-deterministic-wallet
 ```
 
 to restore from seed and seed offset passphrase. When you restore from seed, you

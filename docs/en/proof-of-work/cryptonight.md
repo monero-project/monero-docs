@@ -88,7 +88,7 @@ by applying AES-256 encryption.
 The first 0..31 bytes of Keccak-1600 hash are used as AES key.
 
 The encryption is performed on 128 bytes-long payloads until 2MB is ready.
-The first payload are Keccak-1600 bytes 66..191.
+The first payload are Keccak-1600 bytes 64..191.
 The next payload is encryption result of the previous payload.
 
 Each 128-byte payload is actually encrypted 10 times.
