@@ -3,24 +3,24 @@ title: CryptoNight
 ---
 # CryptoNight
 
-> CryptoNight is a memory hard hash function
+> CryptoNight is a memory-hard hash function
 
 ## Background
 
 CryptoNight was originally designed around 2013 as part of the CryptoNote suite.
 
-One design goal was to make it very friendly for the off-the-shelf CPU-s, by employing:
+One design goal was to make it very friendly for off-the-shelf CPUs, by employing:
 
 * native AES encryption 
 * fast 64 bit multipliers
 * scratchpad fitting exactly the size of the per-core L3 cache on Intel CPUs (about 2MB)
 
-More ambitious design goal was to make it inefficiently computable on ASIC-s.
-This goal has since failed, as it inevitably happens with "ASIC hard" algorithms.
-Efficient CryptoNight ASIC was developed in 2017 by Bitmain. 
+A more ambitious design goal was to make it inefficiently computable on ASICs.
+This goal has since failed, as often happens with "ASIC-hard" algorithms.
+Efficient CryptoNight ASICs were developed in 2017 by Bitmain. 
 
-Monero inherited CryptoNight as its proof of work in 2014.
-Since then Monero slightly evolved the algorithm to intentionally break compatibility with released ASIC-s. Three used variants existed: Cryptonightv1, Cryptonightv2 and [Cryptonight-R](https://github.com/SChernykh/CryptonightR).
+Monero inherited CryptoNight as its proof-of-work in 2014.
+Since then, Monero slightly evolved the algorithm to intentionally break compatibility with released ASICs. Three used variants existed: CryptoNight v1, CryptoNight v2 and [Cryptonight-R](https://github.com/SChernykh/CryptonightR).
 **Monero no longer uses CryptoNight or any variant. Monero changed its mining algorithm to [RandomX](../proof-of-work/random-x.md) in November 2019.**
 
 ## The goal is to find small-enough hash
@@ -39,7 +39,7 @@ Because hash functions are one-way, it is not possible to analytically calculate
 The solution must be brute-forced by tweaking the input data and recalculating the hash over and over again.
 
 Miners have a few areas of flexibility regarding input data - most importantly they can iterate with the nonce value.
-They also have a power over which transactions are included in the block and how they are put together in a merkle tree. 
+They also have a power over which transactions are included in the block and how they are put together in a Merkle tree. 
 
 ## Cryptographic primitives
 
@@ -55,10 +55,10 @@ CryptoNight is based on:
 
 ## Input data
 
-In Monero the input to hashing function is concatenation of:
+In Monero, the input to the hashing function is concatenation of:
 
 * serialized block header (around 46 bytes; subject to varint representation)
-* merkle tree root (32 bytes)
+* Merkle tree root (32 bytes)
 * number of transactions included in the block (around 1-2 bytes; subject to varint representation)
 
 See [get_block_hashing_blob()](https://github.com/monero-project/monero/blob/master/src/cryptonote_basic/cryptonote_format_utils.cpp#L1078) function to dig further.
@@ -88,7 +88,7 @@ by applying AES-256 encryption.
 The first 0..31 bytes of Keccak-1600 hash are used as AES key.
 
 The encryption is performed on 128 bytes-long payloads until 2MB is ready.
-The first payload are Keccak-1600 bytes 66..191.
+The first payload are Keccak-1600 bytes 64..191.
 The next payload is encryption result of the previous payload.
 
 Each 128-byte payload is actually encrypted 10 times.
@@ -105,9 +105,9 @@ at pseudorandom-but-deterministic locations.
 Critically, next iteration depends on the state prepared by previous iterations.
 It is not possible to directly calculate state of future iterations.
 
-The specific operations include AES, XOR, 8byte_mul, 8byte_add - operations that are CPU-friendly (highly optimized on modern CPU-s).
+The specific operations include AES, XOR, 8byte_mul, 8byte_add - operations that are CPU-friendly (highly optimized on modern CPUs).
 
-The goal here is to make memory latency the bottleneck in attempt to close the gap between potential ASIC-s and general purpose CPU-s.
+The goal here is to make memory latency the bottleneck in attempt to close the gap between potential ASICs and general purpose CPUs.
 
 ### Step 3: hashing
 
@@ -145,16 +145,14 @@ See the [rationale](https://github.com/monero-project/monero/pull/5126) and the 
 
 * CryptoNight hash is relatively expensive to verify. This poses a risk of DoS-ing nodes with incorrect proofs to process. See [strong asymmetry](../proof-of-work/index.md#strong-asymmetry) requirement.
 * The hash function was designed from scratch with limited peer review. While CryptoNight is composed of proven and peer-reviewed primitives, combining secure primitives doesn't necessarily result in a secure cryptosystem.
-* CryptoNight ultimately failed to prevent ASIC-s.
+* CryptoNight ultimately failed to prevent ASICs.
 * Complexity of CryptoNight kills competition in ASIC manufacturing.
 
-CryptoNight proof of work remains one of the most controversial aspect of Monero.
-
-## Reference
+## References
 
 * [CryptoNight hash function](https://gist.github.com/laanwj/6b52e6cc516c0fa32637287aa83df38c#file-cns008-txt) description in the CryptoNote Standard
 * [CryptoNight v2 source code](https://github.com/monero-project/monero/blob/master/src/crypto/slow-hash.c)
     * The entry point is `cn_slow_hash()` function. Manually removing support and optimizations for multiple architectures should help you understand the actual code. 
 * "Egalitarian Proof of Work" chapter in [CryptoNote whitepaper](https://downloads.getmonero.org/whitepaper_annotated.pdf) 
-* [First days of Monero mining](https://da-data.blogspot.com/2014/08/minting-money-with-monero-and-cpu.html) by dr David Andersen
+* [First days of Monero mining](https://da-data.blogspot.com/2014/08/minting-money-with-monero-and-cpu.html) by Dr. David Andersen
 * Some [test vectors](https://github.com/monero-project/monero/tree/master/tests/hash) in Monero source code 
