@@ -39,6 +39,7 @@ nav:
     - monero-wallet-gui: 'interacting/monero-wallet-gui-reference.md'
     - monero-wallet-cli: 'interacting/monero-wallet-cli-reference.md'
     - monero-wallet-rpc: 'interacting/monero-wallet-rpc-reference.md'
+    - Remote Nodes: 'interacting/remote-nodes.md'
     - Advanced Transactions:
       - Multisignature: 'multisignature.md'
       - Offline Transaction Signing: 'cold-storage/offline-transaction-signing.md'

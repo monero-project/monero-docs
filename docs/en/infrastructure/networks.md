@@ -18,7 +18,7 @@ title: Mainnet, Stagenet, Testnet
     Be cautious when using **_any_** remote node or block explorer.
 
     Malicious service providers may log and associate your IP address, TXIDs, and more.
-    If you must use Untrusted Nodes, use them over Onion or I2P.
+    If you must use Untrusted Nodes, use them over Onion or I2P. See [Remote Nodes and Privacy](../interacting/remote-nodes.md) for the trade-offs.
 
 
 ### Nodes

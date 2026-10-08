@@ -34,7 +34,7 @@ Connection happens over HTTP and uses [this API](https://www.getmonero.org/resou
 Any transaction leaving the wallet is already blinded by all Monero privacy features.
 This means plain text HTTP communication isn't an issue on its own even if you connect to a remote node.
 
-However, connecting to a remote node has other nuanced trade-offs, which is a topic for a separate article.
+However, connecting to a remote node has other nuanced trade-offs; see [Remote Nodes and Privacy](remote-nodes.md).
 
 ## Syntax
 
