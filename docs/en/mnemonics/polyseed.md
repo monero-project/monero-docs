@@ -32,6 +32,14 @@ Polyseed was designed for the 128-bit security level. This corresponds to the se
 
 The private key is derived from the 150-bit secret seed using PBKDF2-HMAC-SHA256 with 10000 iterations. The KDF parameters were selected to allow for the key to be derived by hardware wallets.
 
+### Seed offsets
+
+Like in the [legacy mnemonic scheme](legacy.md#encrypted-seeds), Polyseed supports seed offsets (also called seed passphrases), which work the same way; the passphrase is hashed and the result is added to the wallet's keys, with the same hash subtracted when restoring the wallet. Only the resulting keys change, not the mnemonic phrase itself. This is the recommended way to use a passphrase with a Polyseed wallet.
+
+The Polyseed specification separately defines a dedicated encryption feature, which uses one of the [feature bits](#encoding) to label the mnemonic seed as encrypted by a passphrase. However, most wallets (including the core Monero wallets) do not implement this feature, and it is generally not recommended for use due to plausible deniability reasons.
+
+For more information on this topic, please see [this discussion](https://github.com/tevador/polyseed/issues/13).
+
 ### Wordlists
 
 Wordlists used in Polyseed are based on [BIP-39](https://github.com/bitcoin/bips/blob/master/bip-0039/bip-0039-wordlists.md) with a few minor changes.
