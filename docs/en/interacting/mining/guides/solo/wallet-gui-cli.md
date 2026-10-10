@@ -1,5 +1,5 @@
 ---
-title: How to mine with Monero GUI amd CLI wallets
+title: How to mine with Monero GUI and CLI wallets
 ---
 
 ## Requirements

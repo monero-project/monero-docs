@@ -27,7 +27,7 @@ whitepaper and is widely used in Monero literature.
 
 Note:
 
-* curve is in two dimensions (nothing fancy, like all the curves is high school)
+* curve is in two dimensions (nothing fancy, like all the curves in high school)
 * curve is mirrored below y axis due to `y^2` part of the equation (not a polynomial)
 
 ### Base point: `G`
@@ -46,7 +46,7 @@ That's because the specific x can be calculated from the curve equation.
 
 ### Prime order of the base point: `l`
 
-In laymen terms, the "canvas" where the curve is drawn is assumed
+In layman's terms, the "canvas" where the curve is drawn is assumed
 to have a finite "resolution", so point coordinates must "wrap around"
 at some point. This is achieved by modulo the `l` value (lowercase L).
 In other words, the `l` defines the maximum scalar we can use.
@@ -64,7 +64,7 @@ The total number of points on the curve is also a prime number:
 
     q = 2^255 - 19
 
-In practice not all points are "useful" and so the private key strength is limited to `l` describe above.
+In practice not all points are "useful" and so the private key strength is limited to `l` described above.
 
 ## Implementation
 

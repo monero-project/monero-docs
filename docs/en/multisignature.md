@@ -39,7 +39,7 @@ If you're not already familiar with stagenet, it is a separate, but functionally
 
 To begin you will need to create a new wallet. Multisig cannot be applied to a wallet that has previously received funds.
 
-First you create a new wallet. The below the code assumes you're using a remote node, but using a local node is ideal:
+First you create a new wallet. The code below assumes you're using a remote node, but using a local node is ideal:
 
 ```
 ./monero-wallet-cli --stagenet --daemon-address address-URL  # Create your wallet
@@ -379,7 +379,7 @@ This is possible in other cryptocurrencies, but is more feasible in Monero becau
 
 ## Mnemonic Seeds
 
-With a regular wallet is it possible to create a mnemonic seed that you can back up, and later use to recreate the wallet.
+With a regular wallet it is possible to create a mnemonic seed that you can back up, and later use to recreate the wallet.
 
 Fortunately, multisig wallets have the same feature. The only difference is that the seed is a **long string** of letters and numbers, rather than a set of dictionary words. Unfortunately, it needs to encode too much data to fit neatly into the regular mnemonic seed dictionary output.
 

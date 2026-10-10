@@ -65,7 +65,7 @@ Make sure you are running a locally synced `monerod` or point to a remote daemon
 
 ### Trouble Shooting
 
-If the expected RPC URL, say [http://127.0.0.1:28088/json_rpc](http://127.0.0.1:28088/json_rpc), is unavailabe, or there is no terminal output saying that the server has been started, `monero-wallet-rpc` might be trying to synchronize the wallet. In that case, you should use the GUI or CLI to sync that wallet file because using the GUI/CLI results in faster and measurable syncing.
+If the expected RPC URL, say [http://127.0.0.1:28088/json_rpc](http://127.0.0.1:28088/json_rpc), is unavailable, or there is no terminal output saying that the server has been started, `monero-wallet-rpc` might be trying to synchronize the wallet. In that case, you should use the GUI or CLI to sync that wallet file because using the GUI/CLI results in faster and measurable syncing.
 
 The suggested way is to have two wallet files for the same keys. One that is used manually (synced often), and one that is used by `monero-wallet-rpc`. Whenever you decide to use `monero-wallet-rpc` and encounter the unresponsive issue, simply copy the files of the GUI/CLI wallet and replace the ones that were being used by `monero-wallet-rpc`. This problem should only occur on the development system where `monerod` or `monero-wallet-rpc` might not have been running for weeks. In production, `monerod` and `monero-wallet-rpc` should have minimal downtimes, ensuring that the wallet is always synchronized.
 
@@ -170,7 +170,7 @@ The suggested way is to have two wallet files for the same keys. One that is use
 | `--kdf-rounds <arg>`           | (Not recommended) Number of rounds for the key derivation function<br><br>(=1)
 | `--hw-device <arg>`            | HW device to use
 | `--hw-device-deriv-path <arg>` | HW device wallet derivation path (e.g., SLIP-10)
-| `--extra-entropy <arg>`        | File containing extra entropy to initialize the PRNG (any data, aim for 256 bits of entropy to be useful, which typically means more than 256 its of data)
+| `--extra-entropy <arg>`        | File containing extra entropy to initialize the PRNG (any data, aim for 256 bits of entropy to be useful, which typically means more than 256 bits of data)
 | `--generate-from-json <arg>`   | Generate wallet from JSON format file
 
 ### Windows Service
@@ -190,6 +190,6 @@ The suggested way is to have two wallet files for the same keys. One that is use
 | `--shared-ringdb-dir <arg>`                         | Set shared ring database path<br>Windows: C:\ProgramData\.shared-ringdb<br>Linux: $HOME/.shared-ringdb
 | `--no-dns`                                          | Do not use DNS
 | `--offline`                                         | Do not connect to a daemon, nor use DNS
-| `--non-interactive`                                 | monero-wallet-rpc is not interactive, this doesnt _do_ anything. [ref](https://github.com/monero-project/monero/pull/8772#issuecomment-1463097268)
+| `--non-interactive`                                 | monero-wallet-rpc is not interactive, this doesn't _do_ anything. [ref](https://github.com/monero-project/monero/pull/8772#issuecomment-1463097268)
 | `--bitmessage-address <arg=http://localhost:8442/>` | Use PyBitmessage instance at URL `<arg>`
 | `--bitmessage-login <arg>`                          | Specify `<arg>` as `username:password` for PyBitmessage API

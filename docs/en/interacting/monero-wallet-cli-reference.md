@@ -62,7 +62,7 @@ In a separate terminal window, run the wallet:
 
 | Option              | Description
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `--help`            | Enlist available options.
+| `--help`            | List available options.
 | `--version`         | Show `monero-wallet-cli` version to stdout. Example: <br>`Monero 'Boron Butterfly' (v0.14.0.0-release)`
 
 #### Pick network
@@ -111,7 +111,7 @@ Wallet depends on a full node for all non-local operations. The following option
 | `--wallet-file <arg>`       | Open existing wallet. Example: <br/><br/>`./monero-wallet-cli --stagenet --wallet-file $HOME/.bitmonero/stagenet/wallets/MoneroExampleStagenetWallet` <br><br/>This is only for wallet files generated with `monero-wallet-cli`, `monero-wallet-gui`, or `monero-wallet-rpc` tools. If you have other type of wallet then see importing options.
 | `--wallet-dir <arg>`        | Specify a directory for loading and saving wallet files. Must be an absolute path.
 | `--password <arg>`          | Provide wallet password as a parameter instead of interactively. Remember to escape/quote as needed. <br><br>**Not recommended** because the password will remain in your command history and will also be visible in the process table. For automation prefer `--password-file`. <br><br>The option also works in combination with `--generate-new-wallet`.
-| `--password-file <arg>`     | Provide password as a file in stead of interactively. Trailing `\n` are discarded when reading the password file. <br><br>Prefer this over `--password` if you automate wallet access. Make sure the password file is meaningfully separated from the wallet file. Otherwise it provides no security benefit. <br><br>The option also works in combination with `--generate-new-wallet`.
+| `--password-file <arg>`     | Provide password as a file instead of interactively. Trailing `\n` are discarded when reading the password file. <br><br>Prefer this over `--password` if you automate wallet access. Make sure the password file is meaningfully separated from the wallet file. Otherwise it provides no security benefit. <br><br>The option also works in combination with `--generate-new-wallet`.
 
 #### Restore wallet
 
@@ -148,7 +148,7 @@ Wallet depends on a full node for all non-local operations. The following option
 | Option                         | Description
 |--------------------------------|--------------------------------------------------------------------------------------------------------------------------------------
 | `--mnemonic-language <arg>`    | Language for mnemonic seed words. One of `english`, `english_old`, `esperanto`, `french`, `german`, `italian`, `japanese`, `lojban`, `portuguese`, `russian`, `spanish`. <br><br>It might be a good idea to stick to default English which is by far the most popular and well tested. It also avoids potential non-ASCII characters pitfalls or bugs.
-| `--use-english-language-names` | If your display freezes, exit blind with ^C, then run again with `--use-english-language-names`. This can happen when Monero prompts for a language displaying language names in their natives alphabets.
+| `--use-english-language-names` | If your display freezes, exit blind with ^C, then run again with `--use-english-language-names`. This can happen when Monero prompts for a language displaying language names in their native alphabets.
 
 #### Legacy
 
@@ -166,7 +166,7 @@ These options are either legacy or rarely useful.
 
 ## Defaults
 
-Wallet files are created and seek in current directory. This is rarely what you want. Use `--wallet-file`, `--wallet-dir`, and similar options to control this.
+Wallet files are created and looked for in the current directory. This is rarely what you want. Use `--wallet-file`, `--wallet-dir`, and similar options to control this.
 
 Log files are created in the same directory as `monero-wallet-cli` binary. Use `--log-file` to specify the location.
 

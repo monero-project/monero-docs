@@ -3,7 +3,7 @@ title: Verifying Monero Binaries Signature
 ---
 # Verify Monero Binaries
 
-Verification must be carried on **before extracting the archive and before using Monero**.
+Verification must be carried out **before extracting the archive and before using Monero**.
 
 Instructions were tested on Linux. They should also work on macOS with slight modifications.
 

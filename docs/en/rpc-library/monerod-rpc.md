@@ -874,7 +874,7 @@ Outputs:
 
 - _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
 - _emission_amount_ - unsigned int; Least significant 64 bits for 128 bit integer representing the new coins emitted in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR."). (See src/rpc/core_rpc_server.cpp store_128)
-- _emission_amount_top64_ - unsigned it; Most significant 64 bits for 128 bit integer representing the new coins emitted in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")
+- _emission_amount_top64_ - unsigned int; Most significant 64 bits for 128 bit integer representing the new coins emitted in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.")
 - _fee_amount_ - unsigned int; Most significant 64 bits for 128 bit integer representing the sum of fees in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
 - _fee_amount_top64_ - unsigned int; Most significant 64 bits for 128 bit integer representing the sum of fees in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
 - _status_ - string; General RPC error code. "OK" means everything looks good.
@@ -946,7 +946,7 @@ Outputs:
 - _status_ - string; General RPC error code. "OK" means everything looks good.
 - _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
-Following is an example of `get_connections` and it's return:
+Following is an example of `get_connections` and its return:
 
 ```json
 $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_connections"}' -H 'Content-Type: application/json'
@@ -1720,7 +1720,7 @@ Outputs:
   - _connection_id_ - string; Id of connection
   - _nblocks_ - unsigned int; number of blocks in that span
   - _rate_ - unsigned int; connection rate
-  - _remote_address_ - string; peer address the node is downloading (or has downloaded) than span from
+  - _remote_address_ - string; peer address the node is downloading (or has downloaded) that span from
   - _size_ - unsigned int; total number of bytes in that span's blocks (including txes)
   - _speed_ - unsigned int; connection speed
   - _start_block_height_ - unsigned int; block height of the first block in that span
@@ -2351,7 +2351,7 @@ Outputs:
           - _view_tag_ - The 1st byte of a shared secret (used for reducing synchronization time).
     - _extra_ - Usually called the "transaction ID" but can be used to include any random 32 bytes.
     - _rct_signatures_ - List of signatures used in ring signature to hide the true origin of the transaction.
-      - _ecdhInfo_ - array of Diffie Helman Elipctic curves structures as follows:
+      - _ecdhInfo_ - array of Diffie-Hellman elliptic curve structures as follows:
         - _mask_ - String;
         - _amount_ - String;
       - _outPk_ - List
@@ -2573,7 +2573,7 @@ Outputs:
           - _view_tag_ - The 1st byte of a shared secret (used for reducing synchronization time).
     - _extra_ - Usually called the "payment ID" but can be used to include any random 32 bytes.
     - _rct_signatures_ - List of signatures used in ring signature to hide the true origin of the transaction.
-      - _ecdhInfo_ - array of Diffie Helman Elipctic curves structures as follows:
+      - _ecdhInfo_ - array of Diffie-Hellman elliptic curve structures as follows:
         - _mask_ - String;
         - _amount_ - String;
       - _outPk_ - List
@@ -2596,7 +2596,7 @@ Outputs:
       - _npb_ -
       - _pseudoOuts_ -
   - _block_height_ - unsigned int; block height including the transaction
-  - _block_timestamp_ - unsigned int; Unix time at chich the block has been added to the blockchain
+  - _block_timestamp_ - unsigned int; Unix time at which the block has been added to the blockchain
   - _double_spend_seen_ - boolean; States if the transaction is a double-spend (`true`) or not (`false`)
   - _in_pool_ - boolean; States if the transaction is in pool (`true`) or included in a block (`false`)
   - _output_indices_ - array of unsigned int; transaction indexes

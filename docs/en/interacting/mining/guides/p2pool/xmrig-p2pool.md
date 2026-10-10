@@ -54,7 +54,7 @@ Note that you should update your P2Pool software regularly.
     - It's recommended that you use your own node. If that's the case `NODE_IP_ADDRESS` should be `127.0.0.1`.
     - Similarly, the `NODE_RPC_PORT` should be `18081` or `18089`.
     - `PRIMARY_WALLET_ADDRESS` **must** be your main address. Subaddresses are unsupported. <br>(Main addresses start with `4`, subaddresses start with `8`)
-    - Add the flag `--mini` if youd prefer to mine on a lower difficulty P2Pool instance.
+    - Add the flag `--mini` if you'd prefer to mine on a lower difficulty P2Pool instance.
 
 3. Wait for P2Pool to synchronize. It should take no more than 5-10 minutes.
 
@@ -65,7 +65,7 @@ See the [official docs](https://github.com/SChernykh/p2pool/blob/master/docs/COM
 On Linux and MacOS etc, run `./xmrig -o 127.0.0.1:3333` to start mining.
 For higher hashrates on Windows, you'll need to edit properties to run as administrator. On Linux you'll run with `sudo`.
 
-See the [official docs](https://xmrig.com/docs/miner/config) if youd prefer to use a config file.
+See the [official docs](https://xmrig.com/docs/miner/config) if you'd prefer to use a config file.
 
 {% include 'mining_footer' %}
 

@@ -10,7 +10,7 @@
 
     # Optional pruning
     #prune-blockchain=1           # Pruning saves 2/3 of disk space w/o degrading functionality but contributes less to the network
-    #sync-pruned-blocks=1         # Allow downloading pruned blocks instead of prunning them yourself
+    #sync-pruned-blocks=1         # Allow downloading pruned blocks instead of pruning them yourself
 
     # Centralized services
     check-updates=disabled         # Do not check DNS TXT records for a new version
