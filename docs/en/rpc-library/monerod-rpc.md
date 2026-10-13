@@ -1438,6 +1438,7 @@ Outputs:
 - _hard_forks_ - array of unsigned int.
   - _height_ - unsigned int;
   - _hf_version_ - unsigned int; hard fork version.
+- _nettype_ - string; Network type the daemon is running on: one of `mainnet`, `testnet`, `stagenet`, `fakechain` or `unknown`. (Optional; added in RPC version 3.19, not returned by older daemons.)
 - _release_ - boolean; States if the daemon software version corresponds to an official tagged release (`true`), or not (`false`)
 - _status_ - string; General RPC error code. "OK" means everything looks good.
 - _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
