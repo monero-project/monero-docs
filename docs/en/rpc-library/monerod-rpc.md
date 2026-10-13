@@ -515,7 +515,7 @@ curl http://127.0.0.1:18081/json_rpc \
       "ip": 838969536,
       "seconds": 28
     }],
-    "status": "OK"
+    "status": "OK",
     "untrusted": false
   }
 }
@@ -715,8 +715,8 @@ curl http://127.0.0.1:18081/json_rpc \
   "id": "0",
   "result": {  
     "count": 993163,  
-    "status": "OK"
-    "untrusted": "false"  
+    "status": "OK",
+    "untrusted": false
   }  
 }  
 ```
@@ -1030,6 +1030,7 @@ curl http://127.0.0.1:18081/json_rpc \
     "untrusted": false,
     "wide_difficulty": "0x34cec55820"
   }
+}
 ```
 
 
@@ -1180,7 +1181,7 @@ curl http://127.0.0.1:18081/json_rpc \
 
     ...
     }],
-    "status": "OK"
+    "status": "OK",
     "untrusted": false
   }
 }
@@ -2196,11 +2197,7 @@ curl http://127.0.0.1:18081/get_alt_blocks_hashes \
   "credits": 0,
   "status": "OK",
   "top_hash": "",
-    "untrusted": false
-    "untrusted": false
-  }
   "untrusted": false
-  }
 }
 ```
 
@@ -3516,7 +3513,7 @@ curl http://127.0.0.1:18081/set_limit \
 {
   "limit_down": 1024,
   "limit_up": 128,
-  "status": "OK"
+  "status": "OK",
   "untrusted": false
 }
 ```
@@ -3620,7 +3617,7 @@ curl http://127.0.0.1:18081/set_log_categories \
 ```json title="Response"
 {
   "categories": "*:WARNING,net:FATAL,net.p2p:FATAL,net.cn:FATAL,global:INFO,verify:FATAL,stacktrace:INFO,logging:INFO,msgwriter:INFO",
-  "status": "OK"
+  "status": "OK",
   "untrusted": false
 }
 ```
@@ -3654,7 +3651,7 @@ curl http://127.0.0.1:18081/set_log_hash_rate \
 
 ```json title="Response"
 {
-  "status": "OK"
+  "status": "OK",
   "untrusted": false
 }
 ```
@@ -3706,7 +3703,7 @@ curl http://127.0.0.1:18081/set_log_level \
 
 ```json title="Response"
 {
-  "status": "OK"
+  "status": "OK",
   "untrusted": false
 }
 ```
