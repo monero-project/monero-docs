@@ -176,7 +176,11 @@ To                         Action      From
 {% include 'tor_template' %}
 
 ??? tip "I2P Setup"
+    === "i2pd"
 {% include 'i2pd_template' %}
+
+    === "I2P Java"
+{% include 'i2p_java_template' %}
 
 ### Testing
 
