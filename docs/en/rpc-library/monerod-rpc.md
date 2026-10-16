@@ -818,6 +818,7 @@ Outputs:
 
 - _blocktemplate_blob_ - string; Blob on which to try to mine a new block.
 - _blockhashing_blob_ - string; Blob on which to try to find a valid nonce.
+- _cumulative_weight_ - unsigned int; Total weight in bytes of the block template (its transactions plus the coinbase transaction).
 - _difficulty_ - unsigned int; Least-significant 64 bits of the 128-bit network difficulty.
 - _difficulty_top64_ - unsigned int; Most-significant 64 bits of the 128-bit network difficulty.
 - _expected_reward_ - unsigned int; Coinbase reward expected to be received if block is successfully mined.
