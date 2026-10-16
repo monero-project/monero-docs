@@ -971,7 +971,7 @@ Outputs:
 -   _subaddress_accounts_  - array of subaddress account information:
     -   _account_index_  - unsigned int; Index of the account.
     -   _balance_  - unsigned int; Balance of the account (locked or unlocked).
-    -   _base_address_  - string; Base64 representation of the first subaddress in the account.
+    -   _base_address_  - string; Base58 representation of the first subaddress in the account.
     -   _label_  - string; (Optional) Label of the account.
     -   _tag_  - string; (Optional) Tag for filtering accounts.
     -   _unlocked_balance_  - unsigned int; Unlocked balance for the account.
@@ -2599,7 +2599,7 @@ Inputs:
 
 Outputs: 
 
--   _address_  - string; 95-character hexadecimal address of the restored wallet as a string.
+-   _address_  - string; 95-character Base58 primary address of the restored wallet.
 -   _info_  - string; Message describing the success or failure of the attempt to restore the wallet.
 -   _seed_  - string; Mnemonic phrase of the restored wallet, which is updated if the wallet was restored from a deprecated-style mnemonic phrase.
 -   _was_deprecated_  - boolean; Indicates if the restored wallet was created from a deprecated-style mnemonic phrase.
