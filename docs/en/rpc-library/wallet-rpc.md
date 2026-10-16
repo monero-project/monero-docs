@@ -87,6 +87,7 @@ Note: "[atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-uni
 - [**get_tx_notes**](#get_tx_notes)
 - [**get_tx_proof**](#get_tx_proof)
 - [**get_version**](#get_version)
+- [**get_wallet_info**](#get_wallet_info)
 - [**import_key_images**](#import_key_images)
 - [**import_multisig_info**](#import_multisig_info)
 - [**import_outputs**](#import_outputs)
@@ -1872,6 +1873,53 @@ $ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
   "jsonrpc": "2.0",
   "result": {
     "version": 65539
+  }
+}
+```
+
+### **get_wallet_info**
+
+Get information about the wallet.
+
+Alias:  _None_.
+
+Inputs: _None_.
+
+Outputs:
+
+-   _address_  - string; wallet primary address.
+-   _daemon_address_  - string; daemon address.
+-   _daemon_block_height_  - unsigned int; daemon block height.
+-   _daemon_proxy_  - string; daemon proxy address.
+-   _daemon_rpc_version_  - unsigned int; first 16 bits determine major and last 16 bits determine minor daemon rpc version.
+-   _daemon_ssl_  - bool; ssl connection to daemon
+-   _description_  - string; wallet description.
+-   _filename_  - string; wallet file name.
+-   _network_type_  - string; one of "Mainnet", "Testnet", "Stagenet".
+-   _seed_type_  - string; one of "Legacy", "Polyseed", "Multisig" or empty string for `wallet_type` "Non-deterministic".
+-   _wallet_block_height_  - unsigned int; wallet synced height.
+-   _wallet_type_  - string; one of "Watch only", "n/m multisig", "Background wallet", "Non-deterministic", "Normal".
+
+Example:
+
+```json
+$ curl -X POST http://127.0.0.1:18088/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_wallet_info","params":{}}' -H 'Content-Type: application/json'
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "address": "45Ps9mEFLZQ5hqrFVMsH7gXvydddfW5EnA185A2oQL69SzSVKTGxXAGebDaWqs2uNSUYmGoQMTLeT9QPxtwfXEh45nSwxz1",
+    "daemon_address": "http:\/\/localhost:18081",
+    "daemon_block_height": 3772996,
+    "daemon_proxy": "",
+    "daemon_rpc_version": 196624,
+    "daemon_ssl": true,
+    "description": "",
+    "filename": "\/wallets\/mainnet\/testwallet",
+    "network_type": "Mainnet",
+    "seed_type": "Legacy",
+    "wallet_block_height": 3772996,
+    "wallet_type": "Normal"
   }
 }
 ```
