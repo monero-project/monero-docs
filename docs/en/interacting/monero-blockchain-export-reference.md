@@ -59,7 +59,6 @@ Specifying the log file path is not supported.
 | Option                     | Description
 |----------------------------|--------------------------------------------------------------------------------------------------------------------------------------
 | `--data-dir`               | Full path to data directory. This is where the blockchain, log files, and p2p network memory are stored. For defaults and details see [data directory](../interacting/overview.md#data-directory).
-| `--database`, `--db-type`  | The default and only valid value is `lmdb`.
 
 ### Output
 
