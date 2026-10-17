@@ -69,7 +69,6 @@ The following groups are only to make reference easier to follow. The daemon its
 |---------------------------|--------------------------------------------------------------------------------------------------------------------------------------
 | `--help`                  | List available options.
 | `--version`               | Show `monerod` version to stdout. Example output: <br>`Monero 'Oxygen Orion' (v0.17.1.8-release)`
-| `--os-version`            | Show build timestamp and target operating system. Example output:<br>`OS: Linux #65-Ubuntu SMP Thu Dec 10 12:01:51 UTC 2020 5.4.0-59-generic`.
 | `--check-updates <arg>`   | One of: `disabled` \| `notify` \| `download`. Check for new versions of Monero and optionally download it. You should probably prefer your OS package manager to do the update, if possible. There is also unimplemented `update` option shown by the help system.<br><br>(=notify)
 
 #### Pick Monero network (blockchain)
@@ -105,7 +104,7 @@ The following options will be helpful if you intend to have an always running no
 | `--max-txpool-weight <arg>`   | Set maximum transactions pool size in bytes. These are transactions pending for confirmations (not included in any block).<br><br>(=648000000)
 | `--block-sync-size <arg>`     | How many blocks are processed in a single batch during chain synchronization. Setting this flag will override the default behavior, which is to be calculated dynamically by `batch-max-weight`. Max value is 100. Example:<br>`./monerod --block-sync-size=50`
 | `--batch-max-weight <arg>`    | Dynamically set the `block-sync-size` by targeting this many MB. Max value is 50. <br><br>(=10)
-| `--span-limit <arg>`          | Dynamically restrict the number of spans in queue by estimating how many spans can be synced within N minutes. The dynamic minimum is 10 spans, and is further capped by `block-download-max-size`.<br><br>(=2)
+| `--block-sync-queue-time <arg>`| Dynamically target the duration of block synchronization data to keep queued by estimating how much data can be synced within N minutes. Further capped by `block-download-max-size`. The minimum is 10 spans.<br><br>(=2)
 | `--block-download-max-size <arg>` | Max size of the download queue in bytes.<br><br>(=104857600)
 | `--enforce-dns-checkpointing` | The emergency checkpoints set by [MoneroPulse](../infrastructure/monero-pulse.md) operators will be enforced. It is probably a good idea to set enforcing for unattended nodes. <br><br>If encountered block hash does not match corresponding checkpoint, the local blockchain will be rolled back a few blocks, effectively blocking following what MoneroPulse operators consider invalid fork. The log entry will be produced:  `ERROR` `Local blockchain failed to pass a checkpoint, rolling back!` Eventually, the alternative ("fixed") fork will get heavier and the node will follow it, leaving the "invalid" fork behind.<br><br>By default checkpointing only notifies about discrepancy by producing the following log entry: `ERROR` `WARNING: local blockchain failed to pass a MoneroPulse checkpoint, and you could be on a fork. You should either sync up from scratch, OR download a fresh blockchain bootstrap, OR enable checkpoint enforcing with the --enforce-dns-checkpointing command-line option`.<br><br>Reference: [source code](https://github.com/monero-project/monero/blob/22a6591a70151840381e327f1b41dc27cbdb2ee6/src/cryptonote_core/blockchain.cpp#L3614).
 | `--disable-dns-checkpoints`   | The [MoneroPulse](../infrastructure/monero-pulse.md) checkpoints set by core developers will be discarded. The checkpoints are apparently still fetched though.
@@ -196,10 +195,6 @@ The following options define how the API behaves.
 | `--rpc-access-control-origins <arg>`  | Specify a comma separated list of origins to allow cross origin resource sharing. This is useful if you want to use `monerod` API directly from a web browser via JavaScript (say in a pure-frontend web app scenario). With this option `monerod` will put proper HTTP CORS headers to its responses. You will also need to set `--rpc-login` if you use this option. Normally though, the API is used by backend app and this option isn't necessary.
 | `--disable-rpc-ban`                   | Do not ban hosts on RPC errors. May help to prevent monerod from banning traffic originating from the Tor daemon.
 | `--disable-md5`                       | Disable the MD5 algorithm for [HTTP Digest Access Authentication](https://datatracker.ietf.org/doc/html/rfc7616). When set, only the SHA-256 algorithm is offered in the `WWW-Authenticate` challenge and accepted in client responses. MD5 is retained by default for backwards compatibility with older clients that only support [RFC 2617](https://datatracker.ietf.org/doc/html/rfc2617). Enable this if you want to harden the RPC interface against the cryptographically broken MD5 hash and all your clients support SHA-256 [RFC 7616](https://datatracker.ietf.org/doc/html/rfc7616).<br><br>(=false)
-| `--rpc-payment-address <arg>`         | Restrict RPC to clients sending micropayment to this address.
-| `--rpc-payment-difficulty <arg>`      | Restrict RPC to clients sending micropayment at this difficulty in thousands.
-| `--rpc-payment-credits <arg>`         | Restrict RPC to clients sending micropayment, yields that many credits per payment in hundreds.
-| `--rpc-payment-allow-free-loopback`   | Allow free access from the loopback address (ie, the local host).
 | `--zmq-rpc-bind-ip <arg>`             | IP for ZMQ RPC server to listen on.<br><br>(=127.0.0.1)
 | `--zmq-rpc-bind-port <arg>`           | Port for ZMQ RPC server to listen on. <br><br> By default `18082` for mainnet, `38082` for stagenet, and `28082` for testnet.
 | `--confirm-zmq-rpc-external-bind`     | Confirm zmq-rpc-bind-ip value is NOT a loopback (local) IP
@@ -229,9 +224,7 @@ These are advanced options that allow you to optimize performance of your `moner
 | `--max-concurrency <arg>`       | Max number of threads to use for parallel jobs. The default value `0` uses the number of CPU threads.<br><br>(=0)
 | `--prep-blocks-threads <arg>`   | Max number of threads to use when computing block hashes (PoW) in groups. Defaults to 4. Decrease this if you don't want `monerod` to hog your computer when syncing.<br><br>(=4)
 | `--fast-block-sync <arg>`       | Sync up most of the way by using embedded, "known" block hashes. Pass `1` to turn on and `0` to turn off. This is on (`1`) by default. Normally, for every block the full node must calculate the block hash to verify miner's proof of work. Because the RandomX PoW used in Monero is very expensive (even for verification), `monerod` offers skipping these calculations for old blocks. In other words, it's a mechanism to trust `monerod` binary regarding old blocks' PoW validity, to sync up faster.<br><br>(=1)
-| `--bootstrap-daemon-address <arg>` | The host:port of a "bootstrap" remote open node that the connected wallets can use while this node is still not fully synced. Example:<br/>`./monerod --bootstrap-daemon-address=opennode.xmr-tw.org:18089`. The node will forward selected RPC calls to the bootstrap node. The wallet will handle this automatically and transparently. Obviously, such bootstrapping phase has privacy implications similar to directly using a remote node.
-| `--bootstrap-daemon-login <arg>`   | Specify username:password for the bootstrap daemon login (if required). This considers the RPC interface used by the wallet. Normally, open nodes do not require any credentials.
-| `--no-sync`                     | Do not sync up. Continue using bootstrap daemon instead (if set). See [commit](https://github.com/monero-project/monero/pull/5195).
+| `--no-sync`                     | Do not sync up. See [commit](https://github.com/monero-project/monero/pull/5195).
 
 #### Mining
 
@@ -265,7 +258,6 @@ These options are useful for Monero project developers and testers. Normal users
 | `--keep-fakechain`                 | Don't delete any existing database when in fakechain mode.
 | `--fixed-difficulty <arg>`         | Fixed difficulty used for testing. By default `0`.
 | `--test-dbg-lock-sleep <arg>`      | Sleep time in ms, defaults to 0 (off), used to debug before/after locking mutex. Values 100 to 1000 are good for tests.
-| `--save-graph`                     | Save data for dr Monero.
 
 #### Legacy
 
@@ -273,8 +265,6 @@ These options should no longer be necessary. They are still present in `monerod`
 
 | Option                | Description
 |-----------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `--fluffy-blocks`     | Relay compact blocks. Default. Compact block is just a header and a list of transaction IDs.
-| `--no-fluffy-blocks`  | Relay classic full blocks. Classic block contains all transactions.
 | `--show-time-stats`   | Official docs say "Show time-stats when processing blocks/txs and disk synchronization" but it does not seem to produce any output during usual blockchain synchronization.
 
 ## Environment Variables
