@@ -30,7 +30,7 @@ title: Monero Technical Specification
 
 ## Block time
 
-* 2 minutes (was 1 minute before hardfork v1)
+* 2 minutes (was 1 minute before hardfork v2)
 * may change in the future as long as emission curve is preserved
 
 ## Block reward
@@ -53,19 +53,19 @@ title: Monero Technical Specification
 
 ### Main emission
 
-* first, the main emission is about to produce ~18.132 million coins by the end of May 2022
+* the main emission produced ~18.132 million coins and ended in late May 2022
 * as of June 2023 the emission is about 3 XMR per 10 minutes
 * see [charts and details](https://www.reddit.com/r/Monero/comments/512kwh/useful_for_learning_about_monero_coin_emission/)
 
 ### Tail emission
 
-* the tail emission kicked in after main emission is done
+* the tail emission kicked in after the main emission ended
 * it will produce 0.6 XMR per 2-minute block
 * this translates to <1% inflation decreasing over time
 
 ## Max supply
 
-* ~18.293 million XMR + 0.6 XMR per 2 minutes
+* ~18.132 million XMR from the main emission + up to 0.6 XMR per 2 minutes from the tail emission
 * technically infinite but practically deflationary if accounted for lost coins
 
 ## Divisibility

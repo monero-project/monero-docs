@@ -12,7 +12,7 @@ Example of calculating the checksum word:
 2. Take the first 3 characters of each word and concatenate them. In this case, it will be `lusbagstamicimivilganeffstrdiftogvaipucroppansholiamoimemsorsynketswedeh`.
 3. Calculate the CRC32 checksum of the concatenated string. In this case, the checksum gives us the decimal number `2248614488`.
 4. Take the checksum index modulo 24. In this case, the modulo gives us `8`.
-5. The 8th index of the wordlist is `strained` (don't forget that the wordlist is 0-indexed). So, the checksum word is `strained`.
+5. The word at index 8 of the 24 selected words is `strained` (don't forget that indexing starts at 0). So, the checksum word is `strained`.
 
 ### Wordlists
 
