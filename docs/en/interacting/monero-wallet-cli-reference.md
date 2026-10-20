@@ -147,8 +147,8 @@ Wallet depends on a full node for all non-local operations. The following option
 
 | Option                         | Description
 |--------------------------------|--------------------------------------------------------------------------------------------------------------------------------------
-| `--mnemonic-language <arg>`    | Language for mnemonic seed words. One of `english`, `english_old`, `esperanto`, `french`, `german`, `italian`, `japanese`, `lojban`, `portuguese`, `russian`, `spanish`. <br><br>It might be a good idea to stick to default English which is by far the most popular and well tested. It also avoids potential non-ASCII characters pitfalls or bugs.
-| `--use-english-language-names` | If your display freezes, exit blind with ^C, then run again with `--use-english-language-names`. This can happen when Monero prompts for a language displaying language names in their native alphabets.
+| `--mnemonic-language <arg>`    | Language for mnemonic seed words. Case-sensitive native names: `Deutsch`, `English`, `Español`, `Français`, `Italiano`, `Nederlands`, `Português`, `русский язык`, `日本語`, `简体中文 (中国)`, `Esperanto`, `Lojban`. Quote names containing spaces. When creating a new deterministic wallet, omitting this option or specifying an unrecognized value prompts for a language. <br><br>It might be a good idea to stick to English which is by far the most popular and well tested. It also avoids potential non-ASCII characters pitfalls or bugs.
+| `--use-english-language-names` | Display language names in English without changing accepted `--mnemonic-language` values. If your display freezes, exit blind with ^C, then run again with `--use-english-language-names`. This can happen when Monero prompts for a language displaying language names in their native alphabets.
 
 #### Legacy
 
