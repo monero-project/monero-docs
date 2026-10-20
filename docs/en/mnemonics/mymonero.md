@@ -9,3 +9,5 @@ For users looking to convert a MyMonero seed into a legacy one, an offline conve
 The MyMonero scheme comprises a total of 13 words, where the first 12 words are for the seed and the last word is for the checksum. The checksum word is used to verify the correctness of the seed.
 
 The process of deriving the checksum is the same as the [Legacy Mnemonic Scheme](./legacy.md), you can check out the details from that page.
+
+The words also use the [same encoding](./legacy.md#encoding) as Legacy, but the 12 words encode a 16-byte seed instead of the private spend key.
