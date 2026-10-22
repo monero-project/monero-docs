@@ -1885,6 +1885,12 @@ Get blocks by height. Binary request.
 
 Alias: _/getblocks_by_height.bin_ .
 
+This endpoint and its alias are deprecated but remain available for compatibility. Use these alternatives:
+
+- [get_block_header_by_height](#get_block_header_by_height) for block headers and timestamps.
+- [get_block](#get_block) for block blobs and ordered transaction hashes.
+- [/get_blocks.bin](#get_blocksbin) for ranges of blocks with transaction data.
+
 Inputs:
 
 - _heights_ - array of unsigned int; list of block heights
