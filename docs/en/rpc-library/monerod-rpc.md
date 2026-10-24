@@ -71,6 +71,7 @@ Some methods include parameters, while others do not. Examples of each JSON RPC 
 - [get_miner_data](#get_miner_data)
 - [get_output_distribution](#get_output_distribution)
 - [get_output_histogram](#get_output_histogram)
+- [get_txids_loose](#get_txids_loose)
 - [get_txpool_backlog](#get_txpool_backlog)
 - [get_version](#get_version)
 - [hard_fork_info](#hard_fork_info)
@@ -1381,6 +1382,43 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
     }],
     "status": "OK",
     "top_hash": "",
+    "untrusted": false
+  }
+}
+```
+
+
+
+### **get_txids_loose**
+
+Get the hashes of transactions (on-chain and in the txpool) whose last bits match a template, without revealing the exact hash you are looking for. This gives k-anonymity when looking up a transaction on an untrusted node. Not available on big-endian daemons.
+
+Alias: _None_ .
+
+Inputs:
+
+- _txid_template_ - string; 64-character hex transaction hash in which only the matched bits are kept and every other bit is zero. The matched bits are counted from the end of the hash: with a multiple of 8 bits, keep the last `num_matching_bits / 4` hex characters and set the rest to `0`. A template that is not zeroed correctly is rejected, so the real hash can't leak by mistake.
+- _num_matching_bits_ - unsigned int; Number of bits of _txid_template_ to match (at most 256). Too few bits would match too many transactions and is rejected.
+
+Outputs:
+
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _txids_ - array of string; Hashes of the matching on-chain and txpool transactions. On a restricted RPC server, txpool transactions that have not been publicly broadcast yet are left out.
+- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+
+The number of returned hashes is capped (5000 on a restricted RPC server, 50000 otherwise). If more transactions match, the call fails with an error asking for more matching bits.
+
+Example (looking up `3200b4ea97c3b2081cd4190b58e49572b2319fed00d030ad51809dff06b5d8c8` by its last 16 bits):
+
+```json
+$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_txids_loose","params":{"txid_template":"000000000000000000000000000000000000000000000000000000000000d8c8","num_matching_bits":16}}' -H 'Content-Type: application/json'
+
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "status": "OK",
+    "txids": ["...", "3200b4ea97c3b2081cd4190b58e49572b2319fed00d030ad51809dff06b5d8c8", "..."],
     "untrusted": false
   }
 }
