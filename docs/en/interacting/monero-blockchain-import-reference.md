@@ -72,7 +72,6 @@ Specifying the log file path is not supported.
 | `--data-dir`        | Full path to data directory. This is where the blockchain, log files, and p2p network memory are stored. For defaults and details see [data directory](../interacting/overview.md#data-directory).
 | `--count-blocks`    | Count blocks in the bootstrap file and exit.
 | `--drop-hard-fork`  | Whether to drop hard fork data. Off by default (`0`). 
-| `--database`        | The only valid value seems to be `lmdb` (the default).
 
 ### Performance
 
