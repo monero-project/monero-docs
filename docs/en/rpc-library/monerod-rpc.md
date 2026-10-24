@@ -20,29 +20,31 @@ Many `monerod` RPC calls use the daemon's JSON RPC interface while others use th
 
 Assuming `monerod` is running on 127.0.0.1:18081, you would call it like this:
 
-```json
+```bash title="Request"
 IP=127.0.0.1
 PORT=18081
 METHOD='get_block_header_by_height'
-PARAMS='{"height":912345}'
-curl \
-    http://$IP:$PORT/json_rpc \
-    -d '{"jsonrpc":"2.0","id":"0","method":"'$METHOD'","params":'$PARAMS'}' \
-    -H 'Content-Type: application/json'
+PARAMS='{
+  "height": 912345
+}'
+curl http://$IP:$PORT/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{"id":"0","jsonrpc":"2.0","method":"'$METHOD'","params":'"$PARAMS"'}'
 ```
 
 If `monerod` was executed with the `--rpc-login` argument as `username:password`, then follow this example:
 
-```json
+```bash title="Request"
 IP=127.0.0.1
 PORT=18081
 METHOD='get_block_header_by_height'
-PARAMS='{"height":912345}'
-curl \
-    http://$IP:$PORT/json_rpc \
-    -u username:password --digest \
-    -d '{"jsonrpc":"2.0","id":"0","method":"'$METHOD'","params":'$PARAMS'}' \
-    -H 'Content-Type: application/json'
+PARAMS='{
+  "height": 912345
+}'
+curl http://$IP:$PORT/json_rpc \
+  -u username:password --digest \
+  -H 'Content-Type: application/json' \
+  -d '{"id":"0","jsonrpc":"2.0","method":"'$METHOD'","params":'"$PARAMS"'}'
 ```
 
 Some methods include parameters, while others do not. Examples of each JSON RPC method follow.
@@ -147,9 +149,26 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"add_aux_pow","params":{"blocktemplate_blob":" ... ","aux_pow":[{"id":"3200b4ea97c3b2081cd4190b58e49572b2319fed00d030ad51809dff06b5d8c8","hash":"7b35762de164b20885e15dbe656b1138db06bb402fa1796f5765a23933d8859a"}]}}' -H 'Content-Type: application/json''
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "add_aux_pow",
+    "params": {
+      "blocktemplate_blob": " ... ",
+      "aux_pow": [
+        {
+          "id": "3200b4ea97c3b2081cd4190b58e49572b2319fed00d030ad51809dff06b5d8c8",
+          "hash": "7b35762de164b20885e15dbe656b1138db06bb402fa1796f5765a23933d8859a"
+        }
+      ]
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -189,9 +208,20 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"banned","params":{"address":"95.216.203.255"}}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "banned",
+    "params": {
+      "address": "95.216.203.255"
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -223,9 +253,23 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"calc_pow","params":{"major_version":14,"height":2286447,"block_blob":"0e0ed286da8006ecdc1aab3033cf1716c52f13f9d8ae0051615a2453643de94643b550d543becd0000000002abc78b0101ffefc68b0101fcfcf0d4b422025014bb4a1eade6622fd781cb1063381cad396efa69719b41aa28b4fce8c7ad4b5f019ce1dc670456b24a5e03c2d9058a2df10fec779e2579753b1847b74ee644f16b023c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000051399a1bc46a846474f5b33db24eae173a26393b976054ee14f9feefe99925233802867097564c9db7a36af5bb5ed33ab46e63092bd8d32cef121608c3258edd55562812e21cc7e3ac73045745a72f7d74581d9a0849d6f30e8b2923171253e864f4e9ddea3acb5bc755f1c4a878130a70c26297540bc0b7a57affb6b35c1f03d8dbd54ece8457531f8cba15bb74516779c01193e212050423020e45aa2c15dcb","seed_hash":"d432f499205150873b2572b5f033c9c6e4b7c6f3394bd2dd93822cd7085e7307"}}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "calc_pow",
+    "params": {
+      "major_version": 14,
+      "height": 2286447,
+      "block_blob": "0e0ed286da8006ecdc1aab3033cf1716c52f13f9d8ae0051615a2453643de94643b550d543becd0000000002abc78b0101ffefc68b0101fcfcf0d4b422025014bb4a1eade6622fd781cb1063381cad396efa69719b41aa28b4fce8c7ad4b5f019ce1dc670456b24a5e03c2d9058a2df10fec779e2579753b1847b74ee644f16b023c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000051399a1bc46a846474f5b33db24eae173a26393b976054ee14f9feefe99925233802867097564c9db7a36af5bb5ed33ab46e63092bd8d32cef121608c3258edd55562812e21cc7e3ac73045745a72f7d74581d9a0849d6f30e8b2923171253e864f4e9ddea3acb5bc755f1c4a878130a70c26297540bc0b7a57affb6b35c1f03d8dbd54ece8457531f8cba15bb74516779c01193e212050423020e45aa2c15dcb",
+      "seed_hash": "d432f499205150873b2572b5f033c9c6e4b7c6f3394bd2dd93822cd7085e7307"
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -252,9 +296,21 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"flush_cache","params":{"bad_txs":true,"bad_blocks":true}}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "flush_cache",
+    "params": {
+      "bad_txs": true,
+      "bad_blocks": true
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -283,9 +339,23 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"flush_txpool","params":{"txids":["dc16fa8eaffe1484ca9014ea050e13131d3acf23b419f33bb4cc0b32b6c49308",""]}}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "flush_txpool",
+    "params": {
+      "txids": [
+        "dc16fa8eaffe1484ca9014ea050e13131d3acf23b419f33bb4cc0b32b6c49308",
+        ""
+      ]
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -316,9 +386,22 @@ Outputs:
 
 The example below uses monerod with the start flags `--regtest --offline --fixed-difficulty 1`. `--offline` ensures that the node does not connect to the main network and learn of its latest chaintip and `--fixed-difficulty` keeps the difficulty constant, allowing a large number of blocks to be generated quickly.
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"generateblocks","params":{"amount_of_blocks":1,"wallet_address":"44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A","starting_nonce": 0}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "generateblocks",
+    "params": {
+      "amount_of_blocks": 1,
+      "wallet_address": "44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A",
+      "starting_nonce": 0
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -356,9 +439,17 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_alternate_chains"}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_alternate_chains"
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -400,9 +491,17 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_bans"}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_bans"
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -416,7 +515,7 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
       "ip": 838969536,
       "seconds": 28
     }],
-    "status": "OK"
+    "status": "OK",
     "untrusted": false
   }
 }
@@ -471,9 +570,20 @@ Outputs:
 
 In the following example, block 2751506 is looked up by its height. Note that block 2751506 does not have any non-coinbase transactions. (See the next example for a block with extra transactions):
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block","params":{"height":2751506}}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_block",
+    "params": {
+      "height": 2751506
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -517,9 +627,20 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
 
 In the following example, block 2751210 is looked up by its hash. Note that block 2751210 has 2 non-coinbase transactions:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block","params":{"hash":"86d421322b700166dde2d7eba1cc8600925ef640abf6c0a2cc8ce0d6dd90abfd"}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_block",
+    "params": {
+      "hash": "86d421322b700166dde2d7eba1cc8600925ef640abf6c0a2cc8ce0d6dd90abfd"
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -578,18 +699,26 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_count"}' -H 'Content-Type: application/json'  
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_block_count"
+  }'
+```
 
-{  
-  "id": "0",  
-  "jsonrpc": "2.0",  
-  "result": {  
-    "count": 993163,  
-    "status": "OK"
-    "untrusted": "false"  
-  }  
-}  
+```json title="Response"
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "count": 993163,
+    "status": "OK",
+    "untrusted": false
+  }
+}
 ```
 
 
@@ -615,9 +744,20 @@ Outputs:
 
 In this example, block 912345 is looked up by its hash:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_header_by_hash","params":{"hash":"e22cf75f39ae720e8b71b3d120a5ac03f0db50bba6379e2850975b4859190bc6"}}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_block_header_by_hash",
+    "params": {
+      "hash": "e22cf75f39ae720e8b71b3d120a5ac03f0db50bba6379e2850975b4859190bc6"
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -675,9 +815,20 @@ Outputs:
 
 In this example, block 912345 is looked up by its height (notice that the returned information is the same as in the previous example):
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_header_by_height","params":{"height":912345}}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_block_header_by_height",
+    "params": {
+      "height": 912345
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -737,9 +888,21 @@ Outputs:
 
 In this example, blocks range from height 1545999 to 1546000 is looked up (notice that the returned information are ascending order and that it is at the April 2018 network upgrade time):
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_headers_range","params":{"start_height":1545999,"end_height":1546000}}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_block_headers_range",
+    "params": {
+      "start_height": 1545999,
+      "end_height": 1546000
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -833,9 +996,21 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_block_template","params":{"wallet_address":"44GBHzv6ZyQdJkjqZje6KLZ3xSyN1hBSFAnLP6EAqJtCRVzMzZmeXTC2AHKDS9aEDTRKmo6a6o9r9j86pYfhCWDkKjbtcns","reserve_size":60}}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_block_template",
+    "params": {
+      "wallet_address": "44GBHzv6ZyQdJkjqZje6KLZ3xSyN1hBSFAnLP6EAqJtCRVzMzZmeXTC2AHKDS9aEDTRKmo6a6o9r9j86pYfhCWDkKjbtcns",
+      "reserve_size": 60
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -855,6 +1030,7 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
     "untrusted": false,
     "wide_difficulty": "0x34cec55820"
   }
+}
 ```
 
 
@@ -885,9 +1061,21 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_coinbase_tx_sum","params":{"height":1563078,"count":2}}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_coinbase_tx_sum",
+    "params": {
+      "height": 1563078,
+      "count": 2
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -948,9 +1136,17 @@ Outputs:
 
 Following is an example of `get_connections` and its return:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_connections"}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_connections"
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -981,11 +1177,8 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
       "send_idle_time": 8,
       "state": "normal",
       "support_flags": 1
-    },{
-
-    ...
-    }],
-    "status": "OK"
+    }, ...],
+    "status": "OK",
     "untrusted": false
   }
 }
@@ -1015,9 +1208,17 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_fee_estimate"}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_fee_estimate"
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1096,9 +1297,17 @@ Outputs:
 
 Following is an example `get_info` call and its return:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_info"}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_info"
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1193,9 +1402,17 @@ Outputs:
 
 In this example, the most recent block (1562023 at the time) is returned:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_last_block_header"}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_last_block_header"
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1258,9 +1475,17 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_miner_data"}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_miner_data"
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1318,9 +1543,23 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_output_distribution","params":{"amounts":[628780000],"from_height":1462078}}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_output_distribution",
+    "params": {
+      "amounts": [
+        628780000
+      ],
+      "from_height": 1462078
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1365,9 +1604,22 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_output_histogram","params":{"amounts":[20000000000]}}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_output_histogram",
+    "params": {
+      "amounts": [
+        20000000000
+      ]
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1407,9 +1659,17 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_txpool_backlog"}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_txpool_backlog"
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1445,9 +1705,17 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_version"}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_version"
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1465,7 +1733,7 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"g
     "untrusted": false,
     "version": 196613
   }
-}  
+}
 ```
 
 
@@ -1497,9 +1765,17 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"hard_fork_info"}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "hard_fork_info"
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1538,9 +1814,20 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"on_get_block_hash","params":[912345]}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "on_get_block_hash",
+    "params": [
+      912345
+    ]
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1567,9 +1854,20 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"prune_blockchain","params":{"check":true}}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "prune_blockchain",
+    "params": {
+      "check": true
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1600,9 +1898,22 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"relay_tx","params":{"txids":["9fd75c429cbe52da9a52f2ffc5fbd107fe7fd2099c0d8de274dc8a67e0c98613"]}}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "relay_tx",
+    "params": {
+      "txids": [
+        "9fd75c429cbe52da9a52f2ffc5fbd107fe7fd2099c0d8de274dc8a67e0c98613"
+      ]
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1638,9 +1949,26 @@ Examples:
 
 In the following example, host is banned with its IP address string-formatted as A.B.C.D:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_bans","params":{"bans":[{"host":"192.168.1.51","ban":true,"seconds":30}]}}' -H  'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "set_bans",
+    "params": {
+      "bans": [
+        {
+          "host": "192.168.1.51",
+          "ban": true,
+          "seconds": 30
+        }
+      ]
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1655,9 +1983,26 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"s
 
 In the following example, integer-formatted IP is banned:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"set_bans","params":{"bans":[{"ip":838969536,"ban":true,"seconds":30}]}}' -H  'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "set_bans",
+    "params": {
+      "bans": [
+        {
+          "ip": 838969536,
+          "ban": true,
+          "seconds": 30
+        }
+      ]
+    }
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1686,9 +2031,20 @@ Outputs:
 
 In this example, a block blob which has not been mined is submitted:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"submit_block","params":["0707e6bdfedc053771512f1bc27c62731ae9e8f2443db64ce742f4e57f5cf8d393de28551e441a0000000002fb830a01ffbf830a018cfe88bee283060274c0aae2ef5730e680308d9c00b6da59187ad0352efe3c71d36eeeb28782f29f2501bd56b952c3ddc3e350c2631d3a5086cac172c56893831228b17de296ff4669de020200000000"]}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "submit_block",
+    "params": [
+      "0707e6bdfedc053771512f1bc27c62731ae9e8f2443db64ce742f4e57f5cf8d393de28551e441a0000000002fb830a01ffbf830a018cfe88bee283060274c0aae2ef5730e680308d9c00b6da59187ad0352efe3c71d36eeeb28782f29f2501bd56b952c3ddc3e350c2631d3a5086cac172c56893831228b17de296ff4669de020200000000"
+    ]
+  }'
+```
 
+```json title="Response"
 {
   "error": {
     "code": -7,
@@ -1729,9 +2085,17 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"sync_info"}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "sync_info"
+  }'
+```
 
+```json title="Response"
 {
   "id": "0",
   "jsonrpc": "2.0",
@@ -1768,18 +2132,7 @@ $ curl http://127.0.0.1:18081/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"s
         "state": "normal",
         "support_flags": 1
       }
-    },{
-
-      "info": {
-        ...
-      }
-    },{
-      ...
-    },{
-      ...
-    },{
-      ...
-    }],
+    }, ...],
     "status": "OK",
     "target_height": 2287203,
     "top_hash": "",
@@ -1819,19 +2172,18 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/get_alt_blocks_hashes -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/get_alt_blocks_hashes \
+  -H 'Content-Type: application/json'
+```
 
+```json title="Response"
 {
   "blks_hashes": ["dd4998cfe92a959a5a0e4ed72432cf23d7dfc4179cbea871ee2a705d71fb5e25","f36c3856ffde6a7d06fc832c80ede4ad5b6c8f702c9736dae1e2140d86504db9","8d0c1f806817259d213c8829ea3356334e0d8fdd3b118e1243756e12dce767bb"],
   "credits": 0,
   "status": "OK",
   "top_hash": "",
-    "untrusted": false
-    "untrusted": false
-  }
   "untrusted": false
-  }
 }
 ```
 
@@ -1872,9 +2224,15 @@ Outputs:
 <!-- Cannot get this working
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/get_blocks.bin -d '{"block_ids":["d109a406528a7b44fef8bc03e75eaabb0f919f852884b43b550b8b3be80a49e7"],"start_height":1562062}' -H 'Content-Type: application/json'
-
+```bash title="Request"
+curl http://127.0.0.1:18081/get_blocks.bin \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "block_ids": [
+      "d109a406528a7b44fef8bc03e75eaabb0f919f852884b43b550b8b3be80a49e7"
+    ],
+    "start_height": 1562062
+  }'
 ```
 --->
 
@@ -1930,9 +2288,15 @@ Outputs:
 <!-- Cannot get this working
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/get_hashes.bin -d '{"block_ids":["d109a406528a7b44fef8bc03e75eaabb0f919f852884b43b550b8b3be80a49e7"],"start_height":1562062}' -H 'Content-Type: application/json'
-
+```bash title="Request"
+curl http://127.0.0.1:18081/get_hashes.bin \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "block_ids": [
+      "d109a406528a7b44fef8bc03e75eaabb0f919f852884b43b550b8b3be80a49e7"
+    ],
+    "start_height": 1562062
+  }'
 ```
 --->
 
@@ -1953,9 +2317,12 @@ Outputs:
 - _status_ - string; General RPC error code. "OK" means everything looks good.
 - _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
-```json
-$ curl http://127.0.0.1:18081/get_height -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/get_height \
+  -H 'Content-Type: application/json'
+```
 
+```json title="Response"
 {
   "hash": "7e23a28cfa6df925d5b63940baf60b83c0cbb65da95f49b19e7cf0ce7dd709ce",
   "height": 2287217,
@@ -1995,9 +2362,12 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/get_limit -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/get_limit \
+  -H 'Content-Type: application/json'
+```
 
+```json title="Response"
 {
   "limit_down": 32768,
   "limit_up": 128,
@@ -2026,9 +2396,12 @@ Outputs:
 
 Example: 
 
-```json
-$ curl http://127.0.0.1:18081/get_net_stats -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/get_net_stats \
+  -H 'Content-Type: application/json'
+```
 
+```json title="Response"
 {
   "start_time": 1665147355,
   "status": "OK",
@@ -2061,9 +2434,11 @@ Outputs:
 <!-- Cannot get this working
 Example:
 
-```Bash
-$ curl http://127.0.0.1:18081/get_o_indexes.bin --data-binary '{"txid":"d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408"}'
-
+```bash title="Request"
+curl http://127.0.0.1:18081/get_o_indexes.bin \
+  --data-binary '{
+    "txid": "d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408"
+  }'
 ```
 --->
 
@@ -2127,9 +2502,21 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/get_outs -d '{"get_txid":true,"outputs":[{"amount":0,"index":0}]}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/get_outs \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "get_txid": true,
+    "outputs": [
+      {
+        "amount": 0,
+        "index": 0
+      }
+    ]
+  }'
+```
 
+```json title="Response"
 {
   "credits": 0,
   "outs": [
@@ -2175,9 +2562,11 @@ Outputs:
 <!-- Cannot get this working
 Example:
 
-```Bash
-$ curl http://127.0.0.1:18081/get_o_indexes.bin --data-binary '{"txid":"d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408"}'
-
+```bash title="Request"
+curl http://127.0.0.1:18081/get_o_indexes.bin \
+  --data-binary '{
+    "txid": "d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408"
+  }'
 ```
 --->
 
@@ -2207,9 +2596,12 @@ Outputs:
 
 Example (truncated lists):
 
-```json
-$ curl http://127.0.0.1:18081/get_peer_list -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/get_peer_list \
+  -H 'Content-Type: application/json'
+```
 
+```json title="Response"
 {
   "gray_list": [{
     "host": "640304833",
@@ -2223,8 +2615,7 @@ $ curl http://127.0.0.1:18081/get_peer_list -H 'Content-Type: application/json'
     "ip": 2183731038,
     "last_seen": 1525540499,
     "port": 28080
-  }, ...
-  ],
+  }, ...],
   "status": "OK",
   "white_list": [{
     "host": "1221637955",
@@ -2238,8 +2629,7 @@ $ curl http://127.0.0.1:18081/get_peer_list -H 'Content-Type: application/json'
     "ip": 1780407354,
     "last_seen": 1525540510,
     "port": 18080
-  }, ...
-  ]
+  }, ...]
 }
 ```
 
@@ -2270,9 +2660,15 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/get_public_nodes -d '{"gray":true}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/get_public_nodes \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "gray": true
+  }'
+```
 
+```json title="Response"
 {
   "gray": [{
     "host": "142.93.132.1",
@@ -2377,9 +2773,12 @@ Outputs:
 
 Example (Note: Some lists in the returned information have been truncated for display reasons):
 
-```json
-$ curl http://127.0.0.1:18081/get_transaction_pool -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/get_transaction_pool \
+  -H 'Content-Type: application/json'
+```
 
+```json title="Response"
 {
   "spent_key_images": [{
     "id_hash": "5b5d68e7eb5ddfc7dd30d9a91f1db6835563b0214b66dc0b791909fb46c9cbb4",
@@ -2387,8 +2786,7 @@ $ curl http://127.0.0.1:18081/get_transaction_pool -H 'Content-Type: application
   },{
     "id_hash": "b583a134ccd6fd48697f02f530e82604f746b97ce26de103fa756d91274ac60e",
     "txs_hashes": ["0b1839626bd7a609d5b16966396a51eb5fda9c55b9b2fc314a916459a7532e02"]
-  },
-  ...],
+  }, ...],
   "status": "OK",
   "transactions": [{
     "blob_size": 2217,
@@ -2407,8 +2805,7 @@ $ curl http://127.0.0.1:18081/get_transaction_pool -H 'Content-Type: application
     "tx_blob": " ... ",
     "tx_json": "{\n  \"version\": 2, \n  \"unlock_time\": 0, \n  \"vin\": [ {\n      \"key\": {\n        \"amount\": 0, \n        \"key_offsets\": [ 54937085, 875767, 6217742, 360564, 431709, 807289, 138472, 6221, 111408, 42881, 145, 12396, 20911, 899, 3546, 112\n        ], \n        \"k_image\": \"b583a134ccd6fd48697f02f530e82604f746b97ce26de103fa756d91274ac60e\"\n      }\n    }, {\n      \"key\": {\n        \"amount\": 0, \n        \"key_offsets\": [ 28132301, 33525919, 17414, 2042026, 73478, 73012, 54330, 8150, 5725, 10740, 4581, 7687, 9290, 592, 994, 725\n        ], \n        \"k_image\": \"5b5d68e7eb5ddfc7dd30d9a91f1db6835563b0214b66dc0b791909fb46c9cbb4\"\n      }\n    }\n  ], \n  \"vout\": [ {\n      \"amount\": 0, \n      \"target\": {\n        \"tagged_key\": {\n          \"key\": \"2849325ea3410c1378ab631c4e008028a99843a767c1d11019631cad8e083b53\", \n          \"view_tag\": \"1f\"\n        }\n      }\n    }, {\n      \"amount\": 0, \n      \"target\": {\n        \"tagged_key\": {\n          \"key\": \"9677c3568218bab3dc1a6eee5b486eeb372c9b2c7d552d8f9c6c84bd4051bab8\", \n          \"view_tag\": \"ee\"\n        }\n      }\n    }\n  ], \n  \"extra\": [ 1, 110, 21, 19, 40, 178, 62, 51, 216, 134, 71, 171, 159, 249, 160, 206, 100, 247, 190, 162, 177, 0, 35, 237, 165, 157, 42, 84, 52, 25, 151, 202, 231, 2, 9, 1, 195, 62, 127, 79, 4, 67, 161, 64\n  ], \n  ... }\n}",
     "weight": 2217
-  },
-  ...]
+  }, ...]
 }
 ```
 
@@ -2432,9 +2829,12 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/get_transaction_pool_hashes -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/get_transaction_pool_hashes \
+  -H 'Content-Type: application/json'
+```
 
+```json title="Response"
 {
   "credits": 0,
   "status": "OK",
@@ -2462,9 +2862,12 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/get_transaction_pool_hashes.bin -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/get_transaction_pool_hashes.bin \
+  -H 'Content-Type: application/json'
+```
 
+```json title="Response"
 {
   "status": "OK",
   "tx_hashes": " ... ",
@@ -2507,9 +2910,12 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/get_transaction_pool_stats -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/get_transaction_pool_stats \
+  -H 'Content-Type: application/json'
+```
 
+```json title="Response"
 {
   "credits": 0,
   "pool_stats": {
@@ -2518,8 +2924,7 @@ $ curl http://127.0.0.1:18081/get_transaction_pool_stats -H 'Content-Type: appli
     "bytes_min": 1450,
     "bytes_total": 410674,
     "fee_total": 18198895000,
-    "histo": [{ ...
-    }],
+    "histo": [ ... ],
     "histo_98pc": 297,
     "num_10m": 1,
     "num_double_spends": 1,
@@ -2531,7 +2936,6 @@ $ curl http://127.0.0.1:18081/get_transaction_pool_stats -H 'Content-Type: appli
   "status": "OK",
   "top_hash": "",
   "untrusted": false
-
 }
 ```
 
@@ -2609,9 +3013,17 @@ Outputs:
 
 Example 1: Return transaction information in binary format.
 
-```json
-$ curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408"]}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/get_transactions \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "txs_hashes": [
+      "d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408"
+    ]
+  }'
+```
 
+```json title="Response"
 {
   "credits": 0,
   "status": "OK",
@@ -2637,9 +3049,18 @@ $ curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["d6e4815847284
 
 Example 2: Decode returned transaction information in JSON format. Note: the "vin", "vout", "rct_signatures", "rctsig_prunable" list have been truncated in the displayed return for space considerations.
 
-```json
-$ curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["a9c71fe27ccf978a56ef96e50b680a3d569754cd4d070e51d10fa9f6f658b8e3"],"decode_as_json":true}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/get_transactions \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "txs_hashes": [
+      "a9c71fe27ccf978a56ef96e50b680a3d569754cd4d070e51d10fa9f6f658b8e3"
+    ],
+    "decode_as_json": true
+  }'
+```
 
+```json title="Response"
 {
   "credits": 0,
   "status": "OK",
@@ -2666,9 +3087,17 @@ $ curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["a9c71fe27ccf9
 
 Example 3: Returned a missed (unexisting) transaction.
 
-```json
-$ curl http://127.0.0.1:18081/get_transactions -d '{"txs_hashes":["d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090409"]}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/get_transactions \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "txs_hashes": [
+      "d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090409"
+    ]
+  }'
+```
 
+```json title="Response"
 {
   "credits": 0,
   "missed_tx": ["d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090409"],
@@ -2699,9 +3128,15 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/in_peers -d '{"in_peers": 3232235535}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/in_peers \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "in_peers": 3232235535
+  }'
+```
 
+```json title="Response"
 {
   "in_peers": 3232235535,
   "status": "OK",
@@ -2731,9 +3166,18 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/is_key_image_spent -d '{"key_images":["8d1bd8181bf7d857bdb281e0153d84cd55a3fcaa57c3e570f4a49f935850b5e3","7319134bfc50668251f5b899c66b005805ee255c136f0e1cecbb0f3a912e09d4"]}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/is_key_image_spent \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "key_images": [
+      "8d1bd8181bf7d857bdb281e0153d84cd55a3fcaa57c3e570f4a49f935850b5e3",
+      "7319134bfc50668251f5b899c66b005805ee255c136f0e1cecbb0f3a912e09d4"
+    ]
+  }'
+```
 
+```json title="Response"
 {
   "credits": 0,
   "spent_status": [1,1],
@@ -2775,9 +3219,12 @@ Outputs:
 
 Example while mining:
 
-```json
-$ curl http://127.0.0.1:18081/mining_status -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/mining_status \
+  -H 'Content-Type: application/json'
+```
 
+```json title="Response"
 {
   "active": true,
   "address": "47xu3gQpF569au9C2ajo5SSMrWji6xnoE5vhr94EzFRaKAGw6hEGFXYAwVADKuRpzsjiU1PtmaVgcjUJF89ghGPhUXkndHc",
@@ -2801,9 +3248,12 @@ $ curl http://127.0.0.1:18081/mining_status -H 'Content-Type: application/json'
 
 Example while not mining:
 
-```json
-$ curl http://127.0.0.1:18081/mining_status -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/mining_status \
+  -H 'Content-Type: application/json'
+```
 
+```json title="Response"
 {
   "active": false,
   "address": "",
@@ -2846,9 +3296,15 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/out_peers -d '{"out_peers": 3232235535}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/out_peers \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "out_peers": 3232235535
+  }'
+```
 
+```json title="Response"
 {
   "out_peers": 3232235535,
   "status": "OK",
@@ -2875,9 +3331,16 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/pop_blocks -d '{"nblocks":6, "keep_txs":false}' -H 'Content-Type: application/json''
+```bash title="Request"
+curl http://127.0.0.1:18081/pop_blocks \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "nblocks": 6,
+    "keep_txs": false
+  }'
+```
 
+```json title="Response"
 {
   "height": 76482,
   "status": "OK",
@@ -2902,9 +3365,12 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/save_bc -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/save_bc \
+  -H 'Content-Type: application/json'
+```
 
+```json title="Response"
 {
   "status": "OK",
   "untrusted": false
@@ -2947,8 +3413,13 @@ Outputs:
 Example (No return information included here.):
 
 
-```json
-$ curl http://127.0.0.1:18081/send_raw_transaction -d '{"tx_as_hex":"de6a3...", "do_not_relay":false}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/send_raw_transaction \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "tx_as_hex": "de6a3...",
+    "do_not_relay": false
+  }'
 ```
 
 
@@ -2974,9 +3445,15 @@ Example:
 
 Once set, the address will appear in `get_info` as `bootstrap_daemon_address`
 
-```json
-$ curl http://127.0.0.1:18081/set_bootstrap_daemon -d '{"address": "http://getmonero.org:18081"}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/set_bootstrap_daemon \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "address": "http://getmonero.org:18081"
+  }'
+```
 
+```json title="Response"
 {
   "status": "OK"
 }
@@ -3004,13 +3481,19 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/set_limit -d '{"limit_down": 1024}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/set_limit \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "limit_down": 1024
+  }'
+```
 
+```json title="Response"
 {
   "limit_down": 1024,
   "limit_up": 128,
-  "status": "OK"
+  "status": "OK",
   "untrusted": false
 }
 ```
@@ -3088,9 +3571,15 @@ Outputs:
 
 Example to set all facilities to Security Level `Info`:
 
-```json
-$ curl http://127.0.0.1:18081/set_log_categories -d '{"categories": "*:INFO"}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/set_log_categories \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "categories": "*:INFO"
+  }'
+```
 
+```json title="Response"
 {
   "categories": "*:INFO",
   "status": "OK",
@@ -3100,12 +3589,15 @@ $ curl http://127.0.0.1:18081/set_log_categories -d '{"categories": "*:INFO"}' -
 
 Example without input to set the default categories:
 
-```json
-$ curl http://127.0.0.1:18081/set_log_categories -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/set_log_categories \
+  -H 'Content-Type: application/json'
+```
 
+```json title="Response"
 {
   "categories": "*:WARNING,net:FATAL,net.p2p:FATAL,net.cn:FATAL,global:INFO,verify:FATAL,stacktrace:INFO,logging:INFO,msgwriter:INFO",
-  "status": "OK"
+  "status": "OK",
   "untrusted": false
 }
 ```
@@ -3129,20 +3621,32 @@ Outputs:
 
 Example while mining:
 
-```json
-$ curl http://127.0.0.1:18081/set_log_hash_rate -d '{"visible":true}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/set_log_hash_rate \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "visible": true
+  }'
+```
 
+```json title="Response"
 {
-  "status": "OK"
+  "status": "OK",
   "untrusted": false
 }
 ```
 
 Error while not mining:
 
-```json
-$ curl http://127.0.0.1:18081/set_log_hash_rate -d '{"visible":true}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/set_log_hash_rate \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "visible": true
+  }'
+```
 
+```json title="Response"
 {
   "status": "NOT MINING",
   "untrusted": false
@@ -3169,11 +3673,17 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/set_log_level -d '{"level":1}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/set_log_level \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "level": 1
+  }'
+```
 
+```json title="Response"
 {
-  "status": "OK"
+  "status": "OK",
   "untrusted": false
 }
 ```
@@ -3199,9 +3709,18 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/start_mining -d '{"do_background_mining":false,"ignore_battery":true,"miner_address":"47xu3gQpF569au9C2ajo5SSMrWji6xnoE5vhr94EzFRaKAGw6hEGFXYAwVADKuRpzsjiU1PtmaVgcjUJF89ghGPhUXkndHc","threads_count":1}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/start_mining \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "do_background_mining": false,
+    "ignore_battery": true,
+    "miner_address": "47xu3gQpF569au9C2ajo5SSMrWji6xnoE5vhr94EzFRaKAGw6hEGFXYAwVADKuRpzsjiU1PtmaVgcjUJF89ghGPhUXkndHc",
+    "threads_count": 1
+  }'
+```
 
+```json title="Response"
 {
   "status": "OK",
   "untrusted": false
@@ -3224,9 +3743,12 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/stop_daemon -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/stop_daemon \
+  -H 'Content-Type: application/json'
+```
 
+```json title="Response"
 {
   "status": "OK"
 }
@@ -3249,9 +3771,12 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/stop_mining -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/stop_mining \
+  -H 'Content-Type: application/json'
+```
 
+```json title="Response"
 {
   "status": "OK",
   "untrusted": false
@@ -3284,9 +3809,15 @@ Outputs:
 
 Example:
 
-```json
-$ curl http://127.0.0.1:18081/update -d '{"command":"check"}' -H 'Content-Type: application/json'
+```bash title="Request"
+curl http://127.0.0.1:18081/update \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "command": "check"
+  }'
+```
 
+```json title="Response"
 {
   "auto_uri": "",
   "hash": "",
