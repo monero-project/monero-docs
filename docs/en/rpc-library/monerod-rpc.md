@@ -3001,14 +3001,17 @@ Outputs:
         - _s1_ -
       - _npb_ -
       - _pseudoOuts_ -
-  - _block_height_ - unsigned int; block height including the transaction
-  - _block_timestamp_ - unsigned int; Unix time at which the block has been added to the blockchain
+  - _block_height_ - unsigned int; block height at which the transaction was confirmed
+  - _block_timestamp_ - unsigned int; Unix time at which the block containing the transaction was confirmed
+  - _confirmations_ - unsigned int; Number of blocks mined on top of (and including) the block containing the transaction
   - _double_spend_seen_ - boolean; States if the transaction is a double-spend (`true`) or not (`false`)
   - _in_pool_ - boolean; States if the transaction is in pool (`true`) or included in a block (`false`)
   - _output_indices_ - array of unsigned int; transaction indexes
   - _prunable_as_hex_ - string; Prunable block encoded as a hex string.
   - _prunable_hash_ - string; Keccak-256 hash of the prunable portion of the block.
   - _pruned_as_hex_ - string; Pruned block encoded as hex string.
+  - _received_timestamp_ - unsigned int; Unix time at which the daemon received the transaction into its pool
+  - _relayed_ - boolean; States if the pool transaction has been relayed to other nodes
   - _tx_hash_ - string; transaction hash
 - _txs_as_hex_ - string; Full transaction information as a hex string (old compatibility parameter)
 - _txs_as_json_ - json string; (Optional - returned if set in inputs. Old compatibility parameter) List of transaction as in _as_json_ above:
