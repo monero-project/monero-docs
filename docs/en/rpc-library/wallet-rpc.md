@@ -2200,6 +2200,7 @@ Inputs:
 -   _pending_  - boolean; (defaults to false) Include pending transfers.
 -   _failed_  - boolean; (defaults to false) Include failed transfers.
 -   _pool_  - boolean; (defaults to false) Include transfers from the daemon's transaction pool.
+-   _refresh_pool_  - boolean; (defaults to true) Only used when _pool_ is true. If true, the wallet asks the daemon for its current transaction pool before listing pool transfers; if false, it returns the wallet's cached pool transfers, which may be out of date. Ignored when wallet RPC runs in restricted mode, which always uses the cache.
 -   _filter_by_height_  - boolean; (Optional) Filter transfers by block height.
 -   _min_height_  - unsigned int; (Optional) Minimum block height to scan for transfers, if filtering by height is enabled.
 -   _max_height_  - unsigned int; (Optional) Maximum block height to scan for transfers, if filtering by height is enabled (defaults to max block height).
