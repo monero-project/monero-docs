@@ -2830,7 +2830,8 @@ Inputs:  _None_.
 Outputs:
 
 -   _multisig_  - boolean; States if the wallet is multisig
--   _ready_  - boolean;
+-   _kex_is_done_  - boolean; States if the main multisig key exchange rounds are complete (the multisig address is known). Always `false` for a non-multisig wallet.
+-   _ready_  - boolean; States if multisig setup is fully finished and the wallet can be used (key exchange done and all setup rounds passed). Always `false` for a non-multisig wallet.
 -   _threshold_  - unsigned int; Amount of signature needed to sign a transfer.
 -   _total_  - unsigned int; Total amount of signature in the multisig wallet.
 
@@ -2852,6 +2853,7 @@ curl http://127.0.0.1:18088/json_rpc \
   "jsonrpc": "2.0",
   "result": {
     "multisig": false,
+    "kex_is_done": false,
     "ready": false,
     "threshold": 0,
     "total": 0
@@ -2877,6 +2879,7 @@ curl http://127.0.0.1:18088/json_rpc \
   "jsonrpc": "2.0",
   "result": {
     "multisig": true,
+    "kex_is_done": true,
     "ready": true,
     "threshold": 2,
     "total": 2
