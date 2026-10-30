@@ -712,7 +712,8 @@ Inputs:
 
 -   _filename_  - string; Wallet file name.
 -   _password_  - string; (Optional) password to protect the wallet.
--   _language_  - string; Language for your wallets' seed.
+-   _language_  - string; Language for your wallets' seed. Must be one of the languages returned by [get_languages](#get_languages) for the chosen seed type.
+-   _polyseed_  - boolean; (Optional; Default = true) Create a [Polyseed](../mnemonics/polyseed.md) wallet. Set to false to create a wallet with a [legacy](../mnemonics/legacy.md) 25-word seed.
 
 Outputs:  _None_.
 
@@ -1781,7 +1782,9 @@ Get a list of available languages for your wallet's seed.
 
 Alias:  _None_.
 
-Inputs:  _None_.
+Inputs:
+
+-   _polyseed_  - boolean; (Optional; Default = true) List the [Polyseed](../mnemonics/polyseed.md) languages. Set to false to list the [legacy](../mnemonics/legacy.md) seed languages.
 
 Outputs:
 
@@ -3325,6 +3328,8 @@ Inputs:
 Outputs:
 
 -   _key_  - string; The view key will be hex encoded, while the mnemonic will be a string of words.
+-   _polyseed_birthday_  - unsigned int; Unix timestamp of the approximate date the [Polyseed](../mnemonics/polyseed.md) was created. 0 unless _key_type_ is "mnemonic" and the wallet has a Polyseed.
+-   _polyseed_is_encrypted_  - boolean; Whether the returned Polyseed is encrypted. false unless _key_type_ is "mnemonic" and the wallet has a Polyseed.
 
 Example (Query view key):
 
