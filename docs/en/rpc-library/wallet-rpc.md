@@ -138,6 +138,7 @@ Note: "[atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-uni
 - [**transfer_split**](#transfer_split)
 - [**untag_accounts**](#untag_accounts)
 - [**verify**](#verify)
+- [**wallet_exists**](#wallet_exists)
 - [**setup_background_sync**](#setup_background_sync)
 - [**start_background_sync**](#start_background_sync)
 - [**stop_background_sync**](#stop_background_sync)
@@ -4960,6 +4961,47 @@ curl http://127.0.0.1:18088/json_rpc \
 }
 ```
 
+
+### **wallet_exists**
+
+Check whether a wallet's keys file and wallet (cache) file exist in the wallet directory, without opening the wallet. You need to have set the argument "--wallet-dir" when launching monero-wallet-rpc to make this work. Not available in restricted mode.
+
+Alias:  _None_.
+
+Inputs:
+
+-   _filename_  - string; Wallet file name in --wallet-dir. Must not be empty and must not contain a path separator. If it ends in `.keys`, it is treated as the keys file name and the wallet file name is the same name without `.keys`; otherwise the keys file name is the given name plus `.keys`.
+
+Outputs:
+
+-   _keys_file_exists_  - boolean; true if the wallet's `.keys` file exists.
+-   _wallet_file_exists_  - boolean; true if the wallet (cache) file exists.
+
+Example:
+
+```bash title="Request"
+curl http://127.0.0.1:18088/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "wallet_exists",
+    "params": {
+      "filename": "mytestwallet"
+    }
+  }'
+```
+
+```json title="Response"
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "keys_file_exists": true,
+    "wallet_file_exists": true
+  }
+}
+```
 
 ### **setup_background_sync**
 
