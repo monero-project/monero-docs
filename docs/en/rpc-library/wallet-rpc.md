@@ -1984,7 +1984,7 @@ Inputs:
 Outputs:
 
 -   _transfer_  - JSON object containing payment information:
-    -   _address_  - string; Address that transferred the funds. Base58 representation of the public keys.
+    -   _address_  - string; Incoming: Address that received the funds. Outgoing: Address at index 0 of the account that transferred the funds.
     -   _amount_  - unsigned int; Amount of this transfer.
     -   _amounts_  - list; Individual amounts if multiple were received.
     -   _confirmations_  - unsigned int; Number of block mined since the block containing this transaction (or block height at which the transaction should be added to a block if not yet confirmed).
