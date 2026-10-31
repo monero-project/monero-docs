@@ -29,7 +29,7 @@ The full node can be either local (same computer) or remote.
 
 Normally, you run the full node on the same computer as wallet (or within your home network).
 
-Connection happens over HTTP and uses [this API](https://www.getmonero.org/resources/developer-guides/wallet-rpc.html).
+Connection happens over HTTP and uses the [daemon RPC API](../rpc-library/monerod-rpc.md).
 
 Any transaction leaving the wallet is already blinded by all Monero privacy features.
 This means plain text HTTP communication isn't an issue on its own even if you connect to a remote node.
@@ -91,7 +91,7 @@ Wallet depends on a full node for all non-local operations. The following option
 | `--daemon-address <arg>` | Use `monerod` instance at `<host>:<port>`. Example: <br>`./monero-wallet-cli --daemon-address monero-stagenet.exan.tech:38081 --stagenet`
 | `--daemon-host <arg>`    | Use `monerod` instance at host `<arg>` instead of localhost.
 | `--daemon-port <arg>`    | Use `monerod` instance at port `<arg>` instead of 18081.
-| `--daemon-login <arg>`   | Specify `username[:password]` for `monerod` RPC API. It is based on HTTP Basic Auth. Mind that connections are by default unencrypted. Authentication only makes sense if you establish a secure connection (maybe via Tor, or SSH tunneling, or reverse proxy w/ TLS).
+| `--daemon-login <arg>`   | Specify `username[:password]` for `monerod` RPC API. It is based on HTTP Digest Auth. Mind that connections are by default unencrypted. Authentication only makes sense if you establish a secure connection (maybe via Tor, or SSH tunneling, or reverse proxy w/ TLS).
 | `--trusted-daemon`       | Enable commands and behaviors which rely on `monerod` instance being trusted. Default for localhost connection. The trust in this context concerns preserving your privacy. Only use this flag if you do control `monerod`. Trusted daemon allows for commands like `rescan_spent`, `start_mining`, `import_key_images` and behaviors like **not** warning about potential attack on transient problems with transaction sending.
 | `--untrusted-daemon`     | Disable commands and behaviors which rely on `monerod` instance being trusted. Default for a non-localhost connections. See `--trusted-daemon` for more details.
 | `--do-not-relay`         | The newly created transaction will not be relayed to the Monero network. Instead it will be dumped to a file in a raw hexadecimal format. Useful if you want to push the transaction through a gateway like [https://xmrchain.net/rawtx](https://xmrchain.net/rawtx). This may be easier to use over Tor than Monero wallet.

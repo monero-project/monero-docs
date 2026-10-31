@@ -46,7 +46,7 @@
         You may want to backup your keys folder (`/var/lib/tor/monerod`) to secure control over your onion address.
     ??? info "How Tor onion services work?"
 
-        A fresh onion address and corresponding key pair were created for you in /var/lib/tor/monero/.    
+        A fresh onion address and corresponding key pair were created for you in /var/lib/tor/monerod/.    
         This happens on restart whenever you add a new `HiddenServiceDir` to the `/etc/tor/torrc` config file.    
         The tor daemon will forward traffic from a virtual   onion port to an actual localhost port, where some service is listening (in our case, this will be `monerod`).    
         A single onion address can offer multiple services at various virtual ports.
