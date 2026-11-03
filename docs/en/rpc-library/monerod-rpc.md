@@ -73,6 +73,7 @@ Some methods include parameters, while others do not. Examples of each JSON RPC 
 - [get_miner_data](#get_miner_data)
 - [get_output_distribution](#get_output_distribution)
 - [get_output_histogram](#get_output_histogram)
+- [get_txids_loose](#get_txids_loose)
 - [get_txpool_backlog](#get_txpool_backlog)
 - [get_version](#get_version)
 - [hard_fork_info](#hard_fork_info)
@@ -1640,6 +1641,53 @@ curl http://127.0.0.1:18081/json_rpc \
 ```
 
 
+
+### **get_txids_loose**
+
+Get the hashes of transactions (on-chain and in the txpool) whose last bits match a template, without revealing the exact hash you are looking for. This gives k-anonymity when looking up a transaction on an untrusted node. Only works on daemons running on little-endian CPUs (such as x86-64 and ARM); on big-endian hardware the daemon returns an error, because its database orders hashes differently there.
+
+Alias: _None_ .
+
+Inputs:
+
+- _txid_template_ - string (required); 64-character hex transaction hash in which only the matched bits are kept and every other bit is zero. The matched bits are counted from the end of the hash: with a multiple of 8 bits, keep the last `num_matching_bits / 4` hex characters and set the rest to `0`. A template that is not zeroed correctly is rejected, so the real hash can't leak by mistake.
+- _num_matching_bits_ - unsigned int (required); Number of bits of _txid_template_ to match (at most 256). Too few bits would match too many transactions and is rejected.
+
+Outputs:
+
+- _status_ - string; General RPC error code. "OK" means everything looks good.
+- _txids_ - array of string; Hashes of the matching on-chain and txpool transactions. On a restricted RPC server, txpool transactions that have not been publicly broadcast yet are left out.
+
+The number of returned hashes is capped (5000 on a restricted RPC server, 50000 otherwise). If more transactions match, the call fails with an error asking for more matching bits.
+
+Example on testnet (port 28081), looking up the testnet transaction `b072590f24c9066668ce811dc244d7e65c2e413540540b451616e08385fcb5b1` by its last 32 bits:
+
+```bash title="Request"
+curl http://127.0.0.1:28081/json_rpc \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "0",
+    "jsonrpc": "2.0",
+    "method": "get_txids_loose",
+    "params": {
+      "txid_template": "0000000000000000000000000000000000000000000000000000000085fcb5b1",
+      "num_matching_bits": 32
+    }
+  }'
+```
+
+```json title="Response"
+{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "status": "OK",
+    "txids": [
+      "b072590f24c9066668ce811dc244d7e65c2e413540540b451616e08385fcb5b1"
+    ]
+  }
+}
+```
 
 ### **get_txpool_backlog**
 
