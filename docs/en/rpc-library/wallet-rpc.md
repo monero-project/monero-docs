@@ -1979,7 +1979,8 @@ Alias:  _None_.
 Inputs:
 
 -   _txid_  - string; Transaction ID used to find the transfer.
--   _account_index_  - unsigned int; (Optional) Index of the account to query for the transfer.
+-   _account_index_  - unsigned int; (Optional) Index of the account to query for the transfer. (Defaults to 0)
+-   _all_accounts_  - boolean; (Optional) Search all accounts for the transfer. When true, `account_index` is ignored. (Defaults to false)
 
 Outputs:
 
