@@ -493,6 +493,8 @@ curl http://127.0.0.1:18088/json_rpc \
 
 Prove a transaction by checking its signature.
 
+`check_tx_proof` does not verify payment IDs. To look up an incoming payment by payment ID, use [`get_payments`](#get_payments) on the receiving wallet.
+
 !!! warning
     Transaction proofs (check_tx_key(), InProofs/OutProofs) do not guarantee that funds associated with a proof are spendable. They could be permanently time locked, already spent, or burnt due to duplication of one-time addresses. See [here :link:{title=GitHub}](https://github.com/monero-project/monero/issues/8819#issue-1656289739)
 
