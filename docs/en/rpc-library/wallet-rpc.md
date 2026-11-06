@@ -1643,6 +1643,8 @@ curl http://127.0.0.1:18088/json_rpc \
 
 Get a list of incoming payments using a given payment id, or a list of payments ids, from a given height. This method is the preferred method over `get_payments` because it has the same functionality but is more extendable. Either is fine for looking up transactions by a single payment ID.
 
+This method searches all addresses in the wallet, including subaddresses. For a payment to an integrated address, the `address` field must show the wallet's primary address (account `0`, address index `0`).
+
 !!! warning
 
     Verify that the transfer has a sane `unlock_time` otherwise the funds might be inaccessible.
@@ -1813,6 +1815,8 @@ curl http://127.0.0.1:18088/json_rpc \
 ### **get_payments**
 
 Get a list of incoming payments using a given payment id.
+
+This method searches all addresses in the wallet, including subaddresses. For a payment to an integrated address, the `address` field must show the wallet's primary address (account `0`, address index `0`).
 
 !!! warning
 
