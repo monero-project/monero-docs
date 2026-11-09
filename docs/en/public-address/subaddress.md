@@ -93,7 +93,7 @@ The subaddress public spend key `D` is derived as follows:
 Where:
 
 * `B` is standard address public spend key
-* `m` is a per-subaddress scalar that is derived from the private spend key
+* `m` is the per-subaddress scalar derived above from the private view key `a`
 * `G` is the "base point"; this is simply a constant specific to [edwards25519](../cryptography/asymmetric/edwards25519.md)
 
 ### Public view key
