@@ -808,6 +808,11 @@ Outputs:
 -   _desc_  - The description of the transfer as a list of:
     -   _amount_in_  - unsigned int (64 bit); The sum of the inputs spent by the transaction in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
     -   _amount_out_  - unsigned int (64 bit); The sum of the outputs created by the transaction in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+    -   _sources_  - list of the real outputs spent by the transaction, one per input:
+        -   _amount_  - unsigned int (64 bit); The amount of the spent output in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
+        -   _global_index_  - unsigned int (64 bit); The global output index of the spent output on the blockchain.
+        -   _rct_  - boolean; Whether the spent output is a RingCT output.
+        -   _pubkey_  - string; Hex of the spent output's key entry: its one-time public key followed by its amount commitment.
     -   _recipients_  - list of:
         -   _address_  - string; The public address of the recipient.
         -   _amount_  - unsigned int; The amount sent to the recipient in [atomic-units](https://www.getmonero.org/resources/moneropedia/atomic-units.html "Atomic Units refer to the smallest fraction of 1 XMR.").
@@ -819,6 +824,7 @@ Outputs:
     -   _unlock_time_  - unsigned int; The number of blocks before the monero can be spent (0 for no lock).
     -   _dummy_outputs_  - unsigned int; The number of fake outputs added to single-output transactions.  Fake outputs have 0 amount and are sent to a random address.
     -   _extra_  - string; Arbitrary transaction data in hexadecimal format.
+    -   _weight_  - unsigned int (64 bit); The transaction weight. Only known for a `multisig_txset`; 0 for an `unsigned_txset`, which does not yet contain a constructed transaction.
     -   _summary_  - object; A txset_summary aggregating the parsed transaction set, with totals for amount_in, amount_out, change_amount, and fee plus change_address and the list of recipients.
 
 Example:
