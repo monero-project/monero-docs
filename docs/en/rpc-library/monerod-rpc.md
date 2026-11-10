@@ -1849,6 +1849,7 @@ Inputs:
 - _start_height_ - unsigned int
 - _prune_ - boolean
 - _no_miner_tx_ - boolean; Boolean flag; defaults to false.
+- _block_ids_exclusive_ - boolean; (Optional) Only applies when blocks are located by `block_ids` (i.e. `start_height` is 0). When `false`, the response starts at the highest block in `block_ids` that the daemon also has on its main chain, so the client receives that already-known block again. When `true`, the response starts one block above that common block; if the common block is the daemon's chain tip, an empty `blocks` list is returned rather than an error. Clients can check continuity by confirming that the first returned block's `prev_id` matches the common block hash they sent. Defaults to false.
 - _pool_info_since_ - unsigned int; Timestamp passed to m_core.get_pool_info() (as time_t) to retrieve transaction pool information since that point; defaults to 0.
 - _max_block_count_ - unsigned int; Maximum number of blocks to return; defaults to 0.
 - _requested_info_ - unsigned int; Selects what to return using the REQUESTED_INFO enum: BLOCKS_ONLY (0) returns blocks only, BLOCKS_AND_POOL (1) returns blocks and pool info, POOL_ONLY (2) returns pool info only; an unrecognized value yields status "Failed, wrong requested info"; defaults to 0.
