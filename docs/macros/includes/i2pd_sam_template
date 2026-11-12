@@ -1,0 +1,43 @@
+    !!! success "The end goal"
+        To enable the following services:
+
+        * yourlongb32i2paddress.b32.i2p:18085 - I2P P2P service (for other I2P nodes)
+        * yourlongb32i2paddress.b32.i2p:18089 - I2P RPC service (for wallets connecting over I2P)
+
+        **I2P service for the P2P network** is useful for other full node users as it allows them to broadcast transactions over I2P (using the `--tx-proxy` or `--i2p-sam` options).
+
+        **I2P service for the wallet interface** is useful for wallet users connecting over I2P because it mitigates clearnet and Tor exit node MiTM risks (which are very real). By connecting the wallet to an I2P service, no MiTM attack is realistic because I2P connections are end-to-end encrypted.
+
+    ??? question "Why different P2P ports for clearnet and I2P?"
+        The data served by the I2P P2P port differs from that of clearnet P2P. A different port is required.
+
+    1. Elevate to root:
+        ``` Bash
+        sudo su -
+        ```
+    2. Install i2pd:
+        ``` Bash
+        apt install apt-transport-https
+        wget -q -O - https://repo.i2pd.xyz/.help/add_repo | bash -s -
+        apt update
+        apt install i2pd
+        ```
+    3. The SAM bridge is enabled by default for i2pd. If it's disabled for some reason, add the following to `/etc/i2pd/i2pd.conf` and restart i2pd:
+        ``` ini
+        sam.enabled=true
+        ```
+        ``` Bash
+        systemctl restart i2pd
+        ```
+    4. Add `i2p-sam=127.0.0.1:7656` to your Monero [**config file** :link:{ title="Monerod Config" }]{{ config }}:
+
+        ``` ini
+        i2p-sam=127.0.0.1:7656
+        ```
+
+        This overrides the `tx-proxy` and `anonymous-inbound` options for I2P: `monerod` will connect to the SAM bridge, generate an I2P destination, and manage the inbound and outbound I2P connections automatically.
+
+    5. Start `monerod`. To find the Base32 address of your hidden service, go to the [SAM sessions page](http://127.0.0.1:7070/?page=sam_sessions) in the i2pd web console, click on the running session, and copy the `.b32.i2p` address.
+    ??? info "Back up private destination key"
+        You may want to back up the `i2p_private_key` file in the `monerod` data directory to retain control over your I2P address/destination.
+    !!! note "(Optional) Register a short and memorable .i2p domain on [reg.i2p](http://reg.i2p)"
