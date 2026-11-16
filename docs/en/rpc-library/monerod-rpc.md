@@ -131,6 +131,8 @@ Easily enable merge mining with Monero without requiring software that manually 
 
 Alias: _None_ .
 
+Restricted RPC: _available_ .
+
 Inputs:
 
 - _blocktemplate_blob_ - string;
@@ -195,7 +197,9 @@ curl http://127.0.0.1:18081/json_rpc \
 
 Check if an IP address is banned and for how long.
 
-Alias: _None_ 
+Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs:
 
@@ -240,6 +244,8 @@ curl http://127.0.0.1:18081/json_rpc \
 Calculate PoW hash for a block candidate.
 
 Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs:
 
@@ -286,6 +292,8 @@ Flush bad transactions / blocks from the cache.
 
 Alias: _None_ .
 
+Restricted RPC: _unavailable_ .
+
 Inputs:
 
 - _bad_blocks_ - boolean; Optional (`false` by default).
@@ -330,6 +338,8 @@ Flush tx ids from transaction pool
 
 Alias: _None_ .
 
+Restricted RPC: _unavailable_ .
+
 Inputs:
 
 - _txids_ - array of strings; Optional, list of transactions IDs to flush from pool (all tx ids flushed if empty).
@@ -370,6 +380,10 @@ curl http://127.0.0.1:18081/json_rpc \
 ### **generateblocks**
 
 Generate a block and specify the address to receive the coinbase reward.
+
+Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs:
 
@@ -421,6 +435,8 @@ curl http://127.0.0.1:18081/json_rpc \
 Display alternative chains seen by the node.
 
 Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs: _None_ .
 
@@ -479,6 +495,8 @@ Get list of banned IPs.
 
 Alias: _None_ .
 
+Restricted RPC: _unavailable_ .
+
 Inputs: _None_ .
 
 Outputs:
@@ -529,6 +547,8 @@ curl http://127.0.0.1:18081/json_rpc \
 Full block information can be retrieved by either block height or hash, like with the above block header calls. For full block information, both lookups use the same method, but with different input parameters.
 
 Alias: _getblock_ .
+
+Restricted RPC: _available_ .
 
 Inputs (pick height or hash):
 
@@ -690,6 +710,8 @@ Look up how many blocks are in the longest chain known to the node.
 
 Alias: _getblockcount_ .
 
+Restricted RPC: _available_ .
+
 Inputs: _None_ .
 
 Outputs:
@@ -729,6 +751,8 @@ curl http://127.0.0.1:18081/json_rpc \
 Block header information can be retrieved using either a block's hash or height. This method includes a block's hash as an input parameter to retrieve basic information about the block.
 
 Alias: _getblockheaderbyhash_ .
+
+Restricted RPC: _available_ .
 
 Inputs:
 
@@ -803,6 +827,8 @@ Similar to [get_block_header_by_hash](#get_block_header_by_hash) above, this met
 
 Alias: _getblockheaderbyheight_ .
 
+Restricted RPC: _available_ .
+
 Inputs:
 
 - _height_ - unsigned int; The block's height.
@@ -872,6 +898,8 @@ curl http://127.0.0.1:18081/json_rpc \
 Similar to [get_block_header_by_height](#get_block_header_by_height) above, but for a range of blocks. This method includes a starting block height and an ending block height as parameters to retrieve basic information about the range of blocks.
 
 Alias: _getblockheadersrange_ .
+
+Restricted RPC: _available_ .
 
 Inputs:
 
@@ -971,6 +999,8 @@ Get a block template on which mining a new block.
 
 Alias: _getblocktemplate_ .
 
+Restricted RPC: _available_ .
+
 Inputs:
 
 - _wallet_address_ - string; Address of wallet to receive coinbase transaction if block is successfully mined.
@@ -1043,6 +1073,8 @@ Get the newly emitted coins amount and the fees amount for n last blocks startin
 
 Alias: _None_ .
 
+Restricted RPC: _unavailable_ .
+
 Inputs:
 
 - _height_ - unsigned int; Block height from which getting the amounts
@@ -1103,6 +1135,8 @@ curl http://127.0.0.1:18081/json_rpc \
 Retrieve information about incoming and outgoing connections to your node.
 
 Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs: _None_ .
 
@@ -1194,6 +1228,8 @@ Gives an estimation on fees per byte.
 
 Alias: _None_ .
 
+Restricted RPC: _available_ .
+
 Inputs:
 
 - _grace_blocks_ - unsigned int; Optional
@@ -1248,6 +1284,8 @@ Alias:
 - _/getinfo_ 
 
 See other RPC Methods [/get_info (not JSON)](#get_info-not-json)
+
+Restricted RPC: _available_ .
 
 Inputs: _None_ .
 
@@ -1368,6 +1406,8 @@ Block header information for the most recent block is easily retrieved with this
 
 Alias: _getlastblockheader_ .
 
+Restricted RPC: _available_ .
+
 Inputs:
 
 - _fill_pow_hash_ - boolean; (Optional; defaults to `false`) Add PoW hash to block_header response.
@@ -1457,6 +1497,10 @@ curl http://127.0.0.1:18081/json_rpc \
 
 Provide the necessary data to create a custom block template. They are used by p2pool.
 
+Alias: _None_ .
+
+Restricted RPC: _available_ .
+
 Inputs: _None_ .
 
 Outputs:
@@ -1525,6 +1569,8 @@ If the distribution is "cumulative", then each value in the array represents the
 
 Alias: _None_ .
 
+Restricted RPC: _available_ .
+
 Inputs:
 
 - _amounts_ - array of unsigned int; cleartext amounts to look for (0 gets all RingCT outputs).
@@ -1583,6 +1629,10 @@ curl http://127.0.0.1:18081/json_rpc \
 
 Get a histogram of output amounts. For all amounts (possibly filtered by parameters), gives the number of outputs on the chain for that amount.
 RingCT outputs counts as 0 amount.
+
+Alias: _None_ .
+
+Restricted RPC: _available_ .
 
 Inputs:
 
@@ -1648,6 +1698,8 @@ Get the hashes of transactions (on-chain and in the txpool) whose last bits matc
 
 Alias: _None_ .
 
+Restricted RPC: _available_ .
+
 Inputs:
 
 - _txid_template_ - string (required); 64-character hex transaction hash in which only the matched bits are kept and every other bit is zero. The matched bits are counted from the end of the hash: with a multiple of 8 bits, keep the last `num_matching_bits / 4` hex characters and set the rest to `0`. A template that is not zeroed correctly is rejected, so the real hash can't leak by mistake.
@@ -1695,6 +1747,8 @@ Get all transaction pool backlog
 
 Alias: _None_ .
 
+Restricted RPC: _available_ .
+
 Inputs: _None_ .
 
 Outputs:
@@ -1737,6 +1791,8 @@ curl http://127.0.0.1:18081/json_rpc \
 Give the node current version
 
 Alias: _None_ .
+
+Restricted RPC: _available_ .
 
 Inputs: _None_ .
 
@@ -1793,6 +1849,8 @@ curl http://127.0.0.1:18081/json_rpc \
 Look up information regarding hard fork voting and readiness.
 
 Alias: _None_ .
+
+Restricted RPC: _available_ .
 
 Inputs:
 
@@ -1854,6 +1912,8 @@ Look up a block's hash by its height.
 
 Alias: _on_getblockhash_ .
 
+Restricted RPC: _available_ .
+
 Inputs:
 
 * block height (int array of length 1)
@@ -1890,6 +1950,8 @@ curl http://127.0.0.1:18081/json_rpc \
 ### **prune_blockchain** 
 
 Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs:
 
@@ -1938,6 +2000,8 @@ Relay a list of transaction IDs.
 
 Alias: _None_ .
 
+Restricted RPC: _unavailable_ .
+
 Inputs:
 
 - _txids_ - array of string; list of transaction IDs to relay
@@ -1980,6 +2044,8 @@ curl http://127.0.0.1:18081/json_rpc \
 Ban another node by IP.
 
 Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs:
 
@@ -2070,6 +2136,8 @@ Submit a mined block to the network.
 
 Alias: _submitblock_ .
 
+Restricted RPC: _available_ .
+
 Inputs:
 
 * Block blob data - array of strings; list of block blobs which have been mined.  See [get_block_template](#get_block_template) to get a blob on which to mine.
@@ -2111,6 +2179,8 @@ curl http://127.0.0.1:18081/json_rpc \
 Get synchronization information
 
 Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs: _None_ .
 
@@ -2210,6 +2280,8 @@ Get the known blocks hashes which are not on the main chain.
 
 Alias: _None_ .
 
+Restricted RPC: _unavailable_ .
+
 Inputs: _None_ 
 
 Outputs:
@@ -2244,6 +2316,8 @@ curl http://127.0.0.1:18081/get_alt_blocks_hashes \
 Get all blocks info. Binary request.
 
 Alias: _/getblocks.bin_ .
+
+Restricted RPC: _available_ .
 
 Inputs:
 
@@ -2293,6 +2367,8 @@ Get blocks by height. Binary request.
 
 Alias: _/getblocks_by_height.bin_ .
 
+Restricted RPC: _available_ .
+
 Inputs:
 
 - _heights_ - array of unsigned int; list of block heights
@@ -2321,6 +2397,8 @@ curl http://127.0.0.1:18081/get_blocks_by_height.bin --data-binary '{"heights":[
 Get hashes. Binary request.
 
 Alias: _/gethashes.bin_ .
+
+Restricted RPC: _available_ .
 
 Inputs:
 
@@ -2358,6 +2436,8 @@ Get the node's current height.
 
 Alias: _/getheight_ .
 
+Restricted RPC: _available_ .
+
 Inputs: _None_ .
 
 Outputs:
@@ -2393,6 +2473,7 @@ Alias:
 - _/getinfo_ 
 - _get_info_ 
 
+Restricted RPC: _available_ .
 
 
 ### **/get_limit**
@@ -2400,6 +2481,8 @@ Alias:
 Get daemon bandwidth limits.
 
 Alias: _None_ .
+
+Restricted RPC: _available_ .
 
 Inputs: _None_ .
 
@@ -2431,6 +2514,8 @@ curl http://127.0.0.1:18081/get_limit \
 ### **/get_net_stats**
 
 Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs: _None_ .
 
@@ -2471,6 +2556,8 @@ Get global outputs of transactions. Binary request.
 
 Alias: _None_ .
 
+Restricted RPC: _available_ .
+
 Inputs:
 
 - _txid_ - binary txid
@@ -2499,6 +2586,8 @@ curl http://127.0.0.1:18081/get_o_indexes.bin \
 Get outputs. Binary request version of [get_output_distribution](#get_output_distribution).
 
 Alias: _None_ .
+
+Restricted RPC: _available_ .
 
 Inputs:
 
@@ -2531,6 +2620,8 @@ Outputs:
 Get outputs.
 
 Alias: _None_ .
+
+Restricted RPC: _available_ .
 
 Inputs:
 
@@ -2590,6 +2681,8 @@ Get outputs. Binary request.
 
 Alias: _None_ .
 
+Restricted RPC: _available_ .
+
 Inputs:
 
 - _outputs_ - array of structure _get_outputs_out_ as follows:
@@ -2627,6 +2720,8 @@ curl http://127.0.0.1:18081/get_o_indexes.bin \
 Get the known peers list.
 
 Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs:
 
@@ -2690,6 +2785,8 @@ curl http://127.0.0.1:18081/get_peer_list \
 Get public peer information.
 
 Alias: _None_ .
+
+Restricted RPC: _available_ .
 
 Inputs:
 
@@ -2756,6 +2853,8 @@ curl http://127.0.0.1:18081/get_public_nodes \
 Show information about valid transactions seen by the node but not yet mined into a block, as well as spent key image information for the txpool in the node's memory.
 
 Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs: _None_ .
 
@@ -2867,6 +2966,8 @@ Get hashes from transaction pool.
 
 Alias: _None_ .
 
+Restricted RPC: _available_ .
+
 Inputs: _None_ .
 
 Outputs:
@@ -2902,6 +3003,8 @@ Get hashes from transaction pool. Binary request.
 
 Alias: _None_ .
 
+Restricted RPC: _available_ .
+
 Inputs: _None_ .
 
 Outputs:
@@ -2932,6 +3035,8 @@ curl http://127.0.0.1:18081/get_transaction_pool_hashes.bin \
 Get the transaction pool statistics.
 
 Alias: _None_ .
+
+Restricted RPC: _available_ .
 
 Inputs: _None_ .
 
@@ -2996,6 +3101,8 @@ curl http://127.0.0.1:18081/get_transaction_pool_stats \
 Look up one or more transactions by hash.
 
 Alias: _/gettransactions_ .
+
+Restricted RPC: _available_ .
 
 Inputs:
 
@@ -3168,6 +3275,8 @@ Limit number of Incoming peers.
 
 Alias: _None_ .
 
+Restricted RPC: _unavailable_ .
+
 Inputs:
 
 - _in_peers_ - unsigned int; optional, default `0`. New maximum number of incoming peers (applied when _set_ is `true`). Note: _set_ defaults to `true`, so omitting _in_peers_ sets the limit to `0`.
@@ -3204,6 +3313,8 @@ curl http://127.0.0.1:18081/in_peers \
 Check if outputs have been spent using the key image associated with the output.
 
 Alias: _None_ .
+
+Restricted RPC: _available_ .
 
 Inputs:
 
@@ -3247,6 +3358,8 @@ curl http://127.0.0.1:18081/is_key_image_spent \
 Get the mining status of the daemon.
 
 Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs: _None_ .
 
@@ -3336,6 +3449,8 @@ Limit number of Outgoing peers.
 
 Alias: _None_ .
 
+Restricted RPC: _unavailable_ .
+
 Inputs:
 
 - _out_peers_ - unsigned int; optional, default `0`. New maximum number of outgoing peers (applied when _set_ is `true`). Note: _set_ defaults to `true`, so omitting _out_peers_ sets the limit to `0`.
@@ -3370,6 +3485,8 @@ curl http://127.0.0.1:18081/out_peers \
 ### **/pop_blocks**
 
 Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs:
 
@@ -3409,6 +3526,8 @@ Save the blockchain. The blockchain does not need saving and is always saved whe
 
 Alias: _None_ .
 
+Restricted RPC: _unavailable_ .
+
 Inputs: _None_ .
 
 Outputs:
@@ -3437,6 +3556,8 @@ curl http://127.0.0.1:18081/save_bc \
 Broadcast a raw transaction to the network.
 
 Alias: _/sendrawtransaction_ .
+
+Restricted RPC: _available_ .
 
 Inputs:
 
@@ -3483,6 +3604,8 @@ Give immediate usability to wallets while syncing by proxying RPC requests.
 
 Alias: _None_ .
 
+Restricted RPC: _unavailable_ .
+
 Inputs:
 
 - _address_ - string; host:port
@@ -3519,6 +3642,8 @@ curl http://127.0.0.1:18081/set_bootstrap_daemon \
 Set daemon bandwidth limits.
 
 Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs:
 
@@ -3612,6 +3737,8 @@ Setting the categories to "" prevents any logs from being outputted.
 
 Alias: _None_ .
 
+Restricted RPC: _unavailable_ .
+
 Inputs:
 
 - _categories_ - string; Optional, daemon log categories to enable
@@ -3662,6 +3789,8 @@ curl http://127.0.0.1:18081/set_log_categories \
 Set the log hash rate display mode.
 
 Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs:
 
@@ -3715,6 +3844,8 @@ By default, log level is set to `0`.
 
 Alias: _None_ .
 
+Restricted RPC: _unavailable_ .
+
 Inputs:
 
 - _level_ - integer; daemon log level to set from `0` (less verbose) to `4` (most verbose)
@@ -3747,6 +3878,8 @@ curl http://127.0.0.1:18081/set_log_level \
 Start mining on the daemon.
 
 Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs:
 
@@ -3788,6 +3921,8 @@ Send a command to the daemon to safely disconnect and shut down.
 
 Alias: _None_ .
 
+Restricted RPC: _unavailable_ .
+
 Inputs: _None_ .
 
 Outputs:
@@ -3814,6 +3949,8 @@ curl http://127.0.0.1:18081/stop_daemon \
 Stop mining on the daemon.
 
 Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs: _None_ .
 
@@ -3843,6 +3980,8 @@ curl http://127.0.0.1:18081/stop_mining \
 Update daemon.
 
 Alias: _None_ .
+
+Restricted RPC: _unavailable_ .
 
 Inputs:
 
