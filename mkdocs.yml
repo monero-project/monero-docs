@@ -69,6 +69,7 @@ nav:
     - Base58: 'cryptography/base58.md'
     - Keccak-256: 'cryptography/keccak-256.md'
     - PRNG: 'cryptography/prng.md'
+  - Hard Forks: 'development/hardforks.md'
   - Mnemonics:
     - 'mnemonics/index.md'
     - Legacy: 'mnemonics/legacy.md'
