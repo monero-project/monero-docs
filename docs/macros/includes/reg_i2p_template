@@ -1,1 +1,2 @@
         !!! note "(Optional) Register a short and memorable `.i2p` domain on [reg.i2p](http://reg.i2p)"
+            Registering the RPC destination publishes its address. Use the P2P destination if you only want a public name for your node.
