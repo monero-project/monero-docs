@@ -18,27 +18,27 @@
 
         3. Create server tunnels for P2P and RPC
 
-            You will need to add two server tunnels to allow for inbound P2P and RPC connections for your node. Use ports 18085 and 18089 respectively.
+            Add two server tunnels with separate destinations, one for P2P on local port 18085 and one for RPC on local port 18089.
 
-            From the same tunnel manager, click on `Tunnel Wizard` again, choose a server tunnel of type `Standard`, set the target host to `127.0.0.1`, and the target port to the desired number. Repeat this for both tunnels and save, then start each tunnel.
+            From the same tunnel manager, click on `Tunnel Wizard` again, choose a server tunnel of type `Standard`, set the target host to `127.0.0.1`, and the target port to the desired number. Repeat this for both tunnels on a new setup, then save and start them. Check in the tunnel settings that they use different private key files. For an existing setup, keep the P2P tunnel and its key.
 
             This will create hidden service keys under your I2P config directory, usually `~/.i2p/` for a user install or `/var/lib/i2p/i2p-config/` for a system service install; you may want to back these up.
 
-            Get the hostname of your hidden service node from the tunnel list once the tunnel has started, under "I2P Hidden Services" (this can take a couple of minutes on first startup).
+            Under "I2P Hidden Services", copy the Base32 address of the P2P tunnel for `anonymous-inbound` and the different address of the RPC tunnel for your wallets. This can take a couple of minutes on first startup. If your existing RPC tunnel shares the P2P key, back up the key, stop the RPC tunnel and disable its automatic startup. Leave that old tunnel in place: deleting it can move the shared key file. Create a new RPC tunnel with its own key, then update your wallets to its new address.
 
         4. Modify the config file
 
-            Copy the result into your Monero [**config file** :link:{ title="Monerod Config" }]{{ config }}, enabling these options:
+            Add the P2P address to your Monero [**config file** :link:{ title="Monerod Config" }]{{ config }}, enabling these options:
             ``` ini
-            anonymous-inbound=yourlongb32i2paddress.b32.i2p,127.0.0.1:18085
+            anonymous-inbound=yourp2pi2paddress.b32.i2p,127.0.0.1:18085
             tx-proxy=i2p,127.0.0.1:4447,disable_noise
             ```
 
-            Replace `yourlongb32i2paddress.b32.i2p` with your Base32 address.
+            Replace `yourp2pi2paddress.b32.i2p` with the P2P tunnel's address. Do not put the RPC address in `anonymous-inbound`.
 
         5. The node is now available on I2P. You can check that the service is working by using `curl`:
 
             ``` Bash
-            curl -x socks5h://127.0.0.1:4447 http://yourlongb32i2paddress.b32.i2p:18089/get_info
+            curl -x socks5h://127.0.0.1:4447 http://yourrpci2paddress.b32.i2p:18089/get_info
             ```
 {% include 'reg_i2p_template' %}

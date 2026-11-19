@@ -1,8 +1,8 @@
     !!! success "The end goal"
         To enable the following services:
 
-        * yourlongv3onionaddress.onion:18084 - onion P2P service (for other onion nodes)
-        * yourlongv3onionaddress.onion:18089 - onion RPC service (for wallets connecting over Tor)
+        * yourp2ponionaddress.onion:18084 - onion P2P service (for other onion nodes)
+        * yourrpconionaddress.onion:18089 - onion RPC service (for wallets connecting over Tor)
 
         **Onion service for P2P network** is useful for other full node users as it allows them to broadcast transactions over Tor (using `--tx-proxy` option).
 
@@ -17,36 +17,38 @@
         ```
     2. [:link: Install Tor](https://support.torproject.org/apt/#apt_tor-deb-repo)
 
-    3. Add the following lines to `/etc/tor/torrc`:
+    3. Add the following lines to `/etc/tor/torrc`. If you already used this guide, replace the old `monerod` hidden service block so it no longer exposes port 18089 on the P2P onion:
         ``` ApacheConf
         HiddenServiceDir /var/lib/tor/monerod
-        HiddenServicePort 18089 127.0.0.1:18089    # interface for wallet ("RPC")
         HiddenServicePort 18084 127.0.0.1:18084    # interface for P2P network
+
+        HiddenServiceDir /var/lib/tor/monerod-rpc
+        HiddenServicePort 18089 127.0.0.1:18089    # interface for wallet ("RPC")
         ```
     4. Enable Tor service:
         ``` Bash
         systemctl enable tor
         systemctl restart tor
         ```
-    5. View/Copy your new Onion Address:
+    5. View the two onion addresses. The first command prints the P2P address advertised to other nodes; the second prints the RPC address for your wallets:
         ``` Bash
         cat /var/lib/tor/monerod/hostname
+        cat /var/lib/tor/monerod-rpc/hostname
         ```
-    6. Copy the result into your Monero [**config file** :link:{ title="Monerod Config" }]{{ config }}, enabling these options:
+        If you followed the previous version of this guide, your existing onion remains the P2P address. Update your wallets to use the new RPC address after restarting Tor.
+    6. Add the P2P address to your Monero [**config file** :link:{ title="Monerod Config" }]{{ config }}, enabling these options:
         ``` ini
-        anonymous-inbound=yourlongv3onionaddress.onion:18084,127.0.0.1:18084
+        anonymous-inbound=yourp2ponionaddress.onion:18084,127.0.0.1:18084
         tx-proxy=tor,127.0.0.1:9050,disable_noise
         ```
-        Replace `yourlongv3onionaddress.onion` with your onion address.
+        Replace `yourp2ponionaddress.onion` with the address from `/var/lib/tor/monerod/hostname`. Do not put the RPC address in `anonymous-inbound`.
     7. The node is now available on Tor. You can check that the service is working by using curl:
         ``` Bash
-        curl -x socks5h://127.0.0.1:9050 http://yourlongv3onionaddress.onion:18089/get_info
+        curl -x socks5h://127.0.0.1:9050 http://yourrpconionaddress.onion:18089/get_info
         ```
     ??? info "Backup Onion keys"
-        You may want to backup your keys folder (`/var/lib/tor/monerod`) to secure control over your onion address.
+        You may want to back up both keys folders (`/var/lib/tor/monerod` and `/var/lib/tor/monerod-rpc`) to keep control of both onion addresses.
     ??? info "How Tor onion services work?"
 
-        A fresh onion address and corresponding key pair were created for you in /var/lib/tor/monero/.    
-        This happens on restart whenever you add a new `HiddenServiceDir` to the `/etc/tor/torrc` config file.    
-        The tor daemon will forward traffic from a virtual   onion port to an actual localhost port, where some service is listening (in our case, this will be `monerod`).    
-        A single onion address can offer multiple services at various virtual ports.
+        Each `HiddenServiceDir` has its own onion address and key pair. Tor creates the new RPC address in `/var/lib/tor/monerod-rpc` when it restarts. The existing `/var/lib/tor/monerod` address remains the P2P address.
+        Tor forwards each onion port to the corresponding local `monerod` port.

@@ -47,13 +47,13 @@ To connect Monero nodes, you have to configure the wallet software:
     === "Monero GUI"
 
         1. Navigate to: `Settings -> Interface -> Socks5 proxy` and set the values to `IP Address = 127.0.0.1` and `Port = 9050`
-        2. Navigate to: `Settings -> Node -> Add remote node` and set the values to `Address = http://yourlongv3onionaddress.onion` and `Port = 18089`
+        2. Navigate to: `Settings -> Node -> Add remote node` and set the values to `Address = http://yourrpconionaddress.onion` and `Port = 18089`
 
         [:link: _Monero GUI_](../interacting/monero-wallet-gui-reference.md)
 
     === "Monero CLI"
 
-        Add the flags `--proxy=127.0.0.1:9050 --daemon-address=http://yourlongv3onionaddress.onion:18089 --trusted-daemon`
+        Add the flags `--proxy=127.0.0.1:9050 --daemon-address=http://yourrpconionaddress.onion:18089 --trusted-daemon`
 
         [:link: _Monero CLI_](../interacting/monero-wallet-cli-reference.md)
 
@@ -61,12 +61,12 @@ To connect Monero nodes, you have to configure the wallet software:
     === "Monero GUI"
 
         1. Navigate to: `Settings -> Interface -> Socks5 proxy` and set the values to `IP Address = 127.0.0.1` and `Port = 4447`
-        2. Navigate to: `Settings -> Node -> Add remote node` and set the values to `Address = http://yourlongb32i2paddress.b32.i2p` and `Port = 18089`
+        2. Navigate to: `Settings -> Node -> Add remote node` and set the values to `Address = http://yourrpci2paddress.b32.i2p` and `Port = 18089`
 
         [:link: _Monero GUI_](../interacting/monero-wallet-gui-reference.md)
 
     === "Monero CLI"
 
-        Add the flags `--proxy=127.0.0.1:4447 --daemon-address=http://yourlongb32i2paddress.b32.i2p:18089 --trusted-daemon`
+        Add the flags `--proxy=127.0.0.1:4447 --daemon-address=http://yourrpci2paddress.b32.i2p:18089 --trusted-daemon`
 
         [:link: _Monero CLI_](../interacting/monero-wallet-cli-reference.md)
