@@ -8,7 +8,7 @@ Monero wallets do not store the blockchain itself; instead, they connect to a fu
 Remote nodes can be convenient, as there is nothing large to download or keep synced. However, the trade-off is that you rely on a third party for your wallet's view of the blockchain, and that third party can potentially learn information about you.
 
 !!! tip "Summary"
-    Running your own node is not necessarily private on its own. To keep your transactions from being linked to your IP address, have it broadcast them over Tor or I2P with `--tx-proxy`, and ideally route the rest of its traffic through `--proxy` as well (see [Tor/I2P and proxies](monerod-reference.md#tori2p-and-proxies)). If you have to use a remote node, prefer one which you trust/control, and connect to it as a Tor or I2P hidden service. See the [comparison](#comparing-your-options) below.
+    Running your own node is not necessarily private on its own. To keep your transactions from being linked to your IP address, have it broadcast them over Tor or I2P with `--tx-proxy`, and ideally route the rest of its traffic through `--proxy` as well (see [Tor/I2P and proxies](monerod-reference.md#tori2p-and-proxies)). If you have to use a remote node, prefer one which you trust/control, and connect to it as a Tor or I2P hidden service. Keep in mind that a remote node's operator can still see the transactions you send, even over Tor or I2P. See the [comparison](#comparing-your-options) below.
 
 ## What a remote node cannot do
 
@@ -26,6 +26,11 @@ The wallet application downloads blocks and scans them locally with your private
 - The transactions you send (though much of the actual data is protected by Monero's cryptography)
 - Which outputs your transactions spend from
 - Which outputs you own, if you mark the node as trusted. Requests such as checking whether your key images are spent, or scanning for specific transactions, are only sent to a trusted node. Some wallets need a trusted node to work at all (for example, air-gapped wallets such as ANONERO and Cupcake), and so reveal your owned outputs to it.
+
+!!! warning "Your transactions are not private from the node operator"
+    Connecting over Tor or I2P hides your IP address, but not your transactions. The operator sees every transaction your wallet sends through their node, and because most people stick with the same node, they can often link those transactions together into a history. If they ever tie one of those transactions to you (for example, through a purchase or an exchange withdrawal), they may be able to attribute the rest to you as well.
+
+    Assume that the operator of any remote node you use can see much of your transaction history. Running your own node is the only way to avoid this.
 
 ## What a malicious remote node can do
 
@@ -52,7 +57,7 @@ From most to least private:
 
 | Setup | Who can link your transactions to your IP | Notes
 |-------|-------------------------------------------|------
-| Local node with `--proxy` and `--tx-proxy` | Nobody | All of the node's P2P traffic goes over the specified `--proxy`, and your own transactions are broadcast over an anonymity network.
+| Local node with `--proxy` and `--tx-proxy` | Nobody | All of the node's P2P traffic goes over the specified `--proxy`, and your own transactions are broadcast over an anonymity network. Blocks are still downloaded from clearnet peers, but routed through the proxy, which can make syncing extremely slow (see the note below).
 | Local node with `--tx-proxy` | Nobody | Your own transactions are broadcast over Tor/I2P. Other traffic (such as syncing blocks) uses the clearnet, so peers can see that your IP runs a node.
 | Remote node via hidden service (Tor or I2P) | Nobody | The node operator sees your transactions, but not your IP. This includes your own node reached remotely; see [Wallet Setup](../running-node/monerod-tori2p.md#wallet-setup).
 | Remote (clearnet) node via Tor | Nobody | The node operator sees your transactions, but not your IP. Without SSL/TLS, the Tor exit relay can also see and tamper with your traffic.
@@ -60,6 +65,9 @@ From most to least private:
 | Remote node with SSL/TLS | The node operator | Others on the network path can't read your traffic, but the operator sees your IP and the transactions you send.
 | Local node without an anonymity network (the default) | Potentially, your ISP and peers | Your transactions are broadcast over the clearnet. Dandelion++ makes their origin harder to trace, but does not protect against your ISP or the first node they are sent to. Without incoming connections (on the clearnet, or via `--anonymous-inbound`), your node never relays other users' stem transactions, so any transaction it stems is known to be your own.
 | Remote node without SSL/TLS | The node operator, and anyone on the network path | Least private, avoid when possible.
+
+!!! note
+    Connections to Tor/I2P peers (hidden services) only relay transactions, so blocks are always downloaded from clearnet peers. With `--proxy`, those clearnet connections are routed through the proxy instead (for example, out through Tor exit relays). This hides your IP from peers, but can make syncing extremely slow, especially the initial sync. With I2P, it also requires an outproxy, of which there are very few. If this is a problem, you can do the initial sync with only `--tx-proxy` and add `--proxy` once the node is synced. While the initial sync runs, peers can see that your IP runs a node, but your own transactions are still broadcast over Tor/I2P.
 
 !!! note
     If you run a local node with `--tx-proxy`, also enabling `--anonymous-inbound` adds plausible deniability; your node will relay transactions received from Tor/I2P peers to the clearnet, so to an outside observer these appear to originate from your node, just like your own would. See the [Tor/I2P setup guide](../running-node/monerod-tori2p.md).
