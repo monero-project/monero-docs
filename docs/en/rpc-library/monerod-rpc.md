@@ -2898,7 +2898,7 @@ curl http://127.0.0.1:18081/get_transaction_pool_hashes \
 
 ### **/get_transaction_pool_hashes.bin**
 
-Get hashes from transaction pool. Binary request.
+Get hashes from transaction pool. Despite the `.bin` suffix, this endpoint accepts JSON requests.
 
 Alias: _None_ .
 
@@ -2906,11 +2906,12 @@ Inputs: _None_ .
 
 Outputs:
 
+- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
 - _status_ - string; General RPC error code. "OK" means everything looks good.
-- _tx_hashes_ - binary array of transaction hashes.
-- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _tx_hashes_ - binary blob of concatenated 32-byte transaction hashes. Omitted when the pool is empty.
 
-Example:
+Example with an empty transaction pool:
 
 ```bash title="Request"
 curl http://127.0.0.1:18081/get_transaction_pool_hashes.bin \
@@ -2919,9 +2920,9 @@ curl http://127.0.0.1:18081/get_transaction_pool_hashes.bin \
 
 ```json title="Response"
 {
+  "credits": 0,
   "status": "OK",
-  "tx_hashes": " ... ",
-  "untrusted": false
+  "top_hash": ""
 }
 ```
 
