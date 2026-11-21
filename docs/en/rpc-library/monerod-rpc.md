@@ -2825,7 +2825,7 @@ Example (Note: Some lists in the returned information have been truncated for di
 
 ```bash title="Request"
 curl http://127.0.0.1:18081/get_transaction_pool \
-  -H 'Content-Type: application/json'
+  -H 'Content-Type: application/json' -d '{}'
 ```
 
 ```json title="Response"
@@ -2881,7 +2881,7 @@ Example:
 
 ```bash title="Request"
 curl http://127.0.0.1:18081/get_transaction_pool_hashes \
-  -H 'Content-Type: application/json'
+  -H 'Content-Type: application/json' -d '{}'
 ```
 
 ```json title="Response"
@@ -2914,7 +2914,7 @@ Example:
 
 ```bash title="Request"
 curl http://127.0.0.1:18081/get_transaction_pool_hashes.bin \
-  -H 'Content-Type: application/json'
+  -H 'Content-Type: application/json' -d '{}'
 ```
 
 ```json title="Response"
@@ -2962,7 +2962,7 @@ Example:
 
 ```bash title="Request"
 curl http://127.0.0.1:18081/get_transaction_pool_stats \
-  -H 'Content-Type: application/json'
+  -H 'Content-Type: application/json' -d '{}'
 ```
 
 ```json title="Response"
@@ -3274,7 +3274,7 @@ Example while mining:
 
 ```bash title="Request"
 curl http://127.0.0.1:18081/mining_status \
-  -H 'Content-Type: application/json'
+  -H 'Content-Type: application/json' -d '{}'
 ```
 
 ```json title="Response"
@@ -3303,7 +3303,7 @@ Example while not mining:
 
 ```bash title="Request"
 curl http://127.0.0.1:18081/mining_status \
-  -H 'Content-Type: application/json'
+  -H 'Content-Type: application/json' -d '{}'
 ```
 
 ```json title="Response"
@@ -3420,7 +3420,7 @@ Example:
 
 ```bash title="Request"
 curl http://127.0.0.1:18081/save_bc \
-  -H 'Content-Type: application/json'
+  -H 'Content-Type: application/json' -d '{}'
 ```
 
 ```json title="Response"
@@ -3607,7 +3607,7 @@ Categories are represented as a comma separated list of `<Category>:<level>` (si
   - _DEBUG_ 
   - _TRACE_ - lower level
 A level automatically includes higher level.
-By default, categories are set to `*:WARNING,net:FATAL,net.p2p:FATAL,net.cn:FATAL,global:INFO,verify:FATAL,stacktrace:INFO,logging:INFO,msgwriter:INFO`.
+By default, categories are set to `*:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO`.
 Setting the categories to "" prevents any logs from being outputted.
 
 Alias: _None_ .
@@ -3620,7 +3620,6 @@ Outputs:
 
 - _categories_ - string; daemon log enabled categories
 - _status_ - string; General RPC error code. "OK" means everything looks good. Any other value means that something went wrong.
-- _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
 
 Example to set all facilities to Security Level `Info`:
 
@@ -3635,23 +3634,21 @@ curl http://127.0.0.1:18081/set_log_categories \
 ```json title="Response"
 {
   "categories": "*:INFO",
-  "status": "OK",
-  "untrusted": false
+  "status": "OK"
 }
 ```
 
-Example without input to set the default categories:
+Example to restore the level-0 default categories:
 
 ```bash title="Request"
 curl http://127.0.0.1:18081/set_log_categories \
-  -H 'Content-Type: application/json'
+  -H 'Content-Type: application/json' -d '{"categories":"0"}'
 ```
 
 ```json title="Response"
 {
-  "categories": "*:WARNING,net:FATAL,net.p2p:FATAL,net.cn:FATAL,global:INFO,verify:FATAL,stacktrace:INFO,logging:INFO,msgwriter:INFO",
-  "status": "OK",
-  "untrusted": false
+  "categories": "*:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO",
+  "status": "OK"
 }
 ```
 
@@ -3798,7 +3795,7 @@ Example:
 
 ```bash title="Request"
 curl http://127.0.0.1:18081/stop_daemon \
-  -H 'Content-Type: application/json'
+  -H 'Content-Type: application/json' -d '{}'
 ```
 
 ```json title="Response"
@@ -3826,7 +3823,7 @@ Example:
 
 ```bash title="Request"
 curl http://127.0.0.1:18081/stop_mining \
-  -H 'Content-Type: application/json'
+  -H 'Content-Type: application/json' -d '{}'
 ```
 
 ```json title="Response"
