@@ -11,7 +11,7 @@
             apt update
             apt install i2pd
             ```
-        3. Create a server tunnel for the Monero P2P and RPC ports:
+        3. Create separate server tunnels for the Monero P2P and RPC ports:
             ``` ini
             cat << EOF > /etc/i2pd/tunnels.conf.d/monero-mainnet.conf
             [monero-node]
@@ -19,7 +19,6 @@
             host = 127.0.0.1
             # Anonymous inbound port
             port = 18085
-            inport = 0
             keys = monero-mainnet.dat
 
             [monero-rpc]
@@ -27,33 +26,26 @@
             host = 127.0.0.1
             # Restricted RPC port
             port = 18089
-            keys = monero-mainnet.dat
+            keys = monero-mainnet-rpc.dat
             EOF
             ```
+            If you already used this guide, keep `monero-mainnet.dat` for `monero-node` so its advertised P2P address stays the same. The separate RPC key file creates a new address; update your wallets after restarting i2pd. Back up both key files.
         4. Restart i2pd:
             ``` Bash
             systemctl restart i2pd
             ```
-        5. Find the new Base32 address of the node:
+        5. Find both Base32 addresses in the [i2pd tunnels page](http://127.0.0.1:7070/?page=i2p_tunnels). Under Server tunnels, use the address next to `monero-node` for P2P and the address next to `monero-rpc` for your wallets.
 
-            === "Terminal"
-                ``` Bash
-                curl -s http://127.0.0.1:7070/?page=i2p_tunnels | grep -Eo "[a-zA-Z0-9./?=_%:-]*" | grep "18089"
-                ```
-            === "Web console"
-                Go to the web console at 127.0.0.1:7070 -> [I2P tunnels page](http://127.0.0.1:7070/?page=i2p_tunnels).    
-                Look for Server tunnels and you will see an address like **_`yourlongb32i2paddress.b32.i2p`_** next to **`monero-node`**.
-
-        6. Copy the result into your Monero [**config file** :link:{ title="Monerod Config" }]{{ config }}, enabling these options:
+        6. Add the P2P address to your Monero [**config file** :link:{ title="Monerod Config" }]{{ config }}, enabling these options:
 
             ``` ini
-            anonymous-inbound=yourlongb32i2paddress.b32.i2p,127.0.0.1:18085
+            anonymous-inbound=yourp2pi2paddress.b32.i2p,127.0.0.1:18085
             tx-proxy=i2p,127.0.0.1:4447,disable_noise
             ```
 
-            Replace `yourlongb32i2paddress.b32.i2p` with your Base32 address.
+            Replace `yourp2pi2paddress.b32.i2p` with the `monero-node` address. Do not put the RPC address in `anonymous-inbound`.
         7. The node is now available on I2P. You can check that the service is working by using `curl`:
             ``` Bash
-            curl -x socks5h://127.0.0.1:4447 http://yourlongb32i2paddress.b32.i2p:18089/get_info
+            curl -x socks5h://127.0.0.1:4447 http://yourrpci2paddress.b32.i2p:18089/get_info
             ```
 {% include 'reg_i2p_template' %}
