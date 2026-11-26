@@ -1790,28 +1790,28 @@ curl http://127.0.0.1:18081/json_rpc \
 
 ### **hard_fork_info**
 
-Look up information regarding hard fork voting and readiness.
+Look up the current hard-fork version and the configured activation height of any hard-fork version, past or upcoming.
 
 Alias: _None_ .
 
 Inputs:
 
-- _version_ - unsigned int; The hard fork version number to query; if greater than 0 it is used directly, otherwise the daemon falls back to the next hard fork version (blockchain.get_next_hard_fork_version()).
+- _version_ - unsigned int; (Optional, defaults to 0; range 0-255) Hard-fork version to query. If 0 or omitted, the daemon queries the next scheduled version, or the current version if no later one is configured.
 
 Outputs:
 
-- _credits_ - unsigned int; If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-- _earliest_height_ - unsigned int; Block height at which hard fork would be enabled if voted in.
-- _enabled_ - boolean; Tells if hard fork is enforced.
-- _state_ - unsigned int; Current hard fork state: 0 (There is likely a hard fork), 1 (An update is needed to fork properly), or 2 (Everything looks good).
+- _credits_ - unsigned int; Always 0. Retained for backward compatibility with the removed RPC payment feature.
+- _earliest_height_ - uint64; Activation height of the first scheduled hard fork whose version is at least the queried version. This may be in the past or future. If no such hard fork is scheduled, the value is 18446744073709551615 (UINT64_MAX).
+- _enabled_ - boolean; True if the queried hard-fork version is active or already superseded by the current version.
+- _state_ - unsigned int; Heuristic based only on wall-clock time relative to the approximate time of the newest hard fork this daemon knows about: 0 (likely forked; ≥ ~1 year ago), 1 (update may be needed; ≥ ~6 months ago), or 2 (ready; otherwise, including an upcoming fork). It can be 0 on up-to-date software if no newer hard fork has been configured for a long time. Independent of the queried version and of block votes.
 - _status_ - string; General RPC error code. "OK" means everything looks good.
-- _threshold_ - unsigned int; Minimum percent of votes to trigger hard fork. Default is 80.
-- _top_hash_ - string; If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
+- _threshold_ - unsigned int; Number of blocks in _window_ that must signal a hard fork via the block-header's minor_version. Currently configured forks have a threshold of 0, so activation depends on the configured height (_earliest_height_) only, not votes.
+- _top_hash_ - string; Always empty. Retained for backward compatibility with the removed RPC payment feature.
 - _untrusted_ - boolean; States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
-- _version_ - unsigned int; The major block version for the fork.
-- _votes_ - unsigned int; Number of votes towards hard fork.
-- _voting_ - unsigned int; Hard fork voting status.
-- _window_ - unsigned int; Number of blocks over which current votes are cast. Default is 10080 blocks.
+- _version_ - unsigned int; Hard-fork version currently required for the next block, used as its major_version in the daemon's block templates. This does not echo the input version.
+- _votes_ - unsigned int; Number of blocks among the most recent _window_ blocks signaling the queried version or higher through their minor_version. For example, blocks signaling version 16 also count when querying version 15.
+- _voting_ - unsigned int; Highest hard-fork version configured in this daemon. Blocks built from this daemon's templates signal this version in their `minor_version`, regardless of how far away its activation height is.
+- _window_ - unsigned int; Number of most recent blocks tallied for hard-fork signaling. This is a fixed maximum of 10080 blocks (about two weeks), and is smaller only on chains with fewer blocks than that.
 
 Example:
 
