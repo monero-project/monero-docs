@@ -70,6 +70,7 @@ Some commands assume Ubuntu but you will easily translate them to your distribut
     ```
 
     Feel free to adjust above to your preferred conventions, just remember to adjust the paths in the `systemd` and `monerod` config files accordingly.
+    The service below restricts writes to its managed data and log directories. If you use other paths, add them with `ReadWritePaths=` in a systemd override; for paths under `/home`, also set `ProtectHome=read-only`.
 
 3. [Download](../interacting/download-monero-binaries.md) and [verify](../interacting/verify-monero-binaries.md) the archive.
 
@@ -111,12 +112,43 @@ Some commands assume Ubuntu but you will easily translate them to your distribut
 
     Restart=always
     RestartSec=30
+    LimitNOFILE=65536
 
     User=monero
     Group=monero
+    StateDirectory=monero
+    StateDirectoryMode=0750
+    LogsDirectory=monero
+    LogsDirectoryMode=0750
 
     StandardOutput=journal
     StandardError=journal
+
+    NoNewPrivileges=yes
+    ProtectSystem=strict
+    ProtectHome=yes
+    PrivateTmp=yes
+    PrivateDevices=yes
+    ProtectKernelTunables=yes
+    ProtectKernelModules=yes
+    ProtectKernelLogs=yes
+    ProtectControlGroups=yes
+    ProtectClock=yes
+    ProtectHostname=yes
+    ProtectProc=invisible
+    RestrictNamespaces=yes
+    RestrictRealtime=yes
+    RestrictSUIDSGID=yes
+    LockPersonality=yes
+    RemoveIPC=yes
+    # monerod aborts at startup without AF_NETLINK
+    RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX AF_NETLINK
+    SystemCallArchitectures=native
+    SystemCallFilter=@system-service
+    SystemCallFilter=~@privileged
+    CapabilityBoundingSet=
+    UMask=0077
+    # MemoryDenyWriteExecute is omitted: it breaks the RandomX JIT
 
     [Install]
     WantedBy=multi-user.target
